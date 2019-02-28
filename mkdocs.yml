@@ -1,0 +1,29 @@
+site_name: LPP
+use_directory_urls: false
+
+nav:
+- Sesión 0: 'sesion00/sesion00-introduccion.md'
+- Sesión 1: 'sesion01/sesion01-firma-aprovisionamiento.md'
+
+theme:
+    language: es
+    name: 'material'
+    palette:
+        primary: 'Teal'
+        accent: 'Teal'
+    font:
+        text: 'Roboto'
+        code: 'Roboto Mono'
+    logo: 'imagenes/logo.png'
+
+markdown_extensions:
+    - admonition
+    - codehilite:
+        linenums: true
+    - footnotes
+    - meta
+    - sane_lists
+    - toc:
+       permalink: true
+       toc_depth: 3
+    - pymdownx.superfences
