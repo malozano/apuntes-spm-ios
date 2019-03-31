@@ -530,13 +530,30 @@ UNUserNotificationCenter.current().add(request) {
 
 ## Demo
 
-### app `Notificaciones` ###
+Vamos a probar el código visto hasta ahora en una app ejemplo.
+
+### Ejemplo de app: `Notificaciones` ###
+
+Descargamos la app
+[Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
+en la que podemos lanzar notificaciones locales.
+
+Las notificaciones locales se pueden probar en el simulador.
 
 <img src="imagenes/app-notificaciones-1.png" width="280px"/>
 
 <img src="imagenes/app-notificaciones-2.png" width="280px"/>
 
 <img src="imagenes/app-notificaciones-3.png" width="280px"/>
+
+- Mostramos el funcionamiento de la app y los mensajes que aparecen
+  por la salida estándar.
+- Mostramos el código del registro de notificaciones en el método
+  `application(_:didFinishLaunchingWithOptions:)` de la clase `AppDelegate`.
+- Mostramos el código de registro y creación de la notificación en el mismo
+  método.
+- Mostramos el código de los métodos manejadores del ciclo de vida de
+  la app y el de obtención de los _settings_ de notificaciones.
 
 ----
 
