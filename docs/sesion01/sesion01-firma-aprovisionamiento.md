@@ -1446,7 +1446,7 @@ Explora las distintas opciones que permite la cuenta:
 
 ### Firma e instalación de una app en un dispositivo de desarrollo ###
 
-1. Descarga la app ToDoList. 
+1. Descarga la app [ToDoList](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip). 
 2. Incluye tu nombre en alguna parte de la interfaz de usuario.
 3. Fírmala con tu cuenta gratuita de desarrollador Apple (no la del
 equipo de la UA). 
@@ -1502,7 +1502,7 @@ Resumen de las prácticas a realizar en esta sesión y entregas a
 realizar en Moodle.
 
 1. Descarga la app
-   [ToDoList](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/ToDoList.zip)
+   [ToDoList](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip)
    (o usa una app tuya que hayas desarrollado) y fírmala con tu cuenta
    gratuita de desarrollador Apple (no la del equipo de la
    UA). Modifica la app para que aparezca tu nombre en la interfaz de
