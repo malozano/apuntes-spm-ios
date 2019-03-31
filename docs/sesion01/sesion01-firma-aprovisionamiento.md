@@ -1,24 +1,3 @@
-<!--
-
-Instalación de app de prueba mediante Fabric:
-
-Para que tu aplicación pueda lanzarse en un dispositivo, éste debe
-estar registrado en tu perfil de aprovisionamiento.
-
-Para desplegar una app iOS en un dispositivo, el perfil de
-aprovisionamiento usado debe contener el UDID de dicho dispositivo. Si 
-no lo está, en lugar de recibir un enlace para instalar la app, el 
-tester recibirá un enlace para la aplicación web Beta, que se usa 
-para recoger su UDID y enviarle una alerta cuando una nueva 
-versión de la app esté disponible. 
-
-Una vez el tester instala la app web, recibirás una notificación 
-conteniendo un adjunto con su UDID. Los UDIDs también se mostrarán 
-en la aplicación de Fabric para OS X cuando se cree una 
-distribución que incluya testers con UDIDs desconocidos.
-
--->
-
 # Sesión 1: <br/> Firma, aprovisionamiento y <br/> distribución de apps
 
 ## Introducción ##
@@ -461,23 +440,6 @@ registrados con el programa gratuito.
 
 ## Despliegue de apps en dispositivos de prueba ##
 
-
-<!--
-
-Perfiles de aprovisionamiento
-
-- Instalar un perfil de aprovisionamiento en el móvil que incluya
-  la clave pública del certificado con el que se firma la app.
-
-Podemos hacer ambas cosas usando Xcode y la identidad de firma
-obtenida con el Apple ID.
-
-
-Vamos a demostrar y probar las dos primeras opciones, utilizando el Programa
-de Desarrollo de la Universidad. Haremos también una demostración de la
-distribución de versiones beta de apps usando un Programa de
-Desarrollador de pago.
--->
 
 ### Capacidades de las apps ###
 
@@ -1488,8 +1450,8 @@ Explora las distintas opciones que permite la cuenta:
 2. Incluye tu nombre en alguna parte de la interfaz de usuario.
 3. Fírmala con tu cuenta gratuita de desarrollador Apple (no la del
 equipo de la UA). 
-4. Instálala en el dispositivo del profesor usándolo como dispositivo de
-desarrollo de Xcode y prueba que funciona correctamente. 
+4. Instálala en un dispositivo de desarrollo conectado a Xcode y
+   prueba que funciona correctamente.
 5. Haz una foto y guárdala como documentación.
 
 
@@ -1544,9 +1506,9 @@ realizar en Moodle.
    (o usa una app tuya que hayas desarrollado) y fírmala con tu cuenta
    gratuita de desarrollador Apple (no la del equipo de la
    UA). Modifica la app para que aparezca tu nombre en la interfaz de
-   usuario. Instálala en el dispositivo del profesor usándolo como
-   dispositivo de desarrollo de Xcode y prueba que funciona
-   correctamente. Haz una foto y guárdala como documentación.
+   usuario. Instálala en un dispositivo de desarrollo de Xcode y
+   prueba que funciona correctamente. Haz una foto y guárdala como
+   documentación.
 2. Firma la app con tu cuenta del equipo de la UA, activa
    el servicio de _Game Center_ e instálala en otro dispositivo del
    profesor que esté dado de alta en el perfil de aprovisionamiento,
