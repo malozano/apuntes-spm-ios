@@ -5,6 +5,6 @@ Plataformas Móviles_ del [Máster Universitario en Desarrollo de Software para 
 
 - [Ficha oficial de la asignatura](https://cvnet.cpd.ua.es/Guia-Docente/GuiaDocente/Index?wCodEst=D092&wcodasi=43286&wlengua=es&scaca=2018-19)
 - [Plataforma docente Moodle](https://moodle2018-19.ua.es/moodle/course/view.php?id=1445)
-- [Apuntes en GitHub Pages](https://domingogallardo.github.io/spm-ios/)
+- [Apuntes en GitHub Pages](https://domingogallardo.github.io/apuntes-spm-ios/)
 
 
