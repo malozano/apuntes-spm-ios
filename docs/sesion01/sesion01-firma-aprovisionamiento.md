@@ -344,7 +344,7 @@ gestionar una lista de tareas por hacer.
 <img src="imagenes/app-todo-list-simulador.png" width="300px"/>
 
 Podemos descargar la app de [esta
-dirección](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/ToDoList.zip)
+dirección](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip)
 y probar a ejecutarla en el simulador.
 
 Estando en el programa de desarrollo gratuito podemos probar la app en
