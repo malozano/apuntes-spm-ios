@@ -1,4 +1,4 @@
-# Sesión 0: Planificación <br/> bloque iOS
+# Sesión 0: Planificación bloque iOS
 
 ## Planificación
 
