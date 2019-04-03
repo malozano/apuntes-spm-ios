@@ -17,6 +17,10 @@ theme:
         code: 'Roboto Mono'
     logo: 'imagenes/logo.png'
 
+extra:
+    search:
+        language: 'es'
+
 markdown_extensions:
     - admonition
     - codehilite:
