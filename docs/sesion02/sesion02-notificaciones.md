@@ -557,99 +557,35 @@ Las notificaciones locales se pueden probar en el simulador.
 
 ----
 
-## Manejo de notificaciones ##
-
-- Podemos hacer que nuestra app ejecute código cuando llegue la
-  notificación. Es lo que se denomina _manejo de la notificación_. Se
-  implementa con el protocolo [`UNUserNotificationCenterDelegate`](https://developer.apple.com/reference/usernotifications/unusernotificationcenterdelegate).
-- Se suele hacer que el `AppDelegate` cumpla este protocolo y
-  asignarlo al centro de notificaciones en los métodos
-  `application(_:willFinishLaunchingWithOptions:)` o
-  `application(_:didFinishLaunchingWithOptions:)`
-
-
-### Mostrar y recibir la notificación con la app en primer plano ###
-
-- En el protocolo se define la función
-  `userNotificationCenter(_:willPresent:withCompletionHandler:)` a la
-  que el sistema llama cuando se recibe una notificación y la app está
-  en primer plano.
-- Si queremos que la notificación aparezca debemos llamar al
-  _completionHandler_ pasando como parámetro un array con las opciones
-  de visualización que deseamos.
-- Podemos recuperar información contenida en la notificación
-  accediendo al `content` del `request` de la notificación recibida.
-
-
-### Ejemplo de código ###
-
-
-```swift
-func application(_ application: UIApplication, 
-                 didFinishLaunchingWithOptions launchOptions: 
-                       [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    ...
-    UNUserNotificationCenter.current().delegate = self
-    ...
-}
-
-func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                            willPresent notification: UNNotification,
-                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    print("Recibida notificacion \(notification)")
-    // Recuperamos el mensaje en la notificación
-    let userInfo = notification.request.content.userInfo as? Dictionary<String,String>
-    if let s = userInfo?["Mensaje"] {
-        print("Mensaje: \(s)")
-    }
-    else {
-        print("No he encontrado el mensaje\n")
-    }
-    // Mostramos la notificación
-    completionHandler([.alert, .sound])
-}
-```
-
-
-### App en segundo plano ###
-
-- Cuando la app está en segundo plano (en background) las
-  notificaciones se reciben y muestran en el sistema.
-- Si es una **notificación local** la app sólo tiene forma de saber que se
-  ha recibido la notificación cuando el usuario la pulsa.
-   - Cuando el usuario pulsa en cualquier acción de la notificación,
-     la app pasa a primer plano (se ejecuta el métodos
-     `applicationWillEnterForeground`) y se llama al método
-     `userNotificationCenter(_:didReceive:withCompletionHandler:)` del
-     `UNUserNotificationCenterDelegate`.
-- Si es una **notificación remota** se llama al método
-  `application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
-  del `UIApplicationDelegate` (lo veremos más adelante).
-
 ## Acciones ##
 
 <img src="imagenes/acciones-notificacion.png" width="300px"/>
 
-- Se unifican las acciones y la conducta por defecto en la que el
-  usuario pulsa la notificación. Ambos casos se manejan con el mismo
-  API.
-- La acción en la que el usuario pulsa en la notificación se denomina
-  **acción por defecto**.
-- Es posible incorporar en la notificación distintos tipos de
-  acciones:
-    - Botones con títulos customizables
-    - Entrada de texto
-- Las acciones se crean con la clase
-  [`UNNotificationAction`](https://developer.apple.com/reference/usernotifications/untextinputnotificationaction)
-- El conjunto de acciones de una notificación deben agruparse en una
-  categoría
-  [`UNNotificationCategory`](https://developer.apple.com/reference/usernotifications/unnotificationcategory)
-  que se registra en el `UNUserNotificationCenter`.
-- Para conseguir una entrada de texto hay que crear un objeto de tipo [`UNTextInputNotificationAction`](https://developer.apple.com/reference/usernotifications/untextinputnotificationaction)
+Es posible incorporar en la notificación distintos tipos de
+acciones:
 
+- Botones con títulos customizables
+- Entrada de texto
 
-### Ejemplo de código ###
+Las acciones se crean con la clase [`UNNotificationAction`](https://developer.apple.com/reference/usernotifications/untextinputnotificationaction).
 
+Para conseguir una entrada de texto hay que crear un objeto de tipo
+[`UNTextInputNotificationAction`](https://developer.apple.com/reference/usernotifications/untextinputnotificationaction).
+
+El conjunto de acciones de una notificación deben agruparse en una categoría
+[`UNNotificationCategory`](https://developer.apple.com/reference/usernotifications/unnotificationcategory)
+que se registra en el `UNUserNotificationCenter` asociada a un
+identificador. Una vez creada la categoría con el conjunto de acciones
+podemos crear una notificación que contenga estas acciones
+inicializando la propiedad `categoryIdentifier` de la notificación con
+la cadena apropiada.
+
+La acción en la que el usuario pulsa en la notificación se denomina
+**acción por defecto**, y es la cadena: `com.apple.UNNotificationDefaultActionIdentifier`.
+
+### Ejemplo de código de creación de una acción###
+
+Para crear las acciones y asociarlas a una categoría:
 
 ```swift
 let action1 = UNNotificationAction(identifier:"acepto", title: "Acepto", options: [])
@@ -664,48 +600,193 @@ let category = UNNotificationCategory(identifier: "invitacion",
 UNUserNotificationCenter.current().setNotificationCategories([category])
 ```
 
-- Las acciones añaden a una notificación actualizando el
-  `categoryIdentifier` con el identificador apropiado:
+Para asignar las acciones a la notificación se asigna el identificador
+de la categoría.
 
 ```swift
 content.categoryIdentifier = "invitacion"
 ```
 
-### Aspecto ###
+La notificación creada tiene el siguiente aspecto:
 
 <img src="imagenes/notificaciones-acciones.png" width="300px"/>
 <img src="imagenes/acciones-input-texto.png" width="300px"/>
 
 
-### Recepción de la acción ###
+## Manejo de notificaciones ##
 
-- La función
-  `userNotificationCenter(_:didReceive:withCompletionHandler:)` del protocolo
-  [`UNUserNotificationCenterDelegate`](https://developer.apple.com/reference/usernotifications/unusernotificationcenterdelegate)
-  es a la que se llama cuando el usuario pulsa en la opción o en la propia
-  notificación.
-- Ejemplo (definido en la clase `AppDelegate`):
+Una vez que el usuario ha pulsado una acción de la notificación o la
+ha abierto nuestra app debe gestionar esa acción. Es lo que se
+denomina _manejo de la notificación_. Para ello debemos implementar
+los métodos del protocolo
+[`UNUserNotificationCenterDelegate`](https://developer.apple.com/reference/usernotifications/unusernotificationcenterdelegate).
+
+- `userNotificationCenter(_:didReceive:withCompletionHandler:)`: se
+llama cuando la app está en segundo plano y el usuario interactúa
+con la notificación.
+
+- `userNotificationCenter(_:willPresent:withCompletionHandler:)`: se
+llama cuando la app está en primer plano y se recibe la
+notificación. 
+
+Estos métodos se suelen implementar en el propio `AppDelegate`, que
+cumple este protocolo. Y se debe asignar al centro de notificaciones en los
+métodos `application(_:willFinishLaunchingWithOptions:)` o
+`application(_:didFinishLaunchingWithOptions:)`. Por ejemplo:
+
 
 ```swift
-func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                            didReceive response: UNNotificationResponse, 
-                            withCompletionHandler completionHandler: @escaping () -> Void) {
-    // Obtener la acción y, en su caso, el texto introducido
-    // a partir del objeto response
-    completionHandler()
+func application(_ application: UIApplication, 
+                 didFinishLaunchingWithOptions launchOptions: 
+                       [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    ...
+    UNUserNotificationCenter.current().delegate = self
+    ...
 }
 ```
 
-- Si el usuario pulsa en la propia notificación (no en una opción) el
-  identificador de la acción seleccionada será `com.apple.UNNotificationDefaultActionIdentifier`.
+
+### App en segundo plano ###
+
+Cuando la app está en segundo plano (en background) las
+notificaciones se reciben y muestran en el sistema.
+
+Si es una **notificación local** el usuario puede interactuar con las
+acciones de la notificación o pulsar la opción de `Abrir`. En ambos
+casos se llama al método
+[`userNotificationCenter(_:didReceive:withCompletionHandler:)`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/1649501-usernotificationcenter)
+con la información de la opción seleccionada por el usuario. 
+
+Si el usuario ha seleccionado una acción la aplicación no pasa a
+primer plano. Sin embargo, si el usuario ha decidido abrir la
+notificación, la aplicación pasa a primer plano, ejecutándose el
+método de ciclo de vida
+[`applicationWillEnterForeground`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623076-applicationwillenterforeground)
+del `UIApplicationDelegate` antes del método
+`userNotificationCenter(_:didReceive:withCompletionHandler:)`.
+
+Podemos recuperar información contenida en la notificación
+accediendo al `content` del `request` de la notificación recibida.
+
+Si la notificación es una **notificación remota** se llama al método
+`application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
+del `UIApplicationDelegate` (lo veremos más adelante).
+
+Un ejemplo del código en el que se gestiona la notificación recibida:
+
+
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter,
+            didReceive response: UNNotificationResponse,
+            withCompletionHandler completionHandler: 
+               @escaping () -> Void) {
+   // Get the meeting ID from the original notification.
+   let userInfo = response.notification.request.content.userInfo
+        
+   if response.notification.request.content.categoryIdentifier ==
+              "MEETING_INVITATION" {
+      // Retrieve the meeting details.
+      let meetingID = userInfo["MEETING_ID"] as! String
+      let userID = userInfo["USER_ID"] as! String
+            
+      switch response.actionIdentifier {
+      case "ACCEPT_ACTION":
+         sharedMeetingManager.acceptMeeting(user: userID, 
+               meetingID: meetingID)
+         break
+                
+      case "DECLINE_ACTION":
+         sharedMeetingManager.declineMeeting(user: userID, 
+               meetingID: meetingID)
+         break
+                
+      case UNNotificationDefaultActionIdentifier,
+           UNNotificationDismissActionIdentifier:
+         // Queue meeting-related notifications for later
+         //  if the user does not act.
+         sharedMeetingManager.queueMeetingForDelivery(user: userID,
+               meetingID: meetingID)
+         break
+                
+      default:
+         break
+      }
+   }
+   else {
+      // Handle other notification types...
+   }
+        
+   // Always call the completion handler when done.
+   completionHandler()
+}
+```
+
+Si el usuario pulsa en la propia notificación (no en una opción) el
+identificador de la acción seleccionada será
+`com.apple.UNNotificationDefaultActionIdentifier`, el contenido de
+la constante `UNNotificationDefaultActionIdentifier`.
+
+
+### App en primer plano ###
+
+En el protocolo se define la función
+`userNotificationCenter(_:willPresent:withCompletionHandler:)` a la
+que el sistema llama cuando se recibe una notificación y la app está
+en primer plano.
+
+Si queremos que la notificación aparezca debemos llamar al
+_completionHandler_ pasando como parámetro un array con las opciones
+de visualización que deseamos.
+
+Un ejemplo de código:
+
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter,
+         willPresent notification: UNNotification,
+         withCompletionHandler completionHandler: 
+            @escaping (UNNotificationPresentationOptions) -> Void) {
+   if notification.request.content.categoryIdentifier == 
+            "MEETING_INVITATION" {
+      // Retrieve the meeting details.
+      let meetingID = notification.request.content.
+                       userInfo["MEETING_ID"] as! String
+      let userID = notification.request.content.
+                       userInfo["USER_ID"] as! String
+            
+      // Add the meeting to the queue.
+      sharedMeetingManager.queueMeetingForDelivery(user: userID,
+            meetingID: meetingID)
+
+      // Play a sound to let the user know about the invitation.
+      completionHandler(.sound)
+      return
+   }
+   else {
+      // Handle other notification types...
+   }
+
+   // Don't alert the user for other types.
+   completionHandler(UNNotificationPresentationOptions(rawValue: 0))
+}
+```
+
+
 
 ----
 
 ## Demo
 
-- Probamos el código anterior para incluir acciones en la notificación.
+Probamos y examinamos el código de la aplicación de prueba que incluye
+acciones en la notificación y que define las funciones de gestión de
+las notificaciones.
 
 <img src="imagenes/acciones-input-texto.png" width="300px"/>
+
+Probamos a seleccionar distintas acciones y comprobar qué mensaje
+aparece por la salida estándar:
+
+<img src="imagenes/salida-notificaciones.png" width="400px"/>
+
 
 ----
 
@@ -729,13 +810,10 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 - El envío de notificaciones se hace a través del APNs (_Apple Push
   Notification service_).
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
+### Arquitectura de las notificaciones remotas ###
 
-
-## Arquitectura de las notificaciones remotas
-
-<img style="margin-left:40px;" src="imagenes/remote-notif-simple.png" width="700px"/>
+<img src="imagenes/remote-notif-simple.png" width="700px"/>
 
 - Apple Push Notification service (APNs) es la pieza central de las
   notificaciones remotas. Es un servicio robusto y altamente eficiente
@@ -751,15 +829,11 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
   los proveedores preparan y envían notificaciones a través de los
   canales al APNs, que se encarga de enviarlas a los dispositivos.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+### Arquitectura de seguridad ###
 
 
-
-## Arquitectura de seguridad
-
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:40px;" src="imagenes/remote-notif-multiple.png" width="400px"/>
+<img src="imagenes/remote-notif-multiple.png" width="400px"/>
 
 - No queremos que nuestras notificaciones (con datos personales)
   puedan aparecer en otros dispositivos.
@@ -777,15 +851,10 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
       dispositivo y que debe estar presente en cada petición del
       proveedor al APNs.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
+### Secuencia de registro del dispositivo ###
 
-
-## Secuencia de registro del dispositivo
-
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:20px" src="imagenes/registration-sequence.png" width="500px"/>
+<img src="imagenes/registration-sequence.png" width="500px"/>
 
 - Sin considerar aspectos de seguridad y codificación, los pasos que
   se siguen al registrarse un dispositivo con el método de la clase
@@ -801,15 +870,10 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
    utilice a partir de ese momento en cada petición de notificación
    realizada al APNs.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
+### Token del dispositivo ###
 
-
-## Token del dispositivo
-
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:40px;" src="imagenes/token-generation.png" width="400px"/>
+<img src="imagenes/token-generation.png" width="400px"/>
 
 - Cada dispositivo iOS tiene un certificado y una clave privada
   criptográfica, proporcionada por el sistema operativo en la
@@ -827,15 +891,10 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
   formato binario o hexadecimal) para que lo utilice para enviar
   notificaciones al dispositivo.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
+### Envío de notificación remota usando el token ###
 
-
-## Envío de notificación remota usando el token
-
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:20px" src="imagenes/token-trust.png" width="500px"/>
+<img src="imagenes/token-trust.png" width="500px"/>
 
 - Cuando el servidor envía una petición de notificación al APNs,
   incluye el token del dispositivo.
@@ -844,11 +903,8 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 - Si el APNs determina que el emisor y el receptor son legítimos,
   envía la notificación al dispositivo identificado.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Contenido de la notificación
+### Contenido de la notificación ###
 
 - Una vez definido el mecanismo de seguridad en el envío de las
   notificaciones, veamos cómo se define el **contenido** de la
@@ -876,12 +932,6 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 ```
 
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Contenido de la notificación (2)
-
 - El diccionario debe contener otro diccionario identificado por la
   clave `aps`. Este diccionario contiene una o más propiedades que
   especifican los siguientes tipos de notificación:
@@ -902,11 +952,8 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
   [`didReceiveRemoteNotification`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
   del delegado del app.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Otros ejemplos de _payload_
+### Otros ejemplos de _payload_ ###
 
 ```json
 {
@@ -933,11 +980,6 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 }
 ```
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Otros ejemplos de _payload_
 
 ```json
 {
@@ -965,11 +1007,8 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 }
 ```
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Servidores proveedores
+### Servidores proveedores ###
 
 - Las notificaciones remotas se deben originar en un servidor
   proveedor nuestro que debe conectarse con el APNs usando la API
@@ -992,7 +1031,7 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 
 ## Demo ##
 
-## Pasos necesarios para la demo
+### Pasos necesarios para la demo ###
 
 - En la demo vamos a mostrar cómo se envían y reciben notificaciones
   remotas.
@@ -1011,28 +1050,20 @@ configurar:
     - **Perfil de aprovisionamiento** con la capacidad de notificación push.
 
 
-## Nuevo App ID en el _member center_ (1)
+### Nuevo App ID en el _member center_ ###
 
 - Un administrador del equipo UA debe crear una App ID con el nombre
   explícito de la app que se va a poner en producción.
 
 <img src="imagenes/app-id-notificaciones-1.png" width="600px"/>
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Nuevo App ID en el _member center_ (2)
 
 - Se debe añadir en el App ID la autorización de notificaciones push.
 
 <img src="imagenes/app-id-notificaciones-2.png" width="600px"/>
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Creación del certificado SSL en el _member center_ (1)
+### Creación del certificado SSL en el _member center_ (1) ###
 
 - Debemos obtener un certificado de una autoridad de certificación que
   después subiremos al _member center_.
@@ -1043,19 +1074,9 @@ configurar:
 
 <img src="imagenes/certificado-autoridad-certificadora.png"/ width="600px"/>
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Creación del certificado SSL en el _member center_ (2)
 
 <img src="imagenes/app-id-notificaciones-servicios.png" width="600px"/>
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Creación del certificado SSL en el _member center_ (3)
 
 - Para crear el certificado es necesario subir el fichero generado
   previamente `CertificateSigningRequest.certSigningRequest`
@@ -1065,11 +1086,8 @@ configurar:
 <img src="imagenes/generar-certificado-ssl.png" width="600px"/>
 
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Creación del perfil de aprovisionamiento 
+### Creación del perfil de aprovisionamiento ###
 
 - Creamos un nuevo perfil de aprovisionamiento que podrán usar todos
   los miembros del equipo.
@@ -1077,11 +1095,8 @@ configurar:
 <img src="imagenes/perfil-aprovisionamiento-push.png" width="600px"/>
 
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Generación del fichero `.pem` (1)
+### Generación del fichero `.pem` ###
 
 - Una vez creado el certificado en el _Member Center_ lo descargamos y
   lo instalamos en Acceso a llaveros, lo exportamos como fichero
@@ -1092,12 +1107,6 @@ configurar:
 
 - Se guarda el certificado como `UADevelopmentPushCertificate.p12` con
   una contraseña (mastermoviles18)
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Generación del fichero `.pem` (2)
 
 - Creamos el fichero `.pem` con el siguiente comando:
 
@@ -1110,11 +1119,8 @@ $ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
   el certificado `UADevelopmentPushCertificate.pem`.
 - Podremos usarlo para enviar la notificación push al APNs con un script PHP.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Obtención del token del dispositivo
+### Obtención del token del dispositivo ###
 
 - Ya hemos obtenido el certificado SSL que utilizaremos en el script
   PHP para enviar las notificaciones al APNs.
@@ -1123,11 +1129,8 @@ $ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
   la consola una vez recibido del APNs.
 - Repasemos el código y la configuración de la app `NotificacionesPush`.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Registro de las notificaciones
+### Registro de las notificaciones ###
 
 - Igual que con las notificaciones locales, en `application(application:didFinishLaunchingWithOptions)`
   se realiza el registro de las notificaciones:
@@ -1145,11 +1148,8 @@ func application(application: UIApplication,
 }
 ```
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Obtención del token del dispositivo (1)
+### Obtención del token del dispositivo ###
 
 - El método `registerForRemoteNotifications` es el que se encarga de
   establecer al conexión con el APNs y solicitar el token de
@@ -1165,12 +1165,6 @@ func application(_ application: UIApplication,
     }
 }
 ```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Obtención del token del dispositivo (2)
 
 - Cuando la app se registra en el APNs, éste envía un token (cadena
   hexadecimal) que identifica el dispositivo. Se recibe en el
@@ -1194,20 +1188,14 @@ func application(_ application: UIApplication,
 
 <img src="imagenes/token.png" width="800px"/>
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Probamos la app `NotificacionesPush`
+### Probamos la app `NotificacionesPush` ###
 
 - Descargamos el proyecto NotificacionesPush desde
   [este enlace](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/NotificacionesPush.zip). Contiene la app y los scripts PHP para enviar las notificaciones al APNs.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Ejecución de `NotificacionesPush` en un dispositivo
+### Ejecución de `NotificacionesPush` en un dispositivo ###
 
 - La app debe estar firmada con el perfil de aprovisionamiento creado
   y deben estar configuradas las _capabilities_ para activar las
@@ -1218,12 +1206,8 @@ func application(_ application: UIApplication,
 - Ejecutamos el app en un dispositivo físico en el que recibiremos las
   notificaciones remotas, ya que éstas no funcionan en el simulador.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Probamos a enviar notificaciones remotas al dispositivo
-<!-- .slide: class="image-right"-->
+### Probamos a enviar notificaciones remotas al dispositivo ###
 
 <img style="margin-left:20px" src="imagenes/notificacion-device.png" width="250px"/>
 
@@ -1247,14 +1231,10 @@ Connected to APNS
 Message successfully delivered
 ```
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
+### Recepción de las notificaciones en la app ###
 
-
-## Recepción de las notificaciones en la app
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:20px" src="imagenes/notificaciones-tab-controller.png" width="300px"/>
+<img src="imagenes/notificaciones-tab-controller.png" width="300px"/>
 
 - Vamos a ver ahora cómo se reciben las notificaciones en la app.
 - La programación es similar a la ya vista en notificaciones locales,
@@ -1268,11 +1248,8 @@ Message successfully delivered
     - **Nuevo**: Definición de manejador que se lanza cuando llega la
       notificación remota.
       
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Registro de la app para notificaciones remotas ##
+### Registro de la app para notificaciones remotas ###
 
 - Se debe llamar al método `registerForRemoteNotifications()` en el
   objeto compartido `application`:
@@ -1292,11 +1269,8 @@ func application(_ application: UIApplication,
   y solicita el token de dispositivo, que se utilizará como
   identificador al que enviar las notificaciones remotas.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Recepción del token de dispositivo ##
+### Recepción del token de dispositivo ###
 
 - El sistema llama de forma asíncrona a uno de los dos métodos
 siguientes del delegado del app, dependiendo de si ha habido éxito o
@@ -1319,11 +1293,8 @@ func application(_ application: UIApplication, didRegisterForRemoteNotifications
 
    - Si ha habido error, el sistema llama al método `application:didFailToRegisterForRemoteNotificationsWithError:`.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## App en background ##
+### App en background ###
 
 - Cuando llega una notificación remota que contiene la clave
   `content-available` con el valor `1` el sistema llama al método
@@ -1348,11 +1319,8 @@ func application(_ application: UIApplication,
 - Para que se llame al método se debe activar la capability `Background Modes >
   Remote Notifications`
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## Acciones del usuario sobre la notificación ##
+### Acciones del usuario sobre la notificación ###
 
 - Una vez recibida, la notificación funciona igual que una
   notificación local:
@@ -1365,11 +1333,8 @@ func application(_ application: UIApplication,
      `UNUserNotificationCenterDelegate`. 
 
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-
-
-## App en primer plano ##
+### App en primer plano ###
 
 ```swift
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
@@ -1384,11 +1349,9 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 
 ```
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
-
-## Notificación pulsada por el usuario ##
+### Notificación pulsada por el usuario ###
 
 ```swift
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
@@ -1408,12 +1371,9 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 ```
 
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
 
 
 ## Práctica
-<!-- .slide: data-background="#cbe0fc" -->
 
 - Descarga las apps
    [Notificaciones](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/Notificaciones.zip)
@@ -1442,19 +1402,10 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
   Moodle, junto con el proyecto comprimido y un documento PDF con una
   breve descripción de las funcionalidades añadidas.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
-
-## Referencias
+## Bibliografía
 
 - [Local and Remote Programming Guide](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/Introduction.html)
 - [UserNotifications Framework](https://developer.apple.com/reference/usernotifications)
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-# Master Programación <br/> de Dispositivos Móviles
-
 

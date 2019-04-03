@@ -1,16 +1,4 @@
-# Sesión 0: <br/> Planificación <br/> bloque iOS
-
-#### Servicios de las plataformas móviles - iOS
-
-<small>Domingo Gallardo - domingo.gallardo@ua.es  
-Departamento Ciencia de la Computación e Inteligencia Artificial  
-Master Programación de Dispositivos Móviles   
-2017-18</small>
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
+# Sesión 0: Planificación <br/> bloque iOS
 
 ## Planificación
 
@@ -21,19 +9,12 @@ Master Programación de Dispositivos Móviles
 - Semana 5: Extensiones y App Groups
 - Semana 6: Publicación en App Store y compras In-App
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
 
 ## Entregas de prácticas
 
 - Entregas en Moodle, normalmente una entrega cada semana
-- Plazo máximo: final de la asignatura (27 mayo)
+- Plazo máximo: una semana después del final de la asignatura (7 de junio)
 - Recomendable realizar los ejercicios semana a semana
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
 
 
 ## Recursos
@@ -49,11 +30,5 @@ guías, normalmente de Apple.
     - [App Extensions](https://developer.apple.com/app-extensions/)
     - [App Store](https://developer.apple.com/app-store/product-page/)
     - [Compras in-App](https://developer.apple.com/in-app-purchase/)
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-# Master Programación <br/> de Dispositivos Móviles
 
 

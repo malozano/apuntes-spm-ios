@@ -4,7 +4,7 @@ use_directory_urls: false
 nav:
 - Introducción : 'sesion00/sesion00-introduccion.md'
 - Firma, aprovisionamiento y distribución de apps : 'sesion01/sesion01-firma-aprovisionamiento.md'
-- Notificaciones Push : 'sesion02/sesion02-notificaciones.md'
+# - Notificaciones : 'sesion02/sesion02-notificaciones.md'
 
 theme:
     language: es
