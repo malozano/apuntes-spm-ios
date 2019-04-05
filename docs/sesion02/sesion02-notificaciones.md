@@ -813,7 +813,7 @@ aparece por la salida estándar:
 
 ### Arquitectura de las notificaciones remotas ###
 
-<img src="imagenes/remote-notif-simple.png" width="700px"/>
+<img src="imagenes/apns-server.png" width="700px"/>
 
 - Apple Push Notification service (APNs) es la pieza central de las
   notificaciones remotas. Es un servicio robusto y altamente eficiente
@@ -1010,22 +1010,190 @@ aparece por la salida estándar:
 
 ### Servidores proveedores ###
 
-- Las notificaciones remotas se deben originar en un servidor
-  proveedor nuestro que debe conectarse con el APNs usando la API
-  definida en la
-  [documentación de Apple](https://developer.apple.com/library/prerelease/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CommunicatingwithAPNs.html#//apple_ref/doc/uid/TP40008194-CH11-SW1). Esta
-  API usa el protocolo HTTP/2 desde diciembre de 2015.
-- La mayoría de servicios PaaS proporcionan conexiones con el APNs y
-  librerías que facilitan el envío de notificaciones:
-    - [Firebase Cloud Messaging for iOS](https://developers.google.com/cloud-messaging/ios/start?ver=swift)
-    - [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
-    - [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
-- Otras alternativas, como [Parse](http://parseplatform.org), que utilizamos
-  en algún curso pasado, han ido desapareciendo o han ido cambiando de
-  configuración.
-- Una opción sencilla, que usaremos en la práctica, es usar un
-  [script PHP](https://gist.github.com/domingogallardo/b7946d8fe500187b426afb7ac8d8e470)
-  desde el terminal.
+Las notificaciones remotas se deben originar en un servidor
+proveedor nuestro que debe conectarse con el APNs usando la API
+definida por Apple basada en un protocolo HTTP/2 y TLS.
+
+Es posible montar un servidor propio usando librerías ya
+existentes. Por ejemplo, en Java existe la librería
+[Pushy](https://github.com/relayrides/pushy). Es recomendable
+consultar la documentación de Apple [Setting Up a Remote Notification
+Server](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server)
+y [Sending Notification Requests to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns).
+
+La mayoría de servicios PaaS proporcionan conexiones con el APNs y librerías que facilitan el envío de notificaciones:
+
+- [Firebase Cloud Messaging for iOS](https://developers.google.com/cloud-messaging/ios/start?ver=swift)
+- [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
+- [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
+
+Una opción sencilla, que usaremos en la práctica, es usar un
+[script PHP](https://gist.github.com/domingogallardo/b7946d8fe500187b426afb7ac8d8e470)
+desde el terminal.
+
+En cualquier caso nuestro servidor deberá conectarse al APNs usando
+una técnica segura: o bien un certificado proporcionado por Apple (es
+lo que haremos en la demostración) o bien un token, usando JWT (JSON
+Web Token).
+
+- [Establishing a Certificate-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)
+- [Establishing a Token-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)
+
+
+## Gestión de las notificaciones remotas en la app ##
+
+
+### Capacidad de notificación remota ###
+
+La app debe tener el permiso de usar las notificaciones remotas. Debe
+usar un perfil de aprovisionamiento con un App ID que otorgue ese
+permiso. 
+
+Se puede hacer desde Xcode o desde el la web de desarrollador. En la
+demostración lo haremos desde la web del programa de desarrollo de la
+universidad. 
+
+
+### Registro de las notificaciones ###
+
+
+Para que una app trabaje con notificaciones remotas lo primero que
+debe hacerse, al igual que con las notificaciones locales, es pedir
+permiso al usuario. La forma de hacerlo es idéntica a las de las
+notificaciones locales, usando el método
+[`requestAuthorization(options:completionHandler:)`](https://developer.apple.com/reference/usernotifications/unusernotificationcenter/1649527-requestauthorization). 
+
+Una vez hecho esto, hay que iniciar el proceso de registro en el Apple
+Push Notification service (APNs). Lo hace el método
+[`registerForRemoteNotifications`](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications)
+del objeto application.
+
+Si el registro en el servicio tiene éxito, la app llama al método
+[`application(_:didRegisterForRemoteNotificationsWithDeviceToken:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622958-application)
+del delegado de la aplicación pasando el token asignado que habrá que
+incluir en las notificaciones que enviemos al dispositivo.
+
+Ejemplo de código de registro de las notificaciones remotas:
+
+```swift
+func application(_ application: UIApplication, 
+                 didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+    { (granted, error) in print(granted)}
+    application.registerForRemoteNotifications()
+    UNUserNotificationCenter.current().delegate = self
+    return true
+}
+```
+
+Ejemplo de obtención del token e impresión en la consola:
+
+```swift
+func application(_ application: UIApplication, 
+                 didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    var token = ""
+    for i in 0..<deviceToken.count {
+        token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+    }
+    print(token)
+}
+    
+func application(_ application: UIApplication, 
+                 didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    print("Failed to register:", error)
+}
+```
+
+### Recepción de las notificaciones en la app ###
+
+<img src="imagenes/notificaciones-tab-controller.png" width="300px"/>
+
+Vamos a ver ahora cómo se reciben las notificaciones en la app. 
+
+La programación es similar a la ya vista en notificaciones locales en
+los siguientes aspectos:
+
+- Registro de las notificaciones para solicitar permiso al usuario.
+- Definición de manejadores que se lanzan cuando el usuario pulsa
+  en una notificación:
+   - Si la app está en primer plano se llama al metodo
+     `userNotificationCenter(willPresent:withCompletionHandler:)` del
+     `UNUserNotificationCenterDelegate`.
+   - Si la app está en segundo plano y el usuario pulsa en la
+     notificación o en una de sus acciones se llama a
+     `userNotificationCenter(_:didReceive:withCompletionHandler:)` del
+     `UNUserNotificationCenterDelegate`. 
+
+Las notificaciones remotas permiten además definir el manejador [`application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`]()
+del delegado del app, que se lanza cuando llega la notificación remota
+al dispositivo.
+
+Cuando llega una notificación remota que contiene la clave
+`content-available` con el valor `1` el sistema llama al método
+`application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
+del delegado del app.
+
+
+- El método se ejecuta estando la app en segundo plano y se utiliza
+  para recuperar información del servidor (puede ir en la notificación
+  o puede la app conectarse al servicio):
+
+```swift
+func application(_ application: UIApplication, 
+                 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    print("Recibida notificación remota en background")
+    // Obtenemos la información de la notifiación y actualizamos la app
+    let aps = userInfo["aps"] as! [String: AnyObject]
+    createNewNewsItem(aps)
+    completionHandler(UIBackgroundFetchResult.newData)
+}
+```
+
+- Para que se llame al método se debe activar la capability `Background Modes >
+  Remote Notifications`
+
+
+### Acciones del usuario sobre la notificación ###
+
+
+
+### App en primer plano ###
+
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter, 
+                            willPresent notification: UNNotification,
+                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    print("Recibida notificación primer plano")
+    let aps = notification.request.content.userInfo["aps"] as! [String: AnyObject]
+    createNewNewsItem(aps)
+    // No mostramos la notificación
+    completionHandler([])
+}
+
+```
+
+
+
+### Notificación pulsada por el usuario ###
+
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter, 
+                            didReceive response: UNNotificationResponse, 
+                            withCompletionHandler completionHandler: @escaping () -> Void) {
+    print("Usuario ha pulsado una notificación")
+    let aps = response.notification.request.content.userInfo["aps"] as! [String: AnyObject]
+    if let contentAvailable = aps["content-available"] as? Int , contentAvailable == 1 {
+        print ("Ya se ha actualizado la noticia al ser un background update")
+    }
+    else {
+        createNewNewsItem(aps)
+    }
+    completionHandler()
+}
+
+```
+
 
 ----
 
@@ -1124,69 +1292,9 @@ $ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
 
 - Ya hemos obtenido el certificado SSL que utilizaremos en el script
   PHP para enviar las notificaciones al APNs.
-- Necesitamos obtener el token del dispositivo.
-- Para ello hemos incluido en la app el código que imprime el token en
-  la consola una vez recibido del APNs.
-- Repasemos el código y la configuración de la app `NotificacionesPush`.
-
-
-### Registro de las notificaciones ###
-
-- Igual que con las notificaciones locales, en `application(application:didFinishLaunchingWithOptions)`
-  se realiza el registro de las notificaciones:
-
-```swift
-func application(application: UIApplication, 
-                 didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    // ...
-    let notificationSettings = UIUserNotificationSettings(
-          types: [.badge, .sound, .alert],
-          categories: nil)
-    application.registerUserNotificationSettings(notificationSettings)
-
-    // ...
-}
-```
-
-
-### Obtención del token del dispositivo ###
-
-- El método `registerForRemoteNotifications` es el que se encarga de
-  establecer al conexión con el APNs y solicitar el token de
-  conexión. Se le invoca en el manejador
-  `didRegisterUserNotificationSettings` al que se llama cuando el
-  usuario ha aceptado recibir notificaciones.
-
-```swift
-func application(_ application: UIApplication, 
-                 didRegister notificationSettings: UIUserNotificationSettings) {
-    if notificationSettings.types != .none {
-        application.registerForRemoteNotifications()
-    }
-}
-```
-
-- Cuando la app se registra en el APNs, éste envía un token (cadena
-  hexadecimal) que identifica el dispositivo. Se recibe en el
-  siguiente manejador, que lo imprime por la salida estándar.
-
-```swift
-func application(_ application: UIApplication, 
-                 didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    var token = ""
-    for i in 0..<deviceToken.count {
-        token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
-    }
-    print(token)
-}
-    
-func application(_ application: UIApplication, 
-                 didFailToRegisterForRemoteNotificationsWithError error: Error) {
-    print("Failed to register:", error)
-}
-```
-
-<img src="imagenes/token.png" width="800px"/>
+- Necesitamos obtener el token del dispositivo y de la app que va a
+  recibir la notificación. Para ello debemos ejecutar la app en un
+  dispositivo físico (no funciona en el simulador).
 
 
 ### Probamos la app `NotificacionesPush` ###
@@ -1205,6 +1313,11 @@ func application(_ application: UIApplication,
 
 - Ejecutamos el app en un dispositivo físico en el que recibiremos las
   notificaciones remotas, ya que éstas no funcionan en el simulador.
+
+- Anotamos el token del dispositivo que aparece en la consola al
+  ejecutar la app por primera vez.
+
+<img src="imagenes/token.png" width="800px"/>
 
 
 ### Probamos a enviar notificaciones remotas al dispositivo ###
@@ -1229,145 +1342,6 @@ notificación.
 $ php apnspush.php 'Hola mundo desde la UA'
 Connected to APNS
 Message successfully delivered
-```
-
-
-### Recepción de las notificaciones en la app ###
-
-<img src="imagenes/notificaciones-tab-controller.png" width="300px"/>
-
-- Vamos a ver ahora cómo se reciben las notificaciones en la app.
-- La programación es similar a la ya vista en notificaciones locales,
-  con algunas diferencias:
-    - Registro de las notificaciones para solicitar permiso al usuario.
-    - Definición de manejadores que se lanzan cuando el usuario pulsa
-      en una notificación.
-    - **Nuevo**: Registro de la app para notificaciones remotas.
-    - **Nuevo**: Definición de manejador que se lanza cuando llega el
-      token del APNs.
-    - **Nuevo**: Definición de manejador que se lanza cuando llega la
-      notificación remota.
-      
-
-### Registro de la app para notificaciones remotas ###
-
-- Se debe llamar al método `registerForRemoteNotifications()` en el
-  objeto compartido `application`:
-  
-```swift
-func application(_ application: UIApplication, 
-                 didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
-    { (granted, error) in print(granted)}
-    application.registerForRemoteNotifications()
-    UNUserNotificationCenter.current().delegate = self
-    return true
-}
-```
-
-- La primera vez que la app llama a este método, contacta con el APNs
-  y solicita el token de dispositivo, que se utilizará como
-  identificador al que enviar las notificaciones remotas.
-
-
-### Recepción del token de dispositivo ###
-
-- El sistema llama de forma asíncrona a uno de los dos métodos
-siguientes del delegado del app, dependiendo de si ha habido éxito o
-no en la obtención del token:
-    - Si ha habido éxito en la generación del token el sistema llama
-      al método `
-      application:didRegisterForRemoteNotificationsWithDeviceToken:`. En
-      este método se debe implementar el envío del token a nuestro
-      servicio de envío de notificaciones push.
-
-```swift
-func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    var token = ""
-    for i in 0..<deviceToken.count {
-        token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
-    }
-    print(token)
-}
-```
-
-   - Si ha habido error, el sistema llama al método `application:didFailToRegisterForRemoteNotificationsWithError:`.
-
-
-### App en background ###
-
-- Cuando llega una notificación remota que contiene la clave
-  `content-available` con el valor `1` el sistema llama al método
-  `application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
-  del delegado del app.
-- El método se ejecuta estando la app en segundo plano y se utiliza
-  para recuperar información del servidor (puede ir en la notificación
-  o puede la app conectarse al servicio):
-
-```swift
-func application(_ application: UIApplication, 
-                 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
-                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    print("Recibida notificación remota en background")
-    // Obtenemos la información de la notifiación y actualizamos la app
-    let aps = userInfo["aps"] as! [String: AnyObject]
-    createNewNewsItem(aps)
-    completionHandler(UIBackgroundFetchResult.newData)
-}
-```
-
-- Para que se llame al método se debe activar la capability `Background Modes >
-  Remote Notifications`
-
-
-### Acciones del usuario sobre la notificación ###
-
-- Una vez recibida, la notificación funciona igual que una
-  notificación local:
-   - Si la app está en primer plano se llama al metodo
-     `userNotificationCenter(willPresent:withCompletionHandler:)` del
-     `UNUserNotificationCenterDelegate`.
-   - Si la app está en segundo plano y el usuario pulsa en la
-     notificación o en una de sus acciones se llama a
-     `userNotificationCenter(_:didReceive:withCompletionHandler:)` del
-     `UNUserNotificationCenterDelegate`. 
-
-
-
-### App en primer plano ###
-
-```swift
-func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                            willPresent notification: UNNotification,
-                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    print("Recibida notificación primer plano")
-    let aps = notification.request.content.userInfo["aps"] as! [String: AnyObject]
-    createNewNewsItem(aps)
-    // No mostramos la notificación
-    completionHandler([])
-}
-
-```
-
-
-
-### Notificación pulsada por el usuario ###
-
-```swift
-func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                            didReceive response: UNNotificationResponse, 
-                            withCompletionHandler completionHandler: @escaping () -> Void) {
-    print("Usuario ha pulsado una notificación")
-    let aps = response.notification.request.content.userInfo["aps"] as! [String: AnyObject]
-    if let contentAvailable = aps["content-available"] as? Int , contentAvailable == 1 {
-        print ("Ya se ha actualizado la noticia al ser un background update")
-    }
-    else {
-        createNewNewsItem(aps)
-    }
-    completionHandler()
-}
-
 ```
 
 
