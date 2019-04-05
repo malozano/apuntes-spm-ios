@@ -1218,6 +1218,13 @@ También se puede acceder desde la URL
 6. Analizar analíticas de la app (de ventas, de uso, etc.) y
    desarrollar una nueva versión.
 
+### Añadir información de la App ###
+
+Antes de subir una app a App Store Connect, hay que crear un registro de la
+misma indicando un identificador único (SKU) que puede ser el propio
+_bundle ID_ y seleccionando el App ID.
+
+<img src="imagenes/app-store-connect-registro.png" width="600px"/>
 
 ### Subir una compilación de la app ###
 
@@ -1231,12 +1238,6 @@ seleccionar la opción _Upload to App Store_.
 
 Es posible subir distintos _builds_ y gestionarlos todos desde App
 Store Connect. El identificador de la app es su _bundle id_.
-
-### Añadir información de la App ###
-
-Una vez que se ha subido la app, podemos añadir información sobre ella:
-
-<img src="imagenes/registro-app.png" width="700px"/>
 
 
 ### Diseño de la página en el App Store ###
@@ -1312,11 +1313,9 @@ en los probadores.
 
 ### Registro de una app en App Store Connect ###
 
-Antes de subir una app al App Store, hay que crear un registro de la
-misma indicando un identificador único (SKU) que puede ser el propio
-_bundle ID_ y seleccionando el App ID.
+Registramos la app en App Store Connect.
 
-<img src="imagenes/app-store-connect-registro.png" width="600px"/>
+<img src="imagenes/registro-app.png" width="700px"/>
 
 
 ### Subida a App Store Connect con Xcode ###
