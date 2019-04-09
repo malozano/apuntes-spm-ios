@@ -793,53 +793,61 @@ aparece por la salida estándar:
 ## Notificaciones remotas (_push_) ##
 
 
-### Objetivo de las notificaciones remotas ###
+### Objetivos de las notificaciones remotas ###
+
+La app tiene un componente _server-side_ en el que se detecta que
+ha sucedido algo interesante para el usuario.
+
+La notificación remota permite enviar la información desde el
+servicio directamente al usuario.
+
+También es posible enviar una notificación invisible que llega a la
+app para que descargue nueva información en _background_ y la
+muestre instantáneamente la siguiente vez que el usuario acceda a la
+app. 
+
+El envío de notificaciones se hace a través del APNs (_Apple Push
+Notification service_).
 
 <img src="imagenes/server-side-notification.png" width="230px"/>
 <img src="imagenes/server-side-silent-notification.png" width="215px"/>
 
 
-- La app tiene un componente _server-side_ en el que se detecta que
-  ha sucedido algo interesante para el usuario.
-- La notificación remota permite enviar la información desde el
-  servicio directamente al usuario.
-- También es posible enviar una notificación invisible que llega a la
-  app para que descargue nueva información en _background_ y la
-  muestre instantáneamente la siguiente vez que el usuario acceda a la
-  app. 
-- El envío de notificaciones se hace a través del APNs (_Apple Push
-  Notification service_).
-
-
 ### Arquitectura de las notificaciones remotas ###
+
+
+El servicio Apple Push Notification service (APNs) es la pieza central
+de las notificaciones remotas. Es un servicio robusto y altamente
+eficiente para propagar información a dispositivos iOS y OS X.
 
 <img src="imagenes/apns-server.png" width="700px"/>
 
-- Apple Push Notification service (APNs) es la pieza central de las
-  notificaciones remotas. Es un servicio robusto y altamente eficiente
-  para propagar información a dispositivos iOS y OS X.
-- Cada dispositivo establece una conexión acreditada y encriptada con
-  el servicio y recibe notificaciones sobre esta conexión persistente.
-- Si llega una notificación para una app cuando el dispositivo está
-  fuera de cobertura, el APNs guarda la notificación hasta que el
-  dispositivo vuelve a estar disponible.
-- Las notificaciones se originan en servidores (_proveedores_) propios
-  del desarrollador. Los proveedores se conectan con el APNs y reciben
-  datos de sus apps clientes. Cuando llegan nuevos datos para un app,
-  los proveedores preparan y envían notificaciones a través de los
-  canales al APNs, que se encarga de enviarlas a los dispositivos.
+
+Cada dispositivo establece una conexión acreditada y encriptada con
+el servicio y recibe notificaciones sobre esta conexión persistente.
+
+Si llega una notificación para una app cuando el dispositivo está
+fuera de cobertura, el APNs guarda la notificación hasta que el
+dispositivo vuelve a estar disponible.
+
+Las notificaciones se originan en servidores (_proveedores_) propios
+del desarrollador. Los proveedores se conectan con el APNs y reciben
+datos de sus apps clientes. Cuando llegan nuevos datos para un app,
+los proveedores preparan y envían notificaciones a través de los
+canales al APNs, que se encarga de enviarlas a los dispositivos.
 
 
 ### Arquitectura de seguridad ###
 
+No queremos que nuestras notificaciones (con datos personales)
+puedan aparecer en otros dispositivos.
 
 <img src="imagenes/remote-notif-multiple.png" width="400px"/>
 
-- No queremos que nuestras notificaciones (con datos personales)
-  puedan aparecer en otros dispositivos.
-- El servicio de notificaciones remota de Apple (APNs) define unas
-  condiciones de seguridad bastante estrictas tanto entre dispositivo
-  y servicio como entre proveedor y el servicio.
+El servicio de notificaciones remota de Apple (APNs) define unas
+condiciones de seguridad bastante estrictas tanto entre dispositivo
+y servicio como entre proveedor y el servicio.
+
 - Seguridad en la **conexión Proveedor-APNs**
     - Basada en JWT (JSON web tokens) o basada en un certificado.
     - Utilizaremos la seguridad basada en un certificado, obteniéndolo
@@ -854,14 +862,14 @@ aparece por la salida estándar:
 
 ### Secuencia de registro del dispositivo ###
 
+
+Sin considerar aspectos de seguridad y codificación, los pasos que
+se siguen al registrarse un dispositivo con el método de la clase
+`Application`
+[registerForRemoteNotifications()](https://developer.apple.com/reference/uikit/uiapplication/1623078-registerforremotenotifications)
+son los siguientes:
+
 <img src="imagenes/registration-sequence.png" width="500px"/>
-
-- Sin considerar aspectos de seguridad y codificación, los pasos que
-  se siguen al registrarse un dispositivo con el método de la clase
-  `Application`
-  [registerForRemoteNotifications()](https://developer.apple.com/reference/uikit/uiapplication/1623078-registerforremotenotifications)
-  son los siguientes:
-
 
 1. El dispositivo establece una conexión SSL con el APNs.
 2. El APNs le envía un _token_ único asociado con el dispositivo.
@@ -873,49 +881,56 @@ aparece por la salida estándar:
 
 ### Token del dispositivo ###
 
+Cada dispositivo iOS tiene un certificado y una clave privada
+criptográfica, proporcionada por el sistema operativo en la
+activación inicial y almacenada en el llavero del dispositivo.
+
+Este certificado sirve para establecer una conexión segura basada en
+TLS con el APNs. Con la conexión TLS activa, las apps en el dispositivo pueden
+registrarse con APNs para recibir un token específico para recibir
+notificaciones remotas.
+
 <img src="imagenes/token-generation.png" width="400px"/>
 
-- Cada dispositivo iOS tiene un certificado y una clave privada
-  criptográfica, proporcionada por el sistema operativo en la
-  activación inicial y almacenada en el llavero del dispositivo.
-- Este certificado sirve para establecer una conexión segura basada en
-  TLS con el APNs. Con la conexión TLS activa, las apps en el dispositivo pueden
-  registrarse con APNs para recibir un token específico para recibir
-  notificaciones remotas.
-- El APNs genera el token, que contiene la información del dispositivo,
-  lo encripta utilizando una clave asociada al token y lo envía al
-  dispositivo. El sistema entrega el token encriptado a la app,
-  llamando al método del delegado
-  `application:didRegisterForRemoteNotificationsWithDeviceToken:`.
-- Una vez recibido el token, el app debe enviarlo al proveedor (en
-  formato binario o hexadecimal) para que lo utilice para enviar
-  notificaciones al dispositivo.
+El APNs genera el token, que contiene la información del dispositivo,
+lo encripta utilizando una clave asociada al token y lo envía al
+dispositivo. El sistema entrega el token encriptado a la app,
+llamando al método del delegado
+[`application:didRegisterForRemoteNotificationsWithDeviceToken:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622958-application).
+
+Una vez recibido el token, el app debe enviarlo al proveedor (en
+formato binario o hexadecimal) para que lo utilice para enviar
+notificaciones al dispositivo.
 
 
 ### Envío de notificación remota usando el token ###
 
+Cuando el servidor envía una petición de notificación al APNs,
+incluye el token del dispositivo.
+
+El APNs desencripta el token para asegurarse de la validez de la
+petición y determina el dispositivo de destino.
+
+Si el APNs determina que el emisor y el receptor son legítimos,
+envía la notificación al dispositivo identificado.
+
+
 <img src="imagenes/token-trust.png" width="500px"/>
-
-- Cuando el servidor envía una petición de notificación al APNs,
-  incluye el token del dispositivo.
-- El APNs desencripta el token para asegurarse de la validez de la
-  petición y determina el dispositivo de destino.
-- Si el APNs determina que el emisor y el receptor son legítimos,
-  envía la notificación al dispositivo identificado.
-
 
 ### Contenido de la notificación ###
 
-- Una vez definido el mecanismo de seguridad en el envío de las
-  notificaciones, veamos cómo se define el **contenido** de la
-  notificación.
-- El mensaje enviado al APNs se denomina _payload_ y debe cumplir unas
-  condiciones estrictas definidas en la
-  [documentación de Apple](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html#//apple_ref/doc/uid/TP40008194-CH17-SW1)
-- Si se utiliza el API HTTP/2 el tamaño máximo está limitado a 4096
-  bytes.
-- Debe tener el formato de un objeto JSON diccionario (parejas clave,
-  valor).
+Una vez definido el mecanismo de seguridad en el envío de las
+notificaciones, veamos cómo se define el **contenido** de la
+notificación.
+
+El mensaje enviado al APNs se denomina _payload_ y debe cumplir unas
+condiciones estrictas definidas en la
+[documentación de
+Apple](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification). El
+tamaño máximo está limitado a 4096 bytes y debe tener el formato de un objeto JSON diccionario (parejas clave,
+valor).
+
+Un ejemplo en JSON:
 
 ```json
 {
@@ -932,28 +947,32 @@ aparece por la salida estándar:
 ```
 
 
-- El diccionario debe contener otro diccionario identificado por la
-  clave `aps`. Este diccionario contiene una o más propiedades que
-  especifican los siguientes tipos de notificación:
+El diccionario debe contener otro diccionario identificado por la
+clave `aps`. Este diccionario contiene una o más propiedades que
+especifican los siguientes tipos de notificación:
     - Mensaje de alerta a mostrar al usuario
     - Numero a añadir en el globo del icono de la app
     - Sonido a tocar
-- El diccionario `aps` también puede tener la clave
-  `content-available` con un valor de 1. Eso significa que la
-  notificación será una notificación silenciosa que hará que el
-  sistema despierte la app y la ponga en _background_ para que pueda
-  conectarse al servidor o hacer alguna tarea de background. El
-  usuario no recibirá ninguna notificación, pero verá el nuevo
-  contenido la siguiente vez que abra la app.
-- El resto del diccionario contendrá parejas clave-valor con
-  información _custom_.
-- La información JSON se convierte en un diccionario que se pasa como
-  parámetro `userInfor` en el método
-  [`didReceiveRemoteNotification`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
-  del delegado del app.
 
+El diccionario `aps` también puede tener la clave
+`content-available` con un valor de 1. Eso significa que la
+notificación será una notificación silenciosa que hará que el
+sistema despierte la app y la ponga en _background_ para que pueda
+conectarse al servidor o hacer alguna tarea de background. El
+usuario no recibirá ninguna notificación, pero verá el nuevo
+contenido la siguiente vez que abra la app.
 
-### Otros ejemplos de _payload_ ###
+El resto del diccionario contendrá parejas clave-valor con
+información _custom_.
+
+La información JSON se convierte en un diccionario que se pasa como
+parámetro `userInfor` en el método
+[`didReceiveRemoteNotification`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
+del delegado del app.
+
+Otros ejemplos de _payload_.
+
+Número en el _badge_ y _custom keys_:
 
 ```json
 {
@@ -966,6 +985,8 @@ aparece por la salida estándar:
     "acme2" : 42
 }
 ```
+
+Notificación con cadenas localizadas:
 
 ```json
 {
@@ -980,6 +1001,7 @@ aparece por la salida estándar:
 }
 ```
 
+Notificación con acciones:
 
 ```json
 {
@@ -1042,7 +1064,6 @@ Web Token).
 
 ## Gestión de las notificaciones remotas en la app ##
 
-
 ### Capacidad de notificación remota ###
 
 La app debe tener el permiso de usar las notificaciones remotas. Debe
@@ -1053,9 +1074,10 @@ Se puede hacer desde Xcode o desde el la web de desarrollador. En la
 demostración lo haremos desde la web del programa de desarrollo de la
 universidad. 
 
+<img src="imagenes/push-capability.png" width="700px"/>
+
 
 ### Registro de las notificaciones ###
-
 
 Para que una app trabaje con notificaciones remotas lo primero que
 debe hacerse, al igual que con las notificaciones locales, es pedir
@@ -1063,12 +1085,14 @@ permiso al usuario. La forma de hacerlo es idéntica a las de las
 notificaciones locales, usando el método
 [`requestAuthorization(options:completionHandler:)`](https://developer.apple.com/reference/usernotifications/unusernotificationcenter/1649527-requestauthorization). 
 
-Una vez hecho esto, hay que iniciar el proceso de registro en el Apple
-Push Notification service (APNs). Lo hace el método
+Una vez hecho esto, hay que conseguir el token asociado al dispositivo
+y la app registrándose en el Apple Push Notification service
+(APNs). Lo hace el método
 [`registerForRemoteNotifications`](https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications)
-del objeto application.
+del objeto application. 
 
-Si el registro en el servicio tiene éxito, la app llama al método
+Se trata de un método asíncrono. Si el registro en el servicio tiene
+éxito, la app llama al método
 [`application(_:didRegisterForRemoteNotificationsWithDeviceToken:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622958-application)
 del delegado de la aplicación pasando el token asignado que habrá que
 incluir en las notificaciones que enviemos al dispositivo.
@@ -1106,59 +1130,62 @@ func application(_ application: UIApplication,
 
 ### Recepción de las notificaciones en la app ###
 
-<img src="imagenes/notificaciones-tab-controller.png" width="300px"/>
+La gestión de las notificaciones recibidas es idéntica a la ya vista en
+notificaciones locales, usándose exactamente los mismos manejadores,
+con la excepción de la posibilidad de gestionar notificaciones remotas
+cuando la app está en segundo plano.
 
-Vamos a ver ahora cómo se reciben las notificaciones en la app. 
+Recordemos los manejadores que ya vimos en las notificaciones locales:
 
-La programación es similar a la ya vista en notificaciones locales en
-los siguientes aspectos:
+- Si la app está en primer plano se llama al metodo
+  `userNotificationCenter(willPresent:withCompletionHandler:)` del
+  `UNUserNotificationCenterDelegate` cuando llega la notificación.
+- Si la app está en segundo plano y el usuario pulsa en la
+  notificación o en una de sus acciones se llama a
+  `userNotificationCenter(_:didReceive:withCompletionHandler:)` del
+  `UNUserNotificationCenterDelegate`. 
 
-- Registro de las notificaciones para solicitar permiso al usuario.
-- Definición de manejadores que se lanzan cuando el usuario pulsa
-  en una notificación:
-   - Si la app está en primer plano se llama al metodo
-     `userNotificationCenter(willPresent:withCompletionHandler:)` del
-     `UNUserNotificationCenterDelegate`.
-   - Si la app está en segundo plano y el usuario pulsa en la
-     notificación o en una de sus acciones se llama a
-     `userNotificationCenter(_:didReceive:withCompletionHandler:)` del
-     `UNUserNotificationCenterDelegate`. 
+La diferencia de las notificaciones remotas es la posibilidad de
+definir el manejador
+[`application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623013-application)
+del delegado del app, que se activa cuando llega una notificación
+remota que contiene la clave `content-available` con el valor `1`:
 
-Las notificaciones remotas permiten además definir el manejador [`application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`]()
-del delegado del app, que se lanza cuando llega la notificación remota
-al dispositivo.
-
-Cuando llega una notificación remota que contiene la clave
-`content-available` con el valor `1` el sistema llama al método
-`application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
-del delegado del app.
-
-
-- El método se ejecuta estando la app en segundo plano y se utiliza
-  para recuperar información del servidor (puede ir en la notificación
-  o puede la app conectarse al servicio):
-
-```swift
-func application(_ application: UIApplication, 
-                 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
-                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-    print("Recibida notificación remota en background")
-    // Obtenemos la información de la notifiación y actualizamos la app
-    let aps = userInfo["aps"] as! [String: AnyObject]
-    createNewNewsItem(aps)
-    completionHandler(UIBackgroundFetchResult.newData)
+```
+{
+   "aps" : {
+      "content-available" : 1
+   },
+   "acme1" : "bar",
+   "acme2" : 42
 }
 ```
 
-- Para que se llame al método se debe activar la capability `Background Modes >
-  Remote Notifications`
 
+Para que se llame al método se debe activar la capability `Background Modes >
+Remote Notifications` en Xcode.
 
-### Acciones del usuario sobre la notificación ###
+<img src="imagenes/background-modes.png" width="700px"/>
 
+El método se llama tanto si la app está en primer plano como si está
+en segundo plano. De hecho, es recomendable usarlo únicamente para
+gestionar _notificaciones silenciosas_ que no se muestran al usuario
+sino que se usan para que la app pueda recuperar información del
+servidor que se mostrará la siguiente vez que el usuario lance la app.
 
+Por ello habría que enviar un _payload_ como el que hemos visto
+anteriormente. Con _custom keys_ pero en el que el diccionario `aps`
+no contenga ninguna clave que disparare una interacción con el
+usuario.
 
-### App en primer plano ###
+### Ejemplo de app ###
+
+Ejemplo de app que usaremos para demostrar las notificaciones remotas:
+
+<img src="imagenes/notificaciones-tab-controller.png" width="300px"/>
+
+Código de gestión de la notificación cuando la **app está en primer plano**:
+
 
 ```swift
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
@@ -1166,16 +1193,16 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
                             withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     print("Recibida notificación primer plano")
     let aps = notification.request.content.userInfo["aps"] as! [String: AnyObject]
-    createNewNewsItem(aps)
+    if let news = aps["alert"] as? String {
+        createNewNewsItem(text: news)
+    }
     // No mostramos la notificación
     completionHandler([])
 }
-
 ```
 
 
-
-### Notificación pulsada por el usuario ###
+Código de gestión de la notificación cuando ha sido **accionada por el usuario**:
 
 ```swift
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
@@ -1183,16 +1210,26 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
                             withCompletionHandler completionHandler: @escaping () -> Void) {
     print("Usuario ha pulsado una notificación")
     let aps = response.notification.request.content.userInfo["aps"] as! [String: AnyObject]
-    if let contentAvailable = aps["content-available"] as? Int , contentAvailable == 1 {
-        print ("Ya se ha actualizado la noticia al ser un background update")
-    }
-    else {
-        createNewNewsItem(aps)
+    if let news = aps["alert"] as? String {
+        createNewNewsItem(text: news)
     }
     completionHandler()
 }
-
 ```
+
+
+Código de gestión de una **notificación silenciosa**:
+
+```swift
+func application(_ application: UIApplication, 
+                 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
+                 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    print("Recibida notificación remota en background")
+    createNewNewsItem(text: "Notificación silenciosa")
+    completionHandler(UIBackgroundFetchResult.newData)
+}
+```
+
 
 
 ----
@@ -1201,80 +1238,75 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 
 ### Pasos necesarios para la demo ###
 
-- En la demo vamos a mostrar cómo se envían y reciben notificaciones
-  remotas.
-- Ejecutaremos una app que va a recibir las notificaciones
-  (NotificacionesPush) en un dispositivo real.
-- Podremos enviar notificaciones a este dispositivo real
-  utilizando un script en PHP.
-- Para configurar el script PHP necesitamos:
-    - Certificado SSL autorizado por el APNs para enviar
-      notificaciones
-    - Token del dispositivo al que se envía la notificación.
-- Para ello necesitaremos crear en el _member center_ un _App ID_ y
+En la demo vamos a mostrar cómo se envían y reciben notificaciones
+remotas. Ejecutaremos una app que va a recibir las notificaciones
+(NotificacionesPush) en un dispositivo real.
+
+Podremos enviar notificaciones a este dispositivo real
+utilizando un script en PHP que tendremos que configurar con:
+
+- Certificado SSL autorizado por el APNs para enviar
+  notificaciones
+
+- Token del dispositivo al que se envía la notificación.
+
+Necesitaremos crear en el _member center_ un _App ID_ y
 configurar: 
-    - **Certificado SSL** para autentificar el proveedor de
-      notificaciones frente al APNs.
-    - **Perfil de aprovisionamiento** con la capacidad de notificación push.
+
+- **Certificado SSL** para autentificar el proveedor de
+  notificaciones frente al APNs.
+- **Perfil de aprovisionamiento** con la capacidad de notificación push.
 
 
 ### Nuevo App ID en el _member center_ ###
 
-- Un administrador del equipo UA debe crear una App ID con el nombre
-  explícito de la app que se va a poner en producción.
+Un administrador del equipo UA debe crear una App ID con el nombre
+explícito de la app que se va a poner en producción.
 
 <img src="imagenes/app-id-notificaciones-1.png" width="600px"/>
 
-
-- Se debe añadir en el App ID la autorización de notificaciones push.
+Se debe añadir en el App ID la autorización de notificaciones push.
 
 <img src="imagenes/app-id-notificaciones-2.png" width="600px"/>
 
 
-### Creación del certificado SSL en el _member center_ (1) ###
+### Creación del certificado SSL en el _member center_  ###
 
-- Debemos obtener un certificado de una autoridad de certificación que
-  después subiremos al _member center_.
-- Abrimos Acceso a Llaveros y seleccionamos _Acceso a Llaveros >
-  Asistente de Certificados > Solicitar un certificado de una
-  autoridad de certificación_.
-- Salvamos el fichero `CertificateSigningRequest.certSigningRequest`.
+Debemos obtener un certificado de una autoridad de certificación que
+después subiremos al _member center_.
+
+Abrimos Acceso a Llaveros y seleccionamos _Acceso a Llaveros >
+Asistente de Certificados > Solicitar un certificado de una
+autoridad de certificación_.
+
+Salvamos el fichero `CertificateSigningRequest.certSigningRequest`.
 
 <img src="imagenes/certificado-autoridad-certificadora.png"/ width="600px"/>
 
 
 <img src="imagenes/app-id-notificaciones-servicios.png" width="600px"/>
 
-
-- Para crear el certificado es necesario subir el fichero generado
-  previamente `CertificateSigningRequest.certSigningRequest`
+Para crear el certificado es necesario subir el fichero generado
+previamente `CertificateSigningRequest.certSigningRequest`
 
 <img src="imagenes/crear-certificado-ssl.png" width="600px"/> 
 
 <img src="imagenes/generar-certificado-ssl.png" width="600px"/>
 
 
-
-### Creación del perfil de aprovisionamiento ###
-
-- Creamos un nuevo perfil de aprovisionamiento que podrán usar todos
-  los miembros del equipo.
-
-<img src="imagenes/perfil-aprovisionamiento-push.png" width="600px"/>
-
-
-
 ### Generación del fichero `.pem` ###
 
-- Una vez creado el certificado en el _Member Center_ lo descargamos y
-  lo instalamos en Acceso a llaveros, lo exportamos como fichero
-  `.p12` y después lo convertiremos en un fichero `.pem` con el que
-  nuestro servidor establecerá la conexión SSL con el APNs.
+Una vez creado el certificado en el _Member Center_ lo descargamos y
+lo instalamos en Acceso a llaveros.
 
 <img src="imagenes/exportar-fichero-p12.png" width="600px"/>
 
+Lo exportamos como fichero `.p12` y después lo convertiremos en un
+fichero `.pem` con el que nuestro servidor establecerá la conexión SSL
+con el APNs:
+
 - Se guarda el certificado como `UADevelopmentPushCertificate.p12` con
-  una contraseña (mastermoviles18)
+  una contraseña (mastermoviles19)
 
 - Creamos el fichero `.pem` con el siguiente comando:
 
@@ -1285,48 +1317,52 @@ $ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
 
 - Nos pedirá la contraseña que hemos introducido antes y se generará
   el certificado `UADevelopmentPushCertificate.pem`.
-- Podremos usarlo para enviar la notificación push al APNs con un script PHP.
+
+Una vez hecho esto, ya tendremos listo el certificado para enviar la
+notificación push al APNs, usando el script PHP.
+
+### Creación del perfil de aprovisionamiento ###
+
+- Creamos un nuevo perfil de aprovisionamiento que podrán usar todos
+  los miembros del equipo.
+
+<img src="imagenes/perfil-aprovisionamiento-push.png" width="600px"/>
 
 
 ### Obtención del token del dispositivo ###
 
-- Ya hemos obtenido el certificado SSL que utilizaremos en el script
-  PHP para enviar las notificaciones al APNs.
-- Necesitamos obtener el token del dispositivo y de la app que va a
-  recibir la notificación. Para ello debemos ejecutar la app en un
-  dispositivo físico (no funciona en el simulador).
+Ya hemos obtenido el certificado SSL que utilizaremos en el script
+PHP para enviar las notificaciones al APNs.
+
+Necesitamos obtener el token del dispositivo y de la app que va a
+recibir la notificación. Para ello debemos ejecutar la app en un
+dispositivo físico (no funciona en el simulador).
 
 
 ### Probamos la app `NotificacionesPush` ###
 
-- Descargamos el proyecto NotificacionesPush desde
-  [este enlace](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/NotificacionesPush.zip). Contiene la app y los scripts PHP para enviar las notificaciones al APNs.
+Descargamos el proyecto NotificacionesPush desde
+[este enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip). Contiene la app y los scripts PHP para enviar las notificaciones al APNs.
 
-
-### Ejecución de `NotificacionesPush` en un dispositivo ###
-
-- La app debe estar firmada con el perfil de aprovisionamiento creado
-  y deben estar configuradas las _capabilities_ para activar las
-  notificaciones push:
+La app debe estar firmada con el perfil de aprovisionamiento creado
+y deben estar configuradas las _capabilities_ para activar las
+notificaciones push:
 
 <img src="imagenes/push-notifications-capabilities-xcode.png" width="900px"/>
 
-- Ejecutamos el app en un dispositivo físico en el que recibiremos las
-  notificaciones remotas, ya que éstas no funcionan en el simulador.
+Ejecutamos el app en un dispositivo físico en el que recibiremos las
+notificaciones remotas, ya que éstas no funcionan en el simulador.
 
-- Anotamos el token del dispositivo que aparece en la consola al
-  ejecutar la app por primera vez.
+Anotamos el token del dispositivo que aparece en la consola al
+ejecutar la app por primera vez.
 
 <img src="imagenes/token.png" width="800px"/>
 
 
 ### Probamos a enviar notificaciones remotas al dispositivo ###
 
-<img style="margin-left:20px" src="imagenes/notificacion-device.png" width="250px"/>
-
-
 1. Descargamos
-  [desde este enlace](http://domingogallardo.github.io/apuntes-mastermoviles/UADevelopmentPushCertificate.pem)
+  [desde este enlace](https://github.com/domingogallardo/apuntes-spm-ios/blob/master/UADevelopmentPushCertificate.pem)
   el certificado SSL `UADevelopmentPushCertificatepem` que hemos generado
   y lo guardamos en el mismo directorio `Scripts` en el que se encuentra
   el script `apnspush.php`.
@@ -1344,42 +1380,49 @@ Connected to APNS
 Message successfully delivered
 ```
 
-
+<img style="margin-left:20px" src="imagenes/notificacion-device.png" width="250px"/>
 
 
 ## Práctica
 
-- Descarga las apps
-   [Notificaciones](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/Notificaciones.zip)
-   y
-   [NotificacionesPush](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/NotificacionesPush.zip). Examina
-   su código y pruébalas.
-- Ejercicio 1 (5 puntos): Modifica la app ToDoList (o alguna app tuya
-  con la que estés trabajando) para que genere notificaciones
-  locales. En la app ToDoList puedes hacerlo con un botón en la
-  pantalla con el número de tareas terminadas. Deberás generar una
-  notificación en el intervalo de 10 segundos que contenga alguna
-  imagen y acciones. Y visualizar la acción que el usuario
-  ha realizado sobre la notificación, lanzando una
+Descarga las apps [Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
+y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip)
+   su código y pruébalas. La primera puedes probarla en el
+   simulador. La segunda deberás probarla ejecutándola en un
+   dispositivo real y enviando notificaciones remotas tal y como hemos
+   hecho en la demo.
+
+- Ejercicio 1: Modifica la app ToDoList para que genere
+  notificaciones locales. En la app ToDoList puedes hacerlo con un
+  botón en la pantalla con el número de tareas terminadas. Deberás
+  generar una notificación en el intervalo de 10 segundos que contenga
+  alguna imagen y acciones. Y visualizar la acción que el usuario ha
+  realizado sobre la notificación, lanzando una
   [alerta](https://developer.apple.com/reference/uikit/uialertcontroller)
-  la siguiente vez que se abra la app que informe de la acción escogida.
-- Ejercicio 2 (2,5 puntos): Implementa una notificación basada en el
+  la siguiente vez que se abra la app que informe de la acción
+  escogida.
+- Ejercicio 2: Implementa una notificación basada en el
   calendario, en la que dejes al usuario seleccionar la
   hora y minuto en la que aparezca una notificación informando del
   número de tareas terminadas.
-- Ejercicio 3 (2,5 puntos): Añade la posiblidad de añadir una nueva
+- Ejercicio 3: Añade la posiblidad de añadir una nueva
   tarea en la lista de tareas pendientes mediante una notificación
-  remota. Utiliza el script PHP y el certificado para generar la
+  silenciosa enviada con una notificación push. Utiliza el script PHP y el certificado para generar la
   notificación. Deberás utilizar un dispositivo real para realizar las
   pruebas.
-- Firma la app resultante, exporta el fichero IPA y entrégalo en
-  Moodle, junto con el proyecto comprimido y un documento PDF con una
-  breve descripción de las funcionalidades añadidas.
 
+Firma la app resultante, exporta el fichero IPA y entrégalo en
+Moodle, junto con el proyecto comprimido y un documento PDF con una
+breve descripción de las funcionalidades añadidas.
 
 
 ## Bibliografía
 
-- [Local and Remote Programming Guide](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/Introduction.html)
-- [UserNotifications Framework](https://developer.apple.com/reference/usernotifications)
-
+- [Asking Permission to Use Notifications](https://developer.apple.com/documentation/usernotifications/asking_permission_to_use_notifications)
+- [Scheduling a Notification Locally from Your App](https://developer.apple.com/documentation/usernotifications/scheduling_a_notification_locally_from_your_app)
+- [Handling Notifications and Notification-Related Actions](https://developer.apple.com/documentation/usernotifications/handling_notifications_and_notification-related_actions)
+- [Registering Your App with APNs](https://developer.apple.com/documentation/usernotifications/registering_your_app_with_apns)
+- [Generating a Remote
+  Notification](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)
+- [Pushing Updates to Your App Silently](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_updates_to_your_app_silently)
+- [Setting Up a Remote Notification Server](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server)
