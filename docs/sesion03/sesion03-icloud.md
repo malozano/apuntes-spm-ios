@@ -8,7 +8,7 @@ CloudKit Quick Start: https://developer.apple.com/library/ios/documentation/Data
 
 Xamarin Tutorial CloudKit: http://developer.xamarin.com/guides/ios/platform_features/intro_to_cloudkit/
 Ray Wenderlich Core Data Tutorial con Swift: http://www.raywenderlich.com/85578/first-core-data-app-using-swift
-
+Tutorial Hacking with Swift: https://www.hackingwithswift.com/read/33/6/reading-from-icloud-with-cloudkit-ckqueryoperation-and-nspredicate
 -->
 
 # Sesión 3: iCloud y CloudKit
@@ -867,7 +867,7 @@ Y los logs:
 
 ### Práctica: iCloud clave-valor ###
 
-- Descarga la app [`iCloudKeyValue`]() en la que se muestra un
+- Descarga la app [`iCloudKeyValue`](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/iCloudKeyValue.zip) en la que se muestra un
  _controller_ de tipo _Stepper_ y una etiqueta con un número que va
   cambiando según se pulsa el controller.
   

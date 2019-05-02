@@ -3,9 +3,9 @@ use_directory_urls: false
 
 nav:
 - Introducción : 'sesion00/sesion00-introduccion.md'
-- Firma, aprovisionamiento y distribución de apps : 'sesion01/sesion01-firma-aprovisionamiento.md'
-- Notificaciones : 'sesion02/sesion02-notificaciones.md'
-- iCloud : 'sesion03/sesion03-icloud.md'
+- Sesión 1: Firma, aprovisionamiento y distribución de apps : 'sesion01/sesion01-firma-aprovisionamiento.md'
+- Sesión 2: Notificaciones : 'sesion02/sesion02-notificaciones.md'
+- Sesión 3: iCloud : 'sesion03/sesion03-icloud.md'
 
 theme:
     language: es
