@@ -664,6 +664,12 @@ privateDB.perform(query, inZoneWith: nil, completionHandler: {
 })
 ```
 
+!!! Important "Importante"
+    Para que funcione la consulta que recupera todos los registros de
+    un tipo hay que crear en el _dashboard_ un índice _queryable_ sobre
+    el campo nativo `recordName`.
+
+
 Otros ejemplos de predicados (consultar [CKQuery](https://developer.apple.com/reference/cloudkit/ckquery) y [NSPredicate](https://developer.apple.com/reference/foundation/nspredicate))
 
 ```swift
