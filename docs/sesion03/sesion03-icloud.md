@@ -886,7 +886,7 @@ Y los logs:
 
 ### Práctica: ToDoList en CloudKit ###
 
-<img src="imagenes/to-do-list.png" width="200px"/>
+<img src="imagenes/todolist-cloudkit.png" width="300px"/>
 
 - Configuración de la app:
     - Seguimos trabajando con el proyecto `ToDoList` y el _bundle ID_
