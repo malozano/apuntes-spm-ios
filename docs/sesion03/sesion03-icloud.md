@@ -551,7 +551,7 @@ tipo de registro dinámicamente en la base de datos.
 - Una vez creado el registro se añaden valores a sus campos (que
   también se crean dinámicamente):
 
-```swif
+```swift
 artistaRecord["artista"] = "Jonhn Lennon"
 let formatter = DateFormatter()
 formatter.dateFormat = "yyyy/MM/dd"
