@@ -910,7 +910,9 @@ Y los logs:
      una tarea debes permitir la opción de hacerlo en la base de datos
      pública. Muestra el texto de las tareas públicas en un color
      diferente en el listado de tareas.
-
+    - (Opcional): Añade una funcionalidad en la que se recargue la
+      tabla con los datos de iCloud cuando se tire de la tabla hacia
+      abajo. 
 
 ### Pista para actualizar la tabla ###
 
