@@ -1407,7 +1407,8 @@ y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/ma
   número de tareas terminadas.
 - Ejercicio 3: Añade la posiblidad de añadir una nueva
   tarea en la lista de tareas pendientes mediante una notificación
-  silenciosa enviada con una notificación push. Utiliza el script PHP y el certificado para generar la
+  silenciosa enviada con una notificación push. Utiliza el script PHP
+  y [este certificado](https://github.com/domingogallardo/apuntes-spm-ios/blob/master/cert-todolist.pem) para generar la
   notificación. Deberás utilizar un dispositivo real para realizar las
   pruebas.
 
