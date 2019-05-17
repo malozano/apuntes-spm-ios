@@ -1,15 +1,6 @@
-# Sesión 5: <br/> Extensiones
+# Sesión 5: Extensiones
 
-#### Servicios de las plataformas móviles - iOS
-
-<small>Domingo Gallardo - domingo.gallardo@ua.es  
-Departamento Ciencia de la Computación e Inteligencia Artificial  
-Master Programación de Dispositivos Móviles    
-2017-18</small>
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
+## Extensiones ##
 
 ### Introducción
 

@@ -580,6 +580,109 @@ siguiente código se dibujan distintos tipos de overlays:
 ```
 
 
+### Geocoding ###
+
+El API de MapKit proporciona funcionalidades para realizar
+_geocoding_, transformar coordenadas del mapa en nombres de lugares y
+vicersa.
+
+La clase
+[CLGeocoder](https://developer.apple.com/documentation/corelocation/clgeocoder)
+proporciona un API que realiza estas operaciones realizando peticiones
+a un servicio de Apple.
+
+Debemos crear un objeto geocoder y realizar una petición llamando a
+uno de sus métodos de _forward geocoding_ o _reverse geocoding_.
+
+Las peticiones de _reverse geocoding_ toman una longitud y latitud y
+obtienen una dirección con nombres.
+
+<p style="text-align:center;">
+<img src="imagenes/geolocalizacion.png" width="400px"/>
+</p>
+
+Las peticiones de _forward geocoding_ hacen al revés: toman una
+dirección con nombres y buscan la correspondiente latitud y
+longitud. Estas peticiones pueden también devolver información
+adicional acerca de la localización especificada, como un punto de
+interés o un edificio en esa localización.
+
+El objeto devuelto en ambos tipos de peticiones es un
+[CLPlacemark](https://developer.apple.com/documentation/corelocation/clplacemark). En
+el caso de peticiones _forward geocoding_ se puede devolver una lista
+de lugares a los que corresponde la dirección suministrada. 
+
+Un _placemark_ (marca de lugar) contiene propiedades para especificar
+el nombre de una calle, de una ciudad o de un país. También contienen
+propiedades que describen características geográficas relevantes o
+puntos de interés en la localización, como los nombres de montañas,
+ríos, negocios o localizaciones.
+
+Existe un límite en el ratio de peticiones de geocoding que puede
+hacer una app. Si se hacen demasiadas peticiones en un tiempo pequeño
+puede producirse un error.
+
+### Conversión de localización en placemarks ###
+
+Con el método `reverseGeocodeLocation` se puede obtener una lista de
+_placemarks_ asociadas a unas coordenadas. Las llamadas al objeto
+_geocoder_ son asíncronas y hay que pasarle al método una clausura
+_completion handler_. 
+
+Un ejemplo de uso:
+
+```swift
+func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
+    // Use the last reported location.
+    if let lastLocation = self.locationManager.location {
+        let geocoder = CLGeocoder()
+            
+        // Look up the location and pass it to the completion handler
+        geocoder.reverseGeocodeLocation(lastLocation, 
+                    completionHandler: { (placemarks, error) in
+            if error == nil {
+                let firstLocation = placemarks?[0]
+                completionHandler(firstLocation)
+            }
+            else {
+	         // An error occurred during geocoding.
+                completionHandler(nil)
+            }
+        })
+    }
+    else {
+        // No location was available.
+        completionHandler(nil)
+    }
+}
+```
+
+### Conversión de placemarks en localizaciones ###
+
+Con el método `geocodeAddressString` se puede pasar una dirección al
+_geocoder_ y obtener una lista de lugares asociados (_placemarks_). Se
+obtendrán menos lugares cuanto más precisa sea la dirección.
+
+Ejemplo:
+
+```swift
+func getCoordinate( addressString : String, 
+        completionHandler: @escaping(CLLocationCoordinate2D, NSError?) -> Void ) {
+    let geocoder = CLGeocoder()
+    geocoder.geocodeAddressString(addressString) { (placemarks, error) in
+        if error == nil {
+            if let placemark = placemarks?[0] {
+                let location = placemark.location!
+                    
+                completionHandler(location.coordinate, nil)
+                return
+            }
+        }
+            
+        completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
+    }
+}
+```
 
 ### Otras características: búsquedas, rutas y 3D
 
@@ -876,14 +979,25 @@ class ImageDetailViewController: UIViewController {
 }
 ```
 
+
 **Parte opcional 2**
 
+9. Implementa una llamada al servicio de geolocalización que coloque
+   como subtítulo del Pin el país en el que se ha colocado el
+   mismo. 
 
-9. Añade el tracking de localización a la aplicación, imprimiendo la
+<p style="text-align:center;">
+<img src="imagenes/mapa-con-pais.png" width="300px"/>
+</p>
+
+**Parte opcional 3**
+
+
+10. Añade el tracking de localización a la aplicación, imprimiendo la
 localización en la salida estándar cada 10 metros. Comprueba el
 funcionamiento activando la localización en el simulador.
 
-10. Añade la localización al mapa, haciendo que aparezca en la parte
+11. Añade la localización al mapa, haciendo que aparezca en la parte
 izquierda de la barra de navegación el botón de navegación.
 
     - Cuando pulses el botón de navegación se debe mostrar la posición
