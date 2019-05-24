@@ -569,13 +569,11 @@ perfil de aprovisionamiento.
 
 App IDs:
 
-- `ToDoList CloudKit` 
-- `ToDoList Today Extension`
+- `Master Moviles ToDoList`
 
 Perfiles de aprovisionamiento: 
 
-- `ToDoListCloudKit Profile` 
-- `ToDoList Today Extension`
+- `Master Moviles ToDoList`
 
 
 ### Capabilities
