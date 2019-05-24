@@ -572,7 +572,7 @@ entre este App Id y el `Master Moviles ToDoList`.
 App IDs:
 
 - `Master Moviles ToDoList` con el _bundle ID_ `es.ua.mastermoviles.ToDoList`
-- `ToDoList Today Extension` con el _bundle ID_ `ua.mastermoviles.ToDoList.Hecho`
+- `ToDoList Today Extension` con el _bundle ID_ `es.ua.mastermoviles.ToDoList.Hecho`
 
 Perfiles de aprovisionamiento: 
 
@@ -678,6 +678,11 @@ Examinamos cómo funcionan la app y la extensión.
 <p style="text-align:center;">
 <img src="imagenes/todolist-today.png" width="300px"/>
 </p>
+
+**Parte opcional**
+
+- Implementa una vista ampliada de la extensión que permita al usuario
+  ver más datos de la lista de tareas por hacer.
 
 ## Referencias ##
 
