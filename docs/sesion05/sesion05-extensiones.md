@@ -678,10 +678,9 @@ Examinamos cómo funcionan la app y la extensión.
 <img src="imagenes/todolist-today.png" width="300px"/>
 </p>
 
-### Referencias
+## Referencias ##
 
 - [Página de principal de Apple: App Extensions](https://developer.apple.com/app-extensions/)
 - [App Extensions Programming Guide](https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/)
-- [Tutorial Raywenderlich sobre extensiones Today (Crypticker)](https://www.raywenderlich.com/150953/today-extension-tutorial-getting-started)
 
 
