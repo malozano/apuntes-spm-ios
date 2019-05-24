@@ -564,17 +564,20 @@ Creamos para la práctica el grupo `group.ua.mastermoviles.ToDoList`
 <img src="imagenes/app-id-nombre-grupo-id.png" width="450px"/>
 </p>
 
-Añadimos el identificador de grupo en los App IDs y actualizamos el
-perfil de aprovisionamiento.
+Para la práctica actualizamos los App IDs y los perfiles de
+aprovisionamiento, creando el App ID y el perfil `Master Moviles
+ToDoList Extension` y añadiendo el identificador de grupo compartido
+entre este App Id y el `Master Moviles ToDoList`.
 
 App IDs:
 
-- `Master Moviles ToDoList`
+- `Master Moviles ToDoList` con el _bundle ID_ `es.ua.mastermoviles.ToDoList`
+- `ToDoList Today Extension` con el _bundle ID_ `ua.mastermoviles.ToDoList.Hecho`
 
 Perfiles de aprovisionamiento: 
 
 - `Master Moviles ToDoList`
-
+- `ToDoList Today Extension`
 
 ### Capabilities
 
