@@ -7,7 +7,7 @@ nav:
 - Sesión 2 - Notificaciones : 'sesion02/sesion02-notificaciones.md'
 - Sesión 3 - iCloud : 'sesion03/sesion03-icloud.md'
 - Sesión 4 - Mapas y localización : 'sesion04/sesion04-mapas-localizacion.md'
-# - Sesión 5 - Extensiones : 'sesion05/sesion05-extensiones.md'
+- Sesión 5 - Extensiones : 'sesion05/sesion05-extensiones.md'
 
 theme:
     language: es

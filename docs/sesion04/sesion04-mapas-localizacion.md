@@ -1,3 +1,8 @@
+<!--
+Terminan la práctica en unas 1,5 horas + 1 hora de explicación = 2,5 horas
+-->
+
+
 # Sesión 4: Mapas y localización
 
 ## MapKit ##
