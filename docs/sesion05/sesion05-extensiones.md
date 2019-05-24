@@ -633,8 +633,6 @@ if let containerURL = fileManager.
 }
 ```
 
-
-
 ## Demo: CustomNotes ##
 
 Veamos un ejemplo completo de extensión de tipo _Share Extension_, la
@@ -645,7 +643,7 @@ Medium](https://medium.com/@ales.musto/making-a-share-extension-that-accepts-tex
 
 Se ha modificado la app original, simplificándola y adaptándola a
 Swift 5. La puedes descargar desde [este
-enlace](http://domingogallardo.github.io/apuntes-mastermoviles/apps/Crypticker.zip).
+enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/CustomNotes.zip).
 
 <p style="text-align:center;">
 <img src="imagenes/custom-notes1.png" width="300px"/>
@@ -657,17 +655,16 @@ enlace](http://domingogallardo.github.io/apuntes-mastermoviles/apps/Crypticker.z
 <img style="margin-left:30px" src="imagenes/custom-notes4.png" width="300px"/>
 </p>
 
+Algunas características interesantes:
 
-No hay comunicación entre la extensión y la app, pero sí código
-compartido: el dibujo de la gráfica se realiza con un _framework embebido_.
+- Utiliza _Core Data_ para guardar las notas.
+- Define un grupo de app compartido entre la extensión y la app en el
+  que se guardan los datos.
+- Permite seleccionar la nota en la que se guarda el texto a compartir.
 
-Examinar cómo funcionan la app y la extensión.
+Examinamos cómo funcionan la app y la extensión.
 
-### Práctica: ToDoList
-
-<p style="text-align:center;">
-<img src="imagenes/todolist-today.png" width="300px"/>
-</p>
+## Práctica: ToDoList ##
 
 - Implementar una extensión Today en la app ToDoList. 
 - En la pantalla principal de la extensión debe aparecer el número de
@@ -677,6 +674,9 @@ Examinar cómo funcionan la app y la extensión.
 - Puedes consultar los nombres del grupo de apps y de los _bundle
   identifiers_ asociados a los App Ids en el member center de la UA.
 
+<p style="text-align:center;">
+<img src="imagenes/todolist-today.png" width="300px"/>
+</p>
 
 ### Referencias
 
