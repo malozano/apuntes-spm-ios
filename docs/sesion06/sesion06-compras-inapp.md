@@ -34,8 +34,9 @@ que depender del número mínimo de librerías.
 
 ## Demo: Aplicación de prueba ##
 
-Puedes descargarte una [aplicación de prueba]() en la que se muestra
-el funcionamiento básico de AdMob.
+Puedes descargarte una [aplicación de
+prueba](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/PruebaAds.zip)
+en la que se muestra el funcionamiento básico de AdMob.
 
 <p style="text-align:center;">
 <img style="border: 1px solid;" src="imagenes/pruebaAds-1.png" width="200px"/>
@@ -620,6 +621,7 @@ con ese usuario de prueba.
 
 <p style="text-align:center;">
 <img style="border: 1px solid;" src="imagenes/in-app-app-store.jpg" width="200px"/>
+<img style="border: 1px solid;" src="imagenes/in-app-app-store-2.png" width="200px"/>
 </p>
 
 
@@ -629,7 +631,7 @@ Vamos a ver un ejemplo de aplicación que contiene una pantalla
 sorpresa cuyo acceso se activa con una compra In-App.
 
 Está disponible en [este
-enlace]()
+enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/EjemploInApp.zip)
 
 <p style="text-align:center;">
 <img style="border: 1px solid;" src="imagenes/in-app-prueba-1.jpg" width="170px"/>
