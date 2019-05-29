@@ -8,6 +8,7 @@ nav:
 - Sesión 3 - iCloud : 'sesion03/sesion03-icloud.md'
 - Sesión 4 - Mapas y localización : 'sesion04/sesion04-mapas-localizacion.md'
 - Sesión 5 - Extensiones : 'sesion05/sesion05-extensiones.md'
+- Sesión 6 - Anuncios y Compras In-App : 'sesion06/sesion06-compras-inapp.md'
 
 theme:
     language: es
