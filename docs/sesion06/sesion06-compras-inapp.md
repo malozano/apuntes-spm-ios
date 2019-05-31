@@ -32,20 +32,6 @@ que depender del número mínimo de librerías.
 <img src="imagenes/google-admob.png" width="350px"/>
 </p>
 
-## Demo: Aplicación de prueba ##
-
-Puedes descargarte una [aplicación de
-prueba](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/PruebaAds.zip)
-en la que se muestra el funcionamiento básico de AdMob.
-
-<p style="text-align:center;">
-<img style="border: 1px solid;" src="imagenes/pruebaAds-1.png" width="200px"/>
-<img style="margin-left:30px" src="imagenes/pruebaAds-2.png" width="200px"/>
-</p>
-
-Se debe ejecutar la app en un dispositivo real, ya que AdMob no
-funciona en el simulador. También debes darte de alta en AdMob, registrar
-una aplicación e incluir el número de registro en el fichero `Info.plist`.
 
 ## API de AdMob ##
 
@@ -462,6 +448,21 @@ func interstitialDidDismissScreen(_ ad: GADInterstitial) {
   interstitial = createAndLoadInterstitial()
 }
 ```
+
+## Demo: Aplicación de prueba ##
+
+Puedes descargarte una [aplicación de
+prueba](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/PruebaAds.zip)
+en la que se muestra el funcionamiento básico de AdMob.
+
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/pruebaAds-1.png" width="200px"/>
+<img style="margin-left:30px" src="imagenes/pruebaAds-2.png" width="200px"/>
+</p>
+
+Se debe ejecutar la app en un dispositivo real, ya que AdMob no
+funciona en el simulador. También debes darte de alta en AdMob, registrar
+una aplicación e incluir el número de registro en el fichero `Info.plist`.
 
 ## Compras In-App ##
 
