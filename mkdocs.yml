@@ -2,13 +2,22 @@ site_name: SPM-iOS
 use_directory_urls: false
 
 nav:
-- Introducción : 'sesion00/sesion00-introduccion.md'
-- Sesión 1 - Firma, aprovisionamiento y distribución de apps : 'sesion01/sesion01-firma-aprovisionamiento.md'
-- Sesión 2 - Notificaciones : 'sesion02/sesion02-notificaciones.md'
-- Sesión 3 - iCloud : 'sesion03/sesion03-icloud.md'
-- Sesión 4 - Mapas y localización : 'sesion04/sesion04-mapas-localizacion.md'
-- Sesión 5 - Extensiones : 'sesion05/sesion05-extensiones.md'
-- Sesión 6 - Anuncios y Compras In-App : 'sesion06/sesion06-compras-inapp.md'
+- 'Teoría':
+    - 0. Introducción : 'teoria/tema0-introduccion-servicios-ios/introduccion-servicios-ios.md'
+    - 1. Firma, aprovisionamiento y distribución de apps: 'teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.md'
+    - 2. Notificaciones: 'teoria/tema2-notificaciones/notificaciones.md'
+    - 3. iCloud y CloudKit: 'teoria/tema3-icloud/icloud.md'
+    - 4. Mapas y localización: 'teoria/tema4-mapas-localizacion/mapas-localizacion.md'
+    - 5. Extensiones: 'teoria/tema5-extensiones/extensiones.md'
+    - 6. Anuncios: 'teoria/tema6-anuncios/anuncios.md'
+    - 7. Compras InApp: 'teoria/tema7-compras-in-app/compras-in-app.md'
+- 'Prácticas':
+    - Práctica 1: 'practicas/practica1/practica1-firma-aprovisionamiento.md'
+    - Práctica 2: 'practicas/practica2/practica2-notificaciones.md'
+    - Práctica 3: 'practicas/practica3/practica3-icloud.md'
+    - Práctica 4: 'practicas/practica4/practica4-mapas-localizacion.md'
+    - Práctica 5: 'practicas/practica5/practica5-extensiones.md'
+    - Práctica 6: 'practicas/practica6/practica6-anuncios.md'
 
 theme:
     language: es
