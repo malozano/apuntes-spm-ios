@@ -4,54 +4,57 @@ En las prácticas de esta sesión deberás trabajar con distintos
 aspectos relacionados con la firma, la distribución y el despliegue de
 apps en dispositivos reales.
 
-Resumimos a continuación lo que debes realizar:
+Dada la situación de enseñanza no presencial en la que nos encontramos
+en estos momentos, vamos a intentar guiar la práctica lo máximo
+posible, indicando paso a paso qué secciones de teoría debes leer y
+qué actividades debes realizar.
+
+Resumimos a continuación los objetivos generales de esta práctica:
 
 1. Firmar una app con tu cuenta gratuita e instalarla en un
    dispositivo configurado como dispositivo de desarrollo.
-2. Darte de alta en el equipo de desarrollo de la UA y firmar la app
-   usando un perfil de aprovisionamiento que te permite instalarla en
-   cualquier dispositivo autorizado en el perfil.
-3. Distribuir esta app firmada con el perfil de aprovisionamiento del
-   equipo de la UA usando Fabric.
+2. Darte de alta en el equipo de desarrollo de la UA.
+3. Firmar la app usando un perfil de aprovisionamiento que te permite
+   instalarla en cualquier dispositivo autorizado en el perfil.
+4. Distribuir esta app firmada con el perfil de aprovisionamiento del
+   equipo de la UA usando Firebase.
 
 
-## Creación de la cuenta de desarrollador Apple ##
+## 1. Firma e instalación de una app en un dispositivo de desarrollo ##
 
-Deberás crear un Apple ID introduciendo tus datos en [este
+1. Deberás crear un Apple ID introduciendo tus datos en [este
 enlace](https://appleid.apple.com/account?localang=es_es). Este Apple
 ID será el que se asociará a la cuenta de desarrollador.
 
-Activa la autenticación de doble factor de alguna de las formas
-definida en [este enlace](https://support.apple.com/es-es/HT204915).
+    Activa la autenticación de doble factor de alguna de las formas
+    definida en [este enlace](https://support.apple.com/es-es/HT204915).
 
-Después deberás darte de alta como desarrollador Apple con el Apple ID
-recién creado en [https://developer.apple.com/register/](https://developer.apple.com/register/).
+    Después deberás darte de alta como desarrollador Apple con el Apple ID
+    recién creado en [https://developer.apple.com/register/](https://developer.apple.com/register/).
 
-De esta forma estás accediendo al programa gratuito. Este programa
-permite acceder a las herramientas de desarrollo, la documentación y
-acceso limitado a ciertas capacidades (incluido probar aplicaciones en
-dispositivos conectados a Xcode).
+    De esta forma estás accediendo al programa gratuito. Este programa
+    permite acceder a las herramientas de desarrollo, la documentación y
+    acceso limitado a ciertas capacidades (incluido probar aplicaciones en
+    dispositivos conectados a Xcode).
 
-<img src="imagenes/apple-developer.png" width="600px"/>
+    <img src="imagenes/apple-developer.png" width="600px"/>
 
-Explora las distintas opciones que permite la cuenta:
+    Explora las distintas opciones que permite la cuenta:
 
-- Documentation
-- pDownloads
-- Forums
-- Bug reporter
-- Help
+    - Documentation
+    - pDownloads
+    - Forums
+    - Bug reporter
+    - Help
 
 
-## Firma e instalación de una app en un dispositivo de desarrollo ##
-
-1. Descarga la app [ToDoList](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip). 
-2. Incluye tu nombre en alguna parte de la interfaz de usuario.
-3. Fírmala con tu cuenta gratuita de desarrollador Apple (no la del
+2. Descarga la app [ToDoList](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip). 
+3. Incluye tu nombre en alguna parte de la interfaz de usuario.
+4. Fírmala con tu cuenta gratuita de desarrollador Apple (no la del
 equipo de la UA). 
 4. Instálala en un dispositivo de desarrollo conectado a Xcode y
    prueba que funciona correctamente.
-5. Haz una foto y guárdala como documentación.
+6. Haz una foto y guárdala como documentación.
 
 
 ## Configuración de la cuenta de desarrollador ##

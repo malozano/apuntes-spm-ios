@@ -1,4 +1,4 @@
-# Firma, aprovisionamiento y <br/> distribución de apps
+# Firma, aprovisionamiento y distribución de apps
 
 ## Introducción ##
 
@@ -11,12 +11,11 @@ plataforma iOS para:
     - Distribuir nuestras apps en dispositivos de prueba.
     - Utilizar APIs de los servicios de iOS no disponibles en la cuenta
       de desarrollador gratuita. 
-- Probar y distribuir apps de iOS usando Test Flight y App Store Connect.
+- Probar y distribuir apps usando Firebase.
+- Probar y distribuir apps usando Test Flight y App Store Connect.
 
 
 ### Seguridad en las apps ###
-
-<img src="imagenes/ios-security.png" width="300px" />
 
 La seguridad es uno de los elementos fundamentales de la plataforma
 iOS. En concreto, el sistema de instalación y ejecución de apps en
@@ -25,7 +24,7 @@ de forma segura y sin comprometer la integridad de la plataforma,
 eliminando virus, malware o ataques no autorizados.
 
 El documento [iOS Security
-Guide](https://www.google.es/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0ahUKEwiZ1pDvkKHaAhURnRQKHduRBBAQFggwMAA&url=https%3A%2F%2Fwww.apple.com%2Fbusiness%2Fdocs%2FiOS_Security_Guide.pdf&usg=AOvVaw3GGJo3lQoRe6VTTv0GiAMU)
+Guide](https://support.apple.com/es-es/guide/security/welcome/web)
 detalla todos los elementos que conforman la seguridad de la
 plataforma. Uno de los elementos más críticos de la arquitectura son
 las apps.
@@ -33,8 +32,15 @@ las apps.
 Para garantizar la autoría del desarrollador y la no modificación del
 código, todo el código ejecutable que se ejecute en un dispositivo iOS
 debe haber sido firmado con un **certificado generado por
-Apple**. Para obtener un certificado, los desarrolladores deben
-registrase en el **Apple Developer Program**.
+Apple**. Al arrancar la aplicación el sistema se asegura de que el
+código de la app no ha sido modificado desde la última vez que fue
+instalada o actualizada.
+
+Para obtener un certificado, los desarrolladores deben registrase en
+el **Apple Developer Program**. Para publicar una app en el App Store,
+es necesario haberla firmado. De esta forma, toda app que nos
+instalemos en nuestros dispositivos ha sido desarrollada por una
+persona física u organización identificable.
 
 A diferencia de otras plataformas móviles, iOS no permite que los
 usuarios instalen de páginas web apps no firmadas, potencialmente
@@ -48,12 +54,12 @@ maliciosas. Tampoco permite ejecutar código no fiable.
 Apple define varios tipos de programas de desarrollo:
 
 - Programa gratuito 
-- [Programa de desarrollador de Apple](https://developer.apple.com/programs/ios/) (_Apple Developer Program_) - $99 al año
+- [Programa de desarrollador de Apple](https://developer.apple.com/programs/whats-included/) (_Apple Developer Program_) - $99 al año
 - [Programa de desarrollador de empresa](https://developer.apple.com/programs/enterprise/) (_Apple Developer Enterprise Program_) - $299 al año
 
 Si sólo queremos empezar a desarrollar y probar apps en nuestro
 dispositivo iOS basta con darse de alta de forma gratuita en el
-_member center_ de Apple con un Apple ID. 
+**portal del desarrollador** (_member center_) de Apple con un Apple ID. 
 
 El programa de pago de desarrollador de Apple permite utilizar
 funcionalidades avanzadas, distribuir apps a dispositivos de prueba o
@@ -86,7 +92,47 @@ muestra en la siguiente tabla
 <img src="imagenes/programas-developer.png" height="630px"/>
 
 
-### Cuenta de desarrollador ###
+### Equipo de desarrollo ###
+
+En los programas de pago de desarrollador de Apple es posible trabajar
+con un equipo de desarrolladores. No es necesario darse de alta como
+organización para componer un equipo.
+
+Cuando se da de alta un programa de desarrollo se crea un
+identificador de equipo único (_Team ID_)  que compartirán todos los
+desarrolladores del equipo. Se puede consultar el identificador de
+equipo en la opción _Membership_ del portal del desarrollador.
+
+<img src="imagenes/locateteamid.png" width="600px"/>
+
+Se pueden añadir desarrolladores al equipo desde el App Store Connect,
+en la opción de _Usuarios y Acceso_.
+
+<img src="imagenes/invite_team_member.png" width="600px"/>
+
+También es posible configurar los permisos de los desarrolladores del
+equipo para que puedan subir apps o probarlas como _testers_ en Test
+Flight.
+
+También se pueden configurar estas opciones en el programa
+universitario.
+
+----
+
+## Demo ##
+
+Veremos una demostración en la que accederemos al [portal del
+desarrollador](https://developer.apple.com/account/) y al [App Store
+Connect](https://appstoreconnect.apple.com/login) usando distintos
+perfiles:
+
+- Perfil gratuito (domingo.gallardo.appledev2@gmail.com)
+- Miembro de la cuenta de la universidad (domingo.gallardo.appledev1@gmail.com)
+- Administrador de la cuenta de la universidad (domingo@dccia.ua.es)
+- Perfil de pago (domingo@dccia.ua.es)
+
+
+### Perfil gratuito ###
 
 Para darse de alta como desarrollador de Apple es necesario dar de
 alta un Apple ID y definir una [autenticación de doble
@@ -102,9 +148,30 @@ móvil que deberás proporcionar en tu registro.
 
 <img src="imagenes/autenticacion-doble-factor.jpg" width="600px"/>
 
-Una vez dados de alta como desarrolladores de Apple podremos acceder a
-la [cuenta de desarrollador](https://developer.apple.com/account/), en
-la que podremos gestionar numerosos elementos que veremos durante el curso.
+Una vez dados de alta como desarrolladores de Apple podremos acceder al
+[portal del desarrollador](https://developer.apple.com/account/).
+
+<img src="imagenes/cuenta-desarrollador-gratuito.png" width="700px"/>
+
+Con esta cuenta gratuita podremos comenzar a desarrollar apps y
+probarlas en nuestro dispositivo de desarrollo. Pero este desarrollo
+estará limitado. No podremos distribuirlas a más dispositivos ni
+utilizar servicios avanzados de Apple).
+
+### Miembro del equipo de la UA ###
+
+Si añadimos nuestra cuenta al equipo de la Universidad de Alicante,
+podremos gestionar servicios y capacidades adicionales. Esta es la
+cuenta que usaremos durante la asignatura.
+
+<img src="imagenes/cuenta-desarrollador-universidad.png" width="700px"/>
+
+En el menú de la izquierda podemos comprobar que hay opciones
+adicionales a la cuenta gratuita.
+
+### Miembro de pago ###
+
+Por último, si usamos una cuenta de pago, tenemos opciones adicionales:
 
 <img src="imagenes/cuenta-desarrollador.png" width="600px"/>
 
@@ -116,41 +183,7 @@ Store.
 
 <img src="imagenes/appstoreconnect.png" width="600px"/>
 
-### Equipo de desarrollo ###
-
-En todos los programas de pago de desarrollador de Apple, incluso en
-los programas individuales, es posible trabajar con un equipo de
-desarrolladores. 
-
-Cuando se da de alta un programa de desarrollo se crea un
-identificador de equipo único (_Team ID_)  que compartirán todos los
-desarrolladores del equipo. Se puede consultar el identificador de
-equipo en la opción _Membership_ de la cuenta de desarrollador.
-
-<img src="imagenes/locateteamid.png" width="600px"/>
-
-Se pueden añadir desarrolladores al equipo desde el App Store Connect,
-en la opción de _Usuarios y Acceso_.
-
-<img src="imagenes/invite_team_member.png" width="600px"/>
-
-También es posible configurar los permisos de los desarrolladores del
-equipo para que puedan subir apps o probarlas como _testers_ en Test
-Flight.
-
-----
-
-## Demo ##
-
-Veremos una demostración en la que accederemos a la [cuenta de
-desarrollador](https://developer.apple.com/account/) y al [App Store
-Connect](https://appstoreconnect.apple.com/login) usando distintos
-perfiles:
-
-- Perfil gratuito (domingo.gallardo.appledev2@gmail.com)
-- Miembro de la cuenta de la universidad (domingo.gallardo.appledev1@gmail.com)
-- Administrador de la cuenta de la universidad (domingo@dccia.ua.es)
-- Perfil de pago (domingo@dccia.ua.es)
+### Fin de la demo ###
 
 ----
 
@@ -187,10 +220,10 @@ Una **identidad de firma** (_signing identity_) consiste en una pareja
 de clave pública y clave privada que proporciona Apple en el
 certificado de desarrollador.
 
-El certificado se almacena en el llavero de inicio de sesión del Mac
-en el que se realiza el desarrollo (se puede consultar con la
-aplicación _Acceso a llaveros_) y en la cuenta de desarrollador de
-Apple.
+El certificado es creado por Xcode al añadir la cuenta de usuario y se
+almacena en el llavero de inicio de sesión del Mac en el que se
+realiza el desarrollo (se puede consultar con la aplicación _Acceso a
+llaveros_) y en el portal del desarrollador de Apple.
 
 La clave privada se usa para firmar la aplicación. La clave pública
 del certificado determina la identidad del desarrollador. La mantiene
@@ -225,8 +258,8 @@ para enviar apps al _store_.
 
 Todos los certificados son proporcionados por Apple.
 
-Para comprobar el tipo de certificado podemos consultar el _member
-center_, _Xcode_ o _Acceso a llaveros_.
+Para comprobar el tipo de certificado podemos consultar el portal del
+desarrollador, _Xcode_ o _Acceso a llaveros_.
 
 
 ### Gestión de los certificados en Xcode ###
@@ -235,7 +268,7 @@ Xcode mantiene nuestra identidad (Apple ID) y nuestros certificados.
 
 En el caso de pertenecer a más de un programa de desarrollo (por
 ejemplo al programa educativo de la UA y a nuestro programa personal)
-Xcode muestra las dos identidades y nos permite utilizar la que nos
+Xcode muestra los dos equipos y nos permite utilizar el que nos
 interese en cada momento.
   
 <img src="imagenes/personal-team.png" width="500px"/>
@@ -263,10 +296,11 @@ que se instala en el dispositivo) que incluye múltiples procesos:
   proporcionado por Apple (_Signing Certificate_).
 
 - Instalación de un **perfil de aprovisionamiento** (_Provisioning
-  Profile_) correcto que determina, entre otros: servicios de la
-  plataforma Apple a los que la app puede acceder (**_capabilities_**
-  y **_entitlements_**) y dispositivos concretos (IDs) autorizados en
-  los que puede ejecutarse la app (lo veremos más adelante).
+  Profile_) compatible con el _bundle identifier_ de la app que determina,
+  entre otros: servicios de la plataforma Apple a los que la app puede
+  acceder (**_capabilities_** y **_entitlements_**) y dispositivos
+  concretos (IDs) autorizados en los que puede ejecutarse la app (lo
+  veremos más adelante).
 
 Xcode facilita la realización de todos estos procesos. 
   
@@ -305,7 +339,8 @@ puede ejecutar una app si:
 ## Demo ##
 
 Vamos a demostrar cómo firmar una app y cómo ejecutarla en un
-dispositivo autorizado por Xcode.
+dispositivo autorizado por Xcode, usando el perfil de desarrollador
+de la cuenta gratuita de Apple.
 
 ### Instalación de la identidad de firma ###
 
@@ -326,7 +361,7 @@ Si todo ha ido bien, Xcode mostrará la información de nuestro perfil gratuito.
 
 Para firmar una app con Xcode debemos seleccionar el proyecto completo,
 el _target_ y, en el apartado General, rellenar el _bundle ID_ de la
-app y seleccionar tu identidad de firma en la opción _Signing_.
+app y seleccionar tu identidad de firma en la opción _Signing & Capabilities_.
 
 <img src="imagenes/pr_assign_team.png" width="800px"/>
 
@@ -335,7 +370,7 @@ ya se ha usado Xcode indicará un error. Podemos utilizar nuestro
 nombre de login, seguido de un punto y del nombre de la app.
 
 
-### App ejemplo `ToDoList` ###
+### App ejemplo `ToDo` ###
 
 Vamos a utilizar una app ya codificada para probar todos los conceptos
 de esta sesión. Se trata de una app muy sencilla, con la que podemos
@@ -373,18 +408,23 @@ Xcode](https://help.apple.com/xcode/mac/current/#/dev154b28f09).
 
 ### Comprobación de la identidad de firma en Acceso a Llaveros ###
 
-En la aplicación Acceso a Llaveros y podemos comprobar que se ha
-instalado el certificado junto con la clave privada en _Mis
-certificados_ e _Inicio de sesión_.
+En la aplicación Acceso a Llaveros podemos comprobar que el
+certificado se ha instalado junto con la clave privada
+en _Mis certificados_ e _Inicio de sesión_.
 
 <img src="imagenes/acceso-a-llaveros.png" width="900px"/>
 
-### Conexión de un dispositivo real a Xcode ###
+### Conexión de un dispositivo de desarrollo a Xcode ###
 
-Conectamos un dispositivo iOS real al ordenador.
+Una vez que se ha firmado la aplicación es posible ejecutarla en un
+dispositivo de desarrollo conectado a Xcode. 
 
-En Xcode seleccionamos _Window > Devices_ para comprobar que se ha
-conectado correctamente. En esa ventana se puede acceder al
+Comenzamos conectando el dispositivo iOS al ordenador. Se debe aceptar
+en el dispositivo un mensaje en el que se pide confirmación para
+confiar en el ordenador.
+
+Después, en Xcode seleccionamos _Window > Devices_ para comprobar que
+se ha conectado correctamente. En esa ventana se puede acceder al
 identificador UUID del dispositivo.
 
 Es posible activar la conexión inalámbrica al dispositivo.
@@ -422,8 +462,8 @@ app.
 Seleccionando la opción de Xcode _Product > Archive_ se accede al
 panel de archivo y distribución de la app 
 
-La opción de exportar la app está deshabilitado por que estamos
-registrados con el programa gratuito.
+Sin embargo, al estar registrado en el programa gratuito no es posible
+seleccionar ninguna forma de distribución de la app.
 
 <img src="imagenes/distribucion-deshabilitada.png" width="800px"/>
 
@@ -435,20 +475,25 @@ registrados con el programa gratuito.
 
     <img src="imagenes/generic-ios-device.png" width="400px"/>
 
+### Fin de la demo ###
 
 ----
 
-## Despliegue de apps en dispositivos de prueba ##
-
-
-### Capacidades de las apps ###
+## Capacidades de las apps ##
 
 <img src="imagenes/app-distribution.png" height="200px"/>
 
-Para poder utilizar servicios avanzados proporcionados por Apple en
-las apps (como notificaciones push, iCloud o Game Center) es necesario
-darse de alta de forma individual en el programa de desarrollo de iOS
-o formar parte de un equipo de desarrollo. 
+Apple proporciona un conjunto de servicios para ser utilizados por las
+apps. Apple denomina a estos servicios como _Capabilities_. Para que
+una app pueda utilizar cualquiera de estas _capabilities_ debe
+autorizarse su uso desde la cuenta de desarrollo o desde Xcode.
+
+Dependiendo del tipo de cuenta de desarrollo es posible utilizar unas
+_capabilities_ y otras. Por ejemplo, podemos utilizar el servicio de
+mapas o el API de _Health Kit_ con el programa gratuito, pero
+necesitamos el programa de la universidad para poder utilizar
+servicios iCloud o notificaciones push. Y existen _capabilities_ avanzadas
+que sólo pueden ser usadas con el programa de pago.
 
 Para una lista completa de las capacidades disponibles según el tipo
 de desarrollador se puede consultar la documentación en [_Apple
@@ -457,33 +502,29 @@ Capabilities_](https://developer.apple.com/support/app-capabilities/).
 
 <img src="imagenes/app-capabilities.png" width="550px"/> 
 
-Con el programa de desarrollo de la Universidad podemos acceder a más
-servicios que a los gratuitos, pero no a todos los servicios
-disponibles. La lista de servicios accesibles son los siguientes:
+Podemos explorar en Xcode el listado de _capabilities_ que podemos
+añadir a nuestra app, accediendo desde la pantalla de _Signing &
+Capabilities_ a la opción _+ Capability_.
 
-<img src="imagenes/servicios-univ-program.png" width="550px"/>
+<img src="imagenes/xcode-new-capabilities.png" width="700px" />
+
+Con el programa gratuito podemos usar el siguiente listado de
+_capabilities_:
+
+<img src="imagenes/capabilities-free-program.png" width="300px"/>
+
+Con el programa de pago podemos acceder a todos los
+servicios proporcionados por Apple:
+
+<img src="imagenes/servicios-programa-pago.png" width="550px"/>
 
 
-
-### Permisos para las apps ###
-
-Un permiso (_entitlement_) es un elemento de configuración incluido en
-la firma digital de la app que le indica al sistema que permita a la
-app acceder a ciertos recursos o realizar ciertas operaciones.
-
-La forma de otorgar los permisos a una app es algo elaborada, para
-permitir una configuración flexible y no atar los permisos a una única
-app.
-
-El responsable de la cuenta de desarrollador debe crear un
-identificador denominado **_App ID_** y otorgar los permisos a ese
-identificador. 
 
 ### _Bundle Identifier_ ###
 
-<img src="imagenes/bundle-id-xcode.png" width="550px"/>
+Un _bundle ID_ es una cadena que identifica de forma única una app.
 
-Un _bundle ID_ identifica de forma única una app. 
+<img src="imagenes/bundle-id-xcode.png" width="550px"/>
 
 La cadena de _bundle ID_ debe contener únicamente caracteres
 alfanuméricos (A-Z,a-z,0-9), guiones (-), y puntos (.). La cadena
@@ -506,7 +547,7 @@ _bundle ID_ para identificar la app cuando utilizan estos servicios.
 
 ### App ID ###
 
-El **App ID** es un patrón de texto que da permiso a un único _bundle
+El _App ID_ es un patrón de texto que da permiso a un único _bundle
 ID_ (identificador de la app) o a un conjunto de ellos. Un App ID
 define una lista de capacidades (_whitelist_) que permitimos usar a
 una app (_explicit App ID_) o varias apps (_wildcard App ID_).
@@ -516,67 +557,77 @@ manualmente desde la propia cuenta de desarrollo.
 
 <img src="imagenes/app-id-cuenta-desarrollo.png" width="600px"/>
 
-Todos los App IDs creados se guardan en el _member center_. Los que
+Todos los App IDs creados se guardan en el portal del desarrollador. Los que
 crea Xcode de forma automática tienen en su nombre el prefijo XC.
 
 <img src="imagenes/lista-app-id-member-center.png" width="600px"/>
 
-Por ejemplo, podríamos crear el App ID `es.ua.mastermoviles.icloud.*`
-con permiso de acceso a iCloud y todos los _bundles ID_ que tengan
-este prefijo podrán acceder al servicio.
+Por ejemplo, podríamos crear el _App ID_
+`es.ua.mastermoviles.icloud.*` con la _capability_ de acceso a
+iCloud. De esta forma, todos los _bundles ID_ que tengan este prefijo
+podrán acceder al servicio.
 
 Una vez creado, el _App ID_ se instala en un **perfil de
-aprovisionamiento** que permite que una o más apps desarrolladas por
-el equipo accedan a los permisos otorgados.
+aprovisionamiento** que es el que finalmente hay que instalar en la
+app y permite que ésta acceda a los permisos otorgados. Además, el
+perfil de aprovisionamiento también contendrá los identificadores de
+los dispositivos de prueba en los que la app podrá ejecutarse.
 
 En el caso de un desarrollador individual los permisos se gestionan
 automáticamente desde Xcode, que es quien se encarga de crear el _App
 ID_ y otorgarle los permisos necesarios.
 
-La cadena del APP ID contiene realmente dos partes separadas por un
-punto: el prefijo, que es el _Team ID_, y el sufijo que es la
-cadena de búsqueda del _bundle ID_ propiamente dicha.
+La cadena del _App ID_ contiene realmente dos partes separadas por un
+punto: el prefijo, que es el _Team ID_, y el sufijo que es la cadena
+de búsqueda del _bundle ID_ propiamente dicha.
 
 
 ### Gestión de las capacidades en Xcode ###
 
-En Xcode se deben indicar las capacidades que necesita la app que
-estamos desarrollando.
+Como se ha comentado anteriormente, podemos acceder en Xcode a las
+_capabilities_ que queremos autorizar en la app que estamos
+desarrollando.
 
 Para ello debemos seleccionar el _target_ y la opción
-_Capabilities_. Dependiendo del programa de desarrollo en el que
-estemos tendremos más o menos capacidades disponibles.
+_Signing & Capabilities_ y pulsar en _+ Capability_.
 
-<img src="imagenes/capacidades-limitadas.png" width="600px"/>
+<img src="imagenes/xcode-new-capabilities.png" width="700px" />
 
 Una vez seleccionadas las capacidades que necesitamos, Xcode busca en
-el _member center_ algún perfil de aprovisionamiento con un App ID que
+el portal del desarrollador algún perfil de aprovisionamiento con un App ID que
 empareje el _bundle ID_ y que satisfaga estas necesidades. Si no
 existe ninguno, crea el _App ID_ y el perfil de aprovisionamiento de
 forma automática. El App ID lo registra en la cuenta de
 desarrollo. Sólo lo puede hacer si somos administradores.
 
+## Despliegue de apps en dispositivos de prueba ##
 
-### Aprovisionamiento de apps ###
+Hemos visto que cuando estamos desarrollando una app podemos
+desplegarla en el dispositivo de desarrollo usando Xcode. 
 
-Es necesario configurar un perfil de aprovisionamiento para
-que la app pueda acceder a servicios de la plataforma Apple (como almacenamiento
-iCloud, mapas, compras In-App o notificaciones push) y para configurar
-dispositivos de prueba en los que podamos ejecutar la app.
+Una vez terminada, y antes de publicarla en la App Store, debemos
+distribuirla en dispositivos de usuarios prueba para que realicen
+pruebas más extensas.
 
-Con la cuenta de desarrollador gratuita es posible desarrollar
-aplicaciones, acceder a un número limitado de servicios de Apple y
-probarlas configurando el dispositivo propio como un dispositivo de
-desarrollo. Pero es una forma muy limitada de prueba
-porque es necesario conectar físicamente el dispositivo al ordenador
-en el que está Xcode.
+Es posible hacerlo declarando los dispositivos de prueba en el portal
+del desarrollador y añadiéndolos al _perfil de aprovisionamiento_ de
+la app. Vamos a ver estos conceptos.
 
-Es posible ejecutar apps en dispositivos de prueba sin tener que
-configurarlos como dispositivos de desarrollo usando **perfiles de
-aprovisionamiento**. Esto solo es posible si tenemos una cuenta de
-pago de desarrollador o si estamos en un equipo con una cuenta. En
-nuestro caso usaremos la cuenta del programa de desarrollo de la
-universidad. 
+### Características del dispositivo ###
+
+Cuando compilamos una app podemos especificar ciertas características
+necesarias que debe tener el dispositivo en el que va a correr la app.
+
+<img src="imagenes/xcode-deployment-info.png" width="700px"/>
+
+En el apartado _Deployment Info_ de XCode, disponible en la pantalla
+_Target > General_ podemos definir:
+
+- Tipo de dispositivo: iPhone, iPad o Mac (utilizando [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac_catalyst))
+- Sistema operativo mínimo: versión de OS mínima necesaria de los
+  dispositivos en los que se va a instalar nuestra app.
+- Características de la interfaz de usuario y de la orientación del dispositivo
+
 
 ### Distribución de apps ###
 
@@ -584,7 +635,7 @@ La forma de distribuir apps en la plataforma iOS es la App Store. Para
 enviar una app al App Store es necesario haberse registrado en el
 programa de pago de desarrollador de Apple. 
 
-Apple proporciona un certificado de distribución necesario para subir
+Apple proporciona un **certificado de distribución** necesario para subir
 la app al App Store. De esta forma, todas las apps en el App Store han
 sido enviadas por una persona o una empresa conocida.
 
@@ -593,16 +644,30 @@ funcionan tal y como se describe y que no contiene bugs obvios ni
 otros problemas evidentes. Este proceso de curación da a los clientes
 confianza en las apps que compran.
 
-Antes de distribuir la app en el App Store debemos haberla probada en
-dispositivos de prueba. Como ya hemos dicho, Apple permite ejecutar
-apps en dispositivos registrados mediante el uso de **perfiles de
-aprovisionamiento**.
+### Aprovisionamiento de apps ###
 
-Apple también permite distribuir una app de forma restringida, sólo a
-los dispositivos particulares de los empleados de una empresa. Para
-ello es necesario darse de alta en el **Apple Developer Enterprise
-Program** y utilizar también el perfil de aprovisionamiento
-apropiado. 
+Antes de distribuir la app en el App Store debemos haberla probada en
+dispositivos de prueba. 
+
+Apple permite también distribuir apps de forma restringida, declarando
+los dispositivos en el portal del desarrollador e incorporándolos en
+el **perfil de aprovisionamiento** de la app. Esto solo es posible si
+tenemos una cuenta de pago de desarrollador o si estamos en un equipo
+con una cuenta. En nuestro caso usaremos la cuenta del programa de
+desarrollo de la universidad.
+
+Una vez añadido el perfil de aprovisionamiento a la app, podremos
+generar el archivo binario _.ipa_ utilizando los métodos de
+distribución denominados _Ad hoc_ y _Development_. Con el primero
+podemos distribuir el app a aquellos dispositivos incluidos en la
+lista de dispositivos autorizados del perfil de aprovisionamiento. Con
+el segundo podemos distribuir la app a miembros (_testers_) de nuestro
+equipo de desarrollo.
+
+El perfil de aprovisionamiento de la app también incluye las
+capacidades declaradas para que la app pueda acceder a servicios de la
+plataforma Apple (como almacenamiento iCloud, mapas, compras In-App o
+notificaciones push).
 
 
 ### Perfil de aprovisionamiento ###
@@ -615,6 +680,7 @@ que permite que un dispositivo sea utilizado para pruebas.
 
 Un perfil de aprovisionamiento determina básicamente:
 
+- Qué desarrolladores pueden compilar y distribuir un app.
 - Qué servicios puede utilizar una app.
 - En qué dispositivos se pueden ejecutar la app.
 
@@ -664,10 +730,8 @@ la perfil de aprovisionamiento.
 
 <img src="imagenes/lanzamiento-perfil-aprovisionamiento.png" width="600px"/>
 
-
-En combinación con el **bundle ID**, el **perfil de
-aprovisionamiento** (_provisioning profile_) y los **permisos**
-(_entitlements_) se usa para asegurar que:
+En combinación con el _bundle ID_, el perfil de aprovisionamiento y
+los permisos (_entitlements_) se usan para asegurar que:
 
 - La app ha sido compilada y firmada por nosotros o por un miembro de
   confianza del equipo.
@@ -734,7 +798,7 @@ fueran apps _in-house_.
 
 ----
 
-## Demo ##
+## Demo y ejercicio ##
 
 ### Resumen del flujo de trabajo ###
 
@@ -746,13 +810,12 @@ Los dispositivos que se usan para el desarrollo deben ser registrados
 y añadidos en el perfil de aprovisionamiento que uses para firmar la
 app.
 
-Si seleccionamos la opción de firma automática en Xcode (es lo
-recomendado), Xcode crea estos elementos de forma automática. Si
-perteneces a un equipo, algunos de estos permisos deben ser
-configurados por el administrador del equipo en la web de
-desarrollador de Apple.
+Si seleccionamos la opción de firma automática en Xcode, Xcode crea
+estos elementos de forma automática. Si perteneces a un equipo,
+algunos de estos permisos deben ser configurados por el administrador
+del equipo en la web de desarrollador de Apple.
 
-Pasos a seguir:
+Pasos que vamos a seguir en esta demo:
 
 1. Nos damos de alta al equipo de la universidad.
 2. El administrador del equipo de la universidad crea un App ID con
@@ -765,7 +828,7 @@ Pasos a seguir:
 
 ### Equipo de desarrollo del programa de Universidad ###
 
-La mayoría de opciones en el member center serán sólo accesibles para
+La mayoría de opciones en el portal del desarrollador serán sólo accesibles para
 consulta. Será el administrador del equipo de la Universidad el que
 podrá cambiarlas.
 
@@ -775,7 +838,7 @@ Es necesario crear un nuevo certificado para el desarrollador,
 distinto del certificado individual. Servirá para firmar aplicaciones
 desarrolladas en el equipo en el que se ha añadido al desarrollador.
 
-Se puede hacer desde el _member center_ o desde Xcode. Será un
+Se puede hacer desde el _portal del desarrollador_ o desde Xcode. Será un
 certificado de tipo **iOS App Development**.
 
 <img src="imagenes/xcode-pref-team-develop.png" width="450px"/> 
@@ -783,52 +846,89 @@ certificado de tipo **iOS App Development**.
 <img src="imagenes/xcode-cert-team.png" width="450px"/>
 
 Para confirmar que se ha creado el nuevo certificado, podemos entrar
-en el _member center_ o en la aplicación de Acceso a llaveros:
+en el portal del desarrollador o en la aplicación de Acceso a llaveros:
   
 <img src="imagenes/nuevo-certificado-member-center.png" width="700px"/>
 
 <img src="imagenes/nuevo-certificado-acceso-llaveros.png" width="700px"/>
 
 
+### Comprobación del certificado en el perfil de aprovisionamiento ###
+
+Para poder firmar y distribuir apps el certificado recién creado debe
+estar incluido en un perfil de aprovisionamiento compatible con la app
+que estamos desarrollando.
+
+En el portal de desarrolladores existe un certificado de
+aprovisionamiento genérico, con App ID comodín (`*`) con el que se
+puede compilar cualquier app. El administrador debe comprobar si el
+certificado está incluido y si no es así, deberá incluirlo.
+
+<img src="imagenes/actualizar-perfil-aprovisionamiento-cert.png" width="700px" />
+
+<img src="imagenes/actualizar-perfil-aprovisionamiento-cert2.png" width="700px" />
+
 ### Firma de la app con el nuevo certificado ###
 
-<img src="imagenes/error-firma-team.png" width="550px"/>
+Para firmar la app con el nuevo certificado **desmarcamos la opción
+para que Xcode gestione automáticamente la firma**. De esta forma
+podremos gestionar manualmente qué perfil de aprovisionamiento es el
+que utilizamos.
 
-Para firmar la app con el nuevo certificado dejamos marcada la opción
-para que Xcode gestione automáticamente la firma. Seleccionamos el
-_team_ Universidad de Alicante.
+Seleccionamos el _team_ Universidad de Alicante. Y escribimos como
+_bundle id_ `es.ua.mastermoviles.TodoList`.
 
-Aparecen los siguientes errores porque Xcode no puede realizar
-automáticamente las actualizaciones que necesita:
+En el desplegable _Provisioning Profile_ seleccionamos la opción
+_Download Profile..._.
 
-- La cuenta no tiene permisos suficientes para crear un perfil de
-  aprovisionamiento.
-- No existe perfil de aprovisionamiento aplicable al bundle ID de
-  la app.
+<img src="imagenes/xcode-install-provisioning-profile-manual.png" width="600px"/>
+
+Aparece un listado con todos los perfiles de aprovisionamiento
+creados en nuestro equipo en el portal del desarrollador. Podemos
+examinarlos y seleccionar el más apropiado. Seleccionamos el
+denominado _Genérico_.
+
+<img src="imagenes/xcode-select-provisioning-profile-manual.png" width="600px"/>
+
+Vemos que se firma la aplicación correctamente y que se añade el
+perfil de aprovisionamiento que hemos seleccionado.
+
+<img src="imagenes/perfil-generico-team.png" width="700px"/>
+
+Vamos ahora a intentar añadir una _capability_. Por ejemplo,
+la de _Game Center_. Lo podemos hacer pulsando en el botón `+ Capability`, 
+seleccionando la opción _Game Center_. 
+
+Intentamos compilar la app (_Product > Build_) y aparecerá el
+siguiente error:
+
+<img src="imagenes/error-firma-team-manual.png" width="700px"/>
+
+El error se debe a que el perfil de aprovisionamiento seleccionado no
+soporta la capacidad _Game Center_.
 
 Es el **administrador de la cuenta** de la UA el que debe crear un
-perfil de aprovisionamiento para la app en el _member center_ e
-incorporar en ese perfil el certificado del desarrollador.
-
+perfil de aprovisionamiento para la app en el portal del desarrollador
+e incorporar en ese perfil el certificado del desarrollador.
 
 ### Examinamos los perfiles de aprovisionamiento ###
 
 <img src="imagenes/apple-developer-universidad.png" width="600px"/>
 
-Podemos examinar los perfiles de aprovisionamiento desde el _Member
-Center_ o desde Xcode y el terminal
+Podemos examinar los perfiles de aprovisionamiento desde el portal del
+desarrollador o desde Xcode y el terminal
 
-En el _Member Center_ tenemos que entrar en la opción _Certificates,
-Identifiers and Profiles_ para entrar en la página de gestión de los
-perfiles de aprovisionamiento.
+En el portal del desarrollador tenemos que entrar en la opción
+_Certificates, Identifiers and Profiles_ para entrar en la página de
+gestión de los perfiles de aprovisionamiento.
 
 
 ### Menú de opciones ###
 
-<img style="margin-right: 60px;" src="imagenes/member-center-menu-aprovisionamiento.png"/>
+El portal del desarrollador contiene todos los perfiles de
+aprovisionamiento creados, junto con la información asociada.
 
-Contiene todos los perfiles de aprovisionamiento creados, junto con
-la información asociada.
+<img style="margin-right: 60px;" src="imagenes/member-center-menu-aprovisionamiento.png"/>
 
 - **Certificados**: todos los certificados de los desarrolladores del
   equipo.
@@ -838,31 +938,55 @@ la información asociada.
   apps
 
 
-### Creación un App ID desde _Member Center_  ###
+### Creación un App ID desde el portal del desarrollador ###
 
-Sólo se puede hacer con el rol administrador.
+Sólo se puede hacer con el rol administrador. Se pulsa `+` en la
+cabecera _Identifiers_. Se selecciona la opción _Register a New
+Identifier_ y se escoge la opción _App IDs_. Vemos que hay otros
+posibles identificadores que podemos crear.
 
-<img src="imagenes/member-center-new-app-id-1.png" width="600px"/>
+<img src="imagenes/member-center-new-app-id-0.png" width="600px"/>
 
-<img src="imagenes/member-center-new-app-id-2.png" width="600px"/>
+Se define la descripción del App ID y el prefijo de App ID (que debe
+emparejar con el _bundle id_ de la aplicación). Se escoge la opción
+_Explicit_ para indicar que no se va a usar un prefijo con comodín. La
+app deberá tener exactamente el _bundle id_
+`es.ua.mastermoviles.ToDo` para poder aplicarse el App ID.
 
-<img src="imagenes/member-center-new-app-id-3.png" width="600px"/>
+<img src="imagenes/member-center-new-app-id-1.png" width="700px"/>
 
-<img src="imagenes/member-center-new-app-id-4.png" width="600px"/>
+Se puede comprueba que la _capability_ _Game Center_ ya está
+seleccionada por defecto.
+
+<img src="imagenes/member-center-new-app-id-2.png" width="700px"/>
+
+Confirmamos y el _App Id_ queda registrado en el portal del
+desarrollador:
+
+<img src="imagenes/member-center-new-app-id-3.png" width="700px"/>
+
+Una vez creado el _App Id_ en el que definimos las capacidades del
+app, podemos pasar a añadir los dispositivos en los que vamos a
+permitir probar el app. Y, por último, crearemos un perfil de
+aprovisionamiento que contenga el _App Id_ y los dispositivos y que se
+descargará la app.
 
 
 ### Dispositivos ###
 
+Para añadir un dispositivo al portal del desarrollador hay que
+seleccionar la opción correspondientes (_Devices_) y añadir su UDID,
+_Unique Device Identifier_.
+
 <img src="imagenes/member-center-register-device.png" width="700px"/>
 
-Para añadir un dispositivo a un certificado de aprovisionamiento hay
-que añadir su UDID, _Unique Device Identifier_.
+<img src="imagenes/member-center-register-device-2.png" width="700px"/>
 
-Cadena de 40 caracteres de símbolos alfanuméricos (a-z y 0-9).
+El UDID es una cadena de 40 caracteres de símbolos alfanuméricos (a-z
+y 0-9) única de cada dispositivo. Se puede obtener desde Xcode en la
+pantalla de Dispositivos (_Window > Devices_).
 
-Desde Xcode se puede obtener en la pantalla de Dispositivos (_Window > Devices_).
-
-Se pueden registrar en el _Member Center_ hasta 200 UDIDs para
+Se pueden registrar en el portal del desarrollador hasta 200 UDIDs para
 probar aplicaciones en desarrollo.
 
 ### Creación de perfiles de aprovisionamento ###
@@ -871,93 +995,71 @@ Una vez creado el App ID con los permisos necesarios, añadidos los
 certificados de los desarrolladores del equipo y añadidos los
 dispositivos es posible crear un nuevo perfil de aprovisionamiento.
 
-Se puede hacer desde el _Member Center_ y también desde Xcode. Es más
-claro ver el proceso desde _Member Center_, ya que Xcode mezcla el
+Se puede hacer desde el portal del desarrollador y también desde Xcode. Es más
+claro ver el proceso desde portal del desarrollador, ya que Xcode mezcla el
 proceso de creación del perfil con el de dar autorizaciones
 (_entitlements_) a la propia aplicación.
 
-### Nuevo perfil de aprovisionamiento desde _Member Center_  ###
+Para crear un nuevo perfil de aprovisionamiento desde el portal del
+desarrollador, se selecciona la opción _iOS App Development_.
 
-<img src="imagenes/member-center-new-provisioning-1.png" width="600px"/>
+<img src="imagenes/member-center-new-provisioning-1.png" width="700px"/>
 
-<img src="imagenes/member-center-new-provisioning-2.png" width="600px"/>
+Se selecciona el _App ID_ que queremos incluir en el perfil:
 
-<img src="imagenes/member-center-new-provisioning-3.png" width="600px"/>
+<img src="imagenes/member-center-new-provisioning-2.png" width="700px"/>
 
-<img src="imagenes/member-center-new-provisioning-4.png" width="600px"/>
+Se seleccionan los certificados de los desarrolladores a los que van
+a utilizar este perfil para compilar apps en Xcode:
 
-<img src="imagenes/member-center-new-provisioning-5.png" width="600px"/> 
+<img src="imagenes/member-center-new-provisioning-3.png" width="700px"/>
+
+Se seleccionan los dispositivos en los que vamos a poder probar la app:
+
+<img src="imagenes/member-center-new-provisioning-4.png" width="700px"/>
+
+Por último se da un nombre al perfil de aprovisionamiento:
+
+<img src="imagenes/member-center-new-provisioning-5.png" width="700px"/> 
+
+Y aparece una pantalla con el resumen del perfil generado. Se puede
+descargar en el ordenador para después añadirlo manualmente a
+la app usando Xcode. También se puede descargar directamente desde
+Xcode.
+
+<img src="imagenes/member-center-new-provisioning-6.png" width="700px"/> 
+
+Listado de los perfiles de aprovisionamiento creados en el portal de
+desarrolladores:
 
 <img src="imagenes/member-center-provisioning-profiles.png" width="700px"/>
 
 
-### Firma de la app ToDoList con el perfil de aprovisionamiento creado ###
+### Firma de la app ToDo con el perfil de aprovisionamiento creado ###
 
-Una vez creado el perfil de aprovisionamiento ya es posible aplicarlo
-a la app. Basta con definir un _bundle ID_ compatible con el App ID
-definido en el perfil.
+Una vez creado el perfil de aprovisionamiento ya es posible instalarlo
+en la app. 
 
-En este caso, al haber definido un App ID único (sin el `*`) se define
-como _bundle ID_ el mismo.
+Igual que antes nos aseguramos de que tenemos activa la opción manual
+y volvemos a seleccionar _Download Profile..._. Veremos ahora que ha
+aparecido el perfil que el administrador acaba de añadir. Lo
+seleccionamos:
 
-El perfil de aprovisionamiento correspondiente se descarga automáticamente.
+<img src="imagenes/provisioning-profile-manual-2.png" width="700px"/> 
 
-<img src="imagenes/nuevo-bundle-id.png" width="700px"/>
-
-
-### Selección manual del perfil de aprovisionamiento ###
-
-Es posible seleccionar manualmente un perfil de aprovisionamiento del _member
-center_ eliminando la opción de Xcode de gestión automática de la firma.
+Y ahora ya podemos ver que desparece el error anterior porque el nuevo
+perfil ya tiene la capacidad _Game Center_.
 
 <img src="imagenes/provisioning-profile-manual-1.png" width="700px"/> 
-
-<img src="imagenes/provisioning-profile-manual-2.png" width="700px"/>
-
-
-### Capabilities ###
-
-El perfil de aprovisionamiento que hemos creado permite 3 capabilities:
-
-- Game Center
-- In-App Purchase
-- Keychain Sharing
-
-Es posible activar cualquiera de estos servicios en la app, en el
-menú _Capabilities_.
-
-Ahora este menú muestra más servicios posibles, al pertenecer al
-equipo de la UA:
-  
-<img src="imagenes/capabilities-1.png" width="600px"/> 
-
-<img src="imagenes/capabilities-2.png" width="600px"/>
-  
-  
-### Activación del permiso de _Game Center_ ###
-
-<img src="imagenes/xcode-capabilities.png" width="700px"/>
-
-Si se activa el permiso de _Game Center_ Xcode se asegurará e que el
-perfil de aprovisionamiento seleccionado proporcione este permiso. Si
-no es así aparecerá un error y el botón Fix Issue.
-
-Es posible comprobar el error si se intenta activar el permiso _Push
-Notificacions_.
-
-Xcode puede arreglar el error creando un nuevo perfil de
-aprovisionamiento y subiéndolo al _Member Center_. Para ello hay que
-tener permisos apropiados en la cuenta de desarrollador (ser un
-administrador del equipo en el caso de una organización o el
-propietario del equipo en el caso de un programa de desarrollo).
 
 
 ### Exportar la app  ###
 
-<img src="imagenes/xcode-export.png" width="700px"/>
+Seleccionando en Xcode la opción _Product > Archive_ (hay que
+asegurarse de que el tipo de dispositivo seleccionado es _Generic iOS
+Device_) ahora ya funcionará la opción _Distribute App_.
 
-Seleccionando en Xcode la opción _Product > Archive_ ahora ya está
-activa la opción _Export_
+<img src="imagenes/xcode-export.png" width="700px"/>
 
 Las opciones _App Store_ y _Ad Hoc_ no funcionan por no tener una
 cuenta de universidad permisos para subir apps al App Store. Se puede
@@ -970,17 +1072,25 @@ perfil de aprovisionamiento.
 
 <img src="imagenes/xcode-export-all-devices.png" width="700px"/>
 
-<img src="imagenes/xcode-export-confirm.png" width="700px"/>
-
 La opción de `App Thining` permite generar distintos ficheros _ipa_
 adaptados a cada tipo de dispositivo, lo que minimiza el tamaño del
 fichero. Si no se selecciona, se genera un único fichero _ipa_ que
 puede ejecutarse en cualquier dispositivo.
 
-Tarda un buen rato en generar el fichero _ipa_ (_iOS App file_).
+Seleccionamos el perfil de aprovisionamiento que acabamos de crear
+`Master Moviles ToDo`.
 
-El fichero generado es un binario que se puede instalar sólo en
-dispositivos autorizados en el perfil de aprovisionamiento.
+<img src="imagenes/xcode-export-provisioning-profile.png" width="700px"/>
+
+Y, por último, confirmamos la opción de exportar:
+
+<img src="imagenes/xcode-export-confirm.png" width="700px"/>
+
+Tarda un rato en generar el fichero _ipa_ (_iOS App file_).
+
+Se genera una carpeta con un fichero `ToDo.ipa`, que es un binario que
+se puede instalar sólo en dispositivos autorizados en el perfil de
+aprovisionamiento.
   
 ### Instalación y ejecución de la app ###
 
@@ -988,6 +1098,8 @@ Probamos a instalar la app en un dispositivo autorizado usando Apple
 Configurator 2.
 
 <img src="imagenes/install-configurator.png" width="700px"/>
+
+### Fin demo y ejercicio ###
 
 ----
 
@@ -1006,165 +1118,82 @@ Sería mucho más fácil si permitiéramos instalar la app desde el propio
 dispositivo (iPhone o iPad), descargándola de una web o de alguna app
 de configuración.
 
-Esto es lo que se consigue con la aplicación TestFlight de Apple (lo
-veremos más adelante). Pero este servicio sólo está disponible para
-apps enviadas al App Store. Es necesario para ello una cuenta de pago.
+Esto es lo que se consigue con la aplicación TestFlight de Apple.
+
+Puedes encontrar más información sobre TestFlight en [este
+enlace](https://developer.apple.com/testflight/). Lo utilizarás cuando
+desarrolles y publiques apps de iOS usando el perfil de pago.
 
 Existe una solución intermedia: seguir usando la distribución al
 equipo de desarrollo mediante el alta de los dispositivos en el pefil
 de aprovisionamiento, pero usar un servicio que facilite la
-instalación de la app en esos dispositivos.
+instalación de la app en esos dispositivos. Esta es una funcionalidad
+que proporciona Firebase de Google.
 
-Es lo que se consigue con servicios como el que vamos a ver: Fabric.
+### TestFlight ###
 
-### Fabric ###
+<img src="imagenes/testflight-app.png"/ width="200px"/>
 
-**Fabric** es una plataforma y API que permite una gran cantidad de
-funcionalidades: distribución, recopilación de datos de crashes,
-recopilación de estadísticas de uso, etc.
+TestFlight es una plataforma integrada en App Store Connect que permite
+distribuir versiones beta de apps a probadores.
 
-Se trata de una plataforma creada por Twitter y comprada por Google en
-enero de 2017. Se puede acceder desde [esta
-URL](https://get.fabric.io).
+Es posible distribuir la app hasta 25 probadores internos
+(seleccionados de entre los usuarios de la cuenta de App Store Connect) y
+hasta 10.000 probadores externos.
 
-<img src="imagenes/fabric-crashlitics-screen.png" width="600px"/>
+Los usuarios de prueba deben descargarse la **app TestFlight** con la
+que gestionarán la descarga de las pruebas en sus dispositivos.
 
-En este año 2019 Google realizará la integración del servicio en Firebase.
+### Firebase para distribuir apps ###
 
-----
+[Firebase](https://firebase.google.com) permite distribuir apps compiladas (ficheros .ipa) y
+ejecutarlas en aquellos dispositivos que están registrados en el
+perfil de aprovisionamiento. La funcionalidad se denomina `App
+Distribution` y permite distribuir distintas versiones de una misma
+app a usuarios de prueba.
 
-## Demo ##
+<img src="imagenes/firebase-app-distribution.png" width="700px"/>
 
-### Alta y descarga de Fabric ###
+Podemos añadir usuarios de prueba o crear un enlace al que puede
+acceder cualquiera para introducir su correo electrónico. El usuario
+de prueba recibe un correo electrónico con instrucciones de cómo
+descargar la app.
 
-Debemos [registrarnos](https://fabric.io/kits?show_signup=true) en
-Fabric con nuestro correo electrónico y nuestro nombre. Escribimos
-como nombre de la organización nuestro propio nombre.
+Al aceptar las instrucciones, el sistema comparte el UUID del
+dispositivo con nosotros y podemos añadir el dispositivo al perfil de
+aprovisionamiento. El usuario de prueba debe añadir el perfil de
+Firebase a su dispositivo.
 
-<img src="imagenes/fabric-register.png" width="400px"/>
+<img src="imagenes/firebase-profile-dispositivo.png" width="300px"/>
 
-Hay entrar en el [dashboard](https://fabric.io/onboard) y descargar e
-instalar la aplicación para Mac, moviéndola a la carpeta de
-Aplicaciones. La última versión es la 2.7.5.
+Una vez hemos añadido el UUID al perfil de aprovisionamiento, lo
+añadimos a la app y volvemos a distribuirla. El sistema enviará un
+correo al usuario, y éste podrá descargar y probar la app.
 
-Una vez descargada, hay que registrarse en la aplicación en ella con
-la misma cuenta y contraseña que en la web.
+<img src="imagenes/firebase-download-app.png" width="300px"/>
 
-<img src="imagenes/fabric-confirmacion.png" width="250px"/>
-<img src="imagenes/fabric-download.png" width="200px"/>
-<img src="imagenes/fabric-registro-app.png" width="250px"/>
+Por último, Firebase permite también incluir en la app el servicio de
+de Google Analytics con el que podemos comprobar una gran cantidad de
+opciones relacionadas con el uso del app.
 
+<img src="imagenes/google-analytics-firebase.png" width="700px"/>
 
-### Instalación de Fabric ###
+- App Distribution
 
-La aplicación Fabric nos guía paso a paso:
+- Incluye tu nombre en la pantalla `Lista To-Do` 
 
-Debemos seleccionar el proyecto XCode y añadir un **Run Script Build Phase**.
-
-<img src="imagenes/fabric-app-1.png" width="400px"/> 
-
-Se selecciona en Xcode **Build Phases** y en el símbolo **+** se
-selecciona **New Run Script Build Phase**.
-
-En la opción **Run Script** se pega el código que aparece en la
-aplicación.
-
-<img src="imagenes/fabric-xcode-new-script.png" width="700px"/> 
-
-Compilamos la aplicación con la opción _Product > Build_.
-
-Se instala el SDK Kit en el proyecto, arrastrando desde la aplicación
-al proyecto.
-
-<img src="imagenes/fabric-app-2.png" width="400px"/> 
-
-<img src="imagenes/xcode-librerias-fabric.png" width="600px"/> 
-
-Debemos copiar el código indicado en el fichero `AppDelegate.swift`.
-
-<img src="imagenes/fabric-app-3.png" width="400px"/> 
-
-Y volvemos a compilar la aplicación y la ejecutamos en el
-simulador. La aplicación de Fabric detectará que la hemos lanzado y
-aparecerá una pantalla indicando que todo ha ido correctamente.
-
-<img src="imagenes/fabric-done.png" width="400px"/> 
-
-También recibiremos un correo electrónico indicando que la app ya se
-ha subido y está disponible para su distribución.
-
-### Distribución a probadores ###
-
-Debemos seleccionar en Xcode la opción de _Product > Archive_. 
-
-!!! Alert "Cuidado"
-    Recuerda que para habilitar la opción _Archive_ debe estar seleccionada la
-    opción _Generic iOS Device_ en el menú de ejecución. Si está
-    seleccionado un modelo concreto de iPhone la opción _Archive_ se
-    deshabilita. 
-
-    <img src="imagenes/generic-ios-device.png" width="400px"/>
-
-
-Automáticamente la app aparecerá en la aplicación de Fabric.
-
-<img src="imagenes/fabric-app-5.png" width="300px"/> 
-
-Podremos activar la distribución, añadiendo los correos electrónicos
-de las personas a las que se les enviará.
-
-<img src="imagenes/fabric-app-6.png" width="300px"/> 
-
-<img src="imagenes/fabric-app-7.png" width="300px"/> 
-
-Si el UUID del dispositivo del probador está incluido en el perfil de
-aprovisionamiento podrá ejecutar la app sin problemas. Si no, Fabric
-obtendrá el UUID y nos lo proporcionará para que actualicemos el
-perfil de aprovisionamiento.
-
-### Ejecución de la app por el probador  ###
-
-El probador recibe un e-mail que le dirige a una página web desde la
-que debe instalar un perfil (que será el que permitirá leer el UUID
-del dispositivo y comprobar si está incluido en el perfil de
-aprovisionamiento instalado en la app que se distribuye).
-
-<img src="imagenes/fabric-tester-1.png" width="300px"/> 
-
-<img src="imagenes/fabric-tester-2.png" width="300px"/> 
-
-<img src="imagenes/fabric-tester-3.png" width="300px"/> 
-
-<img src="imagenes/fabric-tester-4.png" width="300px"/> 
-
-Si el dispositivo puede ejecutar la app aparecerá un botón para
-instalarla. La forma de instalarla será tan sencilla como pulsar ese
-botón (no hay necesidad de usar iTunes ni Xcode).
-
-<img src="imagenes/fabric-tester-5.png" width="300px"/> 
-
-<img src="imagenes/fabric-tester-6.png" width="300px"/> 
-
-Si el dispositivo no puede ejecutar la app, aparecerá un mensaje
-indicándolo y nos informará del UUID.
-
-
-### Dashboard de Fabric ###
-
-En el dashboard ([https:/fabric.io](https://fabric.io)) podemos
-acceder a estadísticas de descargas e instalaciones, información sobre
-los crashes de nuestra apps, etc.
-
-<img src="imagenes/fabric-dashboard.png" width="800px"/>
-
-También podemos invitar nuevos probadores y crear un enlace desde el
-que es posible instalar la app. Cuando se pulsa en el enlace se accede
-a una página en la que se pide el e-mail de la persona que va a probar
-la app.
-
-<img src="imagenes/fabric-enlace-tester.png" width="400px"/>
+Para sobresaliente: instalar Crashlytics: https://firebase.google.com/docs/crashlytics/get-started-new-sdk?platform=ios&authuser=0
 
 ----
+
+## Práctica ##
+
+- [Agrega Firebase a tu proyecto](https://firebase.google.com/docs/ios/setup?authuser=0)
+- Cambiar el número de versión a 1.1
+- Generar el .ipa
+- Distribuirla a `domingo.gallardo@ua.es` usando App Distribution
+
+<!--
 
 ## Test Flight ##
 
@@ -1188,20 +1217,20 @@ desarrolladores pueden organizar:
 - Información sobre el estado de los productos, retroalimentación
   e información de descargas, ventas y ganancias.
 
-La plataforma está accesible desde el _member center_ en los programas de pago. No
-está disponible en el programa de universidad.
+La plataforma está accesible desde el portal del desarrollador en los
+programas de pago. No está disponible en el programa de universidad.
 
 También se puede acceder desde la URL
 [https://appstoreconnect.apple.com](https://appstoreconnect.apple.com). 
 
 !!! Note "Nota"
-    Hasta el año pasado (2018) **iTunes Connect** era la plataforma única
+    Hasta el año 2018 **iTunes Connect** era la plataforma única
     a la que se subían todos los productos para su distribución (apps,
     ebooks, podcasts, música). A mediados del 2018 Apple divide en dos
     esa plataforma, creando **App Store Connect** para gestionar
     únicamente apps. 
     
-    Hemos conservado algunas imágnes del curso pasado en el caso en
+    Hemos conservado algunas imágenes del curso pasado en el caso en
     sean muy similares a las actuales. En estas imágenes aparece la
     cabecera _iTunes Connect_ en lugar de _App Store Connect_.
 
@@ -1308,7 +1337,7 @@ No es necesaria aprobación para la distribución de pruebas internas.
 ## Demo ##
 
 Vamos a comprobar el funcionamiento de TestFlight, subiendo la app
-ToDoList, añadiendo probadores y comprobando la instalación de la app
+ToDo, añadiendo probadores y comprobando la instalación de la app
 en los probadores.
 
 ### Registro de una app en App Store Connect ###
@@ -1397,6 +1426,7 @@ usuarios para que descarguen la nueva versión.
 
 
 ----
+-->
 
 ## Bibliografía
 
@@ -1406,7 +1436,7 @@ usuarios para que descarguen la nueva versión.
 - [Distribute your app to registered devices](https://help.apple.com/xcode/mac/current/#/dev7ccaf4d3c)
 - [Distribute your  app](https://help.apple.com/xcode/mac/current/#/dev8b4250b57)
 - [App Store Connect Help](https://help.apple.com/app-store-connect/)
+- [Distribución de apps con Firebase](https://firebase.google.com/docs/app-distribution/ios/distribute-console?authuser=0)
+- [Google Analytics](https://firebase.google.com/docs/analytics?authuser=0)
 - [Test Flight](https://developer.apple.com/testflight/)
-- [Documentación de Fabric](https://docs.fabric.io/apple/fabric/overview.html)
-  
 
