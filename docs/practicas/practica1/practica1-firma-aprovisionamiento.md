@@ -22,30 +22,35 @@ Resumimos a continuación los objetivos generales de esta práctica:
 
 ## 1. Firma e instalación de una app en un dispositivo de desarrollo ##
 
+
+1. Lee los siguientes apartados del tema de teoría:
+
+   - [Introducción]()
+
 1. Deberás crear un Apple ID introduciendo tus datos en [este
 enlace](https://appleid.apple.com/account?localang=es_es). Este Apple
 ID será el que se asociará a la cuenta de desarrollador.
 
-    Activa la autenticación de doble factor de alguna de las formas
-    definida en [este enlace](https://support.apple.com/es-es/HT204915).
+   Activa la autenticación de doble factor de alguna de las formas
+   definida en [este enlace](https://support.apple.com/es-es/HT204915).
 
-    Después deberás darte de alta como desarrollador Apple con el Apple ID
-    recién creado en [https://developer.apple.com/register/](https://developer.apple.com/register/).
+   Después deberás darte de alta como desarrollador Apple con el Apple ID
+   recién creado en [https://developer.apple.com/register/](https://developer.apple.com/register/).
 
-    De esta forma estás accediendo al programa gratuito. Este programa
-    permite acceder a las herramientas de desarrollo, la documentación y
-    acceso limitado a ciertas capacidades (incluido probar aplicaciones en
-    dispositivos conectados a Xcode).
+   De esta forma estás accediendo al programa gratuito. Este programa
+   permite acceder a las herramientas de desarrollo, la documentación y
+   acceso limitado a ciertas capacidades (incluido probar aplicaciones en
+   dispositivos conectados a Xcode).
 
-    <img src="imagenes/apple-developer.png" width="600px"/>
+   <img src="imagenes/apple-developer.png" width="600px"/>
 
-    Explora las distintas opciones que permite la cuenta:
+   Explora las distintas opciones que permite la cuenta:
 
-    - Documentation
-    - pDownloads
-    - Forums
-    - Bug reporter
-    - Help
+   - Documentation
+   - pDownloads
+   - Forums
+   - Bug reporter
+   - Help
 
 
 2. Descarga la app [ToDoList](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip). 
