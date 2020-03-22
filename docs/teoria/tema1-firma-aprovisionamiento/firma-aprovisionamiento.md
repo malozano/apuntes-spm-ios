@@ -378,10 +378,6 @@ gestionar una lista de tareas por hacer.
 
 <img src="imagenes/app-todo-list-simulador.png" width="300px"/>
 
-Podemos descargar la app de [esta
-dirección](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDoList.zip)
-y probar a ejecutarla en el simulador.
-
 Estando en el programa de desarrollo gratuito podemos probar la app en
 nuestro móvil de desarrollo. Para ello es necesario firmar el código
 compilado de la app con el certificado de desarrollador que acabamos
@@ -696,7 +692,8 @@ Un perfil de aprovisionamiento contiene los siguientes elementos:
 Físicamente, los perfiles de aprovisionamiento son ficheros XML
 encriptados. Los que usa Xcode se guardan en el directorio
 `~Library/MobileDevice/Provisioning Profiles`. Si los borramos de esa
-carpeta, automáticamente se borran de Xcode.
+carpeta, **automáticamente se borran de Xcode** (esto es muy útil cuando
+tenemos algún problema con los perfiles y queremos empezar de cero).
 
 Es posible consultar su contenido desde el terminal con el comando:
 
@@ -861,7 +858,7 @@ que estamos desarrollando.
 
 En el portal de desarrolladores existe un certificado de
 aprovisionamiento genérico, con App ID comodín (`*`) con el que se
-puede compilar cualquier app. El administrador debe comprobar si el
+puede compilar cualquier app. **El administrador** debe comprobar si el
 certificado está incluido y si no es así, deberá incluirlo.
 
 <img src="imagenes/actualizar-perfil-aprovisionamiento-cert.png" width="700px" />
@@ -916,7 +913,8 @@ e incorporar en ese perfil el certificado del desarrollador.
 <img src="imagenes/apple-developer-universidad.png" width="600px"/>
 
 Podemos examinar los perfiles de aprovisionamiento desde el portal del
-desarrollador o desde Xcode y el terminal
+desarrollador, desde Xcode y desde el terminal o el Finder (en el
+directorio `~Library/MobileDevice/Provisioning Profiles`). 
 
 En el portal del desarrollador tenemos que entrar en la opción
 _Certificates, Identifiers and Profiles_ para entrar en la página de
@@ -1042,7 +1040,7 @@ en la app.
 
 Igual que antes nos aseguramos de que tenemos activa la opción manual
 y volvemos a seleccionar _Download Profile..._. Veremos ahora que ha
-aparecido el perfil que el administrador acaba de añadir. Lo
+aparecido el perfil que el administrador ha añadido. Lo
 seleccionamos:
 
 <img src="imagenes/provisioning-profile-manual-2.png" width="700px"/> 
@@ -1177,21 +1175,6 @@ de Google Analytics con el que podemos comprobar una gran cantidad de
 opciones relacionadas con el uso del app.
 
 <img src="imagenes/google-analytics-firebase.png" width="700px"/>
-
-- App Distribution
-
-- Incluye tu nombre en la pantalla `Lista To-Do` 
-
-Para sobresaliente: instalar Crashlytics: https://firebase.google.com/docs/crashlytics/get-started-new-sdk?platform=ios&authuser=0
-
-----
-
-## Práctica ##
-
-- [Agrega Firebase a tu proyecto](https://firebase.google.com/docs/ios/setup?authuser=0)
-- Cambiar el número de versión a 1.1
-- Generar el .ipa
-- Distribuirla a `domingo.gallardo@ua.es` usando App Distribution
 
 <!--
 
