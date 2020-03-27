@@ -23,7 +23,6 @@ incluir datos geográficos en nuestras apps.
 <img style="margin-left: 60px;" src="imagenes/map-tracking-position.png" width="200px"/>
 </p>
 
-### Aspectos básicos de MapKit
 
 Los mapas permiten a los usuarios a visualizar datos geográficos de
 una forma fácil de entender. Por ejemplo, un mapa puede mostrar datos
@@ -77,8 +76,6 @@ let alicanteLocation =  CLLocationCoordinate2D(latitude: 38.3453,
 ```
 
 
-### Otros puntos
-
 Un _punto en el mapa_ se define por los valores `x` e `y` en la
 proyección de Mercator. Se define utilizando la estructura
 [`MKMapPoint`](https://developer.apple.com/library/ios/documentation/MapKit/Reference/MapKitDataTypesReference/index.html#//apple_ref/c/tdef/MKMapPoint). Se
@@ -100,23 +97,20 @@ enlace](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Re
 Para almacenar los datos en ficheros es preferible usar coordenadas
 de mapas.
 
-### Permisos para activar los mapas en nuestra app
+### Añadir un mapa en nuestra app
 
 Para poder distribuir apps que trabajen con el servicio de mapas es
 necesario activar en la app el _entitlement_ correspondiente,
-activando los servicios que necesitamos.
-
-Debemos tener un perfil de aprovisionamiento aprobado con un App ID
-que soporte estos servicios.
-
-No es necesario para el desarrollo y las pruebas.
+activando los servicios que necesitamos. Debemos tener un perfil de
+aprovisionamiento aprobado con un App ID que soporte estos servicios.
 
 <p style="text-align:center;">
 <img style="margin-left:50px" src="imagenes/map-entitlements.png" width="500px">
 </p>
 
-
-### Añadir un mapa en nuestra app
+No es necesario para el desarrollo y para las pruebas en el
+simulador. No utilizaremos por tanto ningún perfil de
+aprovisionamiento especial para la práctica.
 
 La clase
 [`MKMapView`](https://developer.apple.com/reference/mapkit/mkmapview)
@@ -268,6 +262,9 @@ enum TipoMapa: Int {
 
 ### Uso del delegado
 
+Hemos visto que Lo más sencillo es definir como delegado el _view
+controller_ en el que se incluye el mapa.
+
 El objeto delegado puede implementar las funciones del protocolo
 [`MKMapViewDelegate`](https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/index.html#//apple_ref/occ/intf/MKMapViewDelegate)
 donde recibe los eventos relacionados con el mapa:
@@ -276,9 +273,6 @@ donde recibe los eventos relacionados con el mapa:
 - La carga de zonas del mapa de la red.
 - Cambios en la localización del usuario.
 - Cambios asociados con anotaciones y overlys.
-
-Lo más sencillo es definir como delegado el _view controller_ en el
-que se incluye el mapa.
 
 Por ejemplo:
 

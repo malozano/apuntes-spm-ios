@@ -3,13 +3,18 @@ Terminan la práctica en unas 1,5 horas + 1 hora de explicación = 2,5 horas
 -->
 
 
-# Práctica 4: Mapas y localización
+# Práctica 2: Mapas y localización
 
-1. Debes crear la app `es.ua.mastermoviles.Mapas`.
-2. Empieza por definir un _View Controller_ en el que debes incluir un
+1. Lee los siguientes apartados de los [apuntes de teoría](): desde _Aspectos básicos de MapKit_
+   hasta _Uso del delegado_ (incluido).
+
+2. Debes crear la app `es.ua.mastermoviles.Mapas`.
+
+3. Empieza por definir un _View Controller_ en el que debes incluir un
 mapa centrado inicialmente en Alicante. Inclúyelo en un _Navigation Controller_ con la
 opción _Editor > Embed In > Navigation Controller_.
-3. Añade en el centro de la barra del _Navigation Controller_ un
+
+4. Añade en el centro de la barra del _Navigation Controller_ un
 _Segmented Control_ con los valores `Mapa` y `Satélite`, conéctalos
 con el _ViewController_ y haz que el mapa cambie de tipo cuando se
 pulse en el control.
@@ -18,19 +23,23 @@ pulse en el control.
 <img src="imagenes/practica-1.png" width="300px"/>
 </p>
 
+5. Lee los siguientes apartados [apuntes de teoría](): desde
+   _Anotaciones_ hasta _Elementos en el callout_ (incluido).
 
-4. En el _Storyboard_ añade un `Bar Button Item` en la parte derecha de
+6. En el _Storyboard_ añade un `Bar Button Item` en la parte derecha de
 la barra de navegación.
-5. Llámalo `Pin` y enlázalo con una acción en el `ViewController` que
+
+7. Llámalo `Pin` y enlázalo con una acción en el `ViewController` que
   añada una anotación en el mapa.
 
 <p style="text-align:center;">
 <img src="imagenes/practica-2.png" width="300px"/>
 </p>
 
-6. Añade en los _callouts_ imágenes _thumbnails_ predefinidas,
+8. Añade en los _callouts_ imágenes _thumbnails_ predefinidas,
 dependiendo de si el número de pin es par o impar.
-7. Añade en los _callouts_ el botón de información.
+
+9. Añade en los _callouts_ el botón de información.
 
 <p style="text-align:center;">
 <img src="imagenes/practica-3.png" width="300px"/>
@@ -39,7 +48,7 @@ dependiendo de si el número de pin es par o impar.
 
 **Parte opcional 1**
 
-8. Implementa un _segue_ que haga aparecer otra vista con un detalle
+10. Implementa un _segue_ que haga aparecer otra vista con un detalle
   de la foto.
 
 <p style="text-align:center;">
@@ -86,7 +95,10 @@ class ImageDetailViewController: UIViewController {
 
 **Parte opcional 2**
 
-9. Implementa una llamada al servicio de geolocalización que coloque
+11. Lee los siguientes apartados de los [apuntes de teoría](): desde
+    _Geocoding_ hasta _Conversión de placemarks en localizaciones_ (incluido).
+
+12. Implementa una llamada al servicio de geolocalización que coloque
    como subtítulo del Pin el país en el que se ha colocado el
    mismo. 
 
@@ -96,12 +108,13 @@ class ImageDetailViewController: UIViewController {
 
 **Parte opcional 3**
 
+13. Lee el siguiente apartado de los [apuntes de teoría](): _Localización_.
 
-10. Añade el tracking de localización a la aplicación, imprimiendo la
+14. Añade el tracking de localización a la aplicación, imprimiendo la
 localización en la salida estándar cada 10 metros. Comprueba el
 funcionamiento activando la localización en el simulador.
 
-11. Añade la localización al mapa, haciendo que aparezca en la parte
+15. Añade la localización al mapa, haciendo que aparezca en la parte
 izquierda de la barra de navegación el botón de navegación.
 
     - Cuando pulses el botón de navegación se debe mostrar la posición
@@ -120,3 +133,4 @@ izquierda de la barra de navegación el botón de navegación.
 </p>
 
 
+16. Comprime el proyecto y entrégalo en la entrega correspondiente de Moodle.

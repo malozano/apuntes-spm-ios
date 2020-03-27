@@ -835,8 +835,9 @@ Es necesario crear un nuevo certificado para el desarrollador,
 distinto del certificado individual. Servirá para firmar aplicaciones
 desarrolladas en el equipo en el que se ha añadido al desarrollador.
 
-Se puede hacer desde el _portal del desarrollador_ o desde Xcode. Será un
-certificado de tipo **iOS App Development**.
+Se puede hacer desde Xcode, seleccionando el equipo _Universidad de
+Alicante_ y la opción _Manage Certificates..._. Será un certificado de
+tipo **iOS App Development**.
 
 <img src="imagenes/xcode-pref-team-develop.png" width="450px"/> 
 
