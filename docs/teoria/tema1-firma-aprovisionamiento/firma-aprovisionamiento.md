@@ -878,7 +878,7 @@ podremos gestionar manualmente qué perfil de aprovisionamiento es el
 que utilizamos.
 
 Seleccionamos el _team_ Universidad de Alicante. Y escribimos como
-_bundle id_ `es.ua.mastermoviles.TodoList`.
+_bundle id_ `es.ua.mastermoviles.ToDo`.
 
 En el desplegable _Provisioning Profile_ seleccionamos la opción
 _Download Profile..._.

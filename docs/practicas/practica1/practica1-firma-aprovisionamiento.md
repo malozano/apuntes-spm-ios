@@ -74,7 +74,7 @@ nada.
      siguiente actividad.
      
 4. Descarga la app
-   [ToDoList](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDo.zip). Y
+   [ToDo](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDo.zip). Y
    sigue los pasos de la demostración anterior para crear el
    certificado gratuito de desarrollador, cambiar el _bundle ID_ de la
    app a un identificador tuyo, firmar la app, comprobar el
