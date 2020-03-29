@@ -691,7 +691,11 @@ Un perfil de aprovisionamiento contiene los siguientes elementos:
 
 Físicamente, los perfiles de aprovisionamiento son ficheros XML
 encriptados. Los que usa Xcode se guardan en el directorio
-`~Library/MobileDevice/Provisioning Profiles`. Si los borramos de esa
+`Library/MobileDevice/Provisioning Profiles`. Podemos acceder desde
+el Finder a la carpeta `Library` con el menú `Ir + Alt > Biblioteca`
+(el modificador `Alt` muestra las opciones ocultas).
+
+Si los borramos de esa
 carpeta, **automáticamente se borran de Xcode** (esto es muy útil cuando
 tenemos algún problema con los perfiles y queremos empezar de cero).
 
@@ -915,7 +919,12 @@ e incorporar en ese perfil el certificado del desarrollador.
 
 Podemos examinar los perfiles de aprovisionamiento desde el portal del
 desarrollador, desde Xcode y desde el terminal o el Finder (en el
-directorio `~Library/MobileDevice/Provisioning Profiles`). 
+directorio `Library/MobileDevice/Provisioning Profiles`). Podemos
+acceder a la carpeta `Library` desde el Finder con el menú `Ir + Alt >
+Biblioteca` (el modificador `Alt` muestra las opciones ocultas). Si
+borramos los perfiles de esa carpeta, **automáticamente se borran de
+Xcode** (esto es muy útil cuando tenemos algún problema con los
+perfiles y queremos empezar de cero).
 
 En el portal del desarrollador tenemos que entrar en la opción
 _Certificates, Identifiers and Profiles_ para entrar en la página de
