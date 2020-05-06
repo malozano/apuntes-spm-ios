@@ -1,8 +1,8 @@
 # Práctica 2: Notificaciones 
 
 Descarga las apps [Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
-y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip)
-   su código y pruébalas. La primera puedes probarla en el
+y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip),
+   revisa su código y sus permisos y pruébalas. La primera puedes probarla en el
    simulador. La segunda deberás probarla ejecutándola en un
    dispositivo real y enviando notificaciones remotas tal y como hemos
    hecho en la demo.
@@ -16,11 +16,11 @@ y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/ma
   [alerta](https://developer.apple.com/reference/uikit/uialertcontroller)
   la siguiente vez que se abra la app que informe de la acción
   escogida.
-- Ejercicio 2: Implementa una notificación basada en el
+- Ejercicio 2 (para los que no tienen dispositivo físico iOS): Implementa una notificación basada en el
   calendario, en la que dejes al usuario seleccionar la
   hora y minuto en la que aparezca una notificación informando del
   número de tareas terminadas.
-- Ejercicio 3: Añade la posiblidad de añadir una nueva
+- Ejercicio 3 (para los que tienen dispositivo físico iOS): Añade la posiblidad de añadir una nueva
   tarea en la lista de tareas pendientes mediante una notificación
   silenciosa enviada con una notificación push. Utiliza el script PHP
   y [este certificado](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/cert-todolist.pem) para generar la

@@ -588,15 +588,18 @@ La acción en la que el usuario pulsa en la notificación se denomina
 Para crear las acciones y asociarlas a una categoría:
 
 ```swift
-let action1 = UNNotificationAction(identifier:"acepto", title: "Acepto", options: [])
-let action2 = UNNotificationAction(identifier:"otro", title: "Otro día", options: [])
+let action1 = UNNotificationAction(identifier:"acepto", 
+                                   title: "Acepto", options: [])
+let action2 = UNNotificationAction(identifier:"otro", 
+                                   title: "Otro día", options: [])
 // Acción con entrada de texto
-let action3 = UNTextInputNotificationAction(identifier: "mensaje", title: "Mensaje", options: [],
-                                            textInputButtonTitle: "Enviar",
-                                            textInputPlaceholder: "Comentario")
+let action3 = UNTextInputNotificationAction(identifier: "mensaje", 
+                                   title: "Mensaje", options: [],
+                                   textInputButtonTitle: "Enviar",
+                                   textInputPlaceholder: "Comentario")
 let category = UNNotificationCategory(identifier: "invitacion", 
-                                      actions: [action1, action2, action3], 
-                                      intentIdentifiers: [], options: [])
+                                   actions: [action1, action2, action3], 
+                                   intentIdentifiers: [], options: [])
 UNUserNotificationCenter.current().setNotificationCategories([category])
 ```
 
@@ -954,13 +957,13 @@ especifican los siguientes tipos de notificación:
     - Numero a añadir en el globo del icono de la app
     - Sonido a tocar
 
-El diccionario `aps` también puede tener la clave
-`content-available` con un valor de 1. Eso significa que la
-notificación será una notificación silenciosa que hará que el
-sistema despierte la app y la ponga en _background_ para que pueda
-conectarse al servidor o hacer alguna tarea de background. El
-usuario no recibirá ninguna notificación, pero verá el nuevo
-contenido la siguiente vez que abra la app.
+El diccionario `aps` también puede tener la clave `content-available`
+con un valor de 1. Eso significa que la notificación será una
+notificación silenciosa que hará que el sistema despierte la app y la
+ponga en _background_ para que pueda conectarse al servidor o hacer
+alguna tarea de background. En este caso es conveniente no mostrar al
+usuario ninguna notificación. El contenido nuevo se verá la siguiente
+vez que se abra la app.
 
 El resto del diccionario contendrá parejas clave-valor con
 información _custom_.
@@ -980,6 +983,18 @@ Número en el _badge_ y _custom keys_:
         "alert" : "You got your emails.",
         "badge" : 9,
         "sound" : "bingbong.aiff"
+    },
+    "acme1" : "bar",
+    "acme2" : 42
+}
+```
+
+Notificación silenciosa:
+
+```json
+{
+    "aps" : {
+        "content-available" : 1
     },
     "acme1" : "bar",
     "acme2" : 42
@@ -1169,7 +1184,7 @@ Remote Notifications` en Xcode.
 
 El método se llama tanto si la app está en primer plano como si está
 en segundo plano. De hecho, es recomendable usarlo únicamente para
-gestionar _notificaciones silenciosas_ que no se muestran al usuario
+gestionar _notificaciones silenciosas_ **que no se muestran al usuario**
 sino que se usan para que la app pueda recuperar información del
 servidor que se mostrará la siguiente vez que el usuario lance la app.
 
@@ -1306,7 +1321,7 @@ fichero `.pem` con el que nuestro servidor establecerá la conexión SSL
 con el APNs:
 
 - Se guarda el certificado como `UADevelopmentPushCertificate.p12` con
-  una contraseña (mastermoviles19)
+  una contraseña (mastermoviles20)
 
 - Creamos el fichero `.pem` con el siguiente comando:
 
