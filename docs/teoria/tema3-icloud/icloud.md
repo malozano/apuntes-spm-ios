@@ -130,10 +130,9 @@ iCloud.
 
 <img src="imagenes/appid-icloud.png" width="470px"/> 
 
-La activación del permiso de iCloud aparecerá en amarillo porque
-requiere una configuración posterior relacionada con CloudKit (lo
-veremos más adelante). Pero es suficiente para trabajar con iCloud
-clave-valor.
+Aparece un botón junto al permiso de iCloud porque requiere una
+configuración posterior relacionada con CloudKit (lo veremos más
+adelante). Pero es suficiente para trabajar con iCloud clave-valor.
 
 ## iCloud clave-valor ##
 
@@ -259,6 +258,34 @@ Por ejemplo, [`longlong(forKey: String)`](https://developer.apple.com/reference/
 let puntuacion = Int(store.longLong(forKey:"puntuacion"))
 ```
 
+En la aplicación ejemplo que veremos después en la
+demostración tenemos el siguiente código que sincroniza el valor
+actual de la interfaz de usuario (una etiqueta con un valor) con el
+valor del almacén de iCloud.
+
+
+```swift
+
+class ViewController: UIViewController {
+
+    let store = NSUbiquitousKeyValueStore.default
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        let valoriCloud = Int(store.longLong(forKey: "valor"))
+        print("Valor cargado de iCloud: \(valoriCloud)")
+        self.muestra(valor: valoriCloud)
+    }
+
+    @IBAction func pulsadoStepper(_ sender: UIStepper) {
+        let valorPulsado: Int = Int(sender.value)
+        store.set(valorPulsado, forKey: "valor")
+        store.synchronize()
+        self.muestra(valor: valorPulsado)
+    }
+```
+
 
 ### Definición de un observador de cambios ###
 
@@ -287,35 +314,58 @@ Por ejemplo, en el siguiente código se registra como observador un
 método de la propia clase `AppDelegate`:
 
 ```swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    if (store.synchronize()) {
-        print("Sincronización OK")
-    } else {
-        print("Problemas en la sincronización")
-    }
-    NotificationCenter.default.addObserver(
-        self,
-        selector: #selector(muestraValoriCloud(notification:)),
-        name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
-        object: nil)
-    return true
-}
 
-@objc func muestraValoriCloud(notification: Notification){
-    let valoriCloud = Int(store.longLong(forKey: "puntuación"))
-    // Actualizamos el valor en el controller
-}
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+    let store = NSUbiquitousKeyValueStore.default
+
+    func application(_ application: UIApplication, 
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        if (store.synchronize()) {
+            print("Sincronización OK")
+        } else {
+            print("Problemas en la sincronización")
+        }
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(muestraValoriCloud(notification:)),
+            name: NSUbiquitousKeyValueStore.didChangeExternallyNotification,
+            object: nil)
+        return true
+    }
+
+    @objc func muestraValoriCloud(notification: Notification){
+        let valoriCloud = Int(store.longLong(forKey: "valor"))
+        print("Recibida notificación del sistema con el valor: \(valoriCloud)")
+        // Actualizamos el valor en el controller
+        let application = UIApplication.shared
+        if let controller = application.windows[0].rootViewController {
+            let miController: ViewController = controller as! ViewController
+            miController.muestra(valor: valoriCloud)
+        }
+    }
 ```
 
 
 ## Demo ##
 
-- Mostramos la app `iCloudKeyValue`, primero la versión sin
-comunicación con iCloud clave-valor y después la que utiliza iCloud
-clave-valor para guardar el valor del contador.
-- Mostramos la app ejecutándose en dos dispositivos simultáneamente y
-mostrando cómo los cambios en un dispositivo se actualizan en el otro.
+- Descargamos la app `iCloudKeyValue` desde [este
+  enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/iCloudKeyValue.zip),
+  comentamos su funcionamiento y añadimos el código para incorporar iCloud clave valor:
+    - Primero para que vaya grabando en iCloud el último número
+      pulsado, y para que se obtenga cuando arranca la app. Lo
+      probamos primero en el simulador y después en el dispositivo físico.
+    - Nos logeamos con nuestra cuenta de iCloud en el simulador y
+      probamos si se comparte la información con el dispositivo físico.
+    - Nos logeamos después en otro dispositivo físico (un iPad) y
+      probamos si se comparte la información entre los dos
+      dispositivos físicos.
+    - Por último añadimos el código para que se actualice la
+      información entre dos dispositivos con una notificación del
+      sistema. 
 
 <img src="imagenes/icloudapp-clave-valor.png" width="300px"/>
 
@@ -342,24 +392,26 @@ pago a partir de ella).
 
 Permite datos estructurados y datos _bulk_.
 
-Los datos están en la nube e iCloud proporciona una tecnología de
-transporte, basada en peticiones de registro, de lectura y de
-búsqueda. Los datos obtenidos se almacenan en la aplicación. Si
-queremos hacerlos persistentes de forma local (para que estén
-disponibles sin conexión) podemos utilizar otra tecnología como Core
-Data.
+CloudKit proporciona una base de datos NoSQL en la nube, mediante la
+que las aplicaciones pueden guardar, consultar y realizar búsquedas de
+registros. 
 
 
 ### Tecnología de transporte ###
 
 CloudKit no proporciona ninguna forma de almacenar datos localmente.
 
-Es un servicio para **mover datos a y desde iCloud** y no está pensado
-para reemplazar los modelos de datos ya existentes en tu app
+Los datos obtenidos se almacenan en la aplicación. Si
+queremos hacerlos persistentes de forma local (para que estén
+disponibles sin conexión) podemos utilizar otra tecnología como Core
+Data.
+
+Es un servicio para **mover datos a y desde la nube iCloud** y no está
+pensado para reemplazar los modelos de datos ya existentes en tu app
 (CoreData).
 
 El objetivo del framework es complementar estos modelos con una
-forma de empaquetar los datos para iCloud y recibir actualizaciones
+forma de empaquetar los datos para la nube y recibir actualizaciones
 posteriores sobre esos datos.
 
 Con CloudKit, tu eres el responsable de mover los datos desde tu app
@@ -388,20 +440,22 @@ producen.
 
 Múltiples apps y usuarios tienen acceso a iCloud, pero los datos se
 encuentran segregados y encapsulados en particiones llamadas
-`contenedores`.
+`contenedores`. En general, un contenedor va a contener todos los
+datos públicos y de usuarios de una aplicación. También es posible que
+más de una app del mismo desarrollador compartan un único contenedor.
 
-Los contenedores de tus apps no pueden ser usados por apps de otro
-desarrollador.
+Los datos se encuentran almacenados en un contenedor. Los contenedores
+de tus apps no pueden ser usados por apps de otro desarrollador.
 
 Es posible **compartir un contenedor entre varias apps**, siempre que
 hayan sido desarrolladas por el mismo desarrollador.
 
-Cada contenedor tiene un nombre único. El nombre del contenedor con el
-que trabaja la app se define en la configuración de _capabilities_ de
-Xcode y en el App ID del perfil de aprovisionamiento.
+Cada contenedor tiene un **nombre único** que por defecto está
+asociado al _bundle id_ de la app. El nombre es `iCloud.<bundleId>`.
 
-**Los contenedores no pueden borrarse.**
-
+**Los contenedores no pueden borrarse.** En el portal de
+desarrolladores de la UA hemos acumulado muchos nombres antiguos de
+contenedores que ya no se usan.
 
 ### Clase CKContainer ###
 
@@ -466,10 +520,12 @@ let publicDB = container.publicCloudDatabase
 
 ### Dashboard ###
 
-_Dashboard_ es una interfaz web con la que podemos gestionar
-nuestros contenedores y bases de datos.
+El _CloudKit Dashboard_ es una interfaz web con la que podemos gestionar
+nuestros contenedores y bases de datos. Podemos acceder desde la
+cuenta de desarrollador de la universidad:
 
-[https://icloud.developer.apple.com/dashboard/](https://icloud.developer.apple.com/dashboard/)
+<img src="imagenes/acceso-dashboard.png" width="700px"/>
+
 
 <img src="imagenes/dashboard.png" width="600px"/>
 
@@ -801,35 +857,79 @@ demuestra el uso de esta librería  [CloudKit Catalog](https://cdn.apple-cloudki
 
 ## Demo ##
 
+### App DemoCloudKit ###
 
-### Gestión en el _member center_ ###
+Vamos a hacer una demostración de una sencilla app llamada
+`DemoCloudKit`. Se puede descargar desde este enlace.
 
-<img src="imagenes/member-center-icloud-container.png" width="750px" />
 
-Una de las opciones del _member center_ permite gestionar contenedores de iCloud.
+### Gestión en el portal de desarrolladores de la UA###
 
-Utilizaremos un contenedor con el identificador `iCloud.es.ua.mastermoviles.ToDoList` que utilizaremos en la app _ToDoList_.
+Podemos ver en el portal de desarrolladores la lista de contenedores
+creados por el equipo. Están marcados en rojo los que vamos a usar en
+esta sesión.
+
+<img src="imagenes/member-center-icloud-identifiers.png" width="750px" />
+
+Podemos crear un contenedor nuevo pulsando el botón `+` junto a
+_Identifiers_ en esta página. También se puede hacer automáticamente
+desde Xcode si somos administradores de la cuenta con la que estamos
+logeados. 
 
 
 ### Asignación del container al App ID ###
 
-Incluimos en el App ID `Master Moviles ToDoList` (con el bundle Id
-`es.ua.mastermoviles.ToDoList`) el contenedor de iCloud anterior.
+Una vez creado el identificador del contenedor, debemos añadir en el
+App ID el permiso para iCloud y seleccionar el contenedor que vamos a
+usar en ese App ID.
 
-<img src="imagenes/aprovisionamiento-icloud-container.png" width="700px"/> 
+<img src="imagenes/member-center-icloud-container.png" width="750px" />
 
+En la demo usaremos el App ID `es.ua.mastermoviles.babifud` y el
+contenedor `iCloud.es.ua.mastermoviles.BabiFood`.
+
+<img src="imagenes/add-container-app-id.png" width="750px"/>
+
+Para la práctica hemos añadido al App ID `Master Moviles ToDo` el
+contenedor `iCloud.es.ua.mastermoviles.ToDoList`.
 
 ### Creación del perfil de aprovisionamiento ###
 
-Actualizamos el perfil de aprovisionamiento `Master Moviles ToDoList`
-con el App ID anterior.
+Creamos para la demo el perfil de aprovisionamiento con el App ID anterior. 
 
-<img src="imagenes/aprovisionamiento-icloud.png" width="700px"/>
+<img src="imagenes/aprovisionamiento-demo-icloud.png" width="700px"/>
+
+
+Y para la práctica hemos actualizado el perfil de aprovisionamiento
+`Master Moviles ToDo` con el App ID `Master Moviles ToDo`.
 
 
 ### Actualización de capacidades de la app ToDoList ###
 
+Actualizamos las capacidades en Xcode añadiendo la capacidad _iCloud_,
+activando _CloudKit_ y escribiendo el nombre del contenedor que vamos
+a usar.
+
+Escribimos como _Bundle Identifier_ el definido por el App ID. En el
+caso de la demo usaremos `es.ua.mastermoviles.babifud`. Para la
+práctica hay que mantener el antiguo `es.ua.mastermoviles.ToDo`.
+
+Es posible que debido a un bug no funcione la firma
+automática porque no se descarga. Desactivamos la firma automática y seleccionamos el perfil
+manualmente con la opción _Provisioning Profile > Dowload Profile..._.
+
+<img src="imagenes/cloudkit-provisioning-profile.png" width="600px"/>
+
+Y escogemos el perfil de aprovisionamiento:
+
+<img src="imagenes/manual-provisioning-profile.png" width="600px"/>
+
+
 <img src="imagenes/capabilities.png" width="600px"/>
+
+
+### Ejecutamos la app Demo ###
+
 
 
 ### Ejecutamos la app ToDoList###
