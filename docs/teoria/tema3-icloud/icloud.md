@@ -982,6 +982,7 @@ Todo el código relacionado con CloudKit está en la carpeta `Model`.
 
 ## Referencias
 
+- [Página principal tecnología CloudKit](https://developer.apple.com/icloud/cloudkit/)
 - [CloudKit Documentation](https://developer.apple.com/documentation/cloudkit)
 - [CloudKit Quick Start](https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitQuickStart/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014987)
 - [iCloud Design Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094-CH1-SW1)
