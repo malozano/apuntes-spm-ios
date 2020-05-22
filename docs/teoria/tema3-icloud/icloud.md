@@ -860,38 +860,62 @@ demuestra el uso de esta librería  [CloudKit Catalog](https://cdn.apple-cloudki
 ### App DemoCloudKit ###
 
 Vamos a hacer una demostración de una sencilla app llamada
-`DemoCloudKit`. Se puede descargar desde este enlace.
+`DemoCloudKit`. Está basada en un tutorial de la web
+[raywenderlich.com](https://www.raywenderlich.com). Se puede descargar
+desde [este
+enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/DemoCloudKit.zip).
 
+<img src="imagenes/democloudkit-app.jpeg" width="300px"/>
 
-### Gestión en el portal de desarrolladores de la UA###
+La app tiene como _bundle id_ `es.ua.mastermoviles.DemoCloudKit`.
 
-Podemos ver en el portal de desarrolladores la lista de contenedores
-creados por el equipo. Están marcados en rojo los que vamos a usar en
-esta sesión.
+### Creación del contenedor ###
+
+Debemos crear un perfil de aprovisionamiento con capacidad de acceso a
+CloudKit. 
+
+Para ello creamos primero el identificador del contenedor de CloudKit. 
+
+Podemos hacerlo desde la página con el listado de contenedores de
+CloudKit, pulsando el botón `+` junto a _Identifiers_. También se
+puede hacer automáticamente desde Xcode si somos administradores de la
+cuenta con la que estamos logeados.
 
 <img src="imagenes/member-center-icloud-identifiers.png" width="750px" />
 
-Podemos crear un contenedor nuevo pulsando el botón `+` junto a
-_Identifiers_ en esta página. También se puede hacer automáticamente
-desde Xcode si somos administradores de la cuenta con la que estamos
-logeados. 
+Después debemos rellenar el identificador del contenedor. Como el
+_bundle id_ de la app es `es.ua.mastermoviles.DemoCloudKit` el
+identificador del contenedor será:
+
+```text
+iCloud.es.ua.mastermoviles.DemoCloudKit
+```
+
+Hay que tener mucho cuidado porque una vez creados los
+identificadores de contenedores no se pueden borrar.
+
+<img src="imagenes/new-container-id.png" width="700px" />
 
 
-### Asignación del container al App ID ###
+### Creación del App ID y asignación del contenedor ###
 
-Una vez creado el identificador del contenedor, debemos añadir en el
-App ID el permiso para iCloud y seleccionar el contenedor que vamos a
-usar en ese App ID.
+Una vez creado el identificador del contenedor, debemos crear el _App
+ID_ con el permiso para iCloud y seleccionar el contenedor que vamos a
+usar en ese _App ID_.
+
+Creamos el _App ID_ con el _bundle ID_ de la aplicación.
+
+<img src="imagenes/app-id-cloudkit.png" width="750px"/>
+
+Marcamos el servicio _iCloud_ y configuramos el contenedor.
 
 <img src="imagenes/member-center-icloud-container.png" width="750px" />
 
-En la demo usaremos el App ID `es.ua.mastermoviles.babifud` y el
-contenedor `iCloud.es.ua.mastermoviles.BabiFood`.
+Añadimos el contenedor recién creado, el que tiene el identificador
+`iCloud.es.ua.mastermoviles.DemoCloudKit`.
 
 <img src="imagenes/add-container-app-id.png" width="750px"/>
 
-Para la práctica hemos añadido al App ID `Master Moviles ToDo` el
-contenedor `iCloud.es.ua.mastermoviles.ToDoList`.
 
 ### Creación del perfil de aprovisionamiento ###
 
@@ -900,74 +924,61 @@ Creamos para la demo el perfil de aprovisionamiento con el App ID anterior.
 <img src="imagenes/aprovisionamiento-demo-icloud.png" width="700px"/>
 
 
-Y para la práctica hemos actualizado el perfil de aprovisionamiento
-`Master Moviles ToDo` con el App ID `Master Moviles ToDo`.
-
-
 ### Actualización de capacidades de la app ToDoList ###
 
-Actualizamos las capacidades en Xcode añadiendo la capacidad _iCloud_,
-activando _CloudKit_ y escribiendo el nombre del contenedor que vamos
-a usar.
-
 Escribimos como _Bundle Identifier_ el definido por el App ID. En el
-caso de la demo usaremos `es.ua.mastermoviles.babifud`. Para la
-práctica hay que mantener el antiguo `es.ua.mastermoviles.ToDo`.
+caso de la demo usaremos `es.ua.mastermoviles.DemoCloudKit`. 
 
-Es posible que debido a un bug no funcione la firma
-automática porque no se descarga. Desactivamos la firma automática y seleccionamos el perfil
-manualmente con la opción _Provisioning Profile > Dowload Profile..._.
+Actualizamos las capacidades en Xcode añadiendo la capacidad _iCloud_ y
+activando _CloudKit_.
 
-<img src="imagenes/cloudkit-provisioning-profile.png" width="600px"/>
+Seleccionamos el equipo de la UA y automáticamente se cargará el
+perfil recién creado.
 
-Y escogemos el perfil de aprovisionamiento:
-
-<img src="imagenes/manual-provisioning-profile.png" width="600px"/>
-
-
-<img src="imagenes/capabilities.png" width="600px"/>
-
-
-### Ejecutamos la app Demo ###
-
-
-
-### Ejecutamos la app ToDoList###
-
-Ejecutamos la app ToDoList modificada para trabajar con CloudKit y
-comprobamos cómo se guardan las tareas, a pesar de eliminarlas de la
-memoria. Las tareas se cargan de la base de datos cuando la app se
-inicializa, en el método `viewDidLoad`.
-
-Mostramos cómo se añaden registros en las bases de datos públicas y
-privadas.
-
-<img src="imagenes/todolist-cloudkit.png" width="300px"/>
 
 ### Dashboard ###
 
-Comprobamos también el _Dashboard_ y vemos cómo se actualiza conforme
-guardamos nuevos registros.
-
-El administrador del equipo de desarrollo puede gestionar permisos
-para el resto de miembros. Los permisos se definen a nivel de
-contenedor.
-
-[https://icloud.developer.apple.com/dashboard/](https://icloud.developer.apple.com/dashboard/)
-
-<img src="imagenes/dashboard.png" width="600px"/>
-
-Comprobamos los permisos de los miembros del equipo de la universidad en el _dashboard_ de iCloud.
+Comprobamos los permisos de los miembros del equipo de la universidad
+en el _dashboard_ de iCloud. El administrador del equipo de desarrollo
+puede gestionar permisos para el resto de miembros. Los permisos se
+definen a nivel de contenedor. 
 
 <img src="imagenes/dashboard-permisos.png" width="600px"/>
 
-Los tipos de registros:
+Revisamos el esquema de datos y los registros. Hemos creado
+manualmente dos tipos de registros:
 
-<img src="imagenes/dashboard-records.png" width="900px"/>
+- Establishmet
+- Note
 
-Y los logs:
+<img src="imagenes/dashboard-democloudkit.png" width="700px"/>
 
-<img src="imagenes/dashboard-logs.png" width="900px"/>
+
+Y hemos creado un par de registros concretos de esos tipos de
+registros. 
+
+Examinamos los tipos de registro, sus campos, los datos, las
+relaciones y las bases de datos en las que están creados.
+
+
+### Ejecutamos la app y mostramos el código ###
+
+<img src="imagenes/democloudkit-app.jpeg" width="300px"/> <img src="imagenes/caesar-pizza.jpeg" width="300px"/>
+
+En la app podemos navegar por los establecimientos y vemos como se
+muestran sus características. También podemos comprobar las notas
+privadas creadas asociadas con cada establecimiento.
+
+Probamos a modificar algún dato en el dashboard y a comprobar que se
+actualiza en la aplicación.
+
+Todo el código relacionado con CloudKit está en la carpeta `Model`.
+
+- Se definen dos clases que mapean los registros:
+  `Establishment.swift` y `Note.swift`.
+- La clase `Model.swift` contiene métodos para recuperar los registros
+  de iCloud mediante _queries_.
+
 
 ## Referencias
 
@@ -979,3 +990,4 @@ Y los logs:
 - [Responding to Requests to Delete Data](https://developer.apple.com/documentation/cloudkit/responding_to_requests_to_delete_data)  
 - [Identifying an App's Containers](https://developer.apple.com/documentation/cloudkit/identifying_an_app_s_containers)
 - [CloudKit JS](https://developer.apple.com/documentation/cloudkitjs)
+- [Tutorial de raywenderlich.com sobre CloudKit](https://www.raywenderlich.com/4878052-cloudkit-tutorial-getting-started)
