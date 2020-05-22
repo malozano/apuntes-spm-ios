@@ -34,6 +34,18 @@ al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
   una tarea debes permitir la opción de hacerlo en la base de datos
   pública. Muestra el texto de las tareas públicas en un color
   diferente en el listado de tareas.
+  
+<!--
+
+La configuración de los roles de seguridad en el Dashboard hace que 
+solo los usuarios que han creado la tarea puedan borrarla. Los demás 
+pueden leerla, pero no borrarla.
+
+Hay que definir una alerta que de un aviso de que no has podido borrar
+una tarea porque no es tuya.
+
+-->
+
 - (**Opcional**): Añade una funcionalidad en la que se recargue la
   tabla con los datos de iCloud cuando se tire de la tabla hacia
   abajo. 
