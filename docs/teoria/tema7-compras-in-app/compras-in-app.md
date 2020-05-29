@@ -8,7 +8,7 @@ Permite vender directamente una funcionalidad dentro de una app.
 
 Los datos de la compra (precio, identificador) se definen en iTunes Connect.
 
-Se implementa con el API StoreKit:
+Se implementa con el [API StoreKit](https://developer.apple.com/documentation/storekit):
 
 - StoreKit pregunta al usuario si confirma la transacción a través del
   acceso seguro del App Store.
