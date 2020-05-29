@@ -340,6 +340,7 @@ Acción para mostrar la pantalla sorpresa:
 
 ## Referencias
 
+- [Página resumen Apple Developer](https://developer.apple.com/in-app-purchase/)
 - [App Store Connect - In-App purchase](https://help.apple.com/app-store-connect/#/devb57be10e7)
 - [In-App Purchase Programming Guide](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html)
 - [Receipt Validation Programming Guide](https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Introduction.html#//apple_ref/doc/uid/TP40010573-CH105-SW1)
