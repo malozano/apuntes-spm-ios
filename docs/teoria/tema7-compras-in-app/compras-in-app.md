@@ -202,7 +202,11 @@ y
 Creamos un protocolo `InAppDelegate` y una clase `InApp` donde
 gestionaremos la interacción con `StoreKit`:
 
+
 ```swift
+import Foundation
+import StoreKit
+
 protocol InAppDelegate {
     func compraRecibida()
 }
@@ -214,63 +218,60 @@ class InApp: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     override init() {
         super.init()
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        SKPaymentQueue.default().add(self)
+
         // Cargamos la lista de productos
+        
         productIdentiferList.append("ejemplo3")
-        let request = SKProductsRequest.init(productIdentifiers: 
-                            Set(productIdentiferList))
+        let request = SKProductsRequest.init(productIdentifiers: Set(productIdentiferList))
         request.delegate = self
         request.start()
     }
-
-
-// Método del delegado al que se llama cuando se han recibido los productos
-
-func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-    print("Hemos recibido \(response.products.count) productos")
-    productDetailsList = response.products
-    for invalidProductId in response.invalidProductIdentifiers {
-        print("Producto invalido id: \(invalidProductId)")
+    
+    // Método para lanzar la petición de compra al usuario
+    func lanzarPago() {
+        if (self.productDetailsList.count > 0 &&  SKPaymentQueue.canMakePayments()) {
+            let producto = productDetailsList[0]
+            let pago = SKPayment(product: producto)
+            SKPaymentQueue.default().add(pago)
+            print("Comprando...")
+        } else {
+            print("No existen productos")
+        }
     }
-}
-
-// Método para lanzar la petición de compra al usuario
-
-func lanzarPago() {
-    if (self.productDetailsList.count > 0 &&
-              SKPaymentQueue.canMakePayments()) {
-        let producto = productDetailsList[0]
-        let pago = SKPayment(product: producto)
-        SKPaymentQueue.defaultQueue().addPayment(pago)
-        print("Comprando...")
-    } else {
-        print("No existen productos")
+    
+    // Método al que se llama cuando el usuario compra el InApp
+    
+    func paymentQueue(_ queue: SKPaymentQueue,
+                      updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased:
+                print("Purchased")
+                delegate?.compraRecibida()
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .failed:
+                print("Failed")
+                print("Error de transacción: \(String(describing: transaction.error?.localizedDescription))")
+                SKPaymentQueue.default().finishTransaction(transaction)
+            case .restored:
+                print("Restored")
+                delegate?.compraRecibida()
+                SKPaymentQueue.default().finishTransaction(transaction)
+            default:
+                print("Otro")
+            }
+        }
     }
-}
 
-// Método del delegado al que se llama cuando el usuario compra el InApp
-func paymentQueue(queue: SKPaymentQueue, 
-                  updatedTransactions transactions: 
-                                    [SKPaymentTransaction]) {
-    for transaction in transactions {
-        switch transaction.transactionState {
-        case .Purchased:
-            print("Purchased")
-            delegate?.compraRecibida()
-            SKPaymentQueue.defaultQueue()
-                            .finishTransaction(transaction)
-        case .Failed:
-            print("Failed")
-            print("Error de transacción: \(transaction.error?.localizedDescription)")
-            SKPaymentQueue.defaultQueue()
-                            .finishTransaction(transaction)
-        case .Restored:
-            print("Restored")
-            delegate?.compraRecibida()
-            SKPaymentQueue.defaultQueue()
-                           .finishTransaction(transaction)
-        default:
-            print("Otro")
+    // Método al que se llama cuando se han recibido los productos
+    
+    func productsRequest(_ request: SKProductsRequest, 
+                         didReceive response: SKProductsResponse) {
+        print("Hemos recibido \(response.products.count) productos")
+        productDetailsList = response.products
+        for invalidProductId in response.invalidProductIdentifiers {
+            print("Producto invalido id: \(invalidProductId)")
         }
     }
 }
@@ -284,55 +285,53 @@ En la clase `ViewController` adoptamos nuestro protocolo
 a llamar cuando se haya recibido y validado la compra.
 
 ```swift
+import UIKit
+
 class ViewController: UIViewController, InAppDelegate {
+
     @IBOutlet weak var botonSorpresa: UIButton!
-    let inApp = InApp() // Instancia de la clase auxiliar InApp
+    let inApp = InApp()
 
     override func viewDidLoad() {
-        // Nos hacemos delegados de InApp
+        // Actualizamos el delgado de inApp con la propia
+        // instacia, para que se llame al método compraRecibida
         inApp.delegate = self
-
-        // Escondemos el botón que da acceso a la pantalla sorpresa
-        botonSorpresa.hidden = true
+        
+        // Escondemos el botón sorpresa, que sólo estará visible
+        // para los que hagan la compra
+        botonSorpresa.isHidden = true
     
-        // Comprobamos si el usuario ha comprado antes el inApp
-        // Funciona si el usuario está identificado 
-        if NSUserDefaults.standardUserDefaults().boolForKey("inAppComprado") {
-            botonSorpresa.hidden = false
+        // Comprobamos si hemos comprado antes el inApp
+        if UserDefaults.standard.bool(forKey: "inAppComprado") {
+            botonSorpresa.isHidden = false
         } else {
-            botonSorpresa.hidden = true
+            botonSorpresa.isHidden = true
         }
         super.viewDidLoad()
     }
-```
-
-
-La acción asociada al botón de compra llama al método `lanzarPago` de
-la instancia de nuestra clase `InApp`:
-
-```swift
-    // Acción asociada al botón de compra
-    @IBAction func hazCompra(sender: UIButton) {
+    
+    // Método del protocolo al que se va a llamar cuando se reciba
+    // la compra. Hacemos visible el botón sorpresa.
+    func compraRecibida() {
+        botonSorpresa.isHidden = false
+    }
+    
+    // La acción asociada al botón de compra llama
+    // al método lanzarPago de la instancia de nuestra
+    // clase InApp
+    @IBAction func hazCompra(_ sender: UIButton) {
         print("Click botón de compra")
         inApp.lanzarPago()
     }
-```
     
-En el método `compraRecibida()` (del protocolo) activamos un botón que
-da acceso a la pantalla sorpresa.
-
-```swift
-    // Implementación del método del protocolo InAppDelegate
-    func compraRecibida() {
-        botonSorpresa.hidden = false
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-```
-
-Acción para mostrar la pantalla sorpresa:
     
-```swift
-    @IBAction func sorpresa(sender: UIButton){
-        performSegueWithIdentifier("Sorpresa", sender: view)
+    // Acción para mostrar la pantalla sorpresa
+    @IBAction func sorpresa(_ sender: UIButton){
+        performSegue(withIdentifier: "Sorpresa", sender: view)
     }
 }
 ```
