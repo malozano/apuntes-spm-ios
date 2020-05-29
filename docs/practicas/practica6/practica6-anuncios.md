@@ -1,4 +1,4 @@
-# Sesión 5: Anuncios (Opcional)
+# Práctica 5: Anuncios (Opcional)
 
 Esta práctica es opcional.
 
