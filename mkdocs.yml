@@ -8,9 +8,9 @@ nav:
     - 2. Mapas y localización: 'teoria/tema4-mapas-localizacion/mapas-localizacion.md'
     - 3. Notificaciones: 'teoria/tema2-notificaciones/notificaciones.md'
     - 4. iCloud y CloudKit: 'teoria/tema3-icloud/icloud.md'
+    - 5. Anuncios: 'teoria/tema6-anuncios/anuncios.md'
+    - 6. Compras InApp: 'teoria/tema7-compras-in-app/compras-in-app.md'
 #    - 5. Extensiones: 'teoria/tema5-extensiones/extensiones.md'
-#    - 6. Anuncios: 'teoria/tema6-anuncios/anuncios.md'
-#    - 7. Compras InApp: 'teoria/tema7-compras-in-app/compras-in-app.md'
 - 'Prácticas':
     - Práctica 1: 'practicas/practica1/practica1-firma-aprovisionamiento.md'
     - Práctica 2: 'practicas/practica4/practica4-mapas-localizacion.md'
