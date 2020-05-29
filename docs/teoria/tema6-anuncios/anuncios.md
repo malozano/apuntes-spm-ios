@@ -24,7 +24,9 @@ distintas redes existentes:
 
 Cada red tiene su propia API, aunque son todas ellas muy similares.
 
-Vamos a ver la red AdMob de Google, por ser la más popular. Vamos a
+## API de AdMob ##
+
+Vamos a ver la red [AdMob de Google](https://apps.admob.com/), por ser la más popular. Vamos a
 explicar AdMob **sin Firebase**, para hacer más ligera la app y tener
 que depender del número mínimo de librerías.
 
@@ -32,8 +34,6 @@ que depender del número mínimo de librerías.
 <img src="imagenes/google-admob.png" width="350px"/>
 </p>
 
-
-## API de AdMob ##
 
 ### Alta en AdMob ###
 
