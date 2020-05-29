@@ -1,4 +1,4 @@
-# Práctica 2: Notificaciones 
+# Práctica 3: Notificaciones 
 
 Descarga las apps [Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
 y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip),
