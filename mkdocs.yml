@@ -16,8 +16,8 @@ nav:
     - Práctica 2: 'practicas/practica4/practica4-mapas-localizacion.md'
     - Práctica 3: 'practicas/practica2/practica2-notificaciones.md'
     - Práctica 4: 'practicas/practica3/practica3-icloud.md'
+    - Práctica 5: 'practicas/practica6/practica6-anuncios.md'
 #    - Práctica 5: 'practicas/practica5/practica5-extensiones.md'
-#    - Práctica 6: 'practicas/practica6/practica6-anuncios.md'
 
 theme:
     language: es
