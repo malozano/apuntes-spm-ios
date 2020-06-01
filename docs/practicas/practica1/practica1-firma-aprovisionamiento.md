@@ -131,6 +131,9 @@ nada.
       desarrollador de la UA mostrándolos (incluye en las pantallas
       toda la ventana del navegador, para que aparezca tu usuario en
       la parte superior derecha).
+    - Captura la pantalla de Xcode en la que se muestre cómo has
+      firmado tu app con el perfil `Master Moviles ToDo` (la pantalla
+      equivalente a [esta](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/imagenes/provisioning-profile-manual-1.png))
     - Si tienes algún dispositivo iOS, instala el fichero .ipa
       obtenido usando Apple Configurator 2. El UUID del dispositivo
       deberá estar incluido en el perfil de aprovisionamiento. Captura
