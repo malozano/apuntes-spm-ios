@@ -24,15 +24,15 @@ Resumimos a continuación los objetivos generales de esta práctica:
 
 1. Lee los siguientes apartados del tema de teoría:
 
-    - [Introducción](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#introduccion):
+    - [Introducción](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#introduccion):
      Resumen de lo que vamos a ver en este tema e introducción breve a
      la importancia de la seguridad en la plataforma de Apple.
     - [Cuenta de desarrollador de
-     Apple](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#cuenta-de-desarrollador-de-apple):
+     Apple](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#cuenta-de-desarrollador-de-apple):
      Explicación de los distintos tipo de programas de desarrollo en
      la plataforma Apple y características de cada uno.
     - [Demo sobre distintos tipos de programas de desarrollo de
-     Apple](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#demo):
+     Apple](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo):
      Demostración sobre el apartado anterior. No es posible
      realizarla de forma no presencial, pero se muestran capturas de pantalla que te pueden dar
      una idea del proceso y guiarte de cara a la realización de la siguiente actividad.
@@ -66,9 +66,9 @@ nada.
 
 4. Lee los siguientes apartados de teoría:
 
-    - [Certificados](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#certificados): Explicación del concepto de certificado, su ubicación en Xcode y
+    - [Certificados](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#certificados): Explicación del concepto de certificado, su ubicación en Xcode y
       MacOS y su uso para firmar apps.
-    - [Demostración sobre la firma y ejecución de apps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#demo_1): No es posible
+    - [Demostración sobre la firma y ejecución de apps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo_1): No es posible
      realizarla de forma no presencial, pero se muestran capturas de pantalla que te pueden dar
      una idea del proceso y guiarte de cara a la realización de la
      siguiente actividad.
@@ -113,18 +113,18 @@ nada.
 1. Lee los siguientes apartados de teoría:
 
     - [Capacidades de las
-      apps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#capacidades-de-las-apps):
+      apps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#capacidades-de-las-apps):
       Explicación de cómo configurar las apps para que puedan usar
       determinados servicios restringidos de Apple.
-    - [Despliegue de apps en dispositivos de prueba](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#despliegue-de-apps-en-dispositivos-de-prueba): Explicación de
+    - [Despliegue de apps en dispositivos de prueba](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#despliegue-de-apps-en-dispositivos-de-prueba): Explicación de
       cómo el _perfil de aprovisionamiento_ de una app permite a ésta
       utilizar servicios de Apple y ejecutarse en dispositivos de prueba.
 
 2. Sigue los pasos de la [demo y
-   ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
+   ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
    de teoría, realizando además lo siguiente:
     - Captura la pantalla de Xcode en la que se muestre cómo has
-      firmado tu app con el perfil genérico (la pantalla equivalente a [esta](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/imagenes/perfil-generico-team.png)).
+      firmado tu app con el perfil genérico (la pantalla equivalente a [esta](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/imagenes/perfil-generico-team.png)).
     - Comprueba en el portal del desarrollador de la UA que el
       profesor ha creado el _App ID_ y el perfil de aprovisionamiento `Master
       Moviles ToDo`. Captura las pantallas con las páginas del portal del
@@ -133,7 +133,7 @@ nada.
       la parte superior derecha).
     - Captura la pantalla de Xcode en la que se muestre cómo has
       firmado tu app con el perfil `Master Moviles ToDo` (la pantalla
-      equivalente a [esta](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/imagenes/provisioning-profile-manual-1.png))
+      equivalente a [esta](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/imagenes/provisioning-profile-manual-1.png))
     - Si tienes algún dispositivo iOS, instala el fichero .ipa
       obtenido usando Apple Configurator 2. El UUID del dispositivo
       deberá estar incluido en el perfil de aprovisionamiento. Captura
@@ -146,7 +146,7 @@ nada.
 1. Lee los siguientes apartados de teoría:
 
     - [Distribución e instalación de betas
-      online](https://domingogallardo.github.io/apuntes-spm-ios/teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.html#distribucion-e-instalacion-de-betas-online):
+      online](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#distribucion-e-instalacion-de-betas-online):
       Explicación de distribución de betas usando TestFlight (servicio
       de Apple de pago) y Firebase (servicio gratuito de Google).
 
