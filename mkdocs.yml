@@ -3,21 +3,21 @@ use_directory_urls: false
 
 nav:
 - 'Teoría':
-#    - 0. Introducción : 'teoria/tema0-introduccion-servicios-ios/introduccion-servicios-ios.md'-->
-    - 1. Firma, aprovisionamiento y distribución de apps: 'teoria/tema1-firma-aprovisionamiento/firma-aprovisionamiento.md'
-    - 2. Mapas y localización: 'teoria/tema4-mapas-localizacion/mapas-localizacion.md'
-    - 3. Notificaciones: 'teoria/tema2-notificaciones/notificaciones.md'
-    - 4. iCloud y CloudKit: 'teoria/tema3-icloud/icloud.md'
-    - 5. Anuncios: 'teoria/tema6-anuncios/anuncios.md'
-    - 6. Compras InApp: 'teoria/tema7-compras-in-app/compras-in-app.md'
-#    - 5. Extensiones: 'teoria/tema5-extensiones/extensiones.md'
+#    - 0. Introducción : 'teoria/introduccion-servicios-ios/introduccion-servicios-ios.md'-->
+    - 1. Firma, aprovisionamiento y distribución de apps: 'teoria/firma-aprovisionamiento/firma-aprovisionamiento.md'
+    - 2. Mapas y localización: 'teoria/mapas-localizacion/mapas-localizacion.md'
+    - 3. Notificaciones: 'teoria/notificaciones/notificaciones.md'
+    - 4. iCloud y CloudKit: 'teoria/icloud/icloud.md'
+    - 5. Anuncios: 'teoria/anuncios/anuncios.md'
+    - 6. Compras InApp: 'teoria/compras-in-app/compras-in-app.md'
+#    - 5. Extensiones: 'teoria/extensiones/extensiones.md'
 - 'Prácticas':
-    - Práctica 1: 'practicas/practica1/practica1-firma-aprovisionamiento.md'
-    - Práctica 2: 'practicas/practica4/practica4-mapas-localizacion.md'
-    - Práctica 3: 'practicas/practica2/practica2-notificaciones.md'
-    - Práctica 4: 'practicas/practica3/practica3-icloud.md'
-    - Práctica 5: 'practicas/practica6/practica6-anuncios.md'
-#    - Práctica 5: 'practicas/practica5/practica5-extensiones.md'
+    - Práctica 1: 'practicas/aprovisionamiento/firma-aprovisionamiento.md'
+    - Práctica 2: 'practicas/mapas/mapas-localizacion.md'
+    - Práctica 3: 'practicas/notificaciones/notificaciones.md'
+    - Práctica 4: 'practicas/icloud/icloud.md'
+    - Práctica 5: 'practicas/anuncios/anuncios.md'
+#    - Práctica 5: 'practicas/extensiones/extensiones.md'
 
 theme:
     language: es
