@@ -141,30 +141,6 @@ nada.
       la app en el dispositivo. Comprueba que la app funciona
       correctamente. 
 
-## 4. Distribución con Firebase ##
-
-1. Lee los siguientes apartados de teoría:
-
-    - [Distribución e instalación de betas
-      online](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#distribucion-e-instalacion-de-betas-online):
-      Explicación de distribución de betas usando TestFlight (servicio
-      de Apple de pago) y Firebase (servicio gratuito de Google).
-
-2. [Agrega Firebase a tu
-   proyecto](https://firebase.google.com/docs/ios/setup?authuser=0). Deberás
-   instalar `CocoaPods` para instalar en tu proyecto Google Analytics
-   para Firebase. 
-   
-3. Abre el proyecto con Xcode, abriendo el fichero `.xcworkspace`
-   recién creado. Cambia el número de versión a `1.1`.
-   
-   <img src="imagenes/proyecto-cocoapods.png" width="600px"/>
-   
-4. Distribuye la app a `domingo.gallardo@ua.es` usando App
-   Distribution. Captura las pantallas de App Distribution y de Google
-   Analytics en las que se muestran que el profesor se ha descargado y
-   ha abierto la app.
-
 ## Entregas ##
 
 Crea una carpeta y guarda en ella lo siguiente:
@@ -173,7 +149,6 @@ Crea una carpeta y guarda en ella lo siguiente:
   el simulador, si no tienes) mostrando la pantalla con tu nombre
   (paso 1.7).
 - Capturas del paso 3.2.
-- Capturas del apartado 4.4.
 - Binario .ipa del apartado 3.2
 - Carpeta con el proyecto completo.
 

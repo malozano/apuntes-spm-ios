@@ -11,7 +11,6 @@ plataforma iOS para:
     - Distribuir nuestras apps en dispositivos de prueba.
     - Utilizar APIs de los servicios de iOS no disponibles en la cuenta
       de desarrollador gratuita. 
-- Probar y distribuir apps usando Firebase.
 - Probar y distribuir apps usando Test Flight y App Store Connect.
 
 
@@ -156,7 +155,7 @@ Una vez dados de alta como desarrolladores de Apple podremos acceder al
 Con esta cuenta gratuita podremos comenzar a desarrollar apps y
 probarlas en nuestro dispositivo de desarrollo. Pero este desarrollo
 estará limitado. No podremos distribuirlas a más dispositivos ni
-utilizar servicios avanzados de Apple).
+utilizar servicios avanzados de Apple.
 
 ### Miembro del equipo de la UA ###
 
@@ -279,9 +278,8 @@ interese en cada momento.
 Es posible generar e instalar manualmente los certificados, pero es
 más sencillo dejar que sea Xcode quien los gestione.
 
-Al firmar una aplicación por primera vez, Xcode se descarga de los
-servidores de Apple e instala automáticamente el certificados de
-firma.
+Al firmar una aplicación por primera vez, Xcode se conecta a los
+servidores de Apple e instala automáticamente el certificado de firma.
 
 <img src="imagenes/xcode-firma-digital.png" width="600px"/>
 
@@ -340,7 +338,8 @@ puede ejecutar una app si:
 
 Vamos a demostrar cómo firmar una app y cómo ejecutarla en un
 dispositivo autorizado por Xcode, usando el perfil de desarrollador
-de la cuenta gratuita de Apple.
+de la cuenta gratuita de Apple y después usando el perfil de
+desarrollador del equipo de la Universidad de Alicante.
 
 ### Instalación de la identidad de firma ###
 
@@ -471,6 +470,60 @@ seleccionar ninguna forma de distribución de la app.
 
     <img src="imagenes/generic-ios-device.png" width="400px"/>
 
+
+### Firma con el equipo de la UA ###
+
+Podemos firmar con el equipo de la UA cambiando el bundle ID,
+seleccionando el `Team` `Universidad de Alicante`.
+
+<img src="imagenes/seleccion-equipo-ua.png" width="550px"/>
+
+<img src="imagenes/bundle-id-ua.png" width="550px"/>
+
+Al seleccionar el equipo `Universidad de Alicante` Xcode selecciona nuestro
+certificado específico asociado al equipo de la UA y firma con él la
+aplicación.
+
+Podemos instalar cualquier perfil de aprovisionamiento creado en el
+equipo de la UA que sea compatible con el bundle ID. Para ello
+desmarcamos la opción `Automatically manage signing` y descargamos el
+perfil que nos interese. Un perfil de aprovisionamiento contiene un
+listado de capacidades que podemos activar en la app y un listado de
+dispositivos en los que podemos ejecutarla. Más adelante explicaremos
+esto con más detalle.
+
+<img src="imagenes/download-profile.png" width="550px"/>
+
+Podemos seleccionar el perfil denominado `Genérico`:
+
+<img src="imagenes/perfil-generico-ua.png" width="550px"/>
+
+Una vez instalado el perfil de aprovisionamiento, la configuración de
+firma de la app queda como se muestra en la siguiente imagen:
+
+<img src="imagenes/firma-aprovisionamiento-ua.png" width="550px"/>
+
+### Archivo y distribución de la app ###
+
+Ahora ya podemos exportar la app y ejecutarla en cualquier dispositivo
+registrado en el perfil que acabamos de instalar. Para ello debemos
+seleccionar `Product > Archive` y la opción `Development`.
+
+<img src="imagenes/distribution-method.png" width="550px"/>
+
+<img src="imagenes/distribution-1.png" width="550px"/>
+
+<img src="imagenes/distribution-2.png" width="550px"/>
+
+<img src="imagenes/distribution-3.png" width="550px"/>
+
+Se crea una carpeta que contiene el fichero `.ipa` que puede
+instalarse en cualquier dispositivo incluido en el perfil de
+aprovisionamiento (aunque no sea un dispositivo de desarrollo).
+
+Podemos instalar la app en un dispositivo conectando el dispositivo al
+Mac y usando el programa de Apple `Apple Configurator 2`.
+
 ### Fin de la demo ###
 
 ----
@@ -518,28 +571,43 @@ servicios proporcionados por Apple:
 
 ### _Bundle Identifier_ ###
 
-Un _bundle ID_ es una cadena que identifica de forma única una app.
+Un _bundle ID_ es una cadena que identifica de forma única una
+app. Cuando definimos el bundle ID de un proyecto, Apple lo registra
+y no permite que ningún otro desarrollador utilice ese mismo ID. Si
+intentamos registrar un bundle ID que otro desarrollador ya ha usado
+Xcode nos informa de un error.
 
 <img src="imagenes/bundle-id-xcode.png" width="550px"/>
 
 La cadena de _bundle ID_ debe contener únicamente caracteres
-alfanuméricos (A-Z,a-z,0-9), guiones (-), y puntos (.). La cadena
-debería estar en un formato DNS-inverso y usar un dominio propio de la
-organización. De esta forma se garantiza su unicidad. Por ejemplo, si
-el dominio de la organización es `Acme.com` y creamos una app llamada
-`Hola` podríamos usar como _bundle ID_ de la app la cadena
-`com.Acme.Hello`.
+alfanuméricos (A-Z,a-z,0-9), guiones (-), y puntos (.). Una forma de
+que no existan demasiadas colisiones en los bundle ID es usar un
+formato DNS-inverso con el nombre de la app y el dominio de nuestra
+organización. Por ejemplo, si el dominio de la organización es
+`Acme.com` y creamos una app llamada `Hola` podríamos usar como
+_bundle ID_ de la app la cadena `com.Acme.Hola`. También podríamos
+usar nuestro nombre y el nombre de la app (si nadie ha registrado una
+app con un nombre idéntico al nuestro): `domingogallardo.Hola`.
+
+La forma de comprobar la disponibilidad del bundle ID es intentar
+firmar la app en la pantalla `Signing & Capabilities` de Xcode. Al
+escribir el bundle ID y pulsar `Enter` Xcode intenta firmar la app y
+da un error si el bundle ID ya está cogido.
+
+<img src="imagenes/xcode-bundle-id-error.png" width="650px"/>
 
 
 ### Uso del Bundle ID ###
 
 <img src="imagenes/bundleid.png" width="500px"/>
 
-Se utiliza durante el desarrollo para aprovisionar dispositivos y por
-el sistema operativo cuando la app se distribuye a los clientes. Por
-ejemplo, los servicios de Game Center o de compras In-App usan el
-_bundle ID_ para identificar la app cuando utilizan estos servicios.
-
+Ya que el bundle ID identifica una app de forma única, éste se utiliza
+en varias fases de su configuración. En concreto, se usa en el proceso
+de aprovisionamiento de la app y en la configuración de los permisos y
+capacidades a los que la app puede acceder. Cuando configuramos los
+permisos para que la app pueda utilizar determinados servicios debemos
+indicar a qué bundle IDs otorgamos esos permisos. Esto lo hacemos como
+el _App ID_.
 
 ### App ID ###
 
@@ -595,6 +663,55 @@ empareje el _bundle ID_ y que satisfaga estas necesidades. Si no
 existe ninguno, crea el _App ID_ y el perfil de aprovisionamiento de
 forma automática. El App ID lo registra en la cuenta de
 desarrollo. Sólo lo puede hacer si somos administradores.
+
+## Demo ##
+
+Vamos a comprobar el uso de las capacidades (_capabilities_) en la app
+ToDo. Si pulsamos en `+ Capability` veremos que podemos añadir un
+amplio conjunto de capacidades a la app. Son muchas más que en
+el perfil gratuito, por estar firmando la app con la cuenta de
+desarrollador del equipo de la UA.
+
+Pero para poder utilizar la capacidad, ésta debe estar autorizada por
+el perfil de aprovisionamiento. Y el perfil de aprovisionamiento
+`Genérico` no autoriza ninguna.
+
+Lo podemos comprobar seleccionando por ejemplo `Game Center`. Veremos
+el siguiente mensaje de error, que el perfil `Genérico` no autoriza la
+capacidad `Game Center`.
+
+<img src="imagenes/error-game-center.png" width="600px"/>
+
+Podemos ver los perfiles en la web del desarrollador del equipo de la
+UA, y buscar un perfil que autorice esa capacidad.
+
+<img src="imagenes/perfil-master-moviles-todo.png" width="650px"/>
+
+Vemos que el perfil `Master Moviles ToDo` contiene las capacidades
+`Game Center`, `iCloud`, `In-App Purchase` y `Push Notifications`. Y
+que el App ID autoriza su uso al bundle ID `es.ua.mastermoviles.ToDo`.
+
+Cambiamos el bundle ID de la app a `es.ua.mastermoviles.ToDo`. Ese
+mismo identificador puede ser usado por distintos programadores, siempre
+que estén en el mismo equipo. En este caso, en el equipo de la UA. 
+
+Descargamos el perfil `Master Moviles ToDo`.
+
+<img src="imagenes/download-master-moviles-todo.png" width="500px"/>
+
+Y podemos comprobar que ahora ya no da ningún error el uso de la
+capacidad `Game Center`.
+
+<img src="imagenes/ok-game-center.png" width="600px"/>
+
+Al exportar la app tenemos que seleccionar manualmente el perfil
+correcto:
+
+<img src="imagenes/exportar-con-perfil.png" width="500px"/>
+
+### Fin de la demo ###
+
+----
 
 ## Despliegue de apps en dispositivos de prueba ##
 
@@ -654,11 +771,11 @@ desarrollo de la universidad.
 
 Una vez añadido el perfil de aprovisionamiento a la app, podremos
 generar el archivo binario _.ipa_ utilizando los métodos de
-distribución denominados _Ad hoc_ y _Development_. Con el primero
-podemos distribuir el app a aquellos dispositivos incluidos en la
-lista de dispositivos autorizados del perfil de aprovisionamiento. Con
-el segundo podemos distribuir la app a miembros (_testers_) de nuestro
-equipo de desarrollo.
+distribución denominados _Ad hoc_ y _Development_. Con ambos métodos
+de distribución podemos distribuir el app a aquellos dispositivos
+incluidos en la lista de dispositivos autorizados del perfil de
+aprovisionamiento. Con el segundo método podemos además distribuir la
+app a _testers_ de nuestro equipo de desarrollo.
 
 El perfil de aprovisionamiento de la app también incluye las
 capacidades declaradas para que la app pueda acceder a servicios de la
@@ -691,9 +808,10 @@ Un perfil de aprovisionamiento contiene los siguientes elementos:
 
 Físicamente, los perfiles de aprovisionamiento son ficheros XML
 encriptados. Los que usa Xcode se guardan en el directorio
-`Library/MobileDevice/Provisioning Profiles`. Podemos acceder desde
-el Finder a la carpeta `Library` con el menú `Ir + Alt > Biblioteca`
-(el modificador `Alt` muestra las opciones ocultas).
+`Library/MobileDevice/Provisioning Profiles`. Podemos acceder a este
+directorio desde el terminal o desde el Finder mostrando la carpeta
+`Biblioteca` con el menú `Ir + Alt > Biblioteca` (el modificador `Alt`
+muestra las opciones ocultas).
 
 Si los borramos de esa
 carpeta, **automáticamente se borran de Xcode** (esto es muy útil cuando
@@ -746,14 +864,13 @@ los permisos (_entitlements_) se usan para asegurar que:
 
 ### Instalación de la app en un dispositivo de prueba  ###
 
-<img src="imagenes/install-configurator.png" width="600px"/>
-
 Es posible instalar la app en el iPhone de prueba usando Xcode o
 _Apple Configurator 2_.
 
 La aplicación _Apple Configurator 2_ permite configurar dispositivos,
-hacer copias de seguridad, añadir apps, etc. Contiene funcionalidades
-que se han extraído de iTunes.
+hacer copias de seguridad, añadir apps, etc.
+
+<img src="imagenes/install-configurator.png" width="600px"/>
 
 La app se copia en el dispositivo junto con el perfil de
 aprovisionamiento (está incluido en el ipa). De esta forma, para
@@ -803,20 +920,20 @@ fueran apps _in-house_.
 
 ### Resumen del flujo de trabajo ###
 
-Es necesario firmar digitalmente la app para poder ejecutarla en un
-dispositivo y usar ciertos servicios como CloudKit, Game Center o
-compras In-App.
+Vamos a comprobar que es necesario firmar digitalmente la app para
+poder ejecutarla en un dispositivo y usar ciertos servicios como
+CloudKit, Game Center o compras In-App. Además, veremos que la app
+puede ejecutarse en todos aquellos dispositivos que hayamos registrado
+y añadido en el perfil de aprovisionamiento usado para firmar la app
+(además de en el dispositivo de desarrollo autorizado por Xcode).
 
-Los dispositivos que se usan para el desarrollo deben ser registrados
-y añadidos en el perfil de aprovisionamiento que uses para firmar la
-app.
+Veremos que si seleccionamos la opción de firma automática en Xcode,
+Xcode creará estos elementos de forma automática. También
+comprobaremos cómo el administrador puede configurar App IDs y
+perfiles de aprovisionamiento en la web del equipo de desarrollo de
+Apple.
 
-Si seleccionamos la opción de firma automática en Xcode, Xcode crea
-estos elementos de forma automática. Si perteneces a un equipo,
-algunos de estos permisos deben ser configurados por el administrador
-del equipo en la web de desarrollador de Apple.
-
-Pasos que vamos a seguir en esta demo:
+Un resumen de los pasos que vamos a seguir en el ejercicio:
 
 1. Nos damos de alta al equipo de la universidad.
 2. El administrador del equipo de la universidad crea un App ID con
@@ -855,16 +972,15 @@ en el portal del desarrollador o en la aplicación de Acceso a llaveros:
 <img src="imagenes/nuevo-certificado-acceso-llaveros.png" width="700px"/>
 
 
-### Comprobación del certificado en el perfil de aprovisionamiento ###
+### Incorporación de certificado a un perfil de aprovisionamiento (administrador)  ###
 
 Para poder firmar y distribuir apps el certificado recién creado debe
 estar incluido en un perfil de aprovisionamiento compatible con la app
 que estamos desarrollando.
 
-En el portal de desarrolladores existe un certificado de
+Vamos a incorporar los nuevos certificados al perfil de
 aprovisionamiento genérico, con App ID comodín (`*`) con el que se
-puede compilar cualquier app. **El administrador** debe comprobar si el
-certificado está incluido y si no es así, deberá incluirlo.
+puede compilar cualquier app.
 
 <img src="imagenes/actualizar-perfil-aprovisionamiento-cert.png" width="700px" />
 
@@ -896,6 +1012,17 @@ Vemos que se firma la aplicación correctamente y que se añade el
 perfil de aprovisionamiento que hemos seleccionado.
 
 <img src="imagenes/perfil-generico-team.png" width="700px"/>
+
+La ventaja principal de firmar las apps de esta forma es que podremos
+distribuirlas a cualquier dispositivo incluido en el perfil.
+
+Prueba que es posible generar un fichero `.ipa` seleccionando
+la opción `Product > Archive`. Para ello debe estar seleccionada la
+opción `Generic iOS Device` en el menú de ejecución. Si está
+seleccionado un modelo concreto de iPhone la opción Archive se
+deshabilita.
+
+### El perfil genérico no tiene configurado ningún servicio ###
 
 Vamos ahora a intentar añadir una _capability_. Por ejemplo,
 la de _Game Center_. Lo podemos hacer pulsando en el botón `+ Capability`, 
@@ -946,7 +1073,7 @@ aprovisionamiento creados, junto con la información asociada.
   apps
 
 
-### Creación un App ID desde el portal del desarrollador ###
+### Creación de un App ID desde el portal del desarrollador (administrador) ###
 
 Sólo se puede hacer con el rol administrador. Se pulsa `+` en la
 cabecera _Identifiers_. Se selecciona la opción _Register a New
@@ -980,7 +1107,7 @@ aprovisionamiento que contenga el _App Id_ y los dispositivos y que se
 descargará la app.
 
 
-### Dispositivos ###
+### Dispositivos (administrador) ###
 
 Para añadir un dispositivo al portal del desarrollador hay que
 seleccionar la opción correspondientes (_Devices_) y añadir su UDID,
@@ -997,7 +1124,7 @@ pantalla de Dispositivos (_Window > Devices_).
 Se pueden registrar en el portal del desarrollador hasta 200 UDIDs para
 probar aplicaciones en desarrollo.
 
-### Creación de perfiles de aprovisionamento ###
+### Creación de perfiles de aprovisionamento (administrador) ###
 
 Una vez creado el App ID con los permisos necesarios, añadidos los
 certificados de los desarrolladores del equipo y añadidos los
