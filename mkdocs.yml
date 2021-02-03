@@ -6,17 +6,17 @@ nav:
 #    - 0. Introducción : 'teoria/introduccion-servicios-ios/introduccion-servicios-ios.md'-->
     - 1. Firma, aprovisionamiento y distribución de apps: 'teoria/firma-aprovisionamiento/firma-aprovisionamiento.md'
     - 2. Mapas y localización: 'teoria/mapas-localizacion/mapas-localizacion.md'
-    - 3. Notificaciones: 'teoria/notificaciones/notificaciones.md'
-    - 4. iCloud y CloudKit: 'teoria/icloud/icloud.md'
-    - 5. Anuncios: 'teoria/anuncios/anuncios.md'
-    - 6. Compras InApp: 'teoria/compras-in-app/compras-in-app.md'
+#    - 3. Notificaciones: 'teoria/notificaciones/notificaciones.md'
+#    - 4. iCloud y CloudKit: 'teoria/icloud/icloud.md'
+#    - 5. Anuncios: 'teoria/anuncios/anuncios.md'
+#    - 6. Compras InApp: 'teoria/compras-in-app/compras-in-app.md'
 #    - 5. Extensiones: 'teoria/extensiones/extensiones.md'
 - 'Prácticas':
     - Práctica 1: 'practicas/aprovisionamiento/firma-aprovisionamiento.md'
     - Práctica 2: 'practicas/mapas/mapas-localizacion.md'
-    - Práctica 3: 'practicas/notificaciones/notificaciones.md'
-    - Práctica 4: 'practicas/icloud/icloud.md'
-    - Práctica 5: 'practicas/anuncios/anuncios.md'
+#    - Práctica 3: 'practicas/notificaciones/notificaciones.md'
+#    - Práctica 4: 'practicas/icloud/icloud.md'
+#    - Práctica 5: 'practicas/anuncios/anuncios.md'
 #    - Práctica 5: 'practicas/extensiones/extensiones.md'
 
 theme:
