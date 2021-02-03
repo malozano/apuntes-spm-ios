@@ -465,19 +465,37 @@ La actualización del _callout_ se hace en el mismo método
 `mapView(_:viewFor`) que devuelve la vista de una anotación: 
 
 ```swift
-func mapView(mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-    //
-    // el mismo código que antes
-    //
-    let pin = annotation as! Pin
+func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    print("Devolviendo vista para anotación: \(annotation)")
+    let pin = annotation as? Pin
+    let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+
+    view.pinTintColor = UIColor.red
+    view.animatesDrop = true
+    view.canShowCallout = true
     let thumbnailImageView = UIImageView(frame: CGRect(x:0, y:0, width: 59, height: 59))
-    thumbnailImageView.image = pin.thumbImage
+    thumbnailImageView.image = pin?.thumbImage
     view.leftCalloutAccessoryView = thumbnailImageView
-    view.rightCalloutAccessoryView = UIButton(type:UIButtonType.detailDisclosure)
-    return view
+    view.rightCalloutAccessoryView = UIButton(type:UIButton.ButtonType.detailDisclosure)
+    return view;
 }
 ```
 
+Podemos saber que se ha pulsado un botón de un callout usando el
+método del delegado `mapView(_:annotationView:calloutAccessoryControlTapped:)`. En ese
+caso podríamos, por ejemplo, activar un segue, pasándole como
+parámetro la vista de la anotación que se ha pulsado.
+
+```swift
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        performSegue(withIdentifier: "DetalleImagen", sender: view)
+    }
+```
+
+En el método `prepare(for segue: UIStoryboardSegue, sender: Any?)`
+recibiremos la vista de la anotación en el parámetro `sender`. Podemos
+acceder a la anotación a partir de la `mKAnnotationView` usando el
+atributo `annotation`.
 
 ### Overlays
 
