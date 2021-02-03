@@ -144,13 +144,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         let map = MKMapView(frame:
-            CGRect(x: 0, y: 30, width: self.view.frame.width, height: 200))
+                                CGRect(x: 0, y: 0,
+                                       width: self.view.frame.width,
+                                       height: self.view.frame.height))
         self.view.addSubview(map)
         map.delegate = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }
 ```
@@ -183,21 +181,19 @@ class ViewController: UIViewController, MKMapViewDelegate  {
             let alicanteLocation = 
                 CLLocationCoordinate2D(latitude: 38.3453, 
                                        longitude: -0.4831)
-            let initialLocation = 
-                CLLocation(latitude: alicanteLocation.latitude,
-                           longitude: alicanteLocation.longitude)
-            centerMapOnLocation(mapView: mapView, loc: initialLocation)
+            centerMapOnLocation(mapView: mapView, loc: alicanteLocation)
         }
     }
 
-    func centerMapOnLocation(mapView: MKMapView, loc: CLLocation) {
-        let regionRadius: CLLocationDistance = 1000
-        let coordinateRegion = 
-            MKCoordinateRegionMakeWithDistance(loc.coordinate,
-                           regionRadius * 4.0, regionRadius * 4.0)
+    func centerMapOnLocation(mapView: MKMapView, loc: CLLocationCoordinate2D) {
+        let regionRadius: CLLocationDistance = 4000
+        let coordinateRegion =
+            MKCoordinateRegion(center: loc,
+                               latitudinalMeters: regionRadius,
+                               longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    
+
     ...
 }
 ```
