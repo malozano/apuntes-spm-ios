@@ -5,6 +5,9 @@ Terminan la práctica en unas 1,5 horas + 1 hora de explicación = 2,5 horas
 
 # Práctica 2: Mapas y localización
 
+
+## Parte obligatoria (hasta 7 puntos) ##
+
 1. Lee los siguientes apartados de los [apuntes de teoría](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#aspectos-basicos-de-mapkit): desde _Aspectos básicos de MapKit_
    hasta _Uso del delegado_ (incluido).
 
@@ -45,6 +48,7 @@ dependiendo de si el número de pin es par o impar.
 <img src="imagenes/practica-3.png" width="300px"/>
 </p>
 
+## Parte opcional (3 puntos) ##
 
 **Parte opcional 1**
 
@@ -57,7 +61,6 @@ dependiendo de si el número de pin es par o impar.
 <img src="imagenes/storyboard.png" width="500px"/> 
 <img src="imagenes/practica-4.png" width="200px"/>
 </p>
-
 
 
 **Parte opcional 2**
