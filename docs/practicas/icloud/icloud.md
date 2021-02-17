@@ -2,23 +2,20 @@
 # Práctica 4: iCloud y CloudKit
 
 Seguimos trabajando con el proyecto `ToDo` y el _bundle ID_
-`es.ua.mastermoviles.ToDo` y el perfil de
-aprovisionamiento `Master Moviles ToDo` (lo hemos
-actualizado para que incluya el permiso de acceso a CloudKit y
-al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
+`es.ua.mastermoviles.ToDo` y el perfil de aprovisionamiento `Master
+Moviles ToDo` (está actualizado e incluye el permiso de acceso
+a CloudKit y al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
+
+## Parte obligatoria (hasta 7 puntos) ##
 
 - Actualiza en Xcode el permiso para utilizar iCloud, con clave-valor
   y con CloudKit.
     
-    
-## iCloud clave-valor ##
 
 <img style="border: 1px solid;" src="imagenes/todo-clave-valor.jpeg" width="300px"/>
 
 - Modifica la app ToDo para que el número de ítems terminados se
   guarde en iCloud del usuario, usando iCloud clave-valor.
-
-## ToDo en CloudKit ##
 
 <img src="imagenes/todolist-cloudkit.png" width="300px"/>
 
@@ -29,11 +26,15 @@ al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
 - En el contenedor de CloudKit se ha añadido el tipo de registro
   `Tarea` con el campo `texto` con los índices `Queryable`,
   `Searchable`, `Sortable`. 
-- (**Opcional**): Utiliza la base de datos pública para publicar
-  tareas compartidas por todos los usuarios de la app. Al añadir
-  una tarea debes permitir la opción de hacerlo en la base de datos
-  pública. Muestra el texto de las tareas públicas en un color
-  diferente en el listado de tareas.
+
+
+## Parte opcional (3 puntos) ##
+
+- Utiliza la base de datos pública para publicar tareas compartidas
+  por todos los usuarios de la app. Al añadir una tarea debes permitir
+  la opción de hacerlo en la base de datos pública. Muestra el texto
+  de las tareas públicas en un color diferente en el listado de
+  tareas.
   
 <!--
 
@@ -46,7 +47,7 @@ una tarea porque no es tuya.
 
 -->
 
-- (**Opcional**): Añade una funcionalidad en la que se recargue la
+- Añade una funcionalidad en la que se recargue la
   tabla con los datos de iCloud cuando se tire de la tabla hacia
   abajo. 
 
