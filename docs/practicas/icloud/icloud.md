@@ -26,6 +26,23 @@ a CloudKit y al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
     `Searchable`, `Sortable`. 
 
 
+### Pista para actualizar la tabla ###
+
+- Los _callbacks_ en los que se reciben los resultados de las
+  _queries_ son asíncronos y se procesan en hilos secundarios.
+- Si actualizamos los datos de la tabla en un _callback_ de este tipo,
+  la interfaz de usuario no se refrescará hasta que el usuario no
+  interactúe con la tabla.
+- Se puede forzar a ejecutar la actualización de los datos de la tabla en
+  el hijo principal con este código en algún lugar del `ToDoTableViewController`:
+  
+```swift
+DispatchQueue.main.async( execute: {
+    self.tableView.reloadData()
+})
+```
+
+
 ## Parte opcional (3 puntos) ##
 
 
@@ -46,20 +63,4 @@ pública y, de esta forma, borrar registros en ella.
 - Añade una funcionalidad en la que se recargue la
   tabla con los datos de iCloud cuando se tire de la tabla hacia
   abajo. 
-
-### Pista para actualizar la tabla ###
-
-- Los _callbacks_ en los que se reciben los resultados de las
-  _queries_ son asíncronos y se procesan en hilos secundarios.
-- Si actualizamos los datos de la tabla en un _callback_ de este tipo,
-  la interfaz de usuario no se refrescará hasta que el usuario no
-  interactúe con la tabla.
-- Se puede forzar a ejecutar la actualización de los datos de la tabla en
-  el hijo principal con este código en algún lugar del `ToDoTableViewController`:
-  
-```swift
-DispatchQueue.main.async( execute: {
-    self.tableView.reloadData()
-})
-```
 
