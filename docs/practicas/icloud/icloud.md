@@ -10,41 +10,37 @@ a CloudKit y al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
 
 - Actualiza en Xcode el permiso para utilizar iCloud, con clave-valor
   y con CloudKit.
+- Modifica la app ToDo para que el número de ítems terminados se
+  guarde en iCloud del usuario, usando iCloud clave-valor.
     
 
 <img style="border: 1px solid;" src="imagenes/todo-clave-valor.jpeg" width="300px"/>
-
-- Modifica la app ToDo para que el número de ítems terminados se
-  guarde en iCloud del usuario, usando iCloud clave-valor.
-
-<img src="imagenes/todolist-cloudkit.png" width="300px"/>
 
 
 - Añade el código necesario para que las tareas pendientes
   se guarden y recuperen de la base de datos privada de
   CloudKit. 
-- En el contenedor de CloudKit se ha añadido el tipo de registro
-  `Tarea` con el campo `texto` con los índices `Queryable`,
-  `Searchable`, `Sortable`. 
+  
+    En el contenedor de CloudKit se ha añadido el tipo de registro
+    `Tarea` con el campo `nombre` con los índices `Queryable`,
+    `Searchable`, `Sortable`. 
 
 
 ## Parte opcional (3 puntos) ##
 
-- Utiliza la base de datos pública para publicar tareas compartidas
+
+<img src="imagenes/todolist-cloudkit.png" width="300px"/>
+
+- Utiliza la base de datos pública de CloudKit para publicar tareas compartidas
   por todos los usuarios de la app. Al añadir una tarea debes permitir
   la opción de hacerlo en la base de datos pública. Muestra el texto
   de las tareas públicas en un color diferente en el listado de
   tareas.
   
 <!--
-
-La configuración de los roles de seguridad en el Dashboard hace que 
-solo los usuarios que han creado la tarea puedan borrarla. Los demás 
-pueden leerla, pero no borrarla.
-
-Hay que definir una alerta que de un aviso de que no has podido borrar
-una tarea porque no es tuya.
-
+Es necesario configurar los roles de seguridad en el Dashboard para
+permitir que cualquier usuario pueda escribir en la base de datos
+pública y, de esta forma, borrar registros en ella.
 -->
 
 - Añade una funcionalidad en la que se recargue la
