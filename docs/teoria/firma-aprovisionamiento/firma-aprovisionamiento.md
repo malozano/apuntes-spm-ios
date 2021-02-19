@@ -1,3 +1,8 @@
+
+<!-- Una forma de subir un fichero .ipa a una web para que otros -->
+<!-- puedan descargarlo es usar la web https://www.diawi.com/ y todas -->
+<!-- sus alternativas: https://alternativeto.net/software/diawi/ -->
+
 # Firma, aprovisionamiento y distribución de apps
 
 ## Introducción ##
