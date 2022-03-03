@@ -1,7 +1,9 @@
 
-<!-- Una forma de subir un fichero .ipa a una web para que otros -->
-<!-- puedan descargarlo es usar la web https://www.diawi.com/ y todas -->
-<!-- sus alternativas: https://alternativeto.net/software/diawi/ -->
+<!-- 
+Una forma de subir un fichero .ipa a una web para que otros
+puedan descargarlo es usar la web https://www.diawi.com/ y todas 
+sus alternativas: https://alternativeto.net/software/diawi/ 
+-->
 
 # Firma, aprovisionamiento y distribución de apps
 
@@ -63,7 +65,8 @@ Apple define varios tipos de programas de desarrollo:
 
 Si sólo queremos empezar a desarrollar y probar apps en nuestro
 dispositivo iOS basta con darse de alta de forma gratuita en el
-**portal del desarrollador** (_member center_) de Apple con un Apple ID. 
+[portal del desarrollador](https://developer.apple.com) (_member
+center_) de Apple con un Apple ID.
 
 El programa de pago de desarrollador de Apple permite utilizar
 funcionalidades avanzadas, distribuir apps a dispositivos de prueba o
