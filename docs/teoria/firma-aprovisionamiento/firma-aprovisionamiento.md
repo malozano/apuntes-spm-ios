@@ -1266,6 +1266,7 @@ Configurator 2.
 
 ----
 
+<!--
 
 ## Distribución e instalación de betas online ##
 
@@ -1340,8 +1341,6 @@ de Google Analytics con el que podemos comprobar una gran cantidad de
 opciones relacionadas con el uso del app.
 
 <img src="imagenes/google-analytics-firebase.png" width="700px"/>
-
-<!--
 
 ## Test Flight ##
 
