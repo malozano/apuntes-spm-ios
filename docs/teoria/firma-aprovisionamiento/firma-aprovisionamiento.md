@@ -892,7 +892,27 @@ dispositivos de Xcode accesible desde la opción _Window > Devices_.
 Allí también podemos comprobar el perfil de aprovisionamiento recién
 instalado.
 
-### Ejecución de apps en dispositivos no registrados ###
+Por último, es posible instalar la app en modo prueba a través de
+Internet usando la herramienta oficial de Apple
+[TestFlight](https://developer.apple.com/testflight/), con la que se
+puede instalar la app tanto en dispositivos registrados en el perfil
+de aprovisionamiento como en dispositivos de usuarios de prueba
+desconocidos (hasta 10.000 usuarios de prueba). Para usar TestFlight
+es necesario ser un desarrollador de pago. 
+
+Una alternativa gratuita son servicios como
+[diawi](https://www.diawi.com) o
+[similares](https://alternativeto.net/software/diawi/), que permiten
+distribuir la app también por Internet, pero solo a usuarios con el
+UDID incluido en el perfil de aprovisionamiento.
+
+<img src="imagenes/diawi.png" width="500px"/>
+
+Tras subir el fichero ipa a la web se genera una URL y un código QR
+desde la que se puede descargar la app en nuestro dispositivo. 
+
+
+### Distribución y ejecución de apps en dispositivos no registrados ###
 
 Existen dos tipos especiales de perfiles de aprovisionamiento que
 permiten que cualquier dispositivo (no solo aquellos que están
