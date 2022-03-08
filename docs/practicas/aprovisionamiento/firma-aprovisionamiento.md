@@ -91,7 +91,7 @@ nada.
 6. Comprueba que aparece un error cuando intentas exportar la
    app. Captura la pantalla de Xcode.
    
-## 2. Configuración de la cuenta de desarrollador ##
+## 3. Configuración de la cuenta de desarrollador ##
 
 1. Para la inscripción en el equipo de desarrollo de la universidad
    escribe tu nombre, apellidos, dirección de e-mail en [este fichero
@@ -111,7 +111,7 @@ nada.
    ya estás en el programa de la UA y prueba las distintas opciones 
    disponibles. 
 
-## 3. Firma y despliegue de app con perfil de aprovisionamiento ##
+## 4. Firma y despliegue de app con perfil de aprovisionamiento ##
 
 Sigue los pasos de la [demo y
    ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
@@ -147,7 +147,7 @@ Sigue los pasos de la [demo y
    `Apple Configurator 2` instalando la app en el
    dispositivo. Comprueba que la app funciona correctamente.
 
-## Entregas ##
+## 5. Entrega ##
 
 Crea una carpeta y guarda en ella lo siguiente:
 
