@@ -34,7 +34,7 @@ apartados del tema de teoría:
 
     - [Localización](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#localizacion):
       explicación de cómo activar y acceder a los servicios de
-      localización. Necesario para la segunda parte opcional de la práctica.
+      localización. Necesario para la tercera parte opcional de la práctica.
 
 
 ## 2. Parte obligatoria (hasta 7 puntos) ##
