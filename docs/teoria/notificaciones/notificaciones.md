@@ -829,9 +829,7 @@ y servicio como entre proveedor y el servicio.
 
 - Seguridad en la **conexión Proveedor-APNs**
     - Basada en JWT (JSON web tokens) o basada en un certificado.
-    - Utilizaremos la seguridad basada en un certificado, obteniéndolo
-      en el _member center_ y usándolo para que el APNs confíe en los
-      mensajes que recibe del proveedor.
+    - Utilizaremos la basada en JWT, por ser más flexible y rápida.
 - Seguridad en la **conexión APNs-Dispositivo**
     - Basada en un _token de dispositivo_ (único para cada dispositivo
       y encriptado con su clave privada) que envía el APNs al
@@ -840,7 +838,6 @@ y servicio como entre proveedor y el servicio.
 
 
 ### Secuencia de registro del dispositivo ###
-
 
 Sin considerar aspectos de seguridad y codificación, los pasos que
 se siguen al registrarse un dispositivo con el método de la clase
@@ -882,7 +879,7 @@ formato binario o hexadecimal) para que lo utilice para enviar
 notificaciones al dispositivo.
 
 
-### Envío de notificación remota usando el token ###
+### Envío de notificación remota usando el token del dispositivo ###
 
 Cuando el servidor envía una petición de notificación al APNs,
 incluye el token del dispositivo.
@@ -1040,14 +1037,11 @@ La mayoría de servicios PaaS proporcionan conexiones con el APNs y librerías q
 - [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
 - [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
 
-Una opción sencilla, que usaremos en la práctica, es usar un
-[script PHP](https://gist.github.com/domingogallardo/b7946d8fe500187b426afb7ac8d8e470)
-desde el terminal.
+Una opción sencilla, que usaremos en la práctica, es lanzar la
+notificación [desde el terminal](https://developer.apple.com/documentation/usernotifications/sending_push_notifications_using_command-line_tools).
 
-En cualquier caso nuestro servidor deberá conectarse al APNs usando
-una técnica segura: o bien un certificado proporcionado por Apple (es
-lo que haremos en la demostración) o bien un token, usando JWT (JSON
-Web Token).
+En cualquier la conexión al APNs debe estar encriptada: o bien un certificado proporcionado por Apple o bien un token, usando JWT (JSON
+Web Token). Esto último es lo que haremos en la demostración.
 
 - [Establishing a Certificate-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)
 - [Establishing a Token-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)
@@ -1402,6 +1396,7 @@ $body['aps'] = array(
   );
 $body['mensaje'] = $message;
 ```
+
 
 ## Bibliografía
 
