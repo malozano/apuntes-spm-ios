@@ -825,16 +825,49 @@ puedan aparecer en otros dispositivos.
 
 El servicio de notificaciones remota de Apple (APNs) define unas
 condiciones de seguridad bastante estrictas tanto entre dispositivo
-y servicio como entre proveedor y el servicio.
+y servicio como entre proveedor (nuestro servidor y el servicio.
 
 - Seguridad en la **conexión Proveedor-APNs**
     - Basada en JWT (JSON web tokens) o basada en un certificado.
-    - Utilizaremos la basada en JWT, por ser más flexible y rápida.
 - Seguridad en la **conexión APNs-Dispositivo**
     - Basada en un _token de dispositivo_ (único para cada dispositivo
       y encriptado con su clave privada) que envía el APNs al
       dispositivo y que debe estar presente en cada petición del
       proveedor al APNs.
+
+
+### Servidores proveedores ###
+
+Las notificaciones remotas se deben originar en un servidor
+proveedor nuestro que debe conectarse con el APNs usando la API
+definida por Apple basada en un protocolo HTTP/2 y TLS.
+
+Es posible montar un servidor propio usando librerías ya
+existentes. Por ejemplo, en Java existe la librería
+[Pushy](https://github.com/relayrides/pushy). Es recomendable
+consultar la documentación de Apple [Setting Up a Remote Notification
+Server](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server)
+y [Sending Notification Requests to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns).
+
+La mayoría de servicios PaaS proporcionan conexiones con el APNs y librerías que facilitan el envío de notificaciones:
+
+- [Firebase Cloud Messaging for iOS](https://developers.google.com/cloud-messaging/ios/start?ver=swift)
+- [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
+- [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
+
+Una opción sencilla, que usaremos en la práctica, es lanzar la
+notificación [desde el terminal](https://developer.apple.com/documentation/usernotifications/sending_push_notifications_using_command-line_tools).
+
+En cualquier caso la conexión al APNs debe estar encriptada: o bien un certificado proporcionado por Apple o bien un token, usando JWT (JSON
+Web Token). Esto último es lo que haremos en la demostración.
+
+- [Establishing a Certificate-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)
+- [Establishing a Token-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)
+
+Para la demostración y la práctica enviaremos la notificación al APNs
+usando el terminal y una autenticación con JWT. Cada notificación se
+enviará junto con un JWT firmado con una clave privada generada en el
+portal de desarrollo.
 
 
 ### Secuencia de registro del dispositivo ###
@@ -878,11 +911,8 @@ Una vez recibido el token, el app debe enviarlo al proveedor (en
 formato binario o hexadecimal) para que lo utilice para enviar
 notificaciones al dispositivo.
 
-
-### Envío de notificación remota usando el token del dispositivo ###
-
 Cuando el servidor envía una petición de notificación al APNs,
-incluye el token del dispositivo.
+se debe incluir el token del dispositivo.
 
 El APNs desencripta el token para asegurarse de la validez de la
 petición y determina el dispositivo de destino.
@@ -892,6 +922,7 @@ envía la notificación al dispositivo identificado.
 
 
 <img src="imagenes/token-trust.png" width="500px"/>
+
 
 ### Contenido de la notificación ###
 
@@ -1017,34 +1048,6 @@ Notificación con acciones:
 }
 ```
 
-
-### Servidores proveedores ###
-
-Las notificaciones remotas se deben originar en un servidor
-proveedor nuestro que debe conectarse con el APNs usando la API
-definida por Apple basada en un protocolo HTTP/2 y TLS.
-
-Es posible montar un servidor propio usando librerías ya
-existentes. Por ejemplo, en Java existe la librería
-[Pushy](https://github.com/relayrides/pushy). Es recomendable
-consultar la documentación de Apple [Setting Up a Remote Notification
-Server](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server)
-y [Sending Notification Requests to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns).
-
-La mayoría de servicios PaaS proporcionan conexiones con el APNs y librerías que facilitan el envío de notificaciones:
-
-- [Firebase Cloud Messaging for iOS](https://developers.google.com/cloud-messaging/ios/start?ver=swift)
-- [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
-- [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
-
-Una opción sencilla, que usaremos en la práctica, es lanzar la
-notificación [desde el terminal](https://developer.apple.com/documentation/usernotifications/sending_push_notifications_using_command-line_tools).
-
-En cualquier la conexión al APNs debe estar encriptada: o bien un certificado proporcionado por Apple o bien un token, usando JWT (JSON
-Web Token). Esto último es lo que haremos en la demostración.
-
-- [Establishing a Certificate-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_certificate-based_connection_to_apns)
-- [Establishing a Token-Based Connection to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/establishing_a_token-based_connection_to_apns)
 
 
 ## Gestión de las notificaciones remotas en la app ##
@@ -1174,13 +1177,12 @@ Código de gestión de la notificación cuando la **app está en primer plano**:
 
 ```swift
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                            willPresent notification: UNNotification,
-                            withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+                         willPresent notification: UNNotification, 
+                         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
     print("Recibida notificación primer plano")
-    let aps = notification.request.content.userInfo["aps"] as! [String: AnyObject]
-    if let news = aps["alert"] as? String {
-        createNewNewsItem(text: news)
-    }
+    let userInfo = notification.request.content.userInfo
+    createNewNewsItem(text: message(userInfo: userInfo) +
+                      " (userNotificationCenter willPresent)")
     // No mostramos la notificación
     completionHandler([])
 }
@@ -1191,13 +1193,11 @@ Código de gestión de la notificación cuando ha sido **accionada por el usuari
 
 ```swift
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                            didReceive response: UNNotificationResponse, 
-                            withCompletionHandler completionHandler: @escaping () -> Void) {
+                        didReceive response: UNNotificationResponse, 
+                        withCompletionHandler completionHandler: @escaping () -> Void) {
     print("Usuario ha pulsado una notificación")
-    let aps = response.notification.request.content.userInfo["aps"] as! [String: AnyObject]
-    if let news = aps["alert"] as? String {
-        createNewNewsItem(text: news)
-    }
+    let userInfo = response.notification.request.content.userInfo
+    createNewNewsItem(text: message(userInfo: userInfo) + " (userNotificationCenter didReceive)")
     completionHandler()
 }
 ```
@@ -1210,130 +1210,114 @@ func application(_ application: UIApplication,
                  didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
                  fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     print("Recibida notificación remota en background")
-    createNewNewsItem(text: "Notificación silenciosa")
+    createNewNewsItem(text: message(userInfo: userInfo) +
+                      " (UIApplication didReceiveRemoteNotification)")
     completionHandler(UIBackgroundFetchResult.newData)
 }
 ```
 
+La función `message(userInfo:)` devuelve un `String` con el mensaje
+contenido en la notificación:
 
+```swift
+func message(userInfo: [AnyHashable : Any]) -> String {
+    // Buscamos el mensaje en las claves custom
+    if let message = userInfo["mensaje"] as? String {
+        return message
+    } else {
+        // Cogemos como mensaje el valor o el título de la alerta
+        let aps = userInfo["aps"] as! [String: AnyObject]
+        if let message = aps["alert"] as? String {
+            return message
+        } else if let dic = aps["alert"] as? [String: AnyObject] {
+            return dic["title"] as! String
+        } else {
+            return ""
+        }
+    }
+}
+```
 
 ----
 
-## Demo ##
+## Ejercicio ##
 
-### Pasos necesarios para la demo ###
+### Pasos necesarios para el ejercicio ###
 
 En la demo vamos a mostrar cómo se envían y reciben notificaciones
 remotas. Ejecutaremos una app que va a recibir las notificaciones
 (NotificacionesPush) en un dispositivo real.
 
 Podremos enviar notificaciones a este dispositivo real
-utilizando un script en PHP que tendremos que configurar con:
+utilizando un script que tendremos que configurar con:
 
-- Certificado SSL autorizado por el APNs para enviar
-  notificaciones
-
-- Token del dispositivo al que se envía la notificación.
-
-Necesitaremos crear en el _member center_ un _App ID_ y
-configurar: 
-
-- **Certificado SSL** para autentificar el proveedor de
-  notificaciones frente al APNs.
-- **Perfil de aprovisionamiento** con la capacidad de notificación push.
+- JWT codificado que contiene el _Team Id_ y el _Key ID_ proporcionado
+  por Apple. Para la codificación necesitaremos una clave de
+  autenticación también proporcionada por Apple con un fichero de
+  texto con la extensión `.p8`.
+- _Bundle ID_ incluido en un AppID con el permiso de notificaciones
+  push.
+- Token del dispositivo.
 
 
 ### Nuevo App ID en el _member center_ (admin) ###
 
 Un administrador del equipo UA debe crear una App ID con el nombre
-explícito de la app que se va a poner en producción.
+explícito de la app que se va a poner en producción y con la
+autorización para las notificaciones push.
 
-<img src="imagenes/app-id-notificaciones-1.png" width="600px"/>
-
-Se debe añadir en el App ID la autorización de notificaciones push.
-
-<img src="imagenes/app-id-notificaciones-2.png" width="600px"/>
+<img src="imagenes/app-id-notificaciones-1.png" width="700px"/>
 
 
-### Creación del certificado SSL en el _member center_  (admin) ###
+### Creación de la clave de encriptación y la Key ID de Apple (admin)
 
-Para poder enviar notificaciones al servicio de Apple nuestro servidor
-necesita autenticarse con un certificado SSL. Vamos a ver cómo el
-administrador de la UA puede crear este certificado que después
-usaremos desde una aplicación PHP para enviar la notificación al
-servicio de Apple.
+Para poder encriptar el token JWT y poder usarlo para enviar la
+notificación es necesario crear en el portal de desarrollo de Apple
+una clave de encriptación para acceder al Servicio de Notificaciones
+Push de Apple (APNs).
 
-Se debe obtener un certificado de una autoridad de certificación que
-después subiremos al _member center_.
+Primero se pulsa en la opción de añadir una nueva clave:
 
-Se abre Acceso a Llaveros y seleccionamos _Acceso a Llaveros >
-Asistente de Certificados > Solicitar un certificado de una
-autoridad de certificación_.
+<img src="imagenes/key-notificacion-push.png" width="600px"/>
 
-Se salva el fichero `CertificateSigningRequest.certSigningRequest`.
+Y después se crea la clave, proporcionando un nombre de
+identificación (en nuestro caso `Notificaciones Push Master Moviles`):
 
-<img src="imagenes/certificado-autoridad-certificadora.png"/ width="600px"/>
-
-Para crear el certificado es necesario subir el fichero generado
-previamente `CertificateSigningRequest.certSigningRequest` al APP ID
-`es.ua.mastermoviles.NotificacionesPush` del perfil de aprovisionamiento.
-
-<img src="imagenes/app-id-notificaciones-servicios.png" width="600px"/>
-
-<img src="imagenes/crear-certificado-ssl.png" width="600px"/> 
-
-<img src="imagenes/generar-certificado-ssl.png" width="600px"/>
+<img src="imagenes/key-notificacion-push-2.png" width="700px"/>
 
 
-### Generación del fichero `.pem` (admin) ###
+Y por último confirmamos la nueva clave pulsando el botón `Register`:
 
-Una vez creado el certificado en el _Member Center_ se descarga y
-se instala en Acceso a llaveros.
+<img src="imagenes/key-notificacion-push-3.png" width="600px"/>
 
-<img src="imagenes/exportar-fichero-p12.png" width="600px"/>
+Una vez confirmada la clave, podemos descargarnos el fichero con la
+clave privada (solo una vez) y se crea un identificador de clave (_Key
+ID_) que se guarda en el portal del desarrollador y podremos consultar
+cuando sea necesario.
 
-Se exporta como fichero `.p12` y después se convierte en un fichero
-`.pem` que será el que utilicemos posteriormente para establecer la
-conexión SSL con el APNs:
+<img src="imagenes/key-notificacion-push-4.png" width="700px"/>
 
-- Se guarda el certificado como `UADevelopmentPushCertificate.p12` con
-  una contraseña (mastermoviles20)
+El fichero que se descarga es un fichero de texto con la extensión
+`.p8` que contiene la clave privada con la que podremos encriptar el
+token JWT. Lo debes guardar en un lugar seguro, porque solo puedes
+descargarlo una vez.
 
-- Se crea el fichero `.pem` con el siguiente comando:
+Una vez creada la clave, podrás consultar su información en el
+apartado `Keys` del portal de desarrollador:
 
-```
-$ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
-   -out UADevelopmentPushCertificate.pem -nodes -clcerts
-```
-
-- Se introduce la contraseña de antes y se generará
-  el certificado `UADevelopmentPushCertificate.pem`.
-
-Una vez hecho esto, ya tendremos listo el certificado para enviar la
-notificación push al APNs, usando el script PHP.
-
-### Creación del perfil de aprovisionamiento (admin) ###
-
-- Creamos un nuevo perfil de aprovisionamiento que podrán usar todos
-  los miembros del equipo.
-
-<img src="imagenes/perfil-aprovisionamiento-push.png" width="600px"/>
+<img src="imagenes/key-notificacion-push-5.png" width="600px"/>
 
 
-### Obtención del token del dispositivo ###
-
-Ya hemos obtenido el certificado SSL que utilizaremos en el script
-PHP para enviar las notificaciones al APNs.
+### Probamos la app `NotificacionesPush` y obtenemos el token del dispositivo
 
 Necesitamos obtener el token del dispositivo y de la app que va a
 recibir la notificación. Para ello debemos ejecutar la app en un
 dispositivo físico (no funciona en el simulador).
 
-
-### Probamos la app `NotificacionesPush` ###
-
 Descargamos el proyecto NotificacionesPush desde
-[este enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip). Contiene la app y los scripts PHP para enviar las notificaciones al APNs.
+[este
+enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip). Contiene
+la app y los scripts para enviar las notificaciones al APNs. 
 
 La app debe estar firmada con el perfil de aprovisionamiento creado
 y deben estar configuradas las _capabilities_ para activar las
@@ -1352,49 +1336,109 @@ ejecutar la app por primera vez.
 
 ### Probamos a enviar notificaciones remotas al dispositivo ###
 
-1. Descargamos [desde este
-  enlace](https://github.com/domingogallardo/apuntes-spm-ios/blob/master/UADevelopmentPushCertificate.pem)
-  el certificado SSL `UADevelopmentPushCertificatepem` que ha generado
-  el administrador de la UA y lo guardamos en el mismo directorio
-  `Scripts` en el que se encuentra el script `apnspush.php`.
-2. Editamos el script `apnspush.php` (en el directorio `Scripts`) y
-**modificamos en la línea 4 el `$deviceToken`**. Escribimos el token que ha
-aparecido en la consola y que puedes copiar de
-[este enlace](https://gist.github.com/domingogallardo/6afdc3a6d34aa3a45bed61685ce710f7). Este
-token identifica el dispositivo al que el APNs enviará la
-notificación.
-3. En el script PHP se muestra la forma de construir el payload de la notificación
-   remota:
+En el directorio `Scripts` del fichero descargado se encuentra el
+fichero `.p8` con la clave privada y los scripts `encode_jwt.sh` y
+`send_push_notification.sh`.
+
+1. Editamos el script `encode_jwt.sh` para incluir:
+    - el _Team ID_ del equipo de la UA, disponible en el portal del desarrollador
+    - el _Key ID_, disponible también en el portal del desarrollador
+    - el nombre del fichero `.p8` incluido en el directorio
+
+2. Ejecutamos el comando `encode_jwt.sh` y obtenemos el JWT
+   codificado:
    
-    ```php
-    $body['aps'] = array(
-        'alert' => $message,
-        'sound' => 'default',
-    );
-    ```
-
-4. Llama al script para crear una notificación remota en el dispositivo:
-
-```bash
-$ php apnspush.php 'Hola mundo desde la UA'
-Connected to APNS
-Message successfully delivered
+```
+% ./encode_jwt.sh
+eyAiYWxnIjogIkVTMjUwIhwgImtpZCI6ICJXM0g2WjlBNFI0IiB9.
+eyAiaXNzIjogIjNTOTUyQUdINDYiLCAiaWF0IjogMTY0ODA1ODc2N
+SB9.MEACIAvaPw6dP6d7ljQatmO5HsxK0J9NDVpd_xFBc-N4acLAAiAL
+Eo7pNb1k4_awSDicbjsz7dC1LkiGRgMgYXbh8Os13z
 ```
 
-<img style="margin-left:20px" src="imagenes/notificacion-device.png" width="250px"/>
+3. Este JWT tiene una duración de 1 hora. Si pasa ese tiempo deberemos
+   volver a ejecutar el comando para generar otro.
+   
+4. Copiamos el JWT y lo incluimos en el fichero
+   `send_push_notification.sh`. También debemos incluir el bundle ID
+   del AppID (`es.ua.mastermoviles.NotificacionesPush`) y el token del dispositivo.
+
+5. La notificación que se envía es una notificación con una
+   alerta. Podemos cambiar el _payload_ de la notificación para probar
+   distintas configuraciones.
+
+6. Llamamos al script para lanzar una notificación remota al dispositivo:
+
+```
+% ./send_push_notification.sh 
+
+*   Trying 17.188.168.147:443...
+* Connected to api.sandbox.push.apple.com (17.188.168.147) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (OUT), TLS handshake, Client hello (1):
+* (304) (IN), TLS handshake, Server hello (2):
+* (304) (IN), TLS handshake, Unknown (8):
+* (304) (IN), TLS handshake, Request CERT (13):
+* (304) (IN), TLS handshake, Certificate (11):
+* (304) (IN), TLS handshake, CERT verify (15):
+* (304) (IN), TLS handshake, Finished (20):
+* (304) (OUT), TLS handshake, Certificate (11):
+* (304) (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / AEAD-CHACHA20-POLY1305-SHA256
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: CN=api.development.push.apple.com; OU=management:idms.group.533599; O=Apple Inc.; ST=California; C=US
+*  start date: Dec 10 00:29:46 2021 GMT
+*  expire date: Jan  9 00:29:45 2023 GMT
+*  subjectAltName: host "api.sandbox.push.apple.com" matched cert's "api.sandbox.push.apple.com"
+*  issuer: CN=Apple Public Server RSA CA 12 - G1; O=Apple Inc.; ST=California; C=US
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multiplexing
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Using Stream ID: 1 (easy handle 0x15700e600)
+> POST /3/device/a7aece1640f3e3b787f3f88c33523eb1231fcd27ebe3c22170c472b02447af38 HTTP/2
+> Host: api.sandbox.push.apple.com
+> user-agent: curl/7.79.1
+> accept: */*
+> authorization: bearer eyAiYWxnIjogIkVTMjU2IiwgImtpZCI6ICJXM0g2WjlBNFI0IiB9.eyAiaXNzIjogIjNTOTUyQUdINDYiLCAiaWF0IjogMTY0ODA1ODc2NSB9.MEQCIAvaPw6dP6d7ljQatmO5HsxK0J9NDVpd_xFBc-N4acLAAiALEo7pNb1k4_awSDicbjsz7dC1LkiGRgMgYXbh8Of13w
+> apns-topic: es.ua.mastermoviles.NotificacionesPush
+> content-length: 198
+> content-type: application/x-www-form-urlencoded
+> 
+* We are completely uploaded and fine
+* Connection state changed (MAX_CONCURRENT_STREAMS == 1)!
+* Connection state changed (MAX_CONCURRENT_STREAMS == 1000)!
+< HTTP/2 200 
+< apns-id: 07C0F2E2-7CE0-71EC-D0D6-E7089220F778
+< 
+* Connection #0 to host api.sandbox.push.apple.com left intact
+```
+
+Y la notificación debe llegar correctamente al dispositivo:
+
+<img style="margin-left:20px" src="imagenes/notificacion-device.png" width="400px"/>
 
 ### Notificación silenciosa ###
 
 Para enviar una notificación silenciosa (no se muestra al usuario,
-pero llega a la app) hay que modificar el script PHP, para construir
-un payload que tenga el atributo `content-available` a 1:
+pero llega a la app) hay que añadir la cabecera `apns-push-type:
+background` y construir un payload que tenga el atributo
+`content-available` a 1. En el script están comentadas las dos líneas
+que habría que añadir:
 
-```php
-$body['aps'] = array(
-  'content-available' => 1,
-  'sound' => 'default',
-  );
-$body['mensaje'] = $message;
+```bash
+curl -v \
+  --http2 \
+  --header "authorization: bearer $JWT" \
+  --header "apns-topic: ${BUNDLEID}" \
+  --header "apns-push-type: background" \
+  --data '{"aps" : {"content-available" : 1}, "mensaje" : "Holaaaa"}' \
+  "${URL}"
 ```
 
 
