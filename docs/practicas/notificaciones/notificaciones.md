@@ -2,7 +2,8 @@
 
 ## 1. Antes de empezar la clase presencial
 
-1. Antes de la clase presencial deberás mirar los tres vídeos con demostraciones que podrás encontrar en Moodle, en la sesión 2.
+1. Antes de la clase presencial deberás mirar los tres vídeos con
+   demostraciones que podrás encontrar en Moodle, en la sesión de Notificaciones.
 
 2. Una vez vistas estas demostraciones, debes leer los siguientes
 apartados del tema de teoría:
