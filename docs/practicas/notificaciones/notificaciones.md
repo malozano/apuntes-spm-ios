@@ -7,19 +7,20 @@
 2. Una vez vistas estas demostraciones, debes leer los siguientes
 apartados del tema de teoría:
 
-- [Introducción](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#introduccion):
-  Conceptos básicos de notificaciones en iOS. Notificaciones locales y
-  remotas. NotificationCenter.
+    - [Introducción](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#introduccion):
+      Conceptos básicos de notificaciones en iOS. Notificaciones
+      locales y remotas. NotificationCenter.
 
-- [Preparación de las
-  notificaciones](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#preparacion-de-las-notificaciones):
+    - [Preparación de las notificaciones](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#preparacion-de-las-notificaciones):
   Petición de permiso a los usuarios.
   
-- [Notificaciones
+    - [Notificaciones
   locales y Demo](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#notificaciones-locales_1):
   Creación de notificaciones. Demo con el app Notificaciones.
 
-- [Acciones, Manejo de notificaciones y Demo](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#acciones)
+    - [Acciones, Manejo de notificaciones y
+      Demo](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#acciones):
+      Acciones en las notificaciones. Manejadores de las notificaciones.
 
 ## 2. Parte obligatoria (hasta 7 puntos) ##
 
