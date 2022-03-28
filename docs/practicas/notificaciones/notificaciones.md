@@ -21,7 +21,7 @@ apartados del tema de teoría:
 
 - [Acciones, Manejo de notificaciones y Demo](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#acciones)
 
-## Parte obligatoria (hasta 7 puntos) ##
+## 2. Parte obligatoria (hasta 7 puntos) ##
 
 Descarga las apps [Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
 y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip),
@@ -40,7 +40,7 @@ y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/ma
   la siguiente vez que se abra la app que informe de la acción
   escogida.
   
-## Parte opcional (3 puntos) ##
+## 3. Parte opcional (3 puntos) ##
 
 Lee los siguientes apartados del tema de teoría:
 
@@ -62,6 +62,8 @@ Lee los siguientes apartados del tema de teoría:
   del tema para probar la aplicación NotificacionesPush y el envío de
   notificaciones desde el terminal con un JWS. Deberás utilizar un
   dispositivo real para realizar las pruebas.
+
+## 4. Entrega ##
 
 Firma la app resultante, exporta el fichero IPA y entrégalo en
 Moodle, junto con el proyecto comprimido y un documento PDF con una
