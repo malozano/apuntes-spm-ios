@@ -25,17 +25,6 @@ apartados del tema de teoría:
       anotaciones. Con estos apartados y los anteriores puedes hacer
       la parte obligatoria de la práctica.
 
-    - [Geocoding](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#geocoding):
-      desde _Geocoding_ hasta _Conversión de placemarks en
-      localizaciones_ (incluido). Explicación de la técnica de
-      _geocoding_ (obtención del nombre a partir de las coordenadas
-      geográficas). Este apartado se usan para la primera parte
-      opcional de la práctica.
-
-    - [Localización](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#localizacion):
-      explicación de cómo activar y acceder a los servicios de
-      localización. Necesario para la tercera parte opcional de la práctica.
-
 
 ## 2. Parte obligatoria (hasta 7 puntos) ##
 
@@ -74,6 +63,20 @@ dependiendo de si el número de pin es par o impar.
 </p>
 
 ## 3. Parte opcional (3 puntos) ##
+
+Debes leer los siguientes apartados del tema de teoría:
+
+- [Geocoding](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#geocoding):
+      desde _Geocoding_ hasta _Conversión de placemarks en
+      localizaciones_ (incluido). Explicación de la técnica de
+      _geocoding_ (obtención del nombre a partir de las coordenadas
+      geográficas). Este apartado se usan para la primera parte
+      opcional de la práctica.
+
+- [Localización](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#localizacion):
+      explicación de cómo activar y acceder a los servicios de
+      localización. Necesario para la tercera parte opcional de la práctica.
+
 
 **Parte opcional 1**
 
