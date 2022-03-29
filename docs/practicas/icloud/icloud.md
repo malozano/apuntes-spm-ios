@@ -6,7 +6,18 @@ Seguimos trabajando con el proyecto `ToDo` y el _bundle ID_
 Moviles ToDo` (está actualizado e incluye el permiso de acceso
 a CloudKit y al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
 
-## Parte obligatoria (hasta 7 puntos) ##
+## 1. Antes de empezar la clase presencial ##
+
+1. Antes de la clase presencial deberás mirar los dos vídeos con
+   demostraciones que podrás encontrar en Moodle, en la sesión 4. Son
+   muy útiles para entender los conceptos que se explican en más
+   profundidad en teoría y para explicar las prácticas que hay que
+   hacer en este tema.
+
+2. Lee los apartados de teoría para entender el funcionamiento de
+   iCloud clave-valor y los aspectos básicos de CloudKit.
+
+## 2. Parte obligatoria (hasta 7 puntos) ##
 
 - Actualiza en Xcode el permiso para utilizar iCloud, con clave-valor
   y con CloudKit.
@@ -54,12 +65,6 @@ DispatchQueue.main.async( execute: {
   de las tareas públicas en un color diferente en el listado de
   tareas.
   
-<!--
-Es necesario configurar los roles de seguridad en el Dashboard para
-permitir que cualquier usuario pueda escribir en la base de datos
-pública y, de esta forma, borrar registros en ella.
--->
-
 - Añade una funcionalidad en la que se recargue la
   tabla con los datos de iCloud cuando se tire de la tabla hacia
   abajo. 
