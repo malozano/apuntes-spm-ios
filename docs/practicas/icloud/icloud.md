@@ -54,7 +54,7 @@ DispatchQueue.main.async( execute: {
 ```
 
 
-## Parte opcional (3 puntos) ##
+## 3.  Parte opcional (3 puntos) ##
 
 
 <img src="imagenes/todolist-cloudkit.png" width="300px"/>
@@ -69,3 +69,11 @@ DispatchQueue.main.async( execute: {
   tabla con los datos de iCloud cuando se tire de la tabla hacia
   abajo. 
 
+
+## 4. Entrega ##
+
+Entrega una carpeta comprimida con el proyecto y un pequeño documento
+PDF en el que expliques las funcionalidades implementadas. 
+
+Si el tamaño de la entrega supera los 20MB, sube la entrega a Google
+Drive o similar e incluye un enlace.
