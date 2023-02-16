@@ -82,14 +82,14 @@ nada.
 4. Incluye tu nombre en la pantalla en la que aparece el número de
    tareas terminadas (a la que se accede pulsando en el botón _Done_).
 
-5. Captura la pantalla de Xcode en la que se muestra el bundle ID y el
-   equipo que realiza la firma. Captura también una instantánea con la
+5. **Captura la pantalla** de Xcode en la que se muestra el bundle ID y el
+   equipo que realiza la firma. **Captura también** una instantánea con la
    app ejecutándose en el dispositivo mostrando la pantalla con tu
    nombre. Si no tienes dispositivo, hazlo con la ejecución del
    simulador. 
    
 6. Comprueba que aparece un error cuando intentas exportar la
-   app. Captura la pantalla de Xcode.
+   app. **Captura la pantalla** de Xcode.
    
 ## 3. Configuración de la cuenta de desarrollador ##
 
@@ -117,41 +117,41 @@ Sigue los pasos de la [demo y
    ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
    de teoría, realizando lo siguiente:
 
-1. Cambia el bundle ID y firma la app con el perfil genérico. Captura
-   la pantalla de Xcode en la que se muestre.
+1. Cambia el bundle ID y firma la app con el perfil genérico. **Captura
+   la pantalla** de Xcode en la que se muestre esto.
    
 2.  Comprueba que es posible exportar la app utilizando el perfil
-    genérico. Captura la pantalla.
+    genérico. **Captura la pantalla**.
    
 3. Comprueba que aparece un error cuando intentas añadir la capacidad
-   `Game Center` usando el perfil genérico. Captura la pantalla.
+   `Game Center` usando el perfil genérico. **Captura la pantalla**.
 
 4. Comprueba en el portal del desarrollador de la UA que el
    profesor ha creado el _App ID_ y el perfil de aprovisionamiento `Master
    Moviles ToDo` con la autorización para configurar en la app la
    capacidad `Game Center`.
 
-   Captura las pantallas con las páginas del portal del
+   **Captura las pantallas** con las páginas del portal del
    desarrollador de la UA mostrándolos (incluye en las pantallas
    toda la ventana del navegador, para que aparezca tu usuario en
    la parte superior derecha).
    
 5. Instala en la app el perfil `Master Moviles ToDo` y añade la
    capacidad `Game Center`. Comprueba que Xcode no da ningún error y
-   captura la pantalla.
+   **captura la pantalla**.
 
 6. Exporta la app, creando un binario .ipa. Si tienes algún
    dispositivo iOS, instala el fichero .ipa obtenido usando Apple
    Configurator 2. El UUID del dispositivo deberá estar incluido en el
-   perfil de aprovisionamiento. Captura una pantalla de la aplicación
-   `Apple Configurator 2` instalando la app en el
+   perfil de aprovisionamiento. **Captura una pantalla** de la aplicación
+   `Apple Configurator` instalando la app en el
    dispositivo. Comprueba que la app funciona correctamente.
 
 ## 5. Entrega ##
 
 Crea una carpeta y guarda en ella lo siguiente:
 
-- Todas las capturas de pantalla.
+- Todas las capturas de pantalla (un total de 9 imágenes).
 - Binario .ipa exportado en el último paso.
 - Carpeta con el proyecto completo.
 
