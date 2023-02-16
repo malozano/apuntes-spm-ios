@@ -1001,12 +1001,11 @@ estar incluido en un perfil de aprovisionamiento compatible con la app
 que estamos desarrollando.
 
 Vamos a incorporar los nuevos certificados al perfil de
-aprovisionamiento genérico, con App ID comodín (`*`) con el que se
-puede compilar cualquier app.
+aprovisionamiento genérico, con App ID comodín (`es.ua.*`) con el que se
+puede distribuir cualquier app que tenga un _bundle id_ que comience
+por `es.ua`.
 
 <img src="imagenes/actualizar-perfil-aprovisionamiento-cert.png" width="700px" />
-
-<img src="imagenes/actualizar-perfil-aprovisionamiento-cert2.png" width="700px" />
 
 ### Firma de la app con el nuevo certificado ###
 
@@ -1031,7 +1030,9 @@ denominado _Genérico_.
 <img src="imagenes/xcode-select-provisioning-profile-manual.png" width="600px"/>
 
 Vemos que se firma la aplicación correctamente y que se añade el
-perfil de aprovisionamiento que hemos seleccionado.
+perfil de aprovisionamiento que hemos seleccionado. Asegúrate que
+marcas la opción `All` para firmar con el perfil tanto la opción de
+`Debug` como la de `Release`.
 
 <img src="imagenes/perfil-generico-team.png" width="700px"/>
 
