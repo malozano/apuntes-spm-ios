@@ -9,7 +9,7 @@ Terminan la práctica en unas 1,5 horas + 1 hora de explicación = 2,5 horas
 
 ### Aspectos básicos de MapKit
 
-[Map Kit](https://developer.apple.com/library/ios/documentation/MapKit/Reference/MapKit_Framework_Reference/)
+[Map Kit](https://developer.apple.com/documentation/mapkit)
 es el framework de Apple para trabajar con mapas.
 
 Permite muchas funcionalidades: pan y zoom, anotaciones, localización,
@@ -66,7 +66,7 @@ debajo.
 este del meridiano y las negativas al oeste.
 
 La estructura
-[`CLLocationCoordinate2D`](https://developer.apple.com/reference/corelocation/cllocationcoordinate2d)
+[`CLLocationCoordinate2D`](https://developer.apple.com/documentation/corelocation/cllocationcoordinate2d/)
 representa esta estructura. Por ejemplo, para crear una localización
 situada en Alicante:
 
@@ -78,7 +78,7 @@ let alicanteLocation =  CLLocationCoordinate2D(latitude: 38.3453,
 
 Un _punto en el mapa_ se define por los valores `x` e `y` en la
 proyección de Mercator. Se define utilizando la estructura
-[`MKMapPoint`](https://developer.apple.com/library/ios/documentation/MapKit/Reference/MapKitDataTypesReference/index.html#//apple_ref/c/tdef/MKMapPoint). Se
+[`MKMapPoint`](https://developer.apple.com/documentation/mapkit/mkmappoint/). Se
 utiliza para especificar la posición y forma de los _overlays_ que
 podemos pintar sobre el mapa.
 
@@ -92,7 +92,7 @@ deben convertirse en puntos antes de dibujar contenido en una
 vista. Los puntos individuales se definen usando la estructura
 `CGPoint` y las áreas usando `CGSize` y `CGRect`. Consultar las
 funciones del API de geometría y los tipos de datos en [este
-enlace](https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CGGeometry/index.html).
+enlace](https://developer.apple.com/documentation/coregraphics/cggeometry)
 
 Para almacenar los datos en ficheros es preferible usar coordenadas
 de mapas.
@@ -113,7 +113,7 @@ simulador. No utilizaremos por tanto ningún perfil de
 aprovisionamiento especial para la práctica.
 
 La clase
-[`MKMapView`](https://developer.apple.com/reference/mapkit/mkmapview)
+[`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview/)
 es una interfaz autocontenida para presentar los mapas en tu
 app. Proporciona todo el soporte para mostrar los datos del mapa,
 gestionar las interacciones del usuario y hospedar el contenido
@@ -262,7 +262,7 @@ Hemos visto que Lo más sencillo es definir como delegado el _view
 controller_ en el que se incluye el mapa.
 
 El objeto delegado puede implementar las funciones del protocolo
-[`MKMapViewDelegate`](https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/index.html#//apple_ref/occ/intf/MKMapViewDelegate)
+[`MKMapViewDelegate`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate)
 donde recibe los eventos relacionados con el mapa:
 
 - Cambios en la región visible del mapa.
@@ -306,11 +306,11 @@ Para mostrar una anotación en un mapa necesitamos dos objetos:
 
 - Un **objeto `annotation`**, que es un objeto que cumple el
     protocolo
-    [`MKAnnotation`](https://developer.apple.com/reference/mapkit/mkannotation)
+    [`MKAnnotation`](https://developer.apple.com/documentation/mapkit/mkannotation)
     y que gestiona los datos de la anotación.
 
 - Una **vista** de la anotación, que es una vista (derivada de la
-    clase [`MKAnnotationView`](https://developer.apple.com/reference/mapkit/mkannotationview))
+    clase [`MKAnnotationView`](https://developer.apple.com/documentation/mapkit/mkannotationview)
     usada para dibujar la representación visual de la anotación sobre
     la superficie del mapa (una "chincheta" por defecto).
 
@@ -352,7 +352,7 @@ class Pin:  NSObject, MKAnnotation {
 ### `MKAnnotationView`
 
 La clase
-[`MKAnnotationView`](https://developer.apple.com/library/ios/documentation/MapKit/Reference/MKAnnotationView_Class/index.html#//apple_ref/swift/cl/MKAnnotationView)
+[`MKAnnotationView`](https://developer.apple.com/documentation/mapkit/mkannotationview/)
 permite bastante flexibilidad para definir las distintas
 características de las vistas de las anotaciones.
 
@@ -621,7 +621,7 @@ adicional acerca de la localización especificada, como un punto de
 interés o un edificio en esa localización.
 
 El objeto devuelto en ambos tipos de peticiones es un
-[CLPlacemark](https://developer.apple.com/documentation/corelocation/clplacemark). En
+[CLPlacemark](https://developer.apple.com/documentation/corelocation/clplacemark)
 el caso de peticiones _forward geocoding_ se puede devolver una lista
 de lugares a los que corresponde la dirección suministrada. 
 
@@ -708,7 +708,7 @@ Así como la posibilidad de mostrar el mapa en 3D:
 ## Localización ##
 
 Mediante el framework [`Core
-Location`](https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CoreLocation_Framework/)
+Location`](https://developer.apple.com/documentation/corelocation)
 es posible obtener la localización del dispositivo móvil. 
 
 Los datos de localización pueden ser muy útiles para proporcionar
@@ -731,7 +731,7 @@ geográficas y regiones definidas por _beacons_ de Bluetooth de baja
 energía.
 
 La  clase principal del framework es
-  [`CLLocationManager`](https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html).
+  [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager)
 
 <p style="text-align:center;">
 <img src="imagenes/localizacion.png" width="300px"/>
@@ -781,7 +781,7 @@ solicita al usuario la autorización.
 ### Clase `CLLocationManager`
 
 Se debe crear una instancia de la clase
-[`CLLocation​Manager`](https://developer.apple.com/reference/corelocation/cllocationmanager). Se
+[`CLLocation​Manager`](https://developer.apple.com/documentation/corelocation/cllocationmanager)
 necesita mantener una referencia a esta instancia que han terminado
 todas las tareas en las que participa.
 
@@ -790,7 +790,7 @@ asíncronamente, no debemos almacenar una referencia al _location
 manager_ en una variable local.
 
 La clase `AppDelegate` también puede funcionar como
-[`CLLocationManagerDelegate`](https://developer.apple.com/reference/corelocation/cllocationmanagerdelegate). Inicializamos
+[`CLLocationManagerDelegate`](https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate). Inicializamos
 ahí el `CLLocationManager`.
 
 En el método `didFinishLaunchingWithOptions` podemos actualizar el

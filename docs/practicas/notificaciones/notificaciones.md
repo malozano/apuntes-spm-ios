@@ -62,15 +62,12 @@ Lee los siguientes apartados del tema de teoría:
   notificación push. Sigue primero el
   [ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#ejercicio)
   del tema para probar la aplicación NotificacionesPush y el envío de
-  notificaciones desde el terminal con un JWS. Deberás utilizar un
+  notificaciones desde el terminal con un JWS. Deberás utilizar un∑©
   dispositivo real para realizar las pruebas.
 
 ## 4. Entrega ##
 
-Entrega una carpeta comprimida con el proyecto y un pequeño documento
-PDF en el que expliques las funcionalidades implementadas. 
-
-Si el tamaño de la entrega supera los 20MB, sube la entrega a Google
-Drive o similar e incluye un enlace.
-
+Firma la app resultante, exporta el fichero IPA y entrégalo en
+Moodle, junto con el proyecto comprimido y un documento PDF con una
+breve descripción de las funcionalidades añadidas.
 

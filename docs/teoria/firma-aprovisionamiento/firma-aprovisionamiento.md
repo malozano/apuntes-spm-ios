@@ -246,7 +246,7 @@ hacer que Apple revocara tus credenciales de desarrollador.
 
 ### Tipos de certificados ###
 
-Existen varios [tipos de certificados](https://help.apple.com/developer-account/#/dev52fdd1ce5):
+Existen varios [tipos de certificados](https://developer.apple.com/help/account/reference/certificate-types)
 de desarrollo, de distribución, para el servidor de notificaciones
 push, etc. El **certificado de desarrollador** permite ejecutar
 aplicaciones en un dispositivo. El de distribución permite enviarla al
@@ -314,7 +314,7 @@ descargándola del App Store. Pero también existen formas alternativas,
 para el caso de dispositivos de prueba o apps distribuidas
 internamente en una empresa (_in-house_). En estos casos es posible
 instalar las apps desde _Test Flight_, desde una web o con el programa
-de MacOS _Apple Configurator 2_.
+de MacOS _Apple Configurator_.
 
 Resumiendo las distintas condiciones posibles, un dispositivo iOS
 puede ejecutar una app si:
@@ -524,7 +524,7 @@ instalarse en cualquier dispositivo incluido en el perfil de
 aprovisionamiento (aunque no sea un dispositivo de desarrollo).
 
 Podemos instalar la app en un dispositivo conectando el dispositivo al
-Mac y usando el programa de Apple `Apple Configurator 2`.
+Mac y usando el programa de Apple `Apple Configurator`.
 
 ### Fin de la demo ###
 
@@ -549,7 +549,7 @@ que sólo pueden ser usadas con el programa de pago.
 Para una lista completa de las capacidades disponibles según el tipo
 de desarrollador se puede consultar la documentación en [_Apple
 Developer > Support > Advanced App
-Capabilities_](https://developer.apple.com/support/app-capabilities/).
+Capabilities_](https://developer.apple.com/help/account/reference/supported-capabilities-ios)
 
 <img src="imagenes/app-capabilities.png" width="550px"/> 
 
@@ -867,9 +867,9 @@ los permisos (_entitlements_) se usan para asegurar que:
 ### Instalación de la app en un dispositivo de prueba  ###
 
 Es posible instalar la app en el iPhone de prueba usando Xcode o
-_Apple Configurator 2_.
+_Apple Configurator_.
 
-La aplicación _Apple Configurator 2_ permite configurar dispositivos,
+La aplicación _Apple Configurator_ permite configurar dispositivos,
 hacer copias de seguridad, añadir apps, etc.
 
 <img src="imagenes/install-configurator.png" width="600px"/>
@@ -1251,10 +1251,13 @@ aprovisionamiento.
   
 ### Instalación y ejecución de la app ###
 
-Probamos a instalar la app en un dispositivo autorizado usando Apple
-Configurator 2.
+Probamos a instalar la app en un dispositivo autorizado (su UUID está
+incluido en el perfil de aprovisionamiento) usando Apple Configurator.
 
 <img src="imagenes/install-configurator.png" width="700px"/>
+
+Para poder ejecutar la app en el dispositivo debemos [activar el modo
+de desarrollador](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device).
 
 ### Fin demo y ejercicio ###
 
@@ -1571,13 +1574,12 @@ usuarios para que descarguen la nueva versión.
 
 ## Bibliografía
 
-- [Developer Account Help](https://help.apple.com/developer-account/)
+- [Developer Support](https://developer.apple.com/support/)
+- [Developer Account Help](https://developer.apple.com/help/account/)
 - [Code Signing Help](https://developer.apple.com/support/code-signing/)
-- [Xcode Help](https://help.apple.com/xcode/)
-- [Distribute your app to registered devices](https://help.apple.com/xcode/mac/current/#/dev7ccaf4d3c)
-- [Distribute your  app](https://help.apple.com/xcode/mac/current/#/dev8b4250b57)
-- [App Store Connect Help](https://help.apple.com/app-store-connect/)
-- [Distribución de apps con Firebase](https://firebase.google.com/docs/app-distribution/ios/distribute-console?authuser=0)
-- [Google Analytics](https://firebase.google.com/docs/analytics?authuser=0)
+- [Xcode Documentation](https://developer.apple.com/documentation/xcode)
+- [Preparing your app for distribution](https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution)
+- [Distribute your app to registered devices](https://developer.apple.com/documentation/xcode/distributing-your-app-to-registered-devices)
+- [App Store Connect Help](https://developer.apple.com/help/app-store-connect/)
 - [Test Flight](https://developer.apple.com/testflight/)
 
