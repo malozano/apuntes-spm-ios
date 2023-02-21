@@ -1054,7 +1054,7 @@ seleccionando la opción _Game Center_.
 Intentamos compilar la app (_Product > Build_) y aparecerá el
 siguiente error:
 
-<img src="imagenes/error-firma-team-manual.png" width="700px"/>
+<img src="imagenes/error-firma-team-manual.png" width="400px"/>
 
 El error se debe a que el perfil de aprovisionamiento seleccionado no
 soporta la capacidad _Game Center_.
