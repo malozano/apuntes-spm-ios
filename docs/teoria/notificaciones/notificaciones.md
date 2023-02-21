@@ -1274,7 +1274,8 @@ autorización para las notificaciones push.
 Para poder encriptar el token JWT y poder usarlo para enviar la
 notificación es necesario crear en el portal de desarrollo de Apple
 una clave de encriptación para acceder al Servicio de Notificaciones
-Push de Apple (APNs).
+Push de Apple (APNs). Estos pasos solo los puede realizar un
+administrador del equipo de la universidad.
 
 Primero se pulsa en la opción de añadir una nueva clave:
 
@@ -1340,9 +1341,10 @@ En el directorio `Scripts` del fichero descargado se encuentra el
 fichero `.p8` con la clave privada y los scripts `encode_jwt.sh` y
 `send_push_notification.sh`.
 
-1. Editamos el script `encode_jwt.sh` para incluir:
-    - el _Team ID_ del equipo de la UA, disponible en el portal del desarrollador
+1. Nos aseguramos de que el script `encode_jwt.sh` incluye:
+    - el _Team ID_ del equipo de la UA, disponible en el portal del desarrollador 
     - el _Key ID_, disponible también en el portal del desarrollador
+      (lo puede consultar el profesor, administrador del equipo de la UA)
     - el nombre del fichero `.p8` incluido en el directorio
 
 2. Ejecutamos el comando `encode_jwt.sh` y obtenemos el JWT
