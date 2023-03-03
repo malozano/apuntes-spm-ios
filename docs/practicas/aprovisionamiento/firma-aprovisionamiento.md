@@ -142,7 +142,7 @@ Sigue los pasos de la [demo y
 
 6. Exporta la app, creando un binario .ipa. Si tienes algún
    dispositivo iOS, instala el fichero .ipa obtenido usando Apple
-   Configurator 2. El UUID del dispositivo deberá estar incluido en el
+   Configurator.. El UUID del dispositivo deberá estar incluido en el
    perfil de aprovisionamiento. **Captura una pantalla** de la aplicación
    `Apple Configurator` instalando la app en el
    dispositivo. Comprueba que la app funciona correctamente.
