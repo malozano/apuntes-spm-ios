@@ -341,10 +341,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let valoriCloud = Int(store.longLong(forKey: "valor"))
         print("Recibida notificación del sistema con el valor: \(valoriCloud)")
         // Actualizamos el valor en el controller
-        let application = UIApplication.shared
-        if let controller = application.windows[0].rootViewController {
-            let miController: ViewController = controller as! ViewController
-            miController.muestra(valor: valoriCloud)
+        DispatchQueue.main.async {
+            let application = UIApplication.shared
+            if let controller = application.windows[0].rootViewController {
+                let miController: ViewController = controller as! ViewController
+                miController.muestra(valor: valoriCloud)
+            }
         }
     }
 ```
