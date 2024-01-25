@@ -243,7 +243,6 @@ tipos de tareas:
 
 Es posible también incluir en la notificación animaciones y gráficos dinámicos usando el nuevo _framework_
 [Notifications UI Framework](https://developer.apple.com/reference/usernotificationsui).
-No tenemos tiempo de verlo en clase, puedes consultar la sesión de WWDC 2016 [Advanced Notifications](https://developer.apple.com/videos/play/wwdc2016/708/).
 
 <img src="imagenes/notification-ui-framework.png" width="300px"/>
 
