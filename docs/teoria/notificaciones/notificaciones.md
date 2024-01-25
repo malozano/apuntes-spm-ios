@@ -841,7 +841,7 @@ La mayoría de servicios PaaS proporcionan conexiones con el APNs y librerías q
 
 - [Firebase Cloud Messaging for iOS](https://developers.google.com/cloud-messaging/ios/start?ver=swift)
 - [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
-- [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
+- [Microsoft Azure](https://azure.microsoft.com/en-us/products/notification-hubs)
 
 Una opción sencilla, que usaremos en la práctica, es lanzar la
 notificación [desde el terminal](https://developer.apple.com/documentation/usernotifications/sending_push_notifications_using_command-line_tools).
