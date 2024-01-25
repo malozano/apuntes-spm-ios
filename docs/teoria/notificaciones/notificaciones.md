@@ -197,18 +197,7 @@ tweet correspondiente a la notificación).
   </tr>
   <tr>
     <td><strong>Background</strong></td> 
-
-    <td>La app está ejecutando código pero no es visible en
-        pantalla. Cuando el usuario sale de una app, el sistema mueve
-        la app al estado de <em>background</em> antes de
-        suspenderla. En otros momentos, el sistema puede lanzar una
-        aplicación en <em>background</em> (o despertar una app suspendida) y
-        darle tiempo para manejar ciertas tareas específicas. Por
-        ejemplo, el sistema puede despertar una app para que procese
-        descargas en <em>background</em>, o responda a notificaciones
-        remotas. Una app en estado <em>background</em> debe hacer el mínimo
-        trabajo posible y devolver rápidamente el control al sistema.</td>
-
+    <td>La app está ejecutando código pero no es visible en pantalla. Cuando el usuario sale de una app, el sistema mueve la app al estado de <em>background</em> antes de suspenderla. En otros momentos, el sistema puede lanzar una aplicación en <em>background</em> (o despertar una app suspendida) y darle tiempo para manejar ciertas tareas específicas. Por ejemplo, el sistema puede despertar una app para que procese descargas en <em>background</em>, o responda a notificaciones remotas. Una app en estado <em>background</em> debe hacer el mínimo trabajo posible y devolver rápidamente el control al sistema.</td>
   </tr>
   <tr>
     <td><strong>Suspendida</strong></td> 
