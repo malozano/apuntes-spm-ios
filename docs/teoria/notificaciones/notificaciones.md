@@ -555,7 +555,7 @@ acciones:
 - Botones con títulos customizables
 - Entrada de texto
 
-Las acciones se crean con la clase [`UNNotificationAction`](https://developer.apple.com/reference/usernotifications/untextinputnotificationaction).
+Las acciones se crean con la clase [`UNNotificationAction`](https://developer.apple.com/documentation/usernotifications/unnotificationaction).
 
 Para conseguir una entrada de texto hay que crear un objeto de tipo
 [`UNTextInputNotificationAction`](https://developer.apple.com/reference/usernotifications/untextinputnotificationaction).
