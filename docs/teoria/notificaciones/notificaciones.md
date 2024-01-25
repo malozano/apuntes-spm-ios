@@ -23,8 +23,8 @@ Reference_](https://developer.apple.com/reference/usernotificationsui).
 Además de los usos comentados, las notificaciones se utilizan también
 para la comunicación entre nuestra app y el recién introducido _Apple
 Watch_. Se puede consultar la [página de
-recursos](https://developer.apple.com/watchos/resources/) de Apple
-sobre el _WatchKit Framework_ para más información.
+recursos](https://developer.apple.com/documentation/watchos-apps/notifications/) de Apple
+sobre el _WatchOS Apps_ para más información.
 
 <img src="imagenes/glances.png" />
 
