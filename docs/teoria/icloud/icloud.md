@@ -863,7 +863,7 @@ demuestra el uso de esta librería  [CloudKit Catalog](https://cdn.apple-cloudki
 
 Vamos a hacer una demostración de una sencilla app llamada
 `DemoCloudKit`. Está basada en un tutorial de la web
-[raywenderlich.com](https://www.raywenderlich.com). Se puede descargar
+[Kodeco](https://www.kodeco.com) (anteriormente conocida como Ray Wenderlich). Se puede descargar
 desde [este
 enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/DemoCloudKit.zip).
 
@@ -993,4 +993,4 @@ Todo el código relacionado con CloudKit está en la carpeta `Model`.
 - [Responding to Requests to Delete Data](https://developer.apple.com/documentation/cloudkit/responding_to_requests_to_delete_data)  
 - [Identifying an App's Containers](https://developer.apple.com/documentation/cloudkit/identifying_an_app_s_containers)
 - [CloudKit JS](https://developer.apple.com/documentation/cloudkitjs)
-- [Tutorial de raywenderlich.com sobre CloudKit](https://www.raywenderlich.com/4878052-cloudkit-tutorial-getting-started)
+- [Tutorial de Kodeco sobre CloudKit](https://www.kodeco.com/4878052-cloudkit-tutorial-getting-started)
