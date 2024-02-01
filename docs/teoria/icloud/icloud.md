@@ -520,9 +520,9 @@ let publicDB = container.publicCloudDatabase
 <img src="imagenes/databases-permisos.png" width="1000px"/>
 
 
-### Dashboard ###
+### CloudKit Consople ###
 
-El _CloudKit Dashboard_ es una interfaz web con la que podemos gestionar
+El _CloudKit Console es una interfaz web con la que podemos gestionar
 nuestros contenedores y bases de datos. Podemos acceder desde la
 cuenta de desarrollador de la universidad:
 
@@ -724,7 +724,7 @@ privateDB.perform(query, inZoneWith: nil, completionHandler: {
 
 !!! Important "Importante"
     Para que funcione la consulta que recupera todos los registros de
-    un tipo hay que crear en el _dashboard_ un índice _queryable_ sobre
+    un tipo hay que crear en _CloudKit Console_ un índice _queryable_ sobre
     el campo nativo `recordName`.
 
 
@@ -844,7 +844,7 @@ datos en los contenedores CloudKit.
 
 Lanzado en WWDC 2015.
 
-Necesita un token generado en el dashboard para acceso seguro al API
+Necesita un token generado en CloudKit Console para acceso seguro al API
 en la conexión servidor-servidor.
 
 Permite autentificarse y realizar peticiones seguras JavaScript
@@ -938,10 +938,10 @@ Seleccionamos el equipo de la UA y automáticamente se cargará el
 perfil recién creado.
 
 
-### Dashboard ###
+### CloudKit Console ###
 
 Comprobamos los permisos de los miembros del equipo de la universidad
-en el _dashboard_ de iCloud. El administrador del equipo de desarrollo
+en CloudKit Console. El administrador del equipo de desarrollo
 puede gestionar permisos para el resto de miembros. Los permisos se
 definen a nivel de contenedor. 
 
@@ -971,7 +971,7 @@ En la app podemos navegar por los establecimientos y vemos como se
 muestran sus características. También podemos comprobar las notas
 privadas creadas asociadas con cada establecimiento.
 
-Probamos a modificar algún dato en el dashboard y a comprobar que se
+Probamos a modificar algún dato en CloudKit Console y a comprobar que se
 actualiza en la aplicación.
 
 Todo el código relacionado con CloudKit está en la carpeta `Model`.
