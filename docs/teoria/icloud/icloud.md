@@ -520,9 +520,9 @@ let publicDB = container.publicCloudDatabase
 <img src="imagenes/databases-permisos.png" width="1000px"/>
 
 
-### CloudKit Consople ###
+### CloudKit Console ###
 
-El _CloudKit Console es una interfaz web con la que podemos gestionar
+El CloudKit Console es una interfaz web con la que podemos gestionar
 nuestros contenedores y bases de datos. Podemos acceder desde la
 cuenta de desarrollador de la universidad:
 
