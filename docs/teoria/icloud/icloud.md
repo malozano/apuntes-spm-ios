@@ -926,7 +926,7 @@ Creamos para la demo el perfil de aprovisionamiento con el App ID anterior.
 <img src="imagenes/aprovisionamiento-demo-icloud.png" width="700px"/>
 
 
-### Actualización de capacidades de la app ToDoList ###
+### Actualización de capacidades de la app ###
 
 Escribimos como _Bundle Identifier_ el definido por el App ID. En el
 caso de la demo usaremos `es.ua.mastermoviles.DemoCloudKit`. 
