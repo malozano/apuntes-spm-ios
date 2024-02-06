@@ -1,0 +1,695 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../aprovisionamiento/firma-aprovisionamiento.html">
+      
+      
+        <link rel="next" href="../notificaciones/notificaciones.html">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Práctica 2 - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-2-mapas-y-localizacion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/firma-aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Práctica 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="mapas-localizacion.html" class="md-nav__link md-nav__link--active">
+        Práctica 2
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-antes-de-empezar-la-clase-presencial" class="md-nav__link">
+    1. Antes de empezar la clase presencial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-parte-obligatoria-hasta-7-puntos" class="md-nav__link">
+    2. Parte obligatoria (hasta 7 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parte-opcional-3-puntos" class="md-nav__link">
+    3. Parte opcional (3 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-entrega" class="md-nav__link">
+    4. Entrega
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icloud/icloud.html" class="md-nav__link">
+        Práctica 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-antes-de-empezar-la-clase-presencial" class="md-nav__link">
+    1. Antes de empezar la clase presencial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-parte-obligatoria-hasta-7-puntos" class="md-nav__link">
+    2. Parte obligatoria (hasta 7 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parte-opcional-3-puntos" class="md-nav__link">
+    3. Parte opcional (3 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-entrega" class="md-nav__link">
+    4. Entrega
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<!--
+Terminan la práctica en unas 1,5 horas + 1 hora de explicación = 2,5 horas
+-->
+
+<h1 id="practica-2-mapas-y-localizacion">Práctica 2: Mapas y localización<a class="headerlink" href="#practica-2-mapas-y-localizacion" title="Permanent link">&para;</a></h1>
+<h2 id="1-antes-de-empezar-la-clase-presencial">1. Antes de empezar la clase presencial<a class="headerlink" href="#1-antes-de-empezar-la-clase-presencial" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Antes de la clase presencial deberás mirar los tres vídeos con demostraciones que podrás encontrar en Moodle, en la sesión 2.</p>
+</li>
+<li>
+<p>Una vez vistas estas demostraciones, debes leer los siguientes
+apartados del tema de teoría:</p>
+<ul>
+<li>
+<p><a href="https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#aspectos-basicos-de-mapkit">Aspectos básicos de
+  MapKit</a>:
+  desde <em>Aspectos básicos de MapKit</em> hasta <em>Uso del delegado</em>
+  (incluido). Explicación de la creación de mapas en una app y del
+  uso del delegado para procesar las acciones del usuario sobre el
+  mapa. </p>
+</li>
+<li>
+<p><a href="https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#anotaciones">Anotaciones</a>:
+  desde <em>Anotaciones</em> hasta <em>Elementos en el callout</em>
+  (incluido). Explicación de la creación y uso de
+  anotaciones. Con estos apartados y los anteriores puedes hacer
+  la parte obligatoria de la práctica.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-parte-obligatoria-hasta-7-puntos">2. Parte obligatoria (hasta 7 puntos)<a class="headerlink" href="#2-parte-obligatoria-hasta-7-puntos" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Debes crear la app <code>es.ua.mastermoviles.Mapas</code>.</p>
+</li>
+<li>
+<p>Empieza por definir un <em>View Controller</em> en el que debes incluir un
+mapa centrado inicialmente en Alicante. Inclúyelo en un <em>Navigation Controller</em> con la
+opción <em>Editor &gt; Embed In &gt; Navigation Controller</em>.</p>
+</li>
+<li>
+<p>Añade en el centro de la barra del <em>Navigation Controller</em> un
+<em>Segmented Control</em> con los valores <code>Mapa</code> y <code>Satélite</code>, conéctalos
+con el <em>ViewController</em> y haz que el mapa cambie de tipo cuando se
+pulse en el control.</p>
+</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/practica-1.png" width="300px"/>
+</p>
+
+<ol start="4">
+<li>
+<p>En el <em>Storyboard</em> añade un <code>Bar Button Item</code> en la parte derecha de
+la barra de navegación.</p>
+</li>
+<li>
+<p>Llámalo <code>Pin</code> y enlázalo con una acción en el <code>ViewController</code> que
+  añada una anotación en el mapa.</p>
+</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/practica-2.png" width="300px"/>
+</p>
+
+<ol start="6">
+<li>
+<p>Añade en los <em>callouts</em> imágenes <em>thumbnails</em> predefinidas,
+dependiendo de si el número de pin es par o impar.</p>
+</li>
+<li>
+<p>Añade en los <em>callouts</em> el botón de información.</p>
+</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/practica-3.png" width="300px"/>
+</p>
+
+<h2 id="3-parte-opcional-3-puntos">3. Parte opcional (3 puntos)<a class="headerlink" href="#3-parte-opcional-3-puntos" title="Permanent link">&para;</a></h2>
+<p>Debes leer los siguientes apartados del tema de teoría:</p>
+<ul>
+<li>
+<p><a href="https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#geocoding">Geocoding</a>:
+      desde <em>Geocoding</em> hasta <em>Conversión de placemarks en
+      localizaciones</em> (incluido). Explicación de la técnica de
+      <em>geocoding</em> (obtención del nombre a partir de las coordenadas
+      geográficas). Este apartado se usan para la primera parte
+      opcional de la práctica.</p>
+</li>
+<li>
+<p><a href="https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#localizacion">Localización</a>:
+      explicación de cómo activar y acceder a los servicios de
+      localización. Necesario para la tercera parte opcional de la práctica.</p>
+</li>
+</ul>
+<p><strong>Parte opcional 1</strong></p>
+<ol>
+<li>Implementa un <em>segue</em> que haga aparecer otra vista con un detalle
+  de la foto. Puedes definir un segue haciendo control click desde un
+ view controller hasta otro. Después debes dar un identificador al
+  segue. Por ejemplo <code>DetalleImagen</code>.</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/storyboard.png" width="500px"/> 
+<img src="imagenes/practica-4.png" width="200px"/>
+</p>
+
+<p><strong>Parte opcional 2</strong></p>
+<ol start="2">
+<li>Implementa una llamada al servicio de geolocalización que coloque
+   como subtítulo del Pin el país en el que se ha colocado el
+   mismo. </li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/mapa-con-pais.png" width="300px"/>
+</p>
+
+<p><strong>Parte opcional 3</strong></p>
+<ol start="3">
+<li>
+<p>Añade el tracking de localización a la aplicación, imprimiendo la
+localización en la salida estándar cada 10 metros. Comprueba el
+funcionamiento activando la localización en el simulador.</p>
+</li>
+<li>
+<p>Añade la localización al mapa, haciendo que aparezca en la parte
+izquierda de la barra de navegación el botón de navegación.</p>
+<ul>
+<li>
+<p>Cuando pulses el botón de navegación se debe mostrar la posición
+  actual del dispositivo.</p>
+</li>
+<li>
+<p>Deberás modificar la función que muestra la vista de una
+  anotación
+  (<a href="https://developer.apple.com/reference/mapkit/mkmapviewdelegate/1452045-mapview"><code>mapView(_:viewFor:)</code></a>)
+  porque se utiliza también para mostrar la vista de la posición
+  actual del dispositivo (que también es una anotación). Si la
+  anotación que se quiere mostrar no es de tipo Pin debes poner la
+  vista a <code>nil</code> para que se use la vista por defecto (el círculo).</p>
+</li>
+</ul>
+</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/localizacion.png" width="300px"/>
+</p>
+
+<h2 id="4-entrega">4. Entrega<a class="headerlink" href="#4-entrega" title="Permanent link">&para;</a></h2>
+<p>Entrega una carpeta comprimida con el proyecto y un pequeño documento
+PDF en el que expliques las funcionalidades implementadas. </p>
+<p>Si el tamaño de la entrega supera los 20MB, sube la entrega a Google
+Drive o similar e incluye un enlace.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>

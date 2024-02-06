@@ -1,0 +1,636 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../notificaciones/notificaciones.html">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Práctica 4 - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-4-icloud-y-cloudkit" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Práctica 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/firma-aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../teoria/icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapas/mapas-localizacion.html" class="md-nav__link">
+        Práctica 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Práctica 4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="icloud.html" class="md-nav__link md-nav__link--active">
+        Práctica 4
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-antes-de-empezar-la-clase-presencial" class="md-nav__link">
+    1. Antes de empezar la clase presencial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-parte-obligatoria-hasta-7-puntos" class="md-nav__link">
+    2. Parte obligatoria (hasta 7 puntos)
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Parte obligatoria (hasta 7 puntos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pista-para-actualizar-la-tabla" class="md-nav__link">
+    Pista para actualizar la tabla
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parte-opcional-3-puntos" class="md-nav__link">
+    3.  Parte opcional (3 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-entrega" class="md-nav__link">
+    4. Entrega
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-antes-de-empezar-la-clase-presencial" class="md-nav__link">
+    1. Antes de empezar la clase presencial
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-parte-obligatoria-hasta-7-puntos" class="md-nav__link">
+    2. Parte obligatoria (hasta 7 puntos)
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Parte obligatoria (hasta 7 puntos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pista-para-actualizar-la-tabla" class="md-nav__link">
+    Pista para actualizar la tabla
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parte-opcional-3-puntos" class="md-nav__link">
+    3.  Parte opcional (3 puntos)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-entrega" class="md-nav__link">
+    4. Entrega
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="practica-4-icloud-y-cloudkit">Práctica 4: iCloud y CloudKit<a class="headerlink" href="#practica-4-icloud-y-cloudkit" title="Permanent link">&para;</a></h1>
+<p>Seguimos trabajando con el proyecto <code>ToDo</code> y el <em>bundle ID</em>
+<code>es.ua.mastermoviles.ToDo</code> y el perfil de aprovisionamiento <code>Master
+Moviles ToDo</code> (está actualizado e incluye el permiso de acceso
+a CloudKit y al contenedor <code>iCloud.es.ua.mastermoviles.ToDo</code>).</p>
+<h2 id="1-antes-de-empezar-la-clase-presencial">1. Antes de empezar la clase presencial<a class="headerlink" href="#1-antes-de-empezar-la-clase-presencial" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Antes de la clase presencial deberás mirar los dos vídeos con
+   demostraciones que podrás encontrar en Moodle, en la sesión 4. Son
+   muy útiles para entender los conceptos que se explican en más
+   profundidad en teoría y para explicar las prácticas que hay que
+   hacer en este tema.</p>
+</li>
+<li>
+<p>Lee los apartados de teoría para entender el funcionamiento de
+   iCloud clave-valor y los aspectos básicos de CloudKit.</p>
+</li>
+</ol>
+<h2 id="2-parte-obligatoria-hasta-7-puntos">2. Parte obligatoria (hasta 7 puntos)<a class="headerlink" href="#2-parte-obligatoria-hasta-7-puntos" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Actualiza en Xcode el permiso para utilizar iCloud, con clave-valor
+  y con CloudKit.</li>
+<li>Modifica la app ToDo para que el número de ítems terminados se
+  guarde en iCloud del usuario, usando iCloud clave-valor.</li>
+</ul>
+<p><img style="border: 1px solid;" src="imagenes/todo-clave-valor.jpeg" width="300px"/></p>
+<ul>
+<li>
+<p>Añade el código necesario para que las tareas pendientes
+  se guarden y recuperen de la base de datos privada de
+  CloudKit. </p>
+<p>En el contenedor de CloudKit se ha añadido el tipo de registro
+<code>Tarea</code> con el campo <code>nombre</code> con los índices <code>Queryable</code>,
+<code>Searchable</code>, <code>Sortable</code>. </p>
+</li>
+</ul>
+<h3 id="pista-para-actualizar-la-tabla">Pista para actualizar la tabla<a class="headerlink" href="#pista-para-actualizar-la-tabla" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Los <em>callbacks</em> en los que se reciben los resultados de las
+  <em>queries</em> son asíncronos y se procesan en hilos secundarios.</li>
+<li>Si actualizamos los datos de la tabla en un <em>callback</em> de este tipo,
+  la interfaz de usuario no se refrescará hasta que el usuario no
+  interactúe con la tabla.</li>
+<li>Se puede forzar a ejecutar la actualización de los datos de la tabla en
+  el hijo principal con este código en algún lugar del <code>ToDoTableViewController</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="k">async</span><span class="p">(</span> <span class="n">execute</span><span class="p">:</span> <span class="p">{</span>
+    <span class="kc">self</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+<span class="p">})</span>
+</code></pre></div>
+<h2 id="3-parte-opcional-3-puntos">3.  Parte opcional (3 puntos)<a class="headerlink" href="#3-parte-opcional-3-puntos" title="Permanent link">&para;</a></h2>
+<p><img src="imagenes/todolist-cloudkit.png" width="300px"/></p>
+<ul>
+<li>
+<p>Utiliza la base de datos pública de CloudKit para publicar tareas compartidas
+  por todos los usuarios de la app. Al añadir una tarea debes permitir
+  la opción de hacerlo en la base de datos pública. Muestra el texto
+  de las tareas públicas en un color diferente en el listado de
+  tareas.</p>
+</li>
+<li>
+<p>Añade una funcionalidad en la que se recargue la
+  tabla con los datos de iCloud cuando se tire de la tabla hacia
+  abajo. </p>
+</li>
+</ul>
+<h2 id="4-entrega">4. Entrega<a class="headerlink" href="#4-entrega" title="Permanent link">&para;</a></h2>
+<p>Entrega una carpeta comprimida con el proyecto y un pequeño documento
+PDF en el que expliques las funcionalidades implementadas. </p>
+<p>Si el tamaño de la entrega supera los 20MB, sube la entrega a Google
+Drive o similar e incluye un enlace.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>

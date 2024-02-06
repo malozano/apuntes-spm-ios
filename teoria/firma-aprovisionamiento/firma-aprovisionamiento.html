@@ -1,0 +1,2669 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="../mapas-localizacion/mapas-localizacion.html">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>1. Firma, aprovisionamiento y distribución de apps - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#firma-aprovisionamiento-y-distribucion-de-apps" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Firma, aprovisionamiento y distribución de apps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1. Firma, aprovisionamiento y distribución de apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="firma-aprovisionamiento.html" class="md-nav__link md-nav__link--active">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+    <nav class="md-nav" aria-label="Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-en-las-apps" class="md-nav__link">
+    Seguridad en las apps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuenta-de-desarrollador-de-apple" class="md-nav__link">
+    Cuenta de desarrollador de Apple
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuenta de desarrollador de Apple">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distintos-programas-de-desarrollo" class="md-nav__link">
+    Distintos programas de desarrollo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equipo-de-desarrollo" class="md-nav__link">
+    Equipo de desarrollo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfil-gratuito" class="md-nav__link">
+    Perfil gratuito
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miembro-del-equipo-de-la-ua" class="md-nav__link">
+    Miembro del equipo de la UA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miembro-de-pago" class="md-nav__link">
+    Miembro de pago
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fin-de-la-demo" class="md-nav__link">
+    Fin de la demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificados" class="md-nav__link">
+    Certificados
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codigo-firmado" class="md-nav__link">
+    Código firmado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identidad-de-firma" class="md-nav__link">
+    Identidad de firma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-certificados" class="md-nav__link">
+    Tipos de certificados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-los-certificados-en-xcode" class="md-nav__link">
+    Gestión de los certificados en Xcode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-e-instalacion-de-certificados" class="md-nav__link">
+    Creación e instalación de certificados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecucion-de-apps-en-dispositivos-reales" class="md-nav__link">
+    Ejecución de apps en dispositivos reales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo_1" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-la-identidad-de-firma" class="md-nav__link">
+    Instalación de la identidad de firma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-de-una-app" class="md-nav__link">
+    Firma de una app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-ejemplo-todo" class="md-nav__link">
+    App ejemplo ToDo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-del-certificado" class="md-nav__link">
+    Comprobación del certificado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-de-la-identidad-de-firma-en-acceso-a-llaveros" class="md-nav__link">
+    Comprobación de la identidad de firma en Acceso a Llaveros
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-de-un-dispositivo-de-desarrollo-a-xcode" class="md-nav__link">
+    Conexión de un dispositivo de desarrollo a Xcode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-en-un-dispositivo-real" class="md-nav__link">
+    Prueba en un dispositivo real
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autorizacion-al-desarrollador-en-el-dispositivo" class="md-nav__link">
+    Autorización al desarrollador en el dispositivo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo-y-distribucion-de-la-app" class="md-nav__link">
+    Archivo y distribución de la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-con-el-equipo-de-la-ua" class="md-nav__link">
+    Firma con el equipo de la UA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo-y-distribucion-de-la-app_1" class="md-nav__link">
+    Archivo y distribución de la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fin-de-la-demo_1" class="md-nav__link">
+    Fin de la demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacidades-de-las-apps" class="md-nav__link">
+    Capacidades de las apps
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacidades de las apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bundle-identifier" class="md-nav__link">
+    Bundle Identifier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-del-bundle-id" class="md-nav__link">
+    Uso del Bundle ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-id" class="md-nav__link">
+    App ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-las-capacidades-en-xcode" class="md-nav__link">
+    Gestión de las capacidades en Xcode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo_2" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fin-de-la-demo_2" class="md-nav__link">
+    Fin de la demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-de-apps-en-dispositivos-de-prueba" class="md-nav__link">
+    Despliegue de apps en dispositivos de prueba
+  </a>
+  
+    <nav class="md-nav" aria-label="Despliegue de apps en dispositivos de prueba">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-del-dispositivo" class="md-nav__link">
+    Características del dispositivo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-de-apps" class="md-nav__link">
+    Distribución de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprovisionamiento-de-apps" class="md-nav__link">
+    Aprovisionamiento de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfil-de-aprovisionamiento" class="md-nav__link">
+    Perfil de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispositivos-de-prueba-en-el-perfil-de-aprovisionamiento" class="md-nav__link">
+    Dispositivos de prueba en el perfil de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-la-app-en-un-dispositivo-de-prueba" class="md-nav__link">
+    Instalación de la app en un dispositivo de prueba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-y-ejecucion-de-apps-en-dispositivos-no-registrados" class="md-nav__link">
+    Distribución y ejecución de apps en dispositivos no registrados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificados-de-empresa" class="md-nav__link">
+    Certificados de empresa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-y-ejercicio" class="md-nav__link">
+    Demo y ejercicio
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo y ejercicio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-del-flujo-de-trabajo" class="md-nav__link">
+    Resumen del flujo de trabajo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equipo-de-desarrollo-del-programa-de-universidad" class="md-nav__link">
+    Equipo de desarrollo del programa de Universidad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incorporacion-de-certificado-a-un-perfil-de-aprovisionamiento-administrador" class="md-nav__link">
+    Incorporación de certificado a un perfil de aprovisionamiento (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-de-la-app-con-el-nuevo-certificado" class="md-nav__link">
+    Firma de la app con el nuevo certificado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-perfil-generico-no-tiene-configurado-ningun-servicio" class="md-nav__link">
+    El perfil genérico no tiene configurado ningún servicio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examinamos-los-perfiles-de-aprovisionamiento" class="md-nav__link">
+    Examinamos los perfiles de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-de-opciones" class="md-nav__link">
+    Menú de opciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-un-app-id-desde-el-portal-del-desarrollador-administrador" class="md-nav__link">
+    Creación de un App ID desde el portal del desarrollador (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispositivos-administrador" class="md-nav__link">
+    Dispositivos (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-perfiles-de-aprovisionamento-administrador" class="md-nav__link">
+    Creación de perfiles de aprovisionamento (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-de-la-app-todo-con-el-perfil-de-aprovisionamiento-creado" class="md-nav__link">
+    Firma de la app ToDo con el perfil de aprovisionamiento creado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportar-la-app" class="md-nav__link">
+    Exportar la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-y-ejecucion-de-la-app" class="md-nav__link">
+    Instalación y ejecución de la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fin-demo-y-ejercicio" class="md-nav__link">
+    Fin demo y ejercicio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliografia" class="md-nav__link">
+    Bibliografía
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/mapas/mapas-localizacion.html" class="md-nav__link">
+        Práctica 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/icloud/icloud.html" class="md-nav__link">
+        Práctica 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+    <nav class="md-nav" aria-label="Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seguridad-en-las-apps" class="md-nav__link">
+    Seguridad en las apps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cuenta-de-desarrollador-de-apple" class="md-nav__link">
+    Cuenta de desarrollador de Apple
+  </a>
+  
+    <nav class="md-nav" aria-label="Cuenta de desarrollador de Apple">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distintos-programas-de-desarrollo" class="md-nav__link">
+    Distintos programas de desarrollo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equipo-de-desarrollo" class="md-nav__link">
+    Equipo de desarrollo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfil-gratuito" class="md-nav__link">
+    Perfil gratuito
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miembro-del-equipo-de-la-ua" class="md-nav__link">
+    Miembro del equipo de la UA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#miembro-de-pago" class="md-nav__link">
+    Miembro de pago
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fin-de-la-demo" class="md-nav__link">
+    Fin de la demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#certificados" class="md-nav__link">
+    Certificados
+  </a>
+  
+    <nav class="md-nav" aria-label="Certificados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codigo-firmado" class="md-nav__link">
+    Código firmado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identidad-de-firma" class="md-nav__link">
+    Identidad de firma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-certificados" class="md-nav__link">
+    Tipos de certificados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-los-certificados-en-xcode" class="md-nav__link">
+    Gestión de los certificados en Xcode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-e-instalacion-de-certificados" class="md-nav__link">
+    Creación e instalación de certificados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejecucion-de-apps-en-dispositivos-reales" class="md-nav__link">
+    Ejecución de apps en dispositivos reales
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo_1" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-la-identidad-de-firma" class="md-nav__link">
+    Instalación de la identidad de firma
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-de-una-app" class="md-nav__link">
+    Firma de una app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-ejemplo-todo" class="md-nav__link">
+    App ejemplo ToDo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-del-certificado" class="md-nav__link">
+    Comprobación del certificado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprobacion-de-la-identidad-de-firma-en-acceso-a-llaveros" class="md-nav__link">
+    Comprobación de la identidad de firma en Acceso a Llaveros
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-de-un-dispositivo-de-desarrollo-a-xcode" class="md-nav__link">
+    Conexión de un dispositivo de desarrollo a Xcode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prueba-en-un-dispositivo-real" class="md-nav__link">
+    Prueba en un dispositivo real
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autorizacion-al-desarrollador-en-el-dispositivo" class="md-nav__link">
+    Autorización al desarrollador en el dispositivo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo-y-distribucion-de-la-app" class="md-nav__link">
+    Archivo y distribución de la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-con-el-equipo-de-la-ua" class="md-nav__link">
+    Firma con el equipo de la UA
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo-y-distribucion-de-la-app_1" class="md-nav__link">
+    Archivo y distribución de la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fin-de-la-demo_1" class="md-nav__link">
+    Fin de la demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacidades-de-las-apps" class="md-nav__link">
+    Capacidades de las apps
+  </a>
+  
+    <nav class="md-nav" aria-label="Capacidades de las apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bundle-identifier" class="md-nav__link">
+    Bundle Identifier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uso-del-bundle-id" class="md-nav__link">
+    Uso del Bundle ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-id" class="md-nav__link">
+    App ID
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gestion-de-las-capacidades-en-xcode" class="md-nav__link">
+    Gestión de las capacidades en Xcode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo_2" class="md-nav__link">
+    Demo
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fin-de-la-demo_2" class="md-nav__link">
+    Fin de la demo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#despliegue-de-apps-en-dispositivos-de-prueba" class="md-nav__link">
+    Despliegue de apps en dispositivos de prueba
+  </a>
+  
+    <nav class="md-nav" aria-label="Despliegue de apps en dispositivos de prueba">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-del-dispositivo" class="md-nav__link">
+    Características del dispositivo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-de-apps" class="md-nav__link">
+    Distribución de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aprovisionamiento-de-apps" class="md-nav__link">
+    Aprovisionamiento de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfil-de-aprovisionamiento" class="md-nav__link">
+    Perfil de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispositivos-de-prueba-en-el-perfil-de-aprovisionamiento" class="md-nav__link">
+    Dispositivos de prueba en el perfil de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-de-la-app-en-un-dispositivo-de-prueba" class="md-nav__link">
+    Instalación de la app en un dispositivo de prueba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distribucion-y-ejecucion-de-apps-en-dispositivos-no-registrados" class="md-nav__link">
+    Distribución y ejecución de apps en dispositivos no registrados
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificados-de-empresa" class="md-nav__link">
+    Certificados de empresa
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-y-ejercicio" class="md-nav__link">
+    Demo y ejercicio
+  </a>
+  
+    <nav class="md-nav" aria-label="Demo y ejercicio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-del-flujo-de-trabajo" class="md-nav__link">
+    Resumen del flujo de trabajo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equipo-de-desarrollo-del-programa-de-universidad" class="md-nav__link">
+    Equipo de desarrollo del programa de Universidad
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incorporacion-de-certificado-a-un-perfil-de-aprovisionamiento-administrador" class="md-nav__link">
+    Incorporación de certificado a un perfil de aprovisionamiento (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-de-la-app-con-el-nuevo-certificado" class="md-nav__link">
+    Firma de la app con el nuevo certificado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-perfil-generico-no-tiene-configurado-ningun-servicio" class="md-nav__link">
+    El perfil genérico no tiene configurado ningún servicio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examinamos-los-perfiles-de-aprovisionamiento" class="md-nav__link">
+    Examinamos los perfiles de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-de-opciones" class="md-nav__link">
+    Menú de opciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-un-app-id-desde-el-portal-del-desarrollador-administrador" class="md-nav__link">
+    Creación de un App ID desde el portal del desarrollador (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispositivos-administrador" class="md-nav__link">
+    Dispositivos (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-perfiles-de-aprovisionamento-administrador" class="md-nav__link">
+    Creación de perfiles de aprovisionamento (administrador)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firma-de-la-app-todo-con-el-perfil-de-aprovisionamiento-creado" class="md-nav__link">
+    Firma de la app ToDo con el perfil de aprovisionamiento creado
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exportar-la-app" class="md-nav__link">
+    Exportar la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-y-ejecucion-de-la-app" class="md-nav__link">
+    Instalación y ejecución de la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fin-demo-y-ejercicio" class="md-nav__link">
+    Fin demo y ejercicio
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bibliografia" class="md-nav__link">
+    Bibliografía
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="firma-aprovisionamiento-y-distribucion-de-apps">Firma, aprovisionamiento y distribución de apps<a class="headerlink" href="#firma-aprovisionamiento-y-distribucion-de-apps" title="Permanent link">&para;</a></h1>
+<h2 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h2>
+<p>En la sesión de hoy estudiaremos los elementos que proporciona la
+plataforma iOS para:</p>
+<ul>
+<li>Ejecutar apps en dispositivos reales.</li>
+<li>Configurar perfiles de aprovisionamiento en el Programa de
+  Desarrollo de la Universidad que nos permitan:<ul>
+<li>Distribuir nuestras apps en dispositivos de prueba.</li>
+<li>Utilizar APIs de los servicios de iOS no disponibles en la cuenta
+  de desarrollador gratuita. </li>
+</ul>
+</li>
+<li>Probar y distribuir apps usando Test Flight y App Store Connect.</li>
+</ul>
+<h3 id="seguridad-en-las-apps">Seguridad en las apps<a class="headerlink" href="#seguridad-en-las-apps" title="Permanent link">&para;</a></h3>
+<p>La seguridad es uno de los elementos fundamentales de la plataforma
+iOS. En concreto, el sistema de instalación y ejecución de apps en
+dispositivos reales contempla la necesidad de que las apps se ejecuten
+de forma segura y sin comprometer la integridad de la plataforma,
+eliminando virus, malware o ataques no autorizados.</p>
+<p>El documento <a href="https://support.apple.com/es-es/guide/security/welcome/web">iOS Security
+Guide</a>
+detalla todos los elementos que conforman la seguridad de la
+plataforma. Uno de los elementos más críticos de la arquitectura son
+las apps.</p>
+<p>Para garantizar la autoría del desarrollador y la no modificación del
+código, todo el código ejecutable que se ejecute en un dispositivo iOS
+debe haber sido firmado con un <strong>certificado generado por
+Apple</strong>. Al arrancar la aplicación el sistema se asegura de que el
+código de la app no ha sido modificado desde la última vez que fue
+instalada o actualizada.</p>
+<p>Para obtener un certificado, los desarrolladores deben registrase en
+el <strong>Apple Developer Program</strong>. Para publicar una app en el App Store,
+es necesario haberla firmado. De esta forma, toda app que nos
+instalemos en nuestros dispositivos ha sido desarrollada por una
+persona física u organización identificable.</p>
+<p>A diferencia de otras plataformas móviles, iOS no permite que los
+usuarios instalen de páginas web apps no firmadas, potencialmente
+maliciosas. Tampoco permite ejecutar código no fiable. </p>
+<h2 id="cuenta-de-desarrollador-de-apple">Cuenta de desarrollador de Apple<a class="headerlink" href="#cuenta-de-desarrollador-de-apple" title="Permanent link">&para;</a></h2>
+<h3 id="distintos-programas-de-desarrollo">Distintos programas de desarrollo<a class="headerlink" href="#distintos-programas-de-desarrollo" title="Permanent link">&para;</a></h3>
+<p>Apple define varios tipos de programas de desarrollo:</p>
+<ul>
+<li>Programa gratuito </li>
+<li><a href="https://developer.apple.com/programs/whats-included/">Programa de desarrollador de Apple</a> (<em>Apple Developer Program</em>) - $99 al año</li>
+<li><a href="https://developer.apple.com/programs/enterprise/">Programa de desarrollador de empresa</a> (<em>Apple Developer Enterprise Program</em>) - $299 al año</li>
+</ul>
+<p>Si sólo queremos empezar a desarrollar y probar apps en nuestro
+dispositivo iOS basta con darse de alta de forma gratuita en el
+<a href="https://developer.apple.com">portal del desarrollador</a> (<em>member
+center</em>) de Apple con un Apple ID.</p>
+<p>El programa de pago de desarrollador de Apple permite utilizar
+funcionalidades avanzadas, distribuir apps a dispositivos de prueba o
+subir nuestra app al App Store.</p>
+<p>El programa de desarrollador de empresa permite distribuir apps
+<em>in-house</em>, en los dispositivos del personal de la empresa, sin
+necesidad de usar el App Store.</p>
+<p>Además de los anteriores programas, Apple ofrece el denominado <a href="https://developer.apple.com/support/university/"><em>iOS Developer
+University Program</em></a> orientado a la formación en iOS en la universidad,
+que permite acceder a funcionalidades intermedias entre el programa
+gratuito y el programa de pago. </p>
+<p>Este programa permite utilizar servicios de Apple no disponibles en el
+programa gratuito y ejecutar apps en dispositivos registrados, no solo
+en el dispositivo de desarrollo.</p>
+<p>Dependiendo del rol es posible acceder a distintas opciones. Hay dos
+tipos de roles principales: <code>Admin</code> (administrador de la organización)
+y <code>Member</code> (miembro de la organización).</p>
+<p>La Universidad de Alicante participa en este programa y probaremos sus
+características.</p>
+<p>En concreto, las características de cada uno de los programas se
+muestra en la siguiente tabla
+<a href="https://developer.apple.com/support/compare-memberships/">https://developer.apple.com/support/compare-memberships/</a>:</p>
+<p><img src="imagenes/programas-developer.png" height="630px"/></p>
+<h3 id="equipo-de-desarrollo">Equipo de desarrollo<a class="headerlink" href="#equipo-de-desarrollo" title="Permanent link">&para;</a></h3>
+<p>En los programas de pago de desarrollador de Apple es posible trabajar
+con un equipo de desarrolladores. No es necesario darse de alta como
+organización para componer un equipo.</p>
+<p>Cuando se da de alta un programa de desarrollo se crea un
+identificador de equipo único (<em>Team ID</em>)  que compartirán todos los
+desarrolladores del equipo. Se puede consultar el identificador de
+equipo en la opción <em>Membership</em> del portal del desarrollador.</p>
+<p><img src="imagenes/locateteamid.png" width="600px"/></p>
+<p>Se pueden añadir desarrolladores al equipo desde el App Store Connect,
+en la opción de <em>Usuarios y Acceso</em>.</p>
+<p><img src="imagenes/invite_team_member.png" width="600px"/></p>
+<p>También es posible configurar los permisos de los desarrolladores del
+equipo para que puedan subir apps o probarlas como <em>testers</em> en Test
+Flight.</p>
+<p>También se pueden configurar estas opciones en el programa
+universitario.</p>
+<hr />
+<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
+<p>Veremos una demostración en la que accederemos al <a href="https://developer.apple.com/account/">portal del
+desarrollador</a> y al <a href="https://appstoreconnect.apple.com/login">App Store
+Connect</a> usando distintos
+perfiles:</p>
+<ul>
+<li>Perfil gratuito (domingo.gallardo.appledev2@gmail.com)</li>
+<li>Miembro de la cuenta de la universidad (domingo.gallardo.appledev1@gmail.com)</li>
+<li>Administrador de la cuenta de la universidad (domingo@dccia.ua.es)</li>
+<li>Perfil de pago (domingo@dccia.ua.es)</li>
+</ul>
+<h3 id="perfil-gratuito">Perfil gratuito<a class="headerlink" href="#perfil-gratuito" title="Permanent link">&para;</a></h3>
+<p>Para darse de alta como desarrollador de Apple es necesario dar de
+alta un Apple ID y definir una <a href="https://support.apple.com/es-es/HT204915">autenticación de doble
+factor</a>. </p>
+<p>Con esta forma de autenticación activada, cada vez que intentes
+acceder a tu cuenta desde un nuevo dispositivo tendrás que introducir
+un código de autorización que se envía a tus dispositivos autorizados
+en los que estás logeado.</p>
+<p>También es posible recibir un código de autorización en un teléfono
+móvil que deberás proporcionar en tu registro.</p>
+<p><img src="imagenes/autenticacion-doble-factor.jpg" width="600px"/></p>
+<p>Una vez dados de alta como desarrolladores de Apple podremos acceder al
+<a href="https://developer.apple.com/account/">portal del desarrollador</a>.</p>
+<p><img src="imagenes/cuenta-desarrollador-gratuito.png" width="700px"/></p>
+<p>Con esta cuenta gratuita podremos comenzar a desarrollar apps y
+probarlas en nuestro dispositivo de desarrollo. Pero este desarrollo
+estará limitado. No podremos distribuirlas a más dispositivos ni
+utilizar servicios avanzados de Apple.</p>
+<h3 id="miembro-del-equipo-de-la-ua">Miembro del equipo de la UA<a class="headerlink" href="#miembro-del-equipo-de-la-ua" title="Permanent link">&para;</a></h3>
+<p>Si añadimos nuestra cuenta al equipo de la Universidad de Alicante,
+podremos gestionar servicios y capacidades adicionales. Esta es la
+cuenta que usaremos durante la asignatura.</p>
+<p><img src="imagenes/cuenta-desarrollador-universidad.png" width="700px"/></p>
+<p>En el menú de la izquierda podemos comprobar que hay opciones
+adicionales a la cuenta gratuita.</p>
+<h3 id="miembro-de-pago">Miembro de pago<a class="headerlink" href="#miembro-de-pago" title="Permanent link">&para;</a></h3>
+<p>Por último, si usamos una cuenta de pago, tenemos opciones adicionales:</p>
+<p><img src="imagenes/cuenta-desarrollador.png" width="600px"/></p>
+<p>También tenemos acceso al portal de gestión de nuestras apps, el <a href="https://appstoreconnect.apple.com/login">App
+Store Connect</a> desde donde
+gestionar recursos relacionados con nuestro equipo de desarrollo y
+prueba, así como preparar las apps para su distribución en la App
+Store.</p>
+<p><img src="imagenes/appstoreconnect.png" width="600px"/></p>
+<h3 id="fin-de-la-demo">Fin de la demo<a class="headerlink" href="#fin-de-la-demo" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="certificados">Certificados<a class="headerlink" href="#certificados" title="Permanent link">&para;</a></h2>
+<h3 id="codigo-firmado">Código firmado<a class="headerlink" href="#codigo-firmado" title="Permanent link">&para;</a></h3>
+<p>Para poder tanto ejecutar una app en un dispositivo físico como
+distribuirla en el <em>App Store</em> es necesario firmar su código
+digitalmente.</p>
+<p>La <strong>firma digital del código</strong> (<em>code signing</em>) permite al sistema
+operativo identificar quién ha firmado la app y verificar que no se ha
+modificado desde el momento de su firma. El código ejecutable está
+protegido por la firma y ésta se invalida si el código cambia. Los
+recursos de la app como ficheros nib o imágenes no están firmados.</p>
+<p>En tiempo de ejecución, el sistema iOS comprueba el código firmado de
+todas las páginas ejecutables de memoria cuando se cargan, para
+asegurar que la app no ha sido modificada desde que fue instalada o
+actualizada por última vez.</p>
+<p>Para poder firmar una app es necesario instalar un certificado
+proporcionado por Apple que proporciona la clave privada con la que se
+realiza la firma.</p>
+<h3 id="identidad-de-firma">Identidad de firma<a class="headerlink" href="#identidad-de-firma" title="Permanent link">&para;</a></h3>
+<p><img src="imagenes/certificados.png" width="500px"/></p>
+<p>Una <strong>identidad de firma</strong> (<em>signing identity</em>) consiste en una pareja
+de clave pública y clave privada que proporciona Apple en el
+certificado de desarrollador.</p>
+<p>El certificado es creado por Xcode al añadir la cuenta de usuario y se
+almacena en el llavero de inicio de sesión del Mac en el que se
+realiza el desarrollo (se puede consultar con la aplicación <em>Acceso a
+llaveros</em>) y en el portal del desarrollador de Apple.</p>
+<p>La clave privada se usa para firmar la aplicación. La clave pública
+del certificado determina la identidad del desarrollador. La mantiene
+Apple en el centro de desarrollador y se guarda en los perfiles de
+aprovisionamiento del equipo de desarrollo.</p>
+<p>Se necesita también un certificado intermedio proporcionado por
+Apple. Cuando instalas Xcode este certificado intermedio se guarda en
+el llavero.</p>
+<p>Es muy importante conservar segura la clave privada, como si fuera una
+contraseña de una cuenta. Debes mantener una contraseña segura de tu
+pareja clave pública-privada. Si se pierde la clave privada, tendrás
+que crear una identidad completamente nueva para firmar el código. O
+peor aún, si alguien se hace con tu clave privada puede hacerse pasar
+por ti e intentar distribuir una app con código malicioso. Esto podría
+hacer que Apple revocara tus credenciales de desarrollador.</p>
+<h3 id="tipos-de-certificados">Tipos de certificados<a class="headerlink" href="#tipos-de-certificados" title="Permanent link">&para;</a></h3>
+<p>Existen varios <a href="https://developer.apple.com/help/account/reference/certificate-types">tipos de certificados</a>
+de desarrollo, de distribución, para el servidor de notificaciones
+push, etc. El <strong>certificado de desarrollador</strong> permite ejecutar
+aplicaciones en un dispositivo. El de distribución permite enviarla al
+<em>App Store</em>.</p>
+<p>Los certificados de desarrollo identifican a una persona del
+equipo. Los certificados de distribución identifican al equipo y
+pueden ser compartidos por los miembros del equipo que tienen permiso
+para enviar apps al <em>store</em>.</p>
+<p>Todos los certificados son proporcionados por Apple.</p>
+<p>Para comprobar el tipo de certificado podemos consultar el portal del
+desarrollador, <em>Xcode</em> o <em>Acceso a llaveros</em>.</p>
+<h3 id="gestion-de-los-certificados-en-xcode">Gestión de los certificados en Xcode<a class="headerlink" href="#gestion-de-los-certificados-en-xcode" title="Permanent link">&para;</a></h3>
+<p>Xcode mantiene nuestra identidad (Apple ID) y nuestros certificados. </p>
+<p>En el caso de pertenecer a más de un programa de desarrollo (por
+ejemplo al programa educativo de la UA y a nuestro programa personal)
+Xcode muestra los dos equipos y nos permite utilizar el que nos
+interese en cada momento.</p>
+<p><img src="imagenes/personal-team.png" width="500px"/></p>
+<h3 id="creacion-e-instalacion-de-certificados">Creación e instalación de certificados<a class="headerlink" href="#creacion-e-instalacion-de-certificados" title="Permanent link">&para;</a></h3>
+<p>Es posible generar e instalar manualmente los certificados, pero es
+más sencillo dejar que sea Xcode quien los gestione.</p>
+<p>Al firmar una aplicación por primera vez, Xcode se conecta a los
+servidores de Apple e instala automáticamente el certificado de firma.</p>
+<p><img src="imagenes/xcode-firma-digital.png" width="600px"/></p>
+<h3 id="ejecucion-de-apps-en-dispositivos-reales">Ejecución de apps en dispositivos reales<a class="headerlink" href="#ejecucion-de-apps-en-dispositivos-reales" title="Permanent link">&para;</a></h3>
+<p>Para la instalación y ejecución de una app iOS en un dispositivo
+físico es necesario realizar una configuración del <em>target</em> (binario
+que se instala en el dispositivo) que incluye múltiples procesos:</p>
+<ul>
+<li>
+<p><strong>Firma digital</strong> del binario con un certificado del desarrollador
+  proporcionado por Apple (<em>Signing Certificate</em>).</p>
+</li>
+<li>
+<p>Instalación de un <strong>perfil de aprovisionamiento</strong> (<em>Provisioning
+  Profile</em>) compatible con el <em>bundle identifier</em> de la app que determina,
+  entre otros: servicios de la plataforma Apple a los que la app puede
+  acceder (<strong><em>capabilities</em></strong> y <strong><em>entitlements</em></strong>) y dispositivos
+  concretos (IDs) autorizados en los que puede ejecutarse la app (lo
+  veremos más adelante).</p>
+</li>
+</ul>
+<p>Xcode facilita la realización de todos estos procesos. </p>
+<p><img src="imagenes/pr_assign_team.png" width="600px"/></p>
+<p>El resultado de estos procesos es un fichero binario .ipa firmado
+digitalmente.</p>
+<p>La forma habitual de instalar una app en un dispositivo iOS es
+descargándola del App Store. Pero también existen formas alternativas,
+para el caso de dispositivos de prueba o apps distribuidas
+internamente en una empresa (<em>in-house</em>). En estos casos es posible
+instalar las apps desde <em>Test Flight</em>, desde una web o con el programa
+de MacOS <em>Apple Configurator</em>.</p>
+<p>Resumiendo las distintas condiciones posibles, un dispositivo iOS
+puede ejecutar una app si:</p>
+<ol>
+<li>El dispositivo es un dispositivo de desarrollo inicializado por
+  Xcode.</li>
+<li>El dispositivo tiene instalado un perfil de aprovisionamiento
+  aprobado por el usuario, que contiene el UUID del propio dispositivo
+  y el certificado contiene la clave pública del desarrollador que ha
+  firmado la app.</li>
+<li>Se trata de una versión beta de la app que se ha instalado con Test
+   Flight.</li>
+<li>El dispositivo tiene instalado un perfil de aprovisionamiento
+  aprobado por el usuario y la app está firmada con un certificado de
+  empresa proporcionado por Apple.</li>
+<li>Proviene del App Store y está firmada con un certificado de
+  distribución en el App Store.</li>
+</ol>
+<hr />
+<h2 id="demo_1">Demo<a class="headerlink" href="#demo_1" title="Permanent link">&para;</a></h2>
+<p>Vamos a demostrar cómo firmar una app y cómo ejecutarla en un
+dispositivo autorizado por Xcode, usando el perfil de desarrollador
+de la cuenta gratuita de Apple y después usando el perfil de
+desarrollador del equipo de la Universidad de Alicante.</p>
+<h3 id="instalacion-de-la-identidad-de-firma">Instalación de la identidad de firma<a class="headerlink" href="#instalacion-de-la-identidad-de-firma" title="Permanent link">&para;</a></h3>
+<p>Una vez creado el Apple ID, Xcode facilita el proceso de generación
+de nuestra identidad de firma y de nuestro certificado de
+desarrollador.</p>
+<p>Escogemos <em>Xcode &gt; Preferences</em> y pinchamos en el signo + para añadir Apple
+ID.</p>
+<p><img src="imagenes/xcode-add-account.png" height="400px"/> </p>
+<p><img src="imagenes/xcode-show-account-personal.png" height="400px"/></p>
+<p>Si todo ha ido bien, Xcode mostrará la información de nuestro perfil gratuito. </p>
+<h3 id="firma-de-una-app">Firma de una app<a class="headerlink" href="#firma-de-una-app" title="Permanent link">&para;</a></h3>
+<p>Para firmar una app con Xcode debemos seleccionar el proyecto completo,
+el <em>target</em> y, en el apartado General, rellenar el <em>bundle ID</em> de la
+app y seleccionar tu identidad de firma en la opción <em>Signing &amp; Capabilities</em>.</p>
+<p><img src="imagenes/pr_assign_team.png" width="800px"/></p>
+<p>El <em>bundle ID</em> debe ser un identificador único. Si utilizamos uno que
+ya se ha usado Xcode indicará un error. Podemos utilizar nuestro
+nombre de login, seguido de un punto y del nombre de la app.</p>
+<h3 id="app-ejemplo-todo">App ejemplo <code>ToDo</code><a class="headerlink" href="#app-ejemplo-todo" title="Permanent link">&para;</a></h3>
+<p>Vamos a utilizar una app ya codificada para probar todos los conceptos
+de esta sesión. Se trata de una app muy sencilla, con la que podemos
+gestionar una lista de tareas por hacer.</p>
+<p><img src="imagenes/app-todo-list-simulador.png" width="300px"/></p>
+<p>Estando en el programa de desarrollo gratuito podemos probar la app en
+nuestro móvil de desarrollo. Para ello es necesario firmar el código
+compilado de la app con el certificado de desarrollador que acabamos
+de obtener.</p>
+<p>Al firmar la app, Xcode creará automáticamente el certificado de
+desarrollador.</p>
+<p><img src="imagenes/app-todo-list-firma.png" width="800px"/></p>
+<h3 id="comprobacion-del-certificado">Comprobación del certificado<a class="headerlink" href="#comprobacion-del-certificado" title="Permanent link">&para;</a></h3>
+<p>En la pantalla de <em>Xcode &gt; Preferences... &gt; Accounts</em> pulsamos <em>Manage
+Certificates...</em> para comprobar el certificado recién creado.</p>
+<p>Podemos gestionar los certificados (crear nuevos, exportar, importar,
+examinar) desde esta pantalla. Podemos encontrar más información en el
+<a href="https://help.apple.com/xcode/mac/current/#/dev154b28f09">manual de
+Xcode</a>.</p>
+<p><img src="imagenes/xcode-signing-identity.png" width="600px"/> </p>
+<p><img src="imagenes/gestionar-certificados.png" width="600px"/> </p>
+<h3 id="comprobacion-de-la-identidad-de-firma-en-acceso-a-llaveros">Comprobación de la identidad de firma en Acceso a Llaveros<a class="headerlink" href="#comprobacion-de-la-identidad-de-firma-en-acceso-a-llaveros" title="Permanent link">&para;</a></h3>
+<p>En la aplicación Acceso a Llaveros podemos comprobar que el
+certificado se ha instalado junto con la clave privada
+en <em>Mis certificados</em> e <em>Inicio de sesión</em>.</p>
+<p><img src="imagenes/acceso-a-llaveros.png" width="900px"/></p>
+<h3 id="conexion-de-un-dispositivo-de-desarrollo-a-xcode">Conexión de un dispositivo de desarrollo a Xcode<a class="headerlink" href="#conexion-de-un-dispositivo-de-desarrollo-a-xcode" title="Permanent link">&para;</a></h3>
+<p>Una vez que se ha firmado la aplicación es posible ejecutarla en un
+dispositivo de desarrollo conectado a Xcode. </p>
+<p>Comenzamos conectando el dispositivo iOS al ordenador. Se debe aceptar
+en el dispositivo un mensaje en el que se pide confirmación para
+confiar en el ordenador.</p>
+<p>Después, en Xcode seleccionamos <em>Window &gt; Devices</em> para comprobar que
+se ha conectado correctamente. En esa ventana se puede acceder al
+identificador UUID del dispositivo.</p>
+<p>Es posible activar la conexión inalámbrica al dispositivo.</p>
+<p><img src="imagenes/debug_network_iPhone_connect.png" width="600px"/></p>
+<h3 id="prueba-en-un-dispositivo-real">Prueba en un dispositivo real<a class="headerlink" href="#prueba-en-un-dispositivo-real" title="Permanent link">&para;</a></h3>
+<p>Seleccionamos el dispositivo en el menú de ejecución y ejecutamos para que
+la app se instale en el dispositivo.</p>
+<p>Es posible desplegar y ejecutar la aplicación en el dispositivo de
+forma inalámbrica.</p>
+<p><img src="imagenes/ejecucion-dispositivo.png" width="400px"/></p>
+<h3 id="autorizacion-al-desarrollador-en-el-dispositivo">Autorización al desarrollador en el dispositivo<a class="headerlink" href="#autorizacion-al-desarrollador-en-el-dispositivo" title="Permanent link">&para;</a></h3>
+<p>Al ser un dispositivo de prueba gestionado automáticamente por
+Xcode, debemos autorizar al desarrollador antes de poder lanzarse la
+app.</p>
+<p><img src="imagenes/autorizacion-desarrollador.png" width="400px"/></p>
+<p><img src="imagenes/confiar-desarrollador.png" width="400px"/> </p>
+<p><img src="imagenes/iphone-confiar-desarrollador.png" width="400px"/> </p>
+<p><img src="imagenes/todo-list-dispositivo.png" width="400px"/></p>
+<h3 id="archivo-y-distribucion-de-la-app">Archivo y distribución de la app<a class="headerlink" href="#archivo-y-distribucion-de-la-app" title="Permanent link">&para;</a></h3>
+<p>Seleccionando la opción de Xcode <em>Product &gt; Archive</em> se accede al
+panel de archivo y distribución de la app </p>
+<p>Sin embargo, al estar registrado en el programa gratuito no es posible
+seleccionar ninguna forma de distribución de la app.</p>
+<p><img src="imagenes/distribucion-deshabilitada.png" width="800px"/></p>
+<div class="admonition alert">
+<p class="admonition-title">Cuidado</p>
+<p>Para poder pulsar la opción <em>Archive</em> debe estar seleccionada la
+opción <em>Generic iOS Device</em> en el menú de ejecución. Si está
+seleccionado un modelo concreto de iPhone la opción <em>Archive</em> se
+deshabilita. </p>
+<p><img src="imagenes/generic-ios-device.png" width="400px"/></p>
+</div>
+<h3 id="firma-con-el-equipo-de-la-ua">Firma con el equipo de la UA<a class="headerlink" href="#firma-con-el-equipo-de-la-ua" title="Permanent link">&para;</a></h3>
+<p>Podemos firmar con el equipo de la UA cambiando el bundle ID,
+seleccionando el <code>Team</code> <code>Universidad de Alicante</code>.</p>
+<p><img src="imagenes/seleccion-equipo-ua.png" width="550px"/></p>
+<p><img src="imagenes/bundle-id-ua.png" width="550px"/></p>
+<p>Al seleccionar el equipo <code>Universidad de Alicante</code> Xcode selecciona nuestro
+certificado específico asociado al equipo de la UA y firma con él la
+aplicación.</p>
+<p>Podemos instalar cualquier perfil de aprovisionamiento creado en el
+equipo de la UA que sea compatible con el bundle ID. Para ello
+desmarcamos la opción <code>Automatically manage signing</code> y descargamos el
+perfil que nos interese. Un perfil de aprovisionamiento contiene un
+listado de capacidades que podemos activar en la app y un listado de
+dispositivos en los que podemos ejecutarla. Más adelante explicaremos
+esto con más detalle.</p>
+<p><img src="imagenes/download-profile.png" width="550px"/></p>
+<p>Podemos seleccionar el perfil denominado <code>Genérico</code>:</p>
+<p><img src="imagenes/perfil-generico-ua.png" width="550px"/></p>
+<p>Una vez instalado el perfil de aprovisionamiento, la configuración de
+firma de la app queda como se muestra en la siguiente imagen:</p>
+<p><img src="imagenes/firma-aprovisionamiento-ua.png" width="550px"/></p>
+<h3 id="archivo-y-distribucion-de-la-app_1">Archivo y distribución de la app<a class="headerlink" href="#archivo-y-distribucion-de-la-app_1" title="Permanent link">&para;</a></h3>
+<p>Ahora ya podemos exportar la app y ejecutarla en cualquier dispositivo
+registrado en el perfil que acabamos de instalar. Para ello debemos
+seleccionar <code>Product &gt; Archive</code> y la opción <code>Development</code>.</p>
+<p><img src="imagenes/distribution-method.png" width="550px"/></p>
+<p><img src="imagenes/distribution-1.png" width="550px"/></p>
+<p><img src="imagenes/distribution-2.png" width="550px"/></p>
+<p><img src="imagenes/distribution-3.png" width="550px"/></p>
+<p>Se crea una carpeta que contiene el fichero <code>.ipa</code> que puede
+instalarse en cualquier dispositivo incluido en el perfil de
+aprovisionamiento (aunque no sea un dispositivo de desarrollo).</p>
+<p>Podemos instalar la app en un dispositivo conectando el dispositivo al
+Mac y usando el programa de Apple <code>Apple Configurator</code>.</p>
+<h3 id="fin-de-la-demo_1">Fin de la demo<a class="headerlink" href="#fin-de-la-demo_1" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="capacidades-de-las-apps">Capacidades de las apps<a class="headerlink" href="#capacidades-de-las-apps" title="Permanent link">&para;</a></h2>
+<p><img src="imagenes/app-distribution.png" height="200px"/></p>
+<p>Apple proporciona un conjunto de servicios para ser utilizados por las
+apps. Apple denomina a estos servicios como <em>Capabilities</em>. Para que
+una app pueda utilizar cualquiera de estas <em>capabilities</em> debe
+autorizarse su uso desde la cuenta de desarrollo o desde Xcode.</p>
+<p>Dependiendo del tipo de cuenta de desarrollo es posible utilizar unas
+<em>capabilities</em> y otras. Por ejemplo, podemos utilizar el servicio de
+mapas o el API de <em>Health Kit</em> con el programa gratuito, pero
+necesitamos el programa de la universidad para poder utilizar
+servicios iCloud o notificaciones push. Y existen <em>capabilities</em> avanzadas
+que sólo pueden ser usadas con el programa de pago.</p>
+<p>Para una lista completa de las capacidades disponibles según el tipo
+de desarrollador se puede consultar la documentación en <a href="https://developer.apple.com/help/account/reference/supported-capabilities-ios"><em>Apple
+Developer &gt; Support &gt; Advanced App
+Capabilities</em></a></p>
+<p><img src="imagenes/app-capabilities.png" width="550px"/> </p>
+<p>Podemos explorar en Xcode el listado de <em>capabilities</em> que podemos
+añadir a nuestra app, accediendo desde la pantalla de <em>Signing &amp;
+Capabilities</em> a la opción <em>+ Capability</em>.</p>
+<p><img src="imagenes/xcode-new-capabilities.png" width="700px" /></p>
+<p>Con el programa gratuito podemos usar el siguiente listado de
+<em>capabilities</em>:</p>
+<p><img src="imagenes/capabilities-free-program.png" width="300px"/></p>
+<p>Con el programa de pago podemos acceder a todos los
+servicios proporcionados por Apple:</p>
+<p><img src="imagenes/servicios-programa-pago.png" width="550px"/></p>
+<h3 id="bundle-identifier"><em>Bundle Identifier</em><a class="headerlink" href="#bundle-identifier" title="Permanent link">&para;</a></h3>
+<p>Un <em>bundle ID</em> es una cadena que identifica de forma única una
+app. Cuando definimos el bundle ID de un proyecto, Apple lo registra
+y no permite que ningún otro desarrollador utilice ese mismo ID. Si
+intentamos registrar un bundle ID que otro desarrollador ya ha usado
+Xcode nos informa de un error.</p>
+<p><img src="imagenes/bundle-id-xcode.png" width="550px"/></p>
+<p>La cadena de <em>bundle ID</em> debe contener únicamente caracteres
+alfanuméricos (A-Z,a-z,0-9), guiones (-), y puntos (.). Una forma de
+que no existan demasiadas colisiones en los bundle ID es usar un
+formato DNS-inverso con el nombre de la app y el dominio de nuestra
+organización. Por ejemplo, si el dominio de la organización es
+<code>Acme.com</code> y creamos una app llamada <code>Hola</code> podríamos usar como
+<em>bundle ID</em> de la app la cadena <code>com.Acme.Hola</code>. También podríamos
+usar nuestro nombre y el nombre de la app (si nadie ha registrado una
+app con un nombre idéntico al nuestro): <code>domingogallardo.Hola</code>.</p>
+<p>La forma de comprobar la disponibilidad del bundle ID es intentar
+firmar la app en la pantalla <code>Signing &amp; Capabilities</code> de Xcode. Al
+escribir el bundle ID y pulsar <code>Enter</code> Xcode intenta firmar la app y
+da un error si el bundle ID ya está cogido.</p>
+<p><img src="imagenes/xcode-bundle-id-error.png" width="650px"/></p>
+<h3 id="uso-del-bundle-id">Uso del Bundle ID<a class="headerlink" href="#uso-del-bundle-id" title="Permanent link">&para;</a></h3>
+<p><img src="imagenes/bundleid.png" width="500px"/></p>
+<p>Ya que el bundle ID identifica una app de forma única, éste se utiliza
+en varias fases de su configuración. En concreto, se usa en el proceso
+de aprovisionamiento de la app y en la configuración de los permisos y
+capacidades a los que la app puede acceder. Cuando configuramos los
+permisos para que la app pueda utilizar determinados servicios debemos
+indicar a qué bundle IDs otorgamos esos permisos. Esto lo hacemos como
+el <em>App ID</em>.</p>
+<h3 id="app-id">App ID<a class="headerlink" href="#app-id" title="Permanent link">&para;</a></h3>
+<p>El <em>App ID</em> es un patrón de texto que da permiso a un único <em>bundle
+ID</em> (identificador de la app) o a un conjunto de ellos. Un App ID
+define una lista de capacidades (<em>whitelist</em>) que permitimos usar a
+una app (<em>explicit App ID</em>) o varias apps (<em>wildcard App ID</em>).</p>
+<p>El <em>App ID</em> se puede crear de forma automática desde Xcode o
+manualmente desde la propia cuenta de desarrollo. </p>
+<p><img src="imagenes/app-id-cuenta-desarrollo.png" width="600px"/></p>
+<p>Todos los App IDs creados se guardan en el portal del desarrollador. Los que
+crea Xcode de forma automática tienen en su nombre el prefijo XC.</p>
+<p><img src="imagenes/lista-app-id-member-center.png" width="600px"/></p>
+<p>Por ejemplo, podríamos crear el <em>App ID</em>
+<code>es.ua.mastermoviles.icloud.*</code> con la <em>capability</em> de acceso a
+iCloud. De esta forma, todos los <em>bundles ID</em> que tengan este prefijo
+podrán acceder al servicio.</p>
+<p>Una vez creado, el <em>App ID</em> se instala en un <strong>perfil de
+aprovisionamiento</strong> que es el que finalmente hay que instalar en la
+app y permite que ésta acceda a los permisos otorgados. Además, el
+perfil de aprovisionamiento también contendrá los identificadores de
+los dispositivos de prueba en los que la app podrá ejecutarse.</p>
+<p>En el caso de un desarrollador individual los permisos se gestionan
+automáticamente desde Xcode, que es quien se encarga de crear el <em>App
+ID</em> y otorgarle los permisos necesarios.</p>
+<p>La cadena del <em>App ID</em> contiene realmente dos partes separadas por un
+punto: el prefijo, que es el <em>Team ID</em>, y el sufijo que es la cadena
+de búsqueda del <em>bundle ID</em> propiamente dicha.</p>
+<h3 id="gestion-de-las-capacidades-en-xcode">Gestión de las capacidades en Xcode<a class="headerlink" href="#gestion-de-las-capacidades-en-xcode" title="Permanent link">&para;</a></h3>
+<p>Como se ha comentado anteriormente, podemos acceder en Xcode a las
+<em>capabilities</em> que queremos autorizar en la app que estamos
+desarrollando.</p>
+<p>Para ello debemos seleccionar el <em>target</em> y la opción
+<em>Signing &amp; Capabilities</em> y pulsar en <em>+ Capability</em>.</p>
+<p><img src="imagenes/xcode-new-capabilities.png" width="700px" /></p>
+<p>Una vez seleccionadas las capacidades que necesitamos, Xcode busca en
+el portal del desarrollador algún perfil de aprovisionamiento con un App ID que
+empareje el <em>bundle ID</em> y que satisfaga estas necesidades. Si no
+existe ninguno, crea el <em>App ID</em> y el perfil de aprovisionamiento de
+forma automática. El App ID lo registra en la cuenta de
+desarrollo. Sólo lo puede hacer si somos administradores.</p>
+<h2 id="demo_2">Demo<a class="headerlink" href="#demo_2" title="Permanent link">&para;</a></h2>
+<p>Vamos a comprobar el uso de las capacidades (<em>capabilities</em>) en la app
+ToDo. Si pulsamos en <code>+ Capability</code> veremos que podemos añadir un
+amplio conjunto de capacidades a la app. Son muchas más que en
+el perfil gratuito, por estar firmando la app con la cuenta de
+desarrollador del equipo de la UA.</p>
+<p>Pero para poder utilizar la capacidad, ésta debe estar autorizada por
+el perfil de aprovisionamiento. Y el perfil de aprovisionamiento
+<code>Genérico</code> no autoriza ninguna.</p>
+<p>Lo podemos comprobar seleccionando por ejemplo <code>Game Center</code>. Veremos
+el siguiente mensaje de error, que el perfil <code>Genérico</code> no autoriza la
+capacidad <code>Game Center</code>.</p>
+<p><img src="imagenes/error-game-center.png" width="600px"/></p>
+<p>Podemos ver los perfiles en la web del desarrollador del equipo de la
+UA, y buscar un perfil que autorice esa capacidad.</p>
+<p><img src="imagenes/perfil-master-moviles-todo.png" width="650px"/></p>
+<p>Vemos que el perfil <code>Master Moviles ToDo</code> contiene las capacidades
+<code>Game Center</code>, <code>iCloud</code>, <code>In-App Purchase</code> y <code>Push Notifications</code>. Y
+que el App ID autoriza su uso al bundle ID <code>es.ua.mastermoviles.ToDo</code>.</p>
+<p>Cambiamos el bundle ID de la app a <code>es.ua.mastermoviles.ToDo</code>. Ese
+mismo identificador puede ser usado por distintos programadores, siempre
+que estén en el mismo equipo. En este caso, en el equipo de la UA. </p>
+<p>Descargamos el perfil <code>Master Moviles ToDo</code>.</p>
+<p><img src="imagenes/download-master-moviles-todo.png" width="500px"/></p>
+<p>Y podemos comprobar que ahora ya no da ningún error el uso de la
+capacidad <code>Game Center</code>.</p>
+<p><img src="imagenes/ok-game-center.png" width="600px"/></p>
+<p>Al exportar la app tenemos que seleccionar manualmente el perfil
+correcto:</p>
+<p><img src="imagenes/exportar-con-perfil.png" width="500px"/></p>
+<h3 id="fin-de-la-demo_2">Fin de la demo<a class="headerlink" href="#fin-de-la-demo_2" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="despliegue-de-apps-en-dispositivos-de-prueba">Despliegue de apps en dispositivos de prueba<a class="headerlink" href="#despliegue-de-apps-en-dispositivos-de-prueba" title="Permanent link">&para;</a></h2>
+<p>Hemos visto que cuando estamos desarrollando una app podemos
+desplegarla en el dispositivo de desarrollo usando Xcode. </p>
+<p>Una vez terminada, y antes de publicarla en la App Store, debemos
+distribuirla en dispositivos de usuarios prueba para que realicen
+pruebas más extensas.</p>
+<p>Es posible hacerlo declarando los dispositivos de prueba en el portal
+del desarrollador y añadiéndolos al <em>perfil de aprovisionamiento</em> de
+la app. Vamos a ver estos conceptos.</p>
+<h3 id="caracteristicas-del-dispositivo">Características del dispositivo<a class="headerlink" href="#caracteristicas-del-dispositivo" title="Permanent link">&para;</a></h3>
+<p>Cuando compilamos una app podemos especificar ciertas características
+necesarias que debe tener el dispositivo en el que va a correr la app.</p>
+<p><img src="imagenes/xcode-deployment-info.png" width="700px"/></p>
+<p>En el apartado <em>Deployment Info</em> de XCode, disponible en la pantalla
+<em>Target &gt; General</em> podemos definir:</p>
+<ul>
+<li>Tipo de dispositivo: iPhone, iPad o Mac (utilizando <a href="https://developer.apple.com/documentation/uikit/mac_catalyst">Mac Catalyst</a>)</li>
+<li>Sistema operativo mínimo: versión de OS mínima necesaria de los
+  dispositivos en los que se va a instalar nuestra app.</li>
+<li>Características de la interfaz de usuario y de la orientación del dispositivo</li>
+</ul>
+<h3 id="distribucion-de-apps">Distribución de apps<a class="headerlink" href="#distribucion-de-apps" title="Permanent link">&para;</a></h3>
+<p>La forma de distribuir apps en la plataforma iOS es la App Store. Para
+enviar una app al App Store es necesario haberse registrado en el
+programa de pago de desarrollador de Apple. </p>
+<p>Apple proporciona un <strong>certificado de distribución</strong> necesario para subir
+la app al App Store. De esta forma, todas las apps en el App Store han
+sido enviadas por una persona o una empresa conocida.</p>
+<p>Las apps enviadas son revisadas por Apple para asegurarse de que
+funcionan tal y como se describe y que no contiene bugs obvios ni
+otros problemas evidentes. Este proceso de curación da a los clientes
+confianza en las apps que compran.</p>
+<h3 id="aprovisionamiento-de-apps">Aprovisionamiento de apps<a class="headerlink" href="#aprovisionamiento-de-apps" title="Permanent link">&para;</a></h3>
+<p>Antes de distribuir la app en el App Store debemos haberla probada en
+dispositivos de prueba. </p>
+<p>Apple permite también distribuir apps de forma restringida, declarando
+los dispositivos en el portal del desarrollador e incorporándolos en
+el <strong>perfil de aprovisionamiento</strong> de la app. Esto solo es posible si
+tenemos una cuenta de pago de desarrollador o si estamos en un equipo
+con una cuenta. En nuestro caso usaremos la cuenta del programa de
+desarrollo de la universidad.</p>
+<p>Una vez añadido el perfil de aprovisionamiento a la app, podremos
+generar el archivo binario <em>.ipa</em> utilizando los métodos de
+distribución denominados <em>Ad hoc</em> y <em>Development</em>. Con ambos métodos
+de distribución podemos distribuir el app a aquellos dispositivos
+incluidos en la lista de dispositivos autorizados del perfil de
+aprovisionamiento. Con el segundo método podemos además distribuir la
+app a <em>testers</em> de nuestro equipo de desarrollo.</p>
+<p>El perfil de aprovisionamiento de la app también incluye las
+capacidades declaradas para que la app pueda acceder a servicios de la
+plataforma Apple (como almacenamiento iCloud, mapas, compras In-App o
+notificaciones push).</p>
+<h3 id="perfil-de-aprovisionamiento">Perfil de aprovisionamiento<a class="headerlink" href="#perfil-de-aprovisionamiento" title="Permanent link">&para;</a></h3>
+<p>Un <strong>perfil de aprovisionamiento</strong> (<em>provisioning profile</em>) es un fichero
+que contiene una colección de datos (claves públicas de certificados,
+permisos, UUIDs de dispositivos autorizados, etc.) que conecta
+desarrolladores y dispositivos a un equipo de desarrollo autorizado y
+que permite que un dispositivo sea utilizado para pruebas.</p>
+<p>Un perfil de aprovisionamiento determina básicamente:</p>
+<ul>
+<li>Qué desarrolladores pueden compilar y distribuir un app.</li>
+<li>Qué servicios puede utilizar una app.</li>
+<li>En qué dispositivos se pueden ejecutar la app.</li>
+</ul>
+<p>Un perfil de aprovisionamiento contiene los siguientes elementos:</p>
+<p><img src="imagenes/teamprovisioningprofile.png" width="400px"/></p>
+<ul>
+<li><strong>App ID</strong>: nombre del perfil, cadena de búsqueda y servicios
+  autorizados por el pérfil.</li>
+<li><strong>Certificados</strong> de desarrolladores del equipo.</li>
+<li><strong>Dispositivos</strong>: Nombre e identificadores de dispositivos.</li>
+</ul>
+<p>Físicamente, los perfiles de aprovisionamiento son ficheros XML
+encriptados. Los que usa Xcode se guardan en el directorio
+<code>Library/MobileDevice/Provisioning Profiles</code>. Podemos acceder a este
+directorio desde el terminal o desde el Finder mostrando la carpeta
+<code>Biblioteca</code> con el menú <code>Ir + Alt &gt; Biblioteca</code> (el modificador <code>Alt</code>
+muestra las opciones ocultas).</p>
+<p>Si los borramos de esa
+carpeta, <strong>automáticamente se borran de Xcode</strong> (esto es muy útil cuando
+tenemos algún problema con los perfiles y queremos empezar de cero).</p>
+<p>Es posible consultar su contenido desde el terminal con el comando:</p>
+<div class="highlight"><pre><span></span><code>security cms -D -i &lt;perfil&gt;.mobileprovision
+</code></pre></div>
+<p><img src="imagenes/provisioning-profile-xml.png" width="800px"/></p>
+<p>También podemos visualizar su contenido con la vista previa del
+Finder:</p>
+<p><img src="imagenes/perfil-aprovisionamiento-preview.png" width="800px"/></p>
+<h3 id="dispositivos-de-prueba-en-el-perfil-de-aprovisionamiento">Dispositivos de prueba en el perfil de aprovisionamiento<a class="headerlink" href="#dispositivos-de-prueba-en-el-perfil-de-aprovisionamiento" title="Permanent link">&para;</a></h3>
+<p>El perfil de aprovisionamiento de una app se incluye en el binario de
+la app (fichero .ipa) y se instala automáticamente en el dispositivo
+cuando se copia la app.</p>
+<p>Para que la app se pueda ejecutar en el dispositivo, su UUID debe
+estar incluido en la lista de dispositivos autorizados del
+perfil. Además se deben cumplir las siguientes condiciones:</p>
+<ul>
+<li>El bundle ID de la app empareja el App ID del perfil.</li>
+<li>Los permisos solicitados por la app están otorgados en el App ID del
+perfil.</li>
+<li>La app está firmada por un desarrollador cuya clave pública está en
+la perfil de aprovisionamiento.</li>
+</ul>
+<p><img src="imagenes/lanzamiento-perfil-aprovisionamiento.png" width="600px"/></p>
+<p>En combinación con el <em>bundle ID</em>, el perfil de aprovisionamiento y
+los permisos (<em>entitlements</em>) se usan para asegurar que:</p>
+<ul>
+<li>La app ha sido compilada y firmada por nosotros o por un miembro de
+  confianza del equipo.</li>
+<li>Las apps firmadas por nosotros o por nuestro equipo se ejecutan sólo en
+  dispositivos de desarrollo escogidos.</li>
+<li>Las apps se ejecutan únicamente en los dispositivos de prueba
+  que especifiquemos.</li>
+<li>Nuestra app no está usando servicios que no hemos añadido al app.</li>
+<li>Sólo nosotros podemos enviar revisiones del app al <em>store</em>.</li>
+</ul>
+<h3 id="instalacion-de-la-app-en-un-dispositivo-de-prueba">Instalación de la app en un dispositivo de prueba<a class="headerlink" href="#instalacion-de-la-app-en-un-dispositivo-de-prueba" title="Permanent link">&para;</a></h3>
+<p>Es posible instalar la app en el iPhone de prueba usando Xcode o
+<em>Apple Configurator</em>.</p>
+<p>La aplicación <em>Apple Configurator</em> permite configurar dispositivos,
+hacer copias de seguridad, añadir apps, etc.</p>
+<p><img src="imagenes/install-configurator.png" width="600px"/></p>
+<p>La app se copia en el dispositivo junto con el perfil de
+aprovisionamiento (está incluido en el ipa). De esta forma, para
+ejecutar la app no es necesario autorizar el perfil del desarrollador.</p>
+<p><img src="imagenes/dispositivo-perfil-instalado.png" width="700px"/></p>
+<p>Podemos instalar también el fichero <em>ipa</em> desde el panel de gestión de
+dispositivos de Xcode accesible desde la opción <em>Window &gt; Devices</em>.</p>
+<p>Allí también podemos comprobar el perfil de aprovisionamiento recién
+instalado.</p>
+<p>Por último, es posible instalar la app en modo prueba a través de
+Internet usando la herramienta oficial de Apple
+<a href="https://developer.apple.com/testflight/">TestFlight</a>, con la que se
+puede instalar la app tanto en dispositivos registrados en el perfil
+de aprovisionamiento como en dispositivos de usuarios de prueba
+desconocidos (hasta 10.000 usuarios de prueba). Para usar TestFlight
+es necesario ser un desarrollador de pago. </p>
+<p>Una alternativa gratuita son servicios como
+<a href="https://www.diawi.com">diawi</a> o
+<a href="https://alternativeto.net/software/diawi/">similares</a>, que permiten
+distribuir la app también por Internet, pero solo a usuarios con el
+UDID incluido en el perfil de aprovisionamiento.</p>
+<p><img src="imagenes/diawi.png" width="500px"/></p>
+<p>Tras subir el fichero ipa a la web se genera una URL y un código QR
+desde la que se puede descargar la app en nuestro dispositivo. </p>
+<h3 id="distribucion-y-ejecucion-de-apps-en-dispositivos-no-registrados">Distribución y ejecución de apps en dispositivos no registrados<a class="headerlink" href="#distribucion-y-ejecucion-de-apps-en-dispositivos-no-registrados" title="Permanent link">&para;</a></h3>
+<p>Existen dos tipos especiales de perfiles de aprovisionamiento que
+permiten que cualquier dispositivo (no solo aquellos que están
+registrados en el propio perfil) puedan ejecutar una app:</p>
+<ul>
+<li>El <em>App Store Distribution Provisioning Profile</em> que se utiliza para
+  poder subir la app al App Store de Apple.</li>
+<li>El <em>In-house Distribution Provisioning Profile</em> que se utiliza para
+  poder distribuir una app en la empresa y que debe tener un
+  <strong>certificado de empresa</strong> de Apple.</li>
+</ul>
+<h3 id="certificados-de-empresa">Certificados de empresa<a class="headerlink" href="#certificados-de-empresa" title="Permanent link">&para;</a></h3>
+<p>Los certificados de empresa de Apple han sido noticia recientemente
+debido a que Apple ha detectado <a href="https://www.theverge.com/2019/1/31/18205795/apple-google-blocked-internal-ios-apps-developer-certificate">malas prácticas en su uso por parte de
+Facebook y Google</a>. Como
+castigo, Apple ha revocado los certificados durante un par de
+días. Durante ese tiempo, las apps <em>in-house</em> de esas compañías han
+dejado de funcionar. </p>
+<p>El mal uso de Facebook y Google de estos certificados <a href="https://www.theverge.com/2019/2/20/18232583/apple-ios-developer-enterprise-program-store-mobile-apps">ha puesto al
+descubierto</a>
+la existencia de una gran cantidad de sitios que hacen un uso
+fraudulento de los certificados de empresa de Apple para distribuir
+apps no permitidas en el App Store (de juego o pornografía) como si
+fueran apps <em>in-house</em>.</p>
+<hr />
+<h2 id="demo-y-ejercicio">Demo y ejercicio<a class="headerlink" href="#demo-y-ejercicio" title="Permanent link">&para;</a></h2>
+<h3 id="resumen-del-flujo-de-trabajo">Resumen del flujo de trabajo<a class="headerlink" href="#resumen-del-flujo-de-trabajo" title="Permanent link">&para;</a></h3>
+<p>Vamos a comprobar que es necesario firmar digitalmente la app para
+poder ejecutarla en un dispositivo y usar ciertos servicios como
+CloudKit, Game Center o compras In-App. Además, veremos que la app
+puede ejecutarse en todos aquellos dispositivos que hayamos registrado
+y añadido en el perfil de aprovisionamiento usado para firmar la app
+(además de en el dispositivo de desarrollo autorizado por Xcode).</p>
+<p>Veremos que si seleccionamos la opción de firma automática en Xcode,
+Xcode creará estos elementos de forma automática. También
+comprobaremos cómo el administrador puede configurar App IDs y
+perfiles de aprovisionamiento en la web del equipo de desarrollo de
+Apple.</p>
+<p>Un resumen de los pasos que vamos a seguir en el ejercicio:</p>
+<ol>
+<li>Nos damos de alta al equipo de la universidad.</li>
+<li>El administrador del equipo de la universidad crea un App ID con
+   ciertas capacidades y un perfil de aprovisionamiento con ese App
+   ID, los dispositivos de prueba y los desarrolladores del equipo.</li>
+<li>Compilamos la app, añadimos las capacidades necesarias y la firmamos con la cuenta del equipo.</li>
+<li>Exportamos el fichero .ipa compilado de la app.</li>
+<li>Instalamos y ejecutamos la app en un dispositivo de prueba.</li>
+</ol>
+<h3 id="equipo-de-desarrollo-del-programa-de-universidad">Equipo de desarrollo del programa de Universidad<a class="headerlink" href="#equipo-de-desarrollo-del-programa-de-universidad" title="Permanent link">&para;</a></h3>
+<p>La mayoría de opciones en el portal del desarrollador serán sólo accesibles para
+consulta. Será el administrador del equipo de la Universidad el que
+podrá cambiarlas.</p>
+<p><img src="imagenes/join-team.png" width ="400px"/> <img src="imagenes/apple-developer-universidad.png" width="400px"/></p>
+<p>Es necesario crear un nuevo certificado para el desarrollador,
+distinto del certificado individual. Servirá para firmar aplicaciones
+desarrolladas en el equipo en el que se ha añadido al desarrollador.</p>
+<p>Se puede hacer desde Xcode, seleccionando el equipo <em>Universidad de
+Alicante</em> y la opción <em>Manage Certificates...</em>. Será un certificado de
+tipo <strong>iOS App Development</strong>.</p>
+<p><img src="imagenes/xcode-pref-team-develop.png" width="450px"/> </p>
+<p><img src="imagenes/xcode-cert-team.png" width="450px"/></p>
+<p>Para confirmar que se ha creado el nuevo certificado, podemos entrar
+en el portal del desarrollador o en la aplicación de Acceso a llaveros:</p>
+<p><img src="imagenes/nuevo-certificado-member-center.png" width="700px"/></p>
+<p><img src="imagenes/nuevo-certificado-acceso-llaveros.png" width="700px"/></p>
+<h3 id="incorporacion-de-certificado-a-un-perfil-de-aprovisionamiento-administrador">Incorporación de certificado a un perfil de aprovisionamiento (administrador)<a class="headerlink" href="#incorporacion-de-certificado-a-un-perfil-de-aprovisionamiento-administrador" title="Permanent link">&para;</a></h3>
+<p>Para poder firmar y distribuir apps el certificado recién creado debe
+estar incluido en un perfil de aprovisionamiento compatible con la app
+que estamos desarrollando.</p>
+<p>Vamos a incorporar los nuevos certificados al perfil de
+aprovisionamiento genérico, con App ID comodín (<code>es.ua.*</code>) con el que se
+puede distribuir cualquier app que tenga un <em>bundle id</em> que comience
+por <code>es.ua</code>.</p>
+<p><img src="imagenes/actualizar-perfil-aprovisionamiento-cert.png" width="700px" /></p>
+<h3 id="firma-de-la-app-con-el-nuevo-certificado">Firma de la app con el nuevo certificado<a class="headerlink" href="#firma-de-la-app-con-el-nuevo-certificado" title="Permanent link">&para;</a></h3>
+<p>Para firmar la app con el nuevo certificado <strong>desmarcamos la opción
+para que Xcode gestione automáticamente la firma</strong>. De esta forma
+podremos gestionar manualmente qué perfil de aprovisionamiento es el
+que utilizamos.</p>
+<p>Seleccionamos el <em>team</em> Universidad de Alicante. Y escribimos como
+<em>bundle id</em> <code>es.ua.mastermoviles.ToDo</code>.</p>
+<p>En el desplegable <em>Provisioning Profile</em> seleccionamos la opción
+<em>Download Profile...</em>.</p>
+<p><img src="imagenes/xcode-install-provisioning-profile-manual.png" width="600px"/></p>
+<p>Aparece un listado con todos los perfiles de aprovisionamiento
+creados en nuestro equipo en el portal del desarrollador. Podemos
+examinarlos y seleccionar el más apropiado. Seleccionamos el
+denominado <em>Genérico</em>.</p>
+<p><img src="imagenes/xcode-select-provisioning-profile-manual.png" width="600px"/></p>
+<p>Vemos que se firma la aplicación correctamente y que se añade el
+perfil de aprovisionamiento que hemos seleccionado. Asegúrate que
+marcas la opción <code>All</code> para firmar con el perfil tanto la opción de
+<code>Debug</code> como la de <code>Release</code>.</p>
+<p><img src="imagenes/perfil-generico-team.png" width="700px"/></p>
+<p>La ventaja principal de firmar las apps de esta forma es que podremos
+distribuirlas a cualquier dispositivo incluido en el perfil.</p>
+<p>Prueba que es posible generar un fichero <code>.ipa</code> seleccionando
+la opción <code>Product &gt; Archive</code>. Para ello debe estar seleccionada la
+opción <code>Generic iOS Device</code> en el menú de ejecución. Si está
+seleccionado un modelo concreto de iPhone la opción Archive se
+deshabilita.</p>
+<h3 id="el-perfil-generico-no-tiene-configurado-ningun-servicio">El perfil genérico no tiene configurado ningún servicio<a class="headerlink" href="#el-perfil-generico-no-tiene-configurado-ningun-servicio" title="Permanent link">&para;</a></h3>
+<p>Vamos ahora a intentar añadir una <em>capability</em>. Por ejemplo,
+la de <em>Game Center</em>. Lo podemos hacer pulsando en el botón <code>+ Capability</code>, 
+seleccionando la opción <em>Game Center</em>. </p>
+<p>Intentamos compilar la app (<em>Product &gt; Build</em>) y aparecerá el
+siguiente error:</p>
+<p><img src="imagenes/error-firma-team-manual.png" width="700px"/></p>
+<p>El error se debe a que el perfil de aprovisionamiento seleccionado no
+soporta la capacidad <em>Game Center</em>.</p>
+<p>Es el <strong>administrador de la cuenta</strong> de la UA el que debe crear un
+perfil de aprovisionamiento para la app en el portal del desarrollador
+e incorporar en ese perfil el certificado del desarrollador.</p>
+<h3 id="examinamos-los-perfiles-de-aprovisionamiento">Examinamos los perfiles de aprovisionamiento<a class="headerlink" href="#examinamos-los-perfiles-de-aprovisionamiento" title="Permanent link">&para;</a></h3>
+<p><img src="imagenes/apple-developer-universidad.png" width="600px"/></p>
+<p>Podemos examinar los perfiles de aprovisionamiento desde el portal del
+desarrollador, desde Xcode y desde el terminal o el Finder (en el
+directorio <code>Library/MobileDevice/Provisioning Profiles</code>). Podemos
+acceder a la carpeta <code>Library</code> desde el Finder con el menú <code>Ir + Alt &gt;
+Biblioteca</code> (el modificador <code>Alt</code> muestra las opciones ocultas). Si
+borramos los perfiles de esa carpeta, <strong>automáticamente se borran de
+Xcode</strong> (esto es muy útil cuando tenemos algún problema con los
+perfiles y queremos empezar de cero).</p>
+<p>En el portal del desarrollador tenemos que entrar en la opción
+<em>Certificates, Identifiers and Profiles</em> para entrar en la página de
+gestión de los perfiles de aprovisionamiento.</p>
+<h3 id="menu-de-opciones">Menú de opciones<a class="headerlink" href="#menu-de-opciones" title="Permanent link">&para;</a></h3>
+<p>El portal del desarrollador contiene todos los perfiles de
+aprovisionamiento creados, junto con la información asociada.</p>
+<p><img style="margin-right: 60px;" src="imagenes/member-center-menu-aprovisionamiento.png"/></p>
+<ul>
+<li><strong>Certificados</strong>: todos los certificados de los desarrolladores del
+  equipo.</li>
+<li><strong>Identificadores</strong>: todos los App IDs aprobados, con las
+  características aprobadas en cada uno de ellos.</li>
+<li><strong>Dispositivos</strong>: todos los dispositivos aprobados para probar las
+  apps</li>
+</ul>
+<h3 id="creacion-de-un-app-id-desde-el-portal-del-desarrollador-administrador">Creación de un App ID desde el portal del desarrollador (administrador)<a class="headerlink" href="#creacion-de-un-app-id-desde-el-portal-del-desarrollador-administrador" title="Permanent link">&para;</a></h3>
+<p>Sólo se puede hacer con el rol administrador. Se pulsa <code>+</code> en la
+cabecera <em>Identifiers</em>. Se selecciona la opción <em>Register a New
+Identifier</em> y se escoge la opción <em>App IDs</em>. Vemos que hay otros
+posibles identificadores que podemos crear.</p>
+<p><img src="imagenes/member-center-new-app-id-0.png" width="600px"/></p>
+<p>Se define la descripción del App ID y el prefijo de App ID (que debe
+emparejar con el <em>bundle id</em> de la aplicación). Se escoge la opción
+<em>Explicit</em> para indicar que no se va a usar un prefijo con comodín. La
+app deberá tener exactamente el <em>bundle id</em>
+<code>es.ua.mastermoviles.ToDo</code> para poder aplicarse el App ID.</p>
+<p><img src="imagenes/member-center-new-app-id-1.png" width="700px"/></p>
+<p>Se puede comprueba que la <em>capability</em> <em>Game Center</em> ya está
+seleccionada por defecto.</p>
+<p><img src="imagenes/member-center-new-app-id-2.png" width="700px"/></p>
+<p>Confirmamos y el <em>App Id</em> queda registrado en el portal del
+desarrollador:</p>
+<p><img src="imagenes/member-center-new-app-id-3.png" width="700px"/></p>
+<p>Una vez creado el <em>App Id</em> en el que definimos las capacidades del
+app, podemos pasar a añadir los dispositivos en los que vamos a
+permitir probar el app. Y, por último, crearemos un perfil de
+aprovisionamiento que contenga el <em>App Id</em> y los dispositivos y que se
+descargará la app.</p>
+<h3 id="dispositivos-administrador">Dispositivos (administrador)<a class="headerlink" href="#dispositivos-administrador" title="Permanent link">&para;</a></h3>
+<p>Para añadir un dispositivo al portal del desarrollador hay que
+seleccionar la opción correspondientes (<em>Devices</em>) y añadir su UDID,
+<em>Unique Device Identifier</em>.</p>
+<p><img src="imagenes/member-center-register-device.png" width="700px"/></p>
+<p><img src="imagenes/member-center-register-device-2.png" width="700px"/></p>
+<p>El UDID es una cadena de 40 caracteres de símbolos alfanuméricos (a-z
+y 0-9) única de cada dispositivo. Se puede obtener desde Xcode en la
+pantalla de Dispositivos (<em>Window &gt; Devices</em>).</p>
+<p>Se pueden registrar en el portal del desarrollador hasta 200 UDIDs para
+probar aplicaciones en desarrollo.</p>
+<h3 id="creacion-de-perfiles-de-aprovisionamento-administrador">Creación de perfiles de aprovisionamento (administrador)<a class="headerlink" href="#creacion-de-perfiles-de-aprovisionamento-administrador" title="Permanent link">&para;</a></h3>
+<p>Una vez creado el App ID con los permisos necesarios, añadidos los
+certificados de los desarrolladores del equipo y añadidos los
+dispositivos es posible crear un nuevo perfil de aprovisionamiento.</p>
+<p>Se puede hacer desde el portal del desarrollador y también desde Xcode. Es más
+claro ver el proceso desde portal del desarrollador, ya que Xcode mezcla el
+proceso de creación del perfil con el de dar autorizaciones
+(<em>entitlements</em>) a la propia aplicación.</p>
+<p>Para crear un nuevo perfil de aprovisionamiento desde el portal del
+desarrollador, se selecciona la opción <em>iOS App Development</em>.</p>
+<p><img src="imagenes/member-center-new-provisioning-1.png" width="700px"/></p>
+<p>Se selecciona el <em>App ID</em> que queremos incluir en el perfil:</p>
+<p><img src="imagenes/member-center-new-provisioning-2.png" width="700px"/></p>
+<p>Se seleccionan los certificados de los desarrolladores a los que van
+a utilizar este perfil para compilar apps en Xcode:</p>
+<p><img src="imagenes/member-center-new-provisioning-3.png" width="700px"/></p>
+<p>Se seleccionan los dispositivos en los que vamos a poder probar la app:</p>
+<p><img src="imagenes/member-center-new-provisioning-4.png" width="700px"/></p>
+<p>Por último se da un nombre al perfil de aprovisionamiento:</p>
+<p><img src="imagenes/member-center-new-provisioning-5.png" width="700px"/> </p>
+<p>Y aparece una pantalla con el resumen del perfil generado. Se puede
+descargar en el ordenador para después añadirlo manualmente a
+la app usando Xcode. También se puede descargar directamente desde
+Xcode.</p>
+<p><img src="imagenes/member-center-new-provisioning-6.png" width="700px"/> </p>
+<p>Listado de los perfiles de aprovisionamiento creados en el portal de
+desarrolladores:</p>
+<p><img src="imagenes/member-center-provisioning-profiles.png" width="700px"/></p>
+<h3 id="firma-de-la-app-todo-con-el-perfil-de-aprovisionamiento-creado">Firma de la app ToDo con el perfil de aprovisionamiento creado<a class="headerlink" href="#firma-de-la-app-todo-con-el-perfil-de-aprovisionamiento-creado" title="Permanent link">&para;</a></h3>
+<p>Una vez creado el perfil de aprovisionamiento ya es posible instalarlo
+en la app. </p>
+<p>Igual que antes nos aseguramos de que tenemos activa la opción manual
+y volvemos a seleccionar <em>Download Profile...</em>. Veremos ahora que ha
+aparecido el perfil que el administrador ha añadido. Lo
+seleccionamos:</p>
+<p><img src="imagenes/provisioning-profile-manual-2.png" width="700px"/> </p>
+<p>Y ahora ya podemos ver que desparece el error anterior porque el nuevo
+perfil ya tiene la capacidad <em>Game Center</em>.</p>
+<p><img src="imagenes/provisioning-profile-manual-1.png" width="700px"/> </p>
+<h3 id="exportar-la-app">Exportar la app<a class="headerlink" href="#exportar-la-app" title="Permanent link">&para;</a></h3>
+<p>Seleccionando en Xcode la opción <em>Product &gt; Archive</em> (hay que
+asegurarse de que el tipo de dispositivo seleccionado es <em>Generic iOS
+Device</em>) ahora ya funcionará la opción <em>Distribute App</em>.</p>
+<p><img src="imagenes/xcode-export.png" width="700px"/></p>
+<p>Las opciones <em>App Store</em> y <em>Ad Hoc</em> no funcionan por no tener una
+cuenta de universidad permisos para subir apps al App Store. Se puede
+hacer con una cuenta de pago. En la opción <em>Ad Hoc</em> es posible definir
+una URL privada para descargar la app y probarla.</p>
+<p>La única opción de exportación que funciona es <em>Development</em>, que
+permite distribuir la app a cualquier dispositivo incluido en el
+perfil de aprovisionamiento.</p>
+<p><img src="imagenes/xcode-export-all-devices.png" width="700px"/></p>
+<p>La opción de <code>App Thining</code> permite generar distintos ficheros <em>ipa</em>
+adaptados a cada tipo de dispositivo, lo que minimiza el tamaño del
+fichero. Si no se selecciona, se genera un único fichero <em>ipa</em> que
+puede ejecutarse en cualquier dispositivo.</p>
+<p>Seleccionamos el perfil de aprovisionamiento que acabamos de crear
+<code>Master Moviles ToDo</code>.</p>
+<p><img src="imagenes/xcode-export-provisioning-profile.png" width="700px"/></p>
+<p>Y, por último, confirmamos la opción de exportar:</p>
+<p><img src="imagenes/xcode-export-confirm.png" width="700px"/></p>
+<p>Tarda un rato en generar el fichero <em>ipa</em> (<em>iOS App file</em>).</p>
+<p>Se genera una carpeta con un fichero <code>ToDo.ipa</code>, que es un binario que
+se puede instalar sólo en dispositivos autorizados en el perfil de
+aprovisionamiento.</p>
+<h3 id="instalacion-y-ejecucion-de-la-app">Instalación y ejecución de la app<a class="headerlink" href="#instalacion-y-ejecucion-de-la-app" title="Permanent link">&para;</a></h3>
+<p>Probamos a instalar la app en un dispositivo autorizado (su UUID está
+incluido en el perfil de aprovisionamiento) usando Apple Configurator.</p>
+<p><img src="imagenes/install-configurator.png" width="700px"/></p>
+<p>Para poder ejecutar la app en el dispositivo debemos <a href="https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device">activar el modo
+de desarrollador</a>.</p>
+<h3 id="fin-demo-y-ejercicio">Fin demo y ejercicio<a class="headerlink" href="#fin-demo-y-ejercicio" title="Permanent link">&para;</a></h3>
+<hr />
+<!--
+
+## Distribución e instalación de betas online ##
+
+Hemos visto que es posible ejecutar apps de prueba en dispositivos que
+estén dados de alta en el perfil de aprovisionamiento. 
+
+Pero la instalación de la app es un proceso algo tedioso: hay que
+conectar físicamente el dispositivo a un ordenador Mac y realizar la
+instalación mediante una aplicación auxiliar como Xcode o Apple
+Configurator 2.
+
+Sería mucho más fácil si permitiéramos instalar la app desde el propio
+dispositivo (iPhone o iPad), descargándola de una web o de alguna app
+de configuración.
+
+Esto es lo que se consigue con la aplicación TestFlight de Apple.
+
+Puedes encontrar más información sobre TestFlight en [este
+enlace](https://developer.apple.com/testflight/). Lo utilizarás cuando
+desarrolles y publiques apps de iOS usando el perfil de pago.
+
+Existe una solución intermedia: seguir usando la distribución al
+equipo de desarrollo mediante el alta de los dispositivos en el pefil
+de aprovisionamiento, pero usar un servicio que facilite la
+instalación de la app en esos dispositivos. Esta es una funcionalidad
+que proporciona Firebase de Google.
+
+### TestFlight ###
+
+<img src="imagenes/testflight-app.png"/ width="200px"/>
+
+TestFlight es una plataforma integrada en App Store Connect que permite
+distribuir versiones beta de apps a probadores.
+
+Es posible distribuir la app hasta 25 probadores internos
+(seleccionados de entre los usuarios de la cuenta de App Store Connect) y
+hasta 10.000 probadores externos.
+
+Los usuarios de prueba deben descargarse la **app TestFlight** con la
+que gestionarán la descarga de las pruebas en sus dispositivos.
+
+### Firebase para distribuir apps ###
+
+[Firebase](https://firebase.google.com) permite distribuir apps compiladas (ficheros .ipa) y
+ejecutarlas en aquellos dispositivos que están registrados en el
+perfil de aprovisionamiento. La funcionalidad se denomina `App
+Distribution` y permite distribuir distintas versiones de una misma
+app a usuarios de prueba.
+
+<img src="imagenes/firebase-app-distribution.png" width="700px"/>
+
+Podemos añadir usuarios de prueba o crear un enlace al que puede
+acceder cualquiera para introducir su correo electrónico. El usuario
+de prueba recibe un correo electrónico con instrucciones de cómo
+descargar la app.
+
+Al aceptar las instrucciones, el sistema comparte el UUID del
+dispositivo con nosotros y podemos añadir el dispositivo al perfil de
+aprovisionamiento. El usuario de prueba debe añadir el perfil de
+Firebase a su dispositivo.
+
+<img src="imagenes/firebase-profile-dispositivo.png" width="300px"/>
+
+Una vez hemos añadido el UUID al perfil de aprovisionamiento, lo
+añadimos a la app y volvemos a distribuirla. El sistema enviará un
+correo al usuario, y éste podrá descargar y probar la app.
+
+<img src="imagenes/firebase-download-app.png" width="300px"/>
+
+Por último, Firebase permite también incluir en la app el servicio de
+de Google Analytics con el que podemos comprobar una gran cantidad de
+opciones relacionadas con el uso del app.
+
+<img src="imagenes/google-analytics-firebase.png" width="700px"/>
+
+## Test Flight ##
+
+### Distribución de apps ###
+
+El proceso de distribución de apps en el App Store es el siguiente:
+
+<img src="imagenes/fases-distribucion.png" height="200px"/>
+
+
+### App Store Connect ###
+
+<img src="imagenes/appstoreconnect.png" width="600px"/>
+
+App Store Connect es el servicio de Apple con el que los
+desarrolladores pueden organizar:
+
+- Todas sus apps para poder enviar a prueba versiones beta y subirlas
+  al App Store.
+- Toda la información legal y de impuestos.
+- Información sobre el estado de los productos, retroalimentación
+  e información de descargas, ventas y ganancias.
+
+La plataforma está accesible desde el portal del desarrollador en los
+programas de pago. No está disponible en el programa de universidad.
+
+También se puede acceder desde la URL
+[https://appstoreconnect.apple.com](https://appstoreconnect.apple.com). 
+
+!!! Note "Nota"
+    Hasta el año 2018 **iTunes Connect** era la plataforma única
+    a la que se subían todos los productos para su distribución (apps,
+    ebooks, podcasts, música). A mediados del 2018 Apple divide en dos
+    esa plataforma, creando **App Store Connect** para gestionar
+    únicamente apps. 
+
+    Hemos conservado algunas imágenes del curso pasado en el caso en
+    sean muy similares a las actuales. En estas imágenes aparece la
+    cabecera _iTunes Connect_ en lugar de _App Store Connect_.
+
+### Pasos para subir una app al App Store desde App Store Connect ###
+
+1. Crear un registro en App Store Connect, un identificador único para el
+   app.
+2. Subir una compilación de la app.
+3. Pruebas Beta: probar la app con usuarios de la organización o
+   usuarios invitados, usando **Test Flight**.
+4. Completar toda la información y enviar la app a revisión de la App Store.
+5. Una vez que ha superado la revisión, la app se pone a la venta en
+   la App Store.
+6. Analizar analíticas de la app (de ventas, de uso, etc.) y
+   desarrollar una nueva versión.
+
+### Añadir información de la App ###
+
+Antes de subir una app a App Store Connect, hay que crear un registro de la
+misma indicando un identificador único (SKU) que puede ser el propio
+_bundle ID_ y seleccionando el App ID.
+
+<img src="imagenes/app-store-connect-registro.png" width="600px"/>
+
+### Subir una compilación de la app ###
+
+<img src="imagenes/upload-app-store.png" width="800px"/>
+
+La forma más sencilla de subir una app a App Store Connect es
+utilizando Xcode.
+
+Debes crear un archivo ipa con la opción **_Product > Archive_** y
+seleccionar la opción _Upload to App Store_.
+
+Es posible subir distintos _builds_ y gestionarlos todos desde App
+Store Connect. El identificador de la app es su _bundle id_.
+
+
+### Diseño de la página en el App Store ###
+
+En el App Store se muestra distinta información sobre la app. Es
+importante diseñar bien esta página para que sea atractiva para los
+usuarios y estén interesados en descargar la app.
+
+<img src="imagenes/pagina-app-store.png" width="650px"/>
+
+App Store Connect se usa para gestionar estos los elementos necesarios
+para crear la página de la app en el App Store: nombre de la App,
+iconos, previsualizaciones (pantallas y vídeos), descripción,
+novedades, palabras claves y categorías.
+
+<img src="imagenes/itunes-connect-descripcion-app.png" width="900px"/>
+
+
+### Nuevos usuarios App Store Connect ###
+
+Es posible **añadir usuarios** a la cuenta de App Store Connect. Son
+usuarios que van a poder trabajar con las apps subidas, realizando
+funciones limitadas por su función.
+
+No es necesario tener una cuenta de organización para poder añadir
+usuarios colaboradores en App Store Connect. Es posible en cuentas de
+desarrollador individual.
+
+Los usuarios añadidos podrán ser **probadores internos** en TestFlight.
+
+<img src="imagenes/nuevo-usuario-itunes-connect-1.png" width="800px"/>
+
+
+### TestFlight ###
+
+<img src="imagenes/testflight-app.png"/ width="200px"/>
+
+TestFlight es una plataforma integrada en App Store Connect que permite
+distribuir versiones beta de apps a probadores.
+
+Es posible distribuir la app hasta 25 probadores internos
+(seleccionados de entre los usuarios de la cuenta de App Store Connect) y
+hasta 10.000 probadores externos.
+
+Los usuarios de prueba deben descargarse la **app TestFlight** con la
+que gestionarán la descarga de las pruebas en sus dispositivos.
+
+### Aprobación de pruebas externas ###
+
+<img src="imagenes/test-flight-aprove.png" width="600px"/>
+
+Una vez subida a App Store Connect la app entra automáticamente en un
+proceso de aprobación para que se pueda distribuir **externamente**
+una versión beta en TestFlight.
+
+La aprobación suele tardar menos de 1 día la primera compilación y ser
+casi instantánea cada nueva compilación que se sube.
+
+No es necesaria aprobación para la distribución de pruebas internas.
+
+
+### TestFlight en App Store Connect ###
+
+<img src="imagenes/test-flight-itunes-connect.png" width="800px"/>
+
+----
+
+## Demo ##
+
+Vamos a comprobar el funcionamiento de TestFlight, subiendo la app
+ToDo, añadiendo probadores y comprobando la instalación de la app
+en los probadores.
+
+### Registro de una app en App Store Connect ###
+
+Registramos la app en App Store Connect.
+
+<img src="imagenes/registro-app.png" width="700px"/>
+
+
+### Subida a App Store Connect con Xcode ###
+
+Una vez creado el registro de la app ya es posible subirla desde
+Xcode.
+
+<img src="imagenes/distribute-app-xcode.png" width="600px"/>
+
+<img src="imagenes/distribute-app-xcode-2.png" width="600px"/>
+
+### Compilaciones listas para probar ###
+
+Una vez que se ha subido a App Store Connect y ha pasado un tiempo
+necesario para que la plataforma prueba que la app puede ser
+distribuida para pruebas, aparecerá con un indicador verde lista para
+probar. 
+
+<img src="imagenes/itunes-connect-testflight.png" width="900px"/>
+
+Los números de versión y de compilación (_build_) son los definidos
+en Xcode.
+
+Ahora la app está lista para que sea probada por los usuarios de
+prueba internos. Podemos seleccionar la compilación a distribuir.
+
+<img src="imagenes/testflight-empezar-pruebas.png" width="900px"/>
+
+### Añadir probadores externos y enlace de prueba ###
+
+Podemos también añadir usuarios de prueba externos y un enlace de
+prueba que puede ser usado por cualquiera. Para ello es necesario
+crear un grupo de prueba y volver a solicitar una autorización de
+envío a pruebas de la app.
+
+<img src="imagenes/nuevo-probador.png" width="900px"/>
+
+Debe pasar un tiempo para App Store Connect apruebe la distribución de
+prueba. Mientras tanto la compilación seleccionada aparecerá en estado
+_Pendiente de revisión_.
+
+<img src="imagenes/test-flight-compilacion-probadores-externos.png" width="700px"/>
+
+Una vez aprobada la distribución es posible crear un enlace para que
+cualquiera la pueda instalar y probar.
+
+<img src="imagenes/test-flight-enlace.png" width="700px"/>
+
+### TestFlight en los usuarios ###
+
+Los usuarios de prueba reciben un correo avisándoles de que la beta
+está disponible.
+
+<img src="imagenes/testflight-correo.png" width="700px"/>
+
+Deben instalar la app TestFlight y en la app aparecerá un botón que
+permitirá instalar la app en el dispositivo. 
+
+En este caso no es necesario que el dispositivo esté en la lista
+incluida en el perfil de aprovisionamiento, porque la app está
+autorizada por Apple para su ejecución en cualquier dispositivo.
+
+<img src="imagenes/testflight-iphone-prueba-1.png" width="250px"/>
+
+<img src="imagenes/testflight-iphone-prueba-2.png" width="250px"/>
+
+<img src="imagenes/testflight-iphone-prueba-3.png" width="300px"/>
+
+### Nuevas compilaciones ###
+
+Cuando subimos desde Xcode una nueva compilación, debemos entrar en
+el enlace de la compilación para activar la nueva prueba.
+
+TestFlight enviará una notificación automáticamente a todos los
+usuarios para que descarguen la nueva versión.
+
+
+<img src="imagenes/testflight-compilaciones.png" width="800px"/>
+
+
+----
+-->
+
+<h2 id="bibliografia">Bibliografía<a class="headerlink" href="#bibliografia" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://developer.apple.com/support/">Developer Support</a></li>
+<li><a href="https://developer.apple.com/help/account/">Developer Account Help</a></li>
+<li><a href="https://developer.apple.com/support/code-signing/">Code Signing Help</a></li>
+<li><a href="https://developer.apple.com/documentation/xcode">Xcode Documentation</a></li>
+<li><a href="https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution">Preparing your app for distribution</a></li>
+<li><a href="https://developer.apple.com/documentation/xcode/distributing-your-app-to-registered-devices">Distribute your app to registered devices</a></li>
+<li><a href="https://developer.apple.com/help/app-store-connect/">App Store Connect Help</a></li>
+<li><a href="https://developer.apple.com/testflight/">Test Flight</a></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>

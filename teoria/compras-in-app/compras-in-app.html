@@ -1,0 +1,913 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Compras In-App - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compras-in-app" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Compras In-App
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firma-aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/mapas/mapas-localizacion.html" class="md-nav__link">
+        Práctica 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/icloud/icloud.html" class="md-nav__link">
+        Práctica 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-de-compras-in-app" class="md-nav__link">
+    Conceptos de compras In-App
+  </a>
+  
+    <nav class="md-nav" aria-label="Conceptos de compras In-App">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-una-compra-in-app" class="md-nav__link">
+    ¿Qué es una compra In-App?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-uso" class="md-nav__link">
+    Ejemplos de uso
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-compras-in-app-compras" class="md-nav__link">
+    Tipos de compras In-App - Compras
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tipos-de-compras-in-app-suscripciones" class="md-nav__link">
+    Tipos de compras In-App - Suscripciones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-para-activar-las-in-app" class="md-nav__link">
+    Requisitos para activar las In-App
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contratos" class="md-nav__link">
+    Contratos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#servicios-a-activar-en-la-app" class="md-nav__link">
+    Servicios a activar en la app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bundle-identifier-y-app-id" class="md-nav__link">
+    Bundle identifier y App Id
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-in-app-desde-itunes-connect" class="md-nav__link">
+    Configuración In-App desde iTunes Connect
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datos-del-app" class="md-nav__link">
+    Datos del app
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pantalla-para-anadir-nuevos-in-apps" class="md-nav__link">
+    Pantalla para añadir nuevos In-Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seleccionar-el-tipo-de-in-app" class="md-nav__link">
+    Seleccionar el tipo de In-App
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-del-in-app" class="md-nav__link">
+    Características del In-App
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-del-in-app_1" class="md-nav__link">
+    Características del In-App
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usuarios-de-prueba" class="md-nav__link">
+    Usuarios de prueba
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo" class="md-nav__link">
+    Demo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codigo-para-implementar-las-compras-in-app" class="md-nav__link">
+    Código para implementar las compras In-App
+  </a>
+  
+    <nav class="md-nav" aria-label="Código para implementar las compras In-App">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-proceso-de-compra-en-un-vistazo" class="md-nav__link">
+    El proceso de compra en un vistazo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clase-auxiliar-inapp" class="md-nav__link">
+    Clase auxiliar InApp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clase-viewcontroller" class="md-nav__link">
+    Clase ViewController
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="compras-in-app">Compras In-App<a class="headerlink" href="#compras-in-app" title="Permanent link">&para;</a></h1>
+<h2 id="conceptos-de-compras-in-app">Conceptos de compras In-App<a class="headerlink" href="#conceptos-de-compras-in-app" title="Permanent link">&para;</a></h2>
+<h3 id="que-es-una-compra-in-app">¿Qué es una compra In-App?<a class="headerlink" href="#que-es-una-compra-in-app" title="Permanent link">&para;</a></h3>
+<p>Permite vender directamente una funcionalidad dentro de una app.</p>
+<p>Los datos de la compra (precio, identificador) se definen en iTunes Connect.</p>
+<p>Se implementa con el <a href="https://developer.apple.com/documentation/storekit">API StoreKit</a>:</p>
+<ul>
+<li>StoreKit pregunta al usuario si confirma la transacción a través del
+  acceso seguro del App Store.</li>
+<li>La app recibe la confirmación de la compra y debe desbloquear
+  dinámicamente la funcionalidad.</li>
+<li>La app debe guardar la información de que el usuario ha comprado esa
+  nueva funcionalidad, aunque el usuario siempre puede recuperar la
+  compra.</li>
+</ul>
+<p style="text-align:center;">
+<img src="imagenes/in-app-storekit.png" width="600px"/>
+</p>
+
+<h3 id="ejemplos-de-uso">Ejemplos de uso<a class="headerlink" href="#ejemplos-de-uso" title="Permanent link">&para;</a></h3>
+<p>Las compras In-App son una de las formas de monetización más usadas
+en la actualidad</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>Podemos dar una versión básica gratuita y vender funcionalidades
+  adicionales premium.</li>
+<li>Podemos permitir la suscripción a contenidos periódicos que se pueden descargar<ul>
+<li>Ofertas de niveles adicionales en juegos</li>
+<li>Compras de mercancías virtuales en juegos on-line</li>
+</ul>
+</li>
+</ul>
+<h3 id="tipos-de-compras-in-app-compras">Tipos de compras In-App - Compras<a class="headerlink" href="#tipos-de-compras-in-app-compras" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No-consumibles<ul>
+<li>Ítems que permanecen disponibles de forma indefinida en todos los dispositivos del usuario.</li>
+<li>Ejemplos: libros, niveles de un juego, funcionalidades premium de un app.</li>
+</ul>
+</li>
+<li>Consumibles<ul>
+<li>Ítems que se consumen durante el tipo de ejecución del app.</li>
+<li>Ejemplos: minutos de llamadas de voz sobre IP, o servicios de un sólo uso como transcripción de voz.</li>
+</ul>
+</li>
+</ul>
+<h3 id="tipos-de-compras-in-app-suscripciones">Tipos de compras In-App - Suscripciones<a class="headerlink" href="#tipos-de-compras-in-app-suscripciones" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Suscripciones auto-renovables<ul>
+<li>Como los no-consumibles, las suscripciones permanecen
+  disponibles en todos los dispositivos. Tienen una fecha de
+  expiración, en la que el sistema renueva automáticamente la
+  compra.</li>
+</ul>
+</li>
+<li>Suscripciones no-renovables<ul>
+<li>Suscripciones en las que no se entrega contenido periódico.</li>
+<li>Ejemplos: acceso a una base de datos de fotos históricas.</li>
+<li>Suele acompañarse de una cuenta de usuario en un servidor.</li>
+<li>La duración y la expiración de la suscripción se realizan desde
+  la app (y el servidor).</li>
+</ul>
+</li>
+</ul>
+<h3 id="requisitos-para-activar-las-in-app">Requisitos para activar las In-App<a class="headerlink" href="#requisitos-para-activar-las-in-app" title="Permanent link">&para;</a></h3>
+<p>Las compras In-App sólo pueden probarse y activarse con una cuenta
+de desarrollador de pago.</p>
+<p>Es necesario acceso a iTunes Connect para configurar las compras.</p>
+<p>No es posible hacerlo con el equipo de la universidad.</p>
+<p>Haremos una demo con una cuenta de desarrollador.</p>
+<h3 id="contratos">Contratos<a class="headerlink" href="#contratos" title="Permanent link">&para;</a></h3>
+<p><strong>¡Cuidado!</strong>: Para poder probar las compras In-App hay que tener
+todos los contratos en regla.</p>
+<p style="text-align:center;">
+<img src="imagenes/in-app-contratos.png" width="800px"/>
+</p>
+
+<h3 id="servicios-a-activar-en-la-app">Servicios a activar en la app<a class="headerlink" href="#servicios-a-activar-en-la-app" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/in-app-capabilities.png" width="700px"/>
+</p>
+
+<h3 id="bundle-identifier-y-app-id"><em>Bundle identifier</em> y App Id<a class="headerlink" href="#bundle-identifier-y-app-id" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/in-app-bundle-name.png" width="400px"/>
+<img src="imagenes/in-app-app-id.png" width="600px"/>
+</p>
+
+<h3 id="configuracion-in-app-desde-itunes-connect">Configuración In-App desde iTunes Connect<a class="headerlink" href="#configuracion-in-app-desde-itunes-connect" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/in-app-itunes-connect.png" width="700px"/>
+</p>
+
+<h3 id="datos-del-app">Datos del app<a class="headerlink" href="#datos-del-app" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/app-itunes-connect.png" width="800px"/>
+</p>
+
+<h3 id="pantalla-para-anadir-nuevos-in-apps">Pantalla para añadir nuevos In-Apps<a class="headerlink" href="#pantalla-para-anadir-nuevos-in-apps" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/producto-in-app.png" width="900px"/>
+</p>
+
+<h3 id="seleccionar-el-tipo-de-in-app">Seleccionar el tipo de In-App<a class="headerlink" href="#seleccionar-el-tipo-de-in-app" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/in-app-tipo.png" width="700px"/>
+</p>
+
+<h3 id="caracteristicas-del-in-app">Características del In-App<a class="headerlink" href="#caracteristicas-del-in-app" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Nombre de referencia: aparece en la ventana de compra</li>
+<li>ID del producto: identificador del In-App para reconocerlo en el app</li>
+<li>Precio</li>
+<li>Datos para la revisión de Apple</li>
+</ul>
+<h3 id="caracteristicas-del-in-app_1">Características del In-App<a class="headerlink" href="#caracteristicas-del-in-app_1" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/ejemplo-in-app.png" width="700px"/>
+</p>
+
+<p style="text-align:center;">
+<img src="imagenes/ejemplo-in-app-2.png" width="700px"/>
+</p>
+
+<h3 id="usuarios-de-prueba">Usuarios de prueba<a class="headerlink" href="#usuarios-de-prueba" title="Permanent link">&para;</a></h3>
+<p>Para probar las compras In-App debemos crear usuarios de prueba de
+sandbox en iTunes Connect.</p>
+<p>En el dispositivo de prueba hay que iniciar la sesión en el App Store
+con ese usuario de prueba.</p>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/in-app-usuario-prueba.png" width="700px"/> 
+</p>
+
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/in-app-app-store.jpg" width="200px"/>
+<img style="border: 1px solid;" src="imagenes/in-app-app-store-2.png" width="200px"/>
+</p>
+
+<h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>
+<p>Vamos a ver un ejemplo de aplicación que contiene una pantalla
+sorpresa cuyo acceso se activa con una compra In-App.</p>
+<p>Está disponible en <a href="https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/EjemploInApp.zip">este
+enlace</a></p>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/in-app-prueba-1.jpg" width="170px"/>
+<img class="fragment" style="border: 1px solid;" src="imagenes/in-app-prueba-2.jpg" width="170px"/>
+<img class="fragment" style="border: 1px solid;" src="imagenes/in-app-prueba-3.jpg" width="170px"/>
+</p>
+
+<p style="text-align:center;">
+<img class="fragment" style="border: 1px solid;" src="imagenes/in-app-prueba-4.jpg" width="170px"/>
+<img class="fragment" style="border: 1px solid;" src="imagenes/in-app-prueba-5.jpg" width="170px"/>
+<img style="border: 1px solid;" src="imagenes/in-app-prueba-6.jpg" width="170px"/>
+</p>
+
+<h2 id="codigo-para-implementar-las-compras-in-app">Código para implementar las compras In-App<a class="headerlink" href="#codigo-para-implementar-las-compras-in-app" title="Permanent link">&para;</a></h2>
+<h3 id="el-proceso-de-compra-en-un-vistazo">El proceso de compra en un vistazo<a class="headerlink" href="#el-proceso-de-compra-en-un-vistazo" title="Permanent link">&para;</a></h3>
+<p>Debemos implementar los protocolos
+<a href="https://developer.apple.com/library/ios/documentation/StoreKit/Reference/SKProductsRequestDelegate/"><code>SKProductsRequestDelegate</code></a>
+y
+<a href="https://developer.apple.com/library/ios/documentation/StoreKit/Reference/SKPaymentTransactionObserver_Protocol/"><code>SKPaymentTransactionObserver</code></a>.</p>
+<p style="text-align:center;">
+<img src="imagenes/in-app-vistazo.png" width="700px"/>
+</p>
+
+<h3 id="clase-auxiliar-inapp">Clase auxiliar InApp<a class="headerlink" href="#clase-auxiliar-inapp" title="Permanent link">&para;</a></h3>
+<p>Creamos un protocolo <code>InAppDelegate</code> y una clase <code>InApp</code> donde
+gestionaremos la interacción con <code>StoreKit</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">Foundation</span>
+<span class="kd">import</span> <span class="nc">StoreKit</span>
+
+<span class="kd">protocol</span> <span class="nc">InAppDelegate</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">compraRecibida</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">InApp</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="bp">SKProductsRequestDelegate</span><span class="p">,</span> <span class="bp">SKPaymentTransactionObserver</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">productDetailsList</span><span class="p">:</span> <span class="p">[</span><span class="bp">SKProduct</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kd">var</span> <span class="nv">productIdentiferList</span><span class="p">:</span> <span class="p">[</span><span class="nb">String</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+    <span class="kd">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="n">InAppDelegate</span><span class="p">?</span>
+
+    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+        <span class="bp">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span>
+
+        <span class="c1">// Cargamos la lista de productos</span>
+
+        <span class="n">productIdentiferList</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;ejemplo3&quot;</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="bp">SKProductsRequest</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">productIdentifiers</span><span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">productIdentiferList</span><span class="p">))</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Método para lanzar la petición de compra al usuario</span>
+    <span class="kd">func</span> <span class="nf">lanzarPago</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">productDetailsList</span><span class="p">.</span><span class="bp">count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>  <span class="bp">SKPaymentQueue</span><span class="p">.</span><span class="n">canMakePayments</span><span class="p">())</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">producto</span> <span class="p">=</span> <span class="n">productDetailsList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="kd">let</span> <span class="nv">pago</span> <span class="p">=</span> <span class="bp">SKPayment</span><span class="p">(</span><span class="n">product</span><span class="p">:</span> <span class="n">producto</span><span class="p">)</span>
+            <span class="bp">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">pago</span><span class="p">)</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Comprando...&quot;</span><span class="p">)</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&quot;No existen productos&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Método al que se llama cuando el usuario compra el InApp</span>
+
+    <span class="kd">func</span> <span class="nf">paymentQueue</span><span class="p">(</span><span class="kc">_</span> <span class="n">queue</span><span class="p">:</span> <span class="bp">SKPaymentQueue</span><span class="p">,</span>
+                      <span class="n">updatedTransactions</span> <span class="n">transactions</span><span class="p">:</span> <span class="p">[</span><span class="bp">SKPaymentTransaction</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="n">transaction</span> <span class="k">in</span> <span class="n">transactions</span> <span class="p">{</span>
+            <span class="k">switch</span> <span class="n">transaction</span><span class="p">.</span><span class="n">transactionState</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="p">.</span><span class="n">purchased</span><span class="p">:</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Purchased&quot;</span><span class="p">)</span>
+                <span class="n">delegate</span><span class="p">?.</span><span class="n">compraRecibida</span><span class="p">()</span>
+                <span class="bp">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">finishTransaction</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+            <span class="k">case</span> <span class="p">.</span><span class="n">failed</span><span class="p">:</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Failed&quot;</span><span class="p">)</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error de transacción: </span><span class="si">\(</span><span class="nb">String</span><span class="si">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">transaction</span><span class="p">.</span><span class="n">error</span><span class="p">?.</span><span class="n">localizedDescription</span><span class="si">))</span><span class="s">&quot;</span><span class="p">)</span>
+                <span class="bp">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">finishTransaction</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+            <span class="k">case</span> <span class="p">.</span><span class="n">restored</span><span class="p">:</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Restored&quot;</span><span class="p">)</span>
+                <span class="n">delegate</span><span class="p">?.</span><span class="n">compraRecibida</span><span class="p">()</span>
+                <span class="bp">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">finishTransaction</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+            <span class="k">default</span><span class="p">:</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Otro&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Método al que se llama cuando se han recibido los productos</span>
+
+    <span class="kd">func</span> <span class="nf">productsRequest</span><span class="p">(</span><span class="kc">_</span> <span class="n">request</span><span class="p">:</span> <span class="bp">SKProductsRequest</span><span class="p">,</span> 
+                         <span class="n">didReceive</span> <span class="n">response</span><span class="p">:</span> <span class="bp">SKProductsResponse</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Hemos recibido </span><span class="si">\(</span><span class="n">response</span><span class="p">.</span><span class="n">products</span><span class="p">.</span><span class="bp">count</span><span class="si">)</span><span class="s"> productos&quot;</span><span class="p">)</span>
+        <span class="n">productDetailsList</span> <span class="p">=</span> <span class="n">response</span><span class="p">.</span><span class="n">products</span>
+        <span class="k">for</span> <span class="n">invalidProductId</span> <span class="k">in</span> <span class="n">response</span><span class="p">.</span><span class="n">invalidProductIdentifiers</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Producto invalido id: </span><span class="si">\(</span><span class="n">invalidProductId</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="clase-viewcontroller">Clase ViewController<a class="headerlink" href="#clase-viewcontroller" title="Permanent link">&para;</a></h3>
+<p>En la clase <code>ViewController</code> adoptamos nuestro protocolo
+<code>InAppDelegate</code> y definimos su método <code>compraRecibida()</code> al que se va
+a llamar cuando se haya recibido y validado la compra.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
+
+<span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">InAppDelegate</span> <span class="p">{</span>
+
+    <span class="kr">@IBOutlet</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">botonSorpresa</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">!</span>
+    <span class="kd">let</span> <span class="nv">inApp</span> <span class="p">=</span> <span class="n">InApp</span><span class="p">()</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Actualizamos el delgado de inApp con la propia</span>
+        <span class="c1">// instacia, para que se llame al método compraRecibida</span>
+        <span class="n">inApp</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+
+        <span class="c1">// Escondemos el botón sorpresa, que sólo estará visible</span>
+        <span class="c1">// para los que hagan la compra</span>
+        <span class="n">botonSorpresa</span><span class="p">.</span><span class="n">isHidden</span> <span class="p">=</span> <span class="kc">true</span>
+
+        <span class="c1">// Comprobamos si hemos comprado antes el inApp</span>
+        <span class="k">if</span> <span class="n">UserDefaults</span><span class="p">.</span><span class="n">standard</span><span class="p">.</span><span class="n">bool</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;inAppComprado&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">botonSorpresa</span><span class="p">.</span><span class="n">isHidden</span> <span class="p">=</span> <span class="kc">false</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">botonSorpresa</span><span class="p">.</span><span class="n">isHidden</span> <span class="p">=</span> <span class="kc">true</span>
+        <span class="p">}</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Método del protocolo al que se va a llamar cuando se reciba</span>
+    <span class="c1">// la compra. Hacemos visible el botón sorpresa.</span>
+    <span class="kd">func</span> <span class="nf">compraRecibida</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">botonSorpresa</span><span class="p">.</span><span class="n">isHidden</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="p">}</span>
+
+    <span class="c1">// La acción asociada al botón de compra llama</span>
+    <span class="c1">// al método lanzarPago de la instancia de nuestra</span>
+    <span class="c1">// clase InApp</span>
+    <span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">hazCompra</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Click botón de compra&quot;</span><span class="p">)</span>
+        <span class="n">inApp</span><span class="p">.</span><span class="n">lanzarPago</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">didReceiveMemoryWarning</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">didReceiveMemoryWarning</span><span class="p">()</span>
+        <span class="c1">// Dispose of any resources that can be recreated.</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Acción para mostrar la pantalla sorpresa</span>
+    <span class="kr">@IBAction</span> <span class="kd">func</span> <span class="nf">sorpresa</span><span class="p">(</span><span class="kc">_</span> <span class="n">sender</span><span class="p">:</span> <span class="bp">UIButton</span><span class="p">){</span>
+        <span class="n">performSegue</span><span class="p">(</span><span class="n">withIdentifier</span><span class="p">:</span> <span class="s">&quot;Sorpresa&quot;</span><span class="p">,</span> <span class="n">sender</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://developer.apple.com/in-app-purchase/">Página resumen Apple Developer</a></li>
+<li><a href="https://help.apple.com/app-store-connect/#/devb57be10e7">App Store Connect - In-App purchase</a></li>
+<li><a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html">In-App Purchase Programming Guide</a></li>
+<li><a href="https://developer.apple.com/library/ios/releasenotes/General/ValidateAppStoreReceipt/Introduction.html#//apple_ref/doc/uid/TP40010573-CH105-SW1">Receipt Validation Programming Guide</a></li>
+<li><a href="https://developer.apple.com/library/mac/documentation/StoreKit/Reference/StoreKit_Collection/">StoreKit Framework Reference</a></li>
+<li><a href="https://developer.apple.com/library/ios/technotes/tn2259/_index.html#//apple_ref/doc/uid/DTS40009578">Technical Note: Adding In-App Purchase to your iOS and OS X Applications</a></li>
+<li><a href="https://developer.apple.com/library/ios/technotes/tn2387/_index.html">Technical Note: In-App Purchase Best Practices</a></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>

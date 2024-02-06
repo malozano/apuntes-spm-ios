@@ -1,0 +1,946 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Anuncios y compras In-App - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#anuncios-y-compras-in-app" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Anuncios y compras In-App
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firma-aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/mapas/mapas-localizacion.html" class="md-nav__link">
+        Práctica 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/icloud/icloud.html" class="md-nav__link">
+        Práctica 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#anuncios" class="md-nav__link">
+    Anuncios
+  </a>
+  
+    <nav class="md-nav" aria-label="Anuncios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redes-de-anuncios" class="md-nav__link">
+    Redes de anuncios
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-de-admob" class="md-nav__link">
+    API de AdMob
+  </a>
+  
+    <nav class="md-nav" aria-label="API de AdMob">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alta-en-admob" class="md-nav__link">
+    Alta en AdMob
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importar-el-sdk-de-anuncios-para-moviles" class="md-nav__link">
+    Importar el SDK de anuncios para móviles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actualizar-el-fichero-infoplist" class="md-nav__link">
+    Actualizar el fichero Info.plist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inicializacion-del-api" class="md-nav__link">
+    Inicialización del API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seleccion-del-formato-de-anuncio" class="md-nav__link">
+    Selección del formato de anuncio
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-de-un-banner" class="md-nav__link">
+    Implementación de un banner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-de-un-interstitial" class="md-nav__link">
+    Implementación de un interstitial
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-aplicacion-de-prueba" class="md-nav__link">
+    Demo: Aplicación de prueba
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="anuncios-y-compras-in-app">Anuncios y compras In-App<a class="headerlink" href="#anuncios-y-compras-in-app" title="Permanent link">&para;</a></h1>
+<h2 id="anuncios">Anuncios<a class="headerlink" href="#anuncios" title="Permanent link">&para;</a></h2>
+<h3 id="redes-de-anuncios">Redes de anuncios<a class="headerlink" href="#redes-de-anuncios" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/iAd.png" width="300px"/>x
+</p>
+
+<p>Hasta 2016 Apple había explotado iAD, una red de anuncios propia, con
+su propia API, orientada específicamente a apps iOS. Durante varios
+años había intentado competir con las redes más populares como AdMob
+(Google). Al final no consiguió destacar y la red se cerró en junio de
+2016.</p>
+<p>Desde entonces los desarrolladores iOS tienen que escoger entre
+distintas redes existentes:</p>
+<ul>
+<li>AdMob (Google)</li>
+<li>Unity Ads </li>
+<li>Facebook Ads </li>
+<li>Amazon Ads</li>
+</ul>
+<p>Cada red tiene su propia API, aunque son todas ellas muy similares.</p>
+<h2 id="api-de-admob">API de AdMob<a class="headerlink" href="#api-de-admob" title="Permanent link">&para;</a></h2>
+<p>Vamos a ver la red <a href="https://apps.admob.com/">AdMob de Google</a>, por ser la más popular. Vamos a
+explicar AdMob <strong>sin Firebase</strong>, para hacer más ligera la app y tener
+que depender del número mínimo de librerías.</p>
+<p style="text-align:center;">
+<img src="imagenes/google-admob.png" width="350px"/>
+</p>
+
+<h3 id="alta-en-admob">Alta en AdMob<a class="headerlink" href="#alta-en-admob" title="Permanent link">&para;</a></h3>
+<p>Lo primero que tenemos que hacer para probar los anuncios y el API de
+AdMob es <a href="https://support.google.com/admob/answer/2784575">crear una cuenta de
+AdMob</a> y <a href="https://support.google.com/admob/answer/2773509">registrar
+una aplicación</a>.</p>
+<p>Una vez dado de alta y creada la aplicación, tendrás un número de
+registro de la aplicación del estilo <code>ca-app-pub-6502933536055889~6323740433</code> </p>
+<p>Puedes <a href="https://support.google.com/admob/answer/7356431">encontrar tu ID de
+aplicación</a> en la
+interfaz de AdMob.</p>
+<p style="text-align:center;">
+<img src="imagenes/admob-app.png" width="700px"/>
+</p>
+
+<h3 id="importar-el-sdk-de-anuncios-para-moviles">Importar el SDK de anuncios para móviles<a class="headerlink" href="#importar-el-sdk-de-anuncios-para-moviles" title="Permanent link">&para;</a></h3>
+<p>La forma más sencilla de importar el SDK a un proyecto iOS es mediante
+<a href="https://guides.cocoapods.org/using/getting-started">CocoaPods</a>.</p>
+<p>Utilizando la instalación de Ruby que viene por defecto en MacOS
+para instalar CocoaPods basta con hacer:</p>
+<div class="highlight"><pre><span></span><code>$ sudo gem install cocoapods
+</code></pre></div>
+<p>Supongamos que vamos a trabajar con la app ToDoList. En el directorio
+raíz del proyecto debes crear el fichero <code>Podfile</code>, con el contenido:</p>
+<div class="highlight"><pre><span></span><code>target &#39;ToDoList&#39; do
+    pod &#39;Google-Mobile-Ads-SDK&#39;
+end
+</code></pre></div>
+<p>Después, desde línea de comando y estando en el directorio raíz del
+proyecto, debes ejecutar:</p>
+<div class="highlight"><pre><span></span><code>$ pod install --repo-update
+</code></pre></div>
+<p>Se descargarán las librerías necesarias y se creará un fichero
+<code>ToDoList.xcworkspace</code> que es el que debes abrir con Xcode. Al abrir
+este fichero Xcode abrirá una configuración de <em>workspace</em> en la que
+pueden existir más de un proyecto. Es la configuración que se usa para
+trabajar con CocoaPods.</p>
+<h3 id="actualizar-el-fichero-infoplist">Actualizar el fichero Info.plist<a class="headerlink" href="#actualizar-el-fichero-infoplist" title="Permanent link">&para;</a></h3>
+<p>Añade una clave <code>GADApplicationIdentifier</code> con un valor de cadena igual
+a tu ID de aplicación de AdMob al archivo <code>Info.plist</code> de tu
+aplicación. Puedes encontrar tu ID de la aplicación en la interfaz de
+AdMob.</p>
+<p>Puedes hacerlo editando el fichero:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;key&gt;</span>GADApplicationIdentifier<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;string&gt;</span>ca-app-pub-6502933536055889~6323740433<span class="nt">&lt;/string&gt;</span>
+</code></pre></div>
+<p>O usando la interfaz de Xcode:</p>
+<p style="text-align:center;">
+<img src="imagenes/admob-infoplist.png" width="600px"/>
+</p>
+
+<h3 id="inicializacion-del-api">Inicialización del API<a class="headerlink" href="#inicializacion-del-api" title="Permanent link">&para;</a></h3>
+<p>Antes de cargar anuncios, debemos inicializar el SDK de
+anuncios de Google para móviles llamando al método
+<code>start(ompletionHandler:)</code> de <code>GADMobileAds.sharedInstance()</code>, que
+inicializa el SDK y hace una retrollamada al controlador de
+finalización una vez que la inicialización se ha completado, o bien
+después de un tiempo de espera de 30 segundos. </p>
+<p>Solo es necesario hacerlo una vez, preferiblemente al iniciar la
+aplicación. La llamada debe realizarse lo más pronto posible.</p>
+<p>A continuación, tienes un ejemplo de cómo llamar al método
+startWithCompletionHandler: en tu AppDelegate:</p>
+<p>Ejemplo de <code>AppDelegate.swift</code> (fragmento)</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">GoogleMobileAds</span>
+
+<span class="kr">@UIApplicationMain</span>
+<span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="bp">UIResponder</span><span class="p">,</span> <span class="bp">UIApplicationDelegate</span> <span class="p">{</span>
+
+    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">,</span>
+                     <span class="n">didFinishLaunchingWithOptions</span> <span class="n">launchOptions</span><span class="p">:</span>
+                        <span class="p">[</span><span class="bp">UIApplication</span><span class="p">.</span><span class="n">LaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="c1">// Override point for customization after application launch.</span>
+        <span class="n">GADMobileAds</span><span class="p">.</span><span class="n">sharedInstance</span><span class="p">().</span><span class="n">start</span><span class="p">(</span><span class="n">completionHandler</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="seleccion-del-formato-de-anuncio">Selección del formato de anuncio<a class="headerlink" href="#seleccion-del-formato-de-anuncio" title="Permanent link">&para;</a></h3>
+<p>Tras importar e inicializar el SDK de anuncios para móviles, podemos
+descargar un anuncio. AdMob ofrece diversos formatos de anuncios, y
+debemos elegir uno de ellos, el que mejor se ajuste a la experiencia
+de los usuarios de nuesra aplicación.</p>
+<p>Dos de los más usados son de tipo <em>banner</em> y de tipo <em>interstiticial</em>.</p>
+<p><strong>Banner</strong></p>
+<p>Los anuncios de banner son anuncios rectangulares de imagen o de texto
+que ocupan parte de la pantalla de una aplicación. Permanecen en
+pantalla mientras los usuarios interactúan con la aplicación y pueden
+actualizarse automáticamente después de un cierto periodo de
+tiempo. Si es la primera vez que utilizamos la publicidad para móviles,
+son un excelente punto de partida.</p>
+<p>Existen distintos tamaños de banners, que podemos seleccionar con su
+identificador:</p>
+<table>
+<thead>
+<tr>
+<th>Tamaño</th>
+<th>Descripción</th>
+<th>Disponibilidad</th>
+<th>Identificador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>320x50</td>
+<td>Banner</td>
+<td>Teléfonos y tablets</td>
+<td><code>kGADAdSizeBanner</code></td>
+</tr>
+<tr>
+<td>320x100</td>
+<td>Banner grande</td>
+<td>Teléfonos y tablets</td>
+<td><code>kGADAdSizeLargeBanner</code></td>
+</tr>
+<tr>
+<td>300x250</td>
+<td>Rectángulo mediano</td>
+<td>Teléfonos y tablets</td>
+<td><code>kGADAdSizeMediumRectangle</code></td>
+</tr>
+<tr>
+<td>468x60</td>
+<td>Banner de tamaño completo</td>
+<td>Tablets</td>
+<td><code>kGADAdSizeFullBanner</code></td>
+</tr>
+<tr>
+<td>728x90</td>
+<td>Leaderboard</td>
+<td>Tablets</td>
+<td><code>kGADAdSizeLeaderboard</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Intersticial</strong></p>
+<p>Los intersticiales son anuncios que ocupan toda la pantalla y cubren
+la interfaz de una aplicación hasta que el usuario los cierra. El
+mejor momento para usarlos son las pausas naturales de una
+aplicación. Por ejemplo, al pasar de un nivel a otro en un juego o
+después de completar una tarea.</p>
+<p>Veamos el código para implementar un anuncio de cada uno de estos tipos.</p>
+<h3 id="implementacion-de-un-banner">Implementación de un banner<a class="headerlink" href="#implementacion-de-un-banner" title="Permanent link">&para;</a></h3>
+<p>Cuando probemos las aplicaciones debemos usar siempre anuncios de
+prueba en lugar de anuncios reales. De lo contrario, Google podría
+suspender nuestra cuenta de AdMob.</p>
+<p>La forma más sencilla de cargar anuncios de prueba es mediante el ID
+de bloque de anuncios de prueba que Google ha creado para banners de iOS:
+<code>ca-app-pub-3940256099942544/2934735716</code>.</p>
+<p>Cuando publiquemos la app sólo hay que sustituir este ID por el ID
+real.</p>
+<p>Los anuncios de banner se muestran en objetos <code>GADBannerView</code>, por lo
+que lo primero que debemos hacer para integrarlos es incluir un objeto
+<code>GADBannerView</code> en nuestra jerarquía de vistas.</p>
+<p>Debemos actualizar las propiedades de este objeto:</p>
+<ul>
+<li><code>rootViewController</code>: controlador de vistas que se utiliza para
+  mostrar una superposición cuando se hace clic en el anuncio. Como
+  valor, normalmente se le da el controlador que contiene el 
+  <code>GADBannerView</code>.</li>
+<li><code>adUnitID</code>: el objeto GADBannerView debe cargar anuncios procedentes
+  de este ID de bloque de anuncios.</li>
+<li><code>delegate</code>: delegado que implementa el protocolo
+  <code>GADBannerViewDelegate</code> que define las funciones en las que se
+  reciben los eventos del ciclo de vida de los anuncios.</li>
+</ul>
+<p>Tras configurar el <code>GADBannerView</code> y sus propiedades podemos cargar un
+anuncio. Para ello, se llama al método <code>loadRequest</code> pasando un objeto
+<code>GADRequest</code>.</p>
+<p>Por ejemplo, el siguiente código crea un objeto <code>GADBannerView</code> de
+tamaño 320x50 e inicializa las propiedades anteriores:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
+<span class="kd">import</span> <span class="nc">GoogleMobileAds</span>
+
+<span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">GADBannerViewDelegate</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">!</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">bannerView</span> <span class="p">=</span> <span class="n">GADBannerView</span><span class="p">(</span><span class="n">adSize</span><span class="p">:</span> <span class="n">kGADAdSizeBanner</span><span class="p">)</span>
+        <span class="n">bannerView</span><span class="p">.</span><span class="n">adUnitID</span> <span class="p">=</span> <span class="s">&quot;ca-app-pub-3940256099942544/2934735716&quot;</span>
+        <span class="n">bannerView</span><span class="p">.</span><span class="n">rootViewController</span> <span class="p">=</span> <span class="kc">self</span>
+        <span class="n">bannerView</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">GADRequest</span><span class="p">())</span>
+        <span class="n">bannerView</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+    <span class="p">}</span>
+
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En el siguiente método <code>addBannerViewToView(_:)</code> se añade la vista del
+anuncio, alineándose con la parte inferior del área segura de
+pantalla:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">func</span> <span class="nf">addBannerViewToView</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">bannerView</span><span class="p">.</span><span class="n">translatesAutoresizingMaskIntoConstraints</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">bannerView</span><span class="p">)</span>
+    <span class="n">view</span><span class="p">.</span><span class="n">addConstraints</span><span class="p">(</span>
+        <span class="p">[</span><span class="bp">NSLayoutConstraint</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">bannerView</span><span class="p">,</span>
+                            <span class="n">attribute</span><span class="p">:</span> <span class="p">.</span><span class="n">bottom</span><span class="p">,</span>
+                            <span class="n">relatedBy</span><span class="p">:</span> <span class="p">.</span><span class="bp">equal</span><span class="p">,</span>
+                            <span class="n">toItem</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">safeAreaLayoutGuide</span><span class="p">,</span>
+                            <span class="n">attribute</span><span class="p">:</span> <span class="p">.</span><span class="n">bottom</span><span class="p">,</span>
+                            <span class="n">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                            <span class="n">constant</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span>
+         <span class="bp">NSLayoutConstraint</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">bannerView</span><span class="p">,</span>
+                            <span class="n">attribute</span><span class="p">:</span> <span class="p">.</span><span class="n">centerX</span><span class="p">,</span>
+                            <span class="n">relatedBy</span><span class="p">:</span> <span class="p">.</span><span class="bp">equal</span><span class="p">,</span>
+                            <span class="n">toItem</span><span class="p">:</span> <span class="n">view</span><span class="p">,</span>
+                            <span class="n">attribute</span><span class="p">:</span> <span class="p">.</span><span class="n">centerX</span><span class="p">,</span>
+                            <span class="n">multiplier</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                            <span class="n">constant</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">])</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Por último, es recomendable realizar la llamada a la función anterior
+que incorpora el <code>GADBannerView</code> a la jerarquía de vistas después de
+haber recibido un anuncio. Para ello, se usa la función del delegado
+<code>adViewDidReceiveAd</code>:</p>
+<div class="highlight"><pre><span></span><code>    <span class="c1">/// Tells the delegate an ad request loaded an ad.</span>
+    <span class="kd">func</span> <span class="nf">adViewDidReceiveAd</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;adViewDidReceiveAd&quot;</span><span class="p">)</span>
+        <span class="n">addBannerViewToView</span><span class="p">(</span><span class="n">bannerView</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>Podemos implementar el resto de funciones del delegado, con sentencias
+<code>print</code> para depurar cuando se produce cada evento:</p>
+<div class="highlight"><pre><span></span><code>    <span class="c1">/// Tells the delegate an ad request failed.</span>
+    <span class="kd">func</span> <span class="nf">adView</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">,</span>
+                <span class="n">didFailToReceiveAdWithError</span> <span class="n">error</span><span class="p">:</span> <span class="n">GADRequestError</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;adView:didFailToReceiveAdWithError: </span><span class="si">\(</span><span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// Tells the delegate that a full-screen view will be presented in response</span>
+    <span class="c1">/// to the user clicking on an ad.</span>
+    <span class="kd">func</span> <span class="nf">adViewWillPresentScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;adViewWillPresentScreen&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// Tells the delegate that the full-screen view will be dismissed.</span>
+    <span class="kd">func</span> <span class="nf">adViewWillDismissScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;adViewWillDismissScreen&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// Tells the delegate that the full-screen view has been dismissed.</span>
+    <span class="kd">func</span> <span class="nf">adViewDidDismissScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;adViewDidDismissScreen&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">/// Tells the delegate that a user click will open another app (such as</span>
+    <span class="c1">/// the App Store), backgrounding the current app.</span>
+    <span class="kd">func</span> <span class="nf">adViewWillLeaveApplication</span><span class="p">(</span><span class="kc">_</span> <span class="n">bannerView</span><span class="p">:</span> <span class="n">GADBannerView</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;adViewWillLeaveApplication&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h3 id="implementacion-de-un-interstitial">Implementación de un interstitial<a class="headerlink" href="#implementacion-de-un-interstitial" title="Permanent link">&para;</a></h3>
+<p>Los anuncios intersticiales los solicitan y muestran los objetos
+<code>GADInterstitial</code>. </p>
+<p>Debemos crear una instancia y asignar el ID de su bloque de anuncios.
+Podemos cargar anuncios de prueba de tipo <em>Interstitial</em> usando el ID
+<code>ca-app-pub-3940256099942544/4411468910</code>.</p>
+<p>Por ejemplo, aquí se muestra cómo crear un <code>GADInterstitial</code> en el
+método <code>viewDidLoad</code> de un <code>UIViewController</code>. Hacemos también que el
+<em>interstitial</em> lance una petición para cargar una anuncio, y definimos
+como delegado el <em>view controller</em>. Para ello el <em>view controller</em>
+debe cumplir el protocolo <code>GADInterstitialDelegate</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
+<span class="kd">import</span> <span class="nc">GoogleMobileAds</span>
+
+<span class="kd">class</span> <span class="nc">ViewController</span><span class="p">:</span> <span class="bp">UIViewController</span><span class="p">,</span> <span class="n">GADInterstitialDelegate</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">interstitial</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">!</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="c1">// Do any additional setup after loading the view.</span>
+        <span class="n">interstitial</span> <span class="p">=</span> <span class="n">GADInterstitial</span><span class="p">(</span><span class="n">adUnitID</span><span class="p">:</span> <span class="s">&quot;ca-app-pub-3940256099942544/4411468910&quot;</span><span class="p">)</span>
+        <span class="n">interstitial</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">GADRequest</span><span class="p">())</span>
+        <span class="n">interstitial</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+    <span class="p">}</span>
+
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>GADInterstitial</code> es un objeto de un solo uso que, al cargarse, muestra
+un anuncio intersticial. Para que una aplicación muestre varios
+anuncios intersticiales, es necesario crear un <code>GADInterstitial</code> para
+cada uno de ellos (lo veremos más adelante).</p>
+<p>Para mostrar un intersticial, podemos verificar la propiedad <code>isReady</code> en
+<code>GADInterstitial</code> para asegurarnos de que ha terminado de cargarse y,
+después, debemos llamar a <code>presentFromRootViewController</code> pasándole el
+<em>view controller</em> actual como <em>view controller</em> raíz:</p>
+<div class="highlight"><pre><span></span><code>  <span class="p">...</span>
+  <span class="k">if</span> <span class="n">interstitial</span><span class="p">.</span><span class="n">isReady</span> <span class="p">{</span>
+    <span class="n">interstitial</span><span class="p">.</span><span class="n">present</span><span class="p">(</span><span class="n">fromRootViewController</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;El anuncio no está disponible&quot;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Al igual que hacíamos en el <em>banner</em> podemos realizar esta llamada en
+la función del delegado <code>interstitialDidReceiveAd</code>:</p>
+<div class="highlight"><pre><span></span><code>    <span class="c1">/// Tells the delegate an ad request succeeded.</span>
+    <span class="kd">func</span> <span class="nf">interstitialDidReceiveAd</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&quot;interstitialDidReceiveAd&quot;</span><span class="p">)</span>
+        <span class="n">interstitial</span><span class="p">.</span><span class="n">present</span><span class="p">(</span><span class="n">fromRootViewController</span><span class="p">:</span> <span class="kc">self</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p>El resto de funciones del delegado son las siguientes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">/// Tells the delegate an ad request failed.</span>
+<span class="kd">func</span> <span class="nf">interstitial</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">,</span> <span class="n">didFailToReceiveAdWithError</span> <span class="n">error</span><span class="p">:</span> <span class="n">GADRequestError</span><span class="p">)</span> <span class="p">{</span>
+  <span class="bp">print</span><span class="p">(</span><span class="s">&quot;interstitial:didFailToReceiveAdWithError: </span><span class="si">\(</span><span class="n">error</span><span class="p">.</span><span class="n">localizedDescription</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">/// Tells the delegate that an interstitial will be presented.</span>
+<span class="kd">func</span> <span class="nf">interstitialWillPresentScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">)</span> <span class="p">{</span>
+  <span class="bp">print</span><span class="p">(</span><span class="s">&quot;interstitialWillPresentScreen&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">/// Tells the delegate the interstitial is to be animated off the screen.</span>
+<span class="kd">func</span> <span class="nf">interstitialWillDismissScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">)</span> <span class="p">{</span>
+  <span class="bp">print</span><span class="p">(</span><span class="s">&quot;interstitialWillDismissScreen&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">/// Tells the delegate the interstitial had been animated off the screen.</span>
+<span class="kd">func</span> <span class="nf">interstitialDidDismissScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">)</span> <span class="p">{</span>
+  <span class="bp">print</span><span class="p">(</span><span class="s">&quot;interstitialDidDismissScreen&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">/// Tells the delegate that a user click will open another app</span>
+<span class="c1">/// (such as the App Store), backgrounding the current app.</span>
+<span class="kd">func</span> <span class="nf">interstitialWillLeaveApplication</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">)</span> <span class="p">{</span>
+  <span class="bp">print</span><span class="p">(</span><span class="s">&quot;interstitialWillLeaveApplication&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Tal y como hemos comentado el <code>GADInterstitial</code> es un objeto de un
+solo uso. Eso significa que una vez que se muestra un intersticial,
+<code>hasBeenUsed</code> devuelve el valor <code>true</code> y el intersticial no se puede usar
+para cargar otro anuncio. </p>
+<p>Para solicitar otro, deberemos crear un nuevo objeto
+<code>GADInterstitial</code>. Si intentamos reutilizar un objeto intersticial,
+aparecerá el mensaje <code>"Request Error: Will not send request because
+interstitial object has been used"</code></p>
+<p>El mejor lugar para asignar otro intersticial es en el método
+<code>interstitialDidDismissScreen</code> del delegado <code>GADInterstitialDelegate</code>,
+para que el siguiente intersticial comience a cargarse tan pronto como
+se cierre el anterior.</p>
+<p>Podemos refactorizar la creación del interstiticial en una función
+aparte, y llamar a esa función desde <code>viewDidLoad</code> y desde
+<code>interstitialDidDismissScreen</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+  <span class="n">interstitial</span> <span class="p">=</span> <span class="n">createAndLoadInterstitial</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">createAndLoadInterstitial</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">GADInterstitial</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nv">interstitial</span> <span class="p">=</span> <span class="n">GADInterstitial</span><span class="p">(</span><span class="n">adUnitID</span><span class="p">:</span> <span class="s">&quot;ca-app-pub-3940256099942544/4411468910&quot;</span><span class="p">)</span>
+  <span class="n">interstitial</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
+  <span class="n">interstitial</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">GADRequest</span><span class="p">())</span>
+  <span class="k">return</span> <span class="n">interstitial</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">interstitialDidDismissScreen</span><span class="p">(</span><span class="kc">_</span> <span class="n">ad</span><span class="p">:</span> <span class="n">GADInterstitial</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">interstitial</span> <span class="p">=</span> <span class="n">createAndLoadInterstitial</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="demo-aplicacion-de-prueba">Demo: Aplicación de prueba<a class="headerlink" href="#demo-aplicacion-de-prueba" title="Permanent link">&para;</a></h2>
+<p>Puedes descargarte una <a href="https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/PruebaAds.zip">aplicación de
+prueba</a>
+en la que se muestra el funcionamiento básico de AdMob.</p>
+<p style="text-align:center;">
+<img style="border: 1px solid;" src="imagenes/pruebaAds-1.png" width="200px"/>
+<img style="margin-left:30px" src="imagenes/pruebaAds-2.png" width="200px"/>
+</p>
+
+<p>Se debe ejecutar la app en un dispositivo real, ya que AdMob no
+funciona en el simulador. También debes darte de alta en AdMob, registrar
+una aplicación e incluir el número de registro en el fichero <code>Info.plist</code>.</p>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://developers.google.com/admob/ios/quick-start">Google AdMob SDK para iOS</a></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>

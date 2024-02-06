@@ -1,0 +1,1199 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Extensiones - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extensiones" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extensiones
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firma-aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/mapas/mapas-localizacion.html" class="md-nav__link">
+        Práctica 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/icloud/icloud.html" class="md-nav__link">
+        Práctica 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-basicos" class="md-nav__link">
+    Conceptos básicos
+  </a>
+  
+    <nav class="md-nav" aria-label="Conceptos básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    Introducción
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targets" class="md-nav__link">
+    Targets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esquema" class="md-nav__link">
+    Esquema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-de-extension-compartir" class="md-nav__link">
+    Ejemplo de extensión: Compartir
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slcomposeserviceviewcontroller" class="md-nav__link">
+    SLComposeServiceViewController
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extension-context" class="md-nav__link">
+    Extension Context
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creacion-de-extensiones-dentro-de-apps" class="md-nav__link">
+    Creación de extensiones dentro de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#se-construyen-de-forma-independiente" class="md-nav__link">
+    Se construyen de forma independiente
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-extension-compartir" class="md-nav__link">
+    Demo: Extensión Compartir
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-extensiones" class="md-nav__link">
+    Tipos de extensiones
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de extensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#puntos-de-extension" class="md-nav__link">
+    Puntos de extensión
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#propiedades-de-la-extension" class="md-nav__link">
+    Propiedades de la extensión
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#panel-today" class="md-nav__link">
+    Panel Today
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-service-extension" class="md-nav__link">
+    Notification Service Extension
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionamiento-de-una-extension" class="md-nav__link">
+    Funcionamiento de una extensión
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcionamiento de una extensión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciclo-de-vida-de-una-extension" class="md-nav__link">
+    Ciclo de vida de una extension
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comunicacion-de-la-app-extension" class="md-nav__link">
+    Comunicación de la app extension
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comunicacion-entre-la-app-y-la-extension" class="md-nav__link">
+    Comunicación entre la app y la extensión
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#framework-embebido-para-compartir-codigo" class="md-nav__link">
+    Framework embebido para compartir código
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grupos-de-apps" class="md-nav__link">
+    Grupos de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracion-del-grupo-de-apps" class="md-nav__link">
+    Configuración del grupo de apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app-ids-y-perfiles-de-aprovisionamiento" class="md-nav__link">
+    App IDs y perfiles de aprovisionamiento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capabilities" class="md-nav__link">
+    Capabilities
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compartir-datos-con-userdefaults" class="md-nav__link">
+    Compartir datos con UserDefaults
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compartir-datos-con-filemanager" class="md-nav__link">
+    Compartir datos con FileManager
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#demo-customnotes" class="md-nav__link">
+    Demo: CustomNotes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    Referencias
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="extensiones">Extensiones<a class="headerlink" href="#extensiones" title="Permanent link">&para;</a></h1>
+<h2 id="conceptos-basicos">Conceptos básicos<a class="headerlink" href="#conceptos-basicos" title="Permanent link">&para;</a></h2>
+<h3 id="introduccion">Introducción<a class="headerlink" href="#introduccion" title="Permanent link">&para;</a></h3>
+<p>Las <em>app extensions</em> representan <strong>pequeñas apps</strong> o pequeños hilos de
+ejecución que se instalan en <strong>puntos de extensión</strong> del sistema y de
+otras apps.</p>
+<p>Se distribuyen e instalan junto con apps normales (la <strong>app
+contenedora</strong> de la extensión), no de forma independiente (con la
+excepción de los teclados configurables). Por ejemplo, <strong>Pocket</strong>
+distribuye una extensión para guardar contenido en la app cuando el
+usuario pulsa el botón de compartir estando en una página web.</p>
+<p>Pueden llegar a ser importantes para el usuario final, proporcionando
+integración entre apps y aumentando la experiencia de usuario.</p>
+<p>En nuestras apps podemos también declarar <strong>puntos de extensión</strong> a
+los que se conectarán extensiones de terceros (compartir, por
+ejemplo).</p>
+<h3 id="targets">Targets<a class="headerlink" href="#targets" title="Permanent link">&para;</a></h3>
+<p>Las extensiones se incluyen en el proyecto como <em>targets</em> adicionales
+que acompañan a la app principal.</p>
+<p>Un <em>target</em> especifica un producto a construir por Xcode. Por ejemplo,
+si cuando creamos un proyecto escogemos añadir tests unitarios y de
+UI, Xcode introduce automáticamente estos targets, además de la app
+principal.</p>
+<p>Para añadir manualmente un nuevo target al proyecto podemos
+seleccionar el botón <code>+</code> en la parte de abajo o la opción <em>Editor &gt;
+Add Target...</em>.</p>
+<p style="text-align:center;">
+<img src="imagenes/xcode-targets.png" width="600px"/>
+</p>
+
+<p>Podemos seleccionar el <em>target</em> y especificar sus características en
+el panel principal. Hay que especificar los mismos elementos que para
+una app principal (de hecho los <em>targets</em> son como <em>mini</em> apps):</p>
+<ul>
+<li>Bundle Id, versión, build</li>
+<li>Certificado y perfil de aprovisionamiento</li>
+<li>Permisos (<em>capabilities</em>)</li>
+<li>Configuración y reglas del build</li>
+</ul>
+<h3 id="esquema">Esquema<a class="headerlink" href="#esquema" title="Permanent link">&para;</a></h3>
+<p>Cada target tiene una configuración automática de construcción
+definida por su esquema (<em>schema</em>).</p>
+<p>Un esquema es una colección de configuraciones que especifican las
+acciones a realizar para la compilación del <em>target</em> y el entorno
+ejecutable a usar para lanzar el producto.</p>
+<p>Cuando abrimos o creamos un proyecto, Xcode crea automáticamente un
+esquema para cada <em>target</em>.</p>
+<p>El menú de esquemas se puede usar para cambiar el esquema activo y el
+destino. Podemos usar también el menú de esquemas para crear, editar y
+gestionar esquemas y para añadir y descartar simuladores.</p>
+<p style="text-align:center;">
+<img src="imagenes/scheme-menu.png" width="400px"/>
+</p>
+
+<p>Los esquemas y los destinos son distintos. Los destinos especifican
+dónde instalar la app (dispositivos físicos y simuladores).</p>
+<p style="text-align:center;">
+<img src="imagenes/menu-esquema-expandido.png" width="600px"/>
+</p>
+
+<p>Los esquemas especifican los ajustes para compilar, ejecutar, testear,
+monitorizar, analizar y archivar el proyecto. Estos ajustes se pueden
+configurar en la opción de editar esquema.</p>
+<p style="text-align:center;">
+<img src="imagenes/editor-esquema.png" width="600px"/>
+</p>
+
+<h3 id="ejemplo-de-extension-compartir">Ejemplo de extensión: Compartir<a class="headerlink" href="#ejemplo-de-extension-compartir" title="Permanent link">&para;</a></h3>
+<p>Veamos un ejemplo concreto, la extensión <em>Compartir</em> (<em>Share
+Extension</em>).</p>
+<p><img src="imagenes/share-extension.png" width="200px"/></p>
+<p>Muchas aplicaciones proporcionan el <em>punto de extensión</em> Compartir, en
+el que se pueden instalar extensiones de tipo <em>Share
+Extension</em>. Por ejemplo, en la siguiente imagen vemos como se puede
+acceder a la opción de <em>compartir</em> en una página del navegador Safari
+y cómo el usuario puede acceder a las extensiones que se han añadido.</p>
+<p style="text-align:center;">
+<img src="imagenes/compartir-1.png" width="300px"/> 
+<img style="margin-left:30px" src="imagenes/compartir-2.png" width="300px"/>
+</p>
+
+<p>La extensión Compartir hereda un <code>ViewController</code> por defecto de tipo
+<a href="https://developer.apple.com/documentation/social/slcomposeserviceviewcontroller"><code>SLComposeServiceViewController</code></a>
+que contiene entre otros:</p>
+<ul>
+<li>Un campo de texto que puede editar el usuario, </li>
+<li>Una previsualización del objeto a compartir</li>
+<li>Los botones <code>Cancel</code> y <code>Post</code></li>
+</ul>
+<p style="text-align:center;">
+<img src="imagenes/view-controller-share.png" width="300px"/> 
+</p>
+
+<p>La extensión puede configurar algunos aspectos de este
+<code>ViewController</code>. Por ejemplo, puede añadir una opción en la parte
+inferior en la que el usuario pueda seleccionar dónde compartir.</p>
+<p>Por ejemplo, esto se hace en la extensión adaptada por la app
+<code>Recordatorios</code>, en la que se da la opción de seleccionar el
+recordatorio en el que se quiere añadir la página.</p>
+<p style="text-align:center;">
+<img src="imagenes/view-controller-share-recordatorios.png" width="300px"/> 
+</p>
+
+<h3 id="slcomposeserviceviewcontroller">SLComposeServiceViewController<a class="headerlink" href="#slcomposeserviceviewcontroller" title="Permanent link">&para;</a></h3>
+<p>Cuando creamos una extensión (más adelante haremos una demostración)
+Xcode crea una plantilla inicial de código.</p>
+<p>En el caso de una extensión <code>Compartir</code> la plantilla define un <em>view
+controller</em> hijo de <code>SLComposeServiceViewController</code> en el que podemos
+configurar el funcionamiento de la extensión.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UIKit</span>
+<span class="kd">import</span> <span class="nc">Social</span>
+
+<span class="kd">class</span> <span class="nc">ShareViewController</span><span class="p">:</span> <span class="bp">SLComposeServiceViewController</span> <span class="p">{</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">isContentValid</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="c1">// Do validation of contentText and/or NSExtensionContext </span>
+        <span class="c1">// attachments here</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">didSelectPost</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// This is called after the user selects Post. Do the </span>
+        <span class="c1">// upload of contentText and/or NSExtensionContext </span>
+        <span class="c1">// attachments.</span>
+
+        <span class="c1">// Inform the host that we&#39;re done, so it un-blocks its UI. </span>
+        <span class="c1">// Note: Alternatively you could call super&#39;s -didSelectPost,</span>
+        <span class="c1">// which will similarly complete the extension context.</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">extensionContext</span><span class="p">!.</span><span class="n">completeRequest</span><span class="p">(</span><span class="n">returningItems</span><span class="p">:</span> <span class="p">[],</span> 
+                                               <span class="n">completionHandler</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">configurationItems</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="nb">Any</span><span class="p">]</span><span class="o">!</span> <span class="p">{</span>
+        <span class="c1">// To add configuration options via table cells at the</span>
+        <span class="c1">// bottom of the sheet, return an array of </span>
+        <span class="c1">// SLComposeSheetConfigurationItem here.</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="extension-context">Extension Context<a class="headerlink" href="#extension-context" title="Permanent link">&para;</a></h3>
+<p>La aplicación que invoca a la extensión crea un objeto de tipo
+<a href="https://developer.apple.com/documentation/foundation/nsextensioncontext">NSExtensionContext</a>
+que se guarda en la variable <code>extensionContext</code> del
+<code>SLComposeServiceViewController</code>.</p>
+<p>Este objeto contiene la información del ítem o ítems que el usuario a
+seleccionado para compartir en su propiedad <code>inputItems</code>:</p>
+<ul>
+<li><code>var inputItems : [Any]</code></li>
+</ul>
+<h3 id="creacion-de-extensiones-dentro-de-apps">Creación de extensiones dentro de apps<a class="headerlink" href="#creacion-de-extensiones-dentro-de-apps" title="Permanent link">&para;</a></h3>
+<p>Las extensiones se crean en Xcode seleccionando el proyecto y la
+opción <strong>Editor &gt; Add Target...</strong></p>
+<p>Hay plantillas para todos los tipos de extensiones que proporcionan
+un punto de partida a partir del que desarrollar nuestra extensión.</p>
+<p style="text-align:center;">
+<img src="imagenes/xcode-extensiones.png" width="800px"/>
+</p>
+
+<h3 id="se-construyen-de-forma-independiente">Se construyen de forma independiente<a class="headerlink" href="#se-construyen-de-forma-independiente" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/producto-extension.png" width="700px"/>
+</p>
+
+<p>Las extensiones se compilan de forma independiente de la app.</p>
+<p>Tienen su propio <em>bundle id</em>, <em>capabilities</em>, perfil de
+aprovisionamiento, etc.</p>
+<p>En el caso de la práctica, el <em>bundle id</em> de la extensión será:
+<code>es.ua.mastermoviles.ToDoListCloudKit.Hecho</code>.</p>
+<p>Para poder depurarlas o que aparezca su salida en el panel de salida
+estándar de Xcode hay que seleccionarla como producto a lanzar en el
+simulador.</p>
+<h2 id="demo-extension-compartir">Demo: Extensión Compartir<a class="headerlink" href="#demo-extension-compartir" title="Permanent link">&para;</a></h2>
+<p>Vamos a crear una extensión <em>Compartir</em> desde cero.</p>
+<ol>
+<li>Creamos un proyecto nuevo llamado <code>PruebaExtension</code> y añadimos un
+nuevo <em>target</em>. Elegimos el tipo de extensión <em>Share Extension</em>:</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/creamos-extension-compartir.png" width="700px"/>
+</p>
+
+<ol start="2">
+<li>Escribimos como nombre del producto <code>Compartir</code> y aceptamos activar
+   el esquema <code>Compartir</code>.</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/producto-compartir.png" width="700px"/>
+</p>
+
+<ol start="3">
+<li>
+<p>Comprobamos los dos productos existentes, el código de cada uno de
+   ellos, y los esquemas. </p>
+<p>Añadimos en el <em>storyboard</em> de la app principal una etiqueta
+   que deberá aparecer cuando la app esté lanzada en el simulador.</p>
+<p>Añadimos código en el <em>view controller</em> creado por defecto para
+   la extensión en el que imprimimos algunos mensajes en la salida
+   estándar. </p>
+</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/controller-extension.png" width="700px"/>
+</p>
+
+<ol start="4">
+<li>Podemos instalar y depurar la extensión seleccionando el esquema y
+   ejecutándolo. Aparece un panel en el que tenemos que seleccionar la
+   app <em>compañera</em> de la extensión (cualquier extensión debe
+   instalarse junto con una app principal). </li>
+</ol>
+<p>Podemos escoger cualquier app de las ya instaladas. Lo más normal
+   es que instalemos primero la app principal y después ejecutemos la
+   extensión usando esta app.</p>
+<p style="text-align:center;">
+<img src="imagenes/lanzamos-extension.png" width="700px"/>
+</p>
+
+<ol start="5">
+<li>Cuando se lance la app principal, ya se habrá cargado la
+   extensión. Abrimos Safari, por ejemplo, y escogemos la opción
+   <em>compartir</em>. Comprobamos si la extensión está habilitada.</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/boton-compartir.png" width="300px"/>
+<img style="margin-left:30px" src="imagenes/compartir-activado.png" width="300px"/>
+</p>
+
+<ol start="6">
+<li>Pulsamos la extensión <code>Compartir</code> y vemos cómo se activa su <em>view
+   controller</em> y como aparecen en la consola los mensajes que hemos
+   añadido en el código.</li>
+</ol>
+<p style="text-align:center;">
+<img src="imagenes/view-controller-extension.png" width="300px"/>
+<img style="margin-top:30px" src="imagenes/consola-extension.png" width="600px"/>
+</p>
+
+<h2 id="tipos-de-extensiones">Tipos de extensiones<a class="headerlink" href="#tipos-de-extensiones" title="Permanent link">&para;</a></h2>
+<h3 id="puntos-de-extension">Puntos de extensión<a class="headerlink" href="#puntos-de-extension" title="Permanent link">&para;</a></h3>
+<p>Cada uno de los tipos de extensiones anteriores se conectan con
+puntos de extensión del sistema.</p>
+<p>Cada punto de extensión define una política de uso y proporciona
+APIs que se usan en las extensiones de ese tipo.</p>
+<p>Cada punto de extensión permite una funcionalidad distinta. Cuando
+diseñemos una extensión hay que identificar qué funcionalidad
+queremos ofrecer y qué punto de extensión debemos usar.</p>
+<p>Se puede consultar la lista completa de puntos de extensión en la
+<a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/#//apple_ref/doc/uid/TP40014214-CH20-SW1">documentación de
+Apple</a>.</p>
+<p>Algunos de los tipos de extensiones que proporciona el sistema:</p>
+<ul>
+<li><strong>Actions</strong>: Permite manipular contenido de la app original</li>
+<li><strong>Audio Unit</strong>: Permite generar o modificar un <em>stream</em> de audio</li>
+<li><strong>Custom Keyboard</strong>: Permite reemplazar el teclado del sistema con
+  un teclado customizado</li>
+<li><strong>Document Provider</strong>: Permite acceder y gestionar un repositorio de ficheros</li>
+<li><strong>Intents</strong>: Manejar tareas relacionadas con la integración con Siri.</li>
+<li><strong>Photo Editing</strong>: Permite editar una foto o un vídeo en la app <code>Fotos</code></li>
+<li><strong>Share</strong>: Permite enviar a un sitio web o compartir contenido con otros</li>
+<li><strong>Today</strong>: Permite añadir <em>widgets</em> en el panel de <em>Hoy</em></li>
+<li><strong>WatchKit App</strong>: Proporcionar una app o una notificación UI para el Apple Watch.</li>
+</ul>
+<p>Xcode permite añadir un <em>target</em> que implementa cualquiera de las
+extensiones anteriores, creando el código y la configuración inicial
+de la misma.</p>
+<p>Un ejemplo del aspecto de las extensiones <code>Custom Keyboard</code> y <code>Photo Editing</code>:</p>
+<p style="text-align:center;">
+<img src="imagenes/teclado.png" width="200px"/>
+<img style="margin-left:30px" src="imagenes/photo-editing.png" width="200px"/>
+</p>
+
+<h3 id="propiedades-de-la-extension">Propiedades de la extensión<a class="headerlink" href="#propiedades-de-la-extension" title="Permanent link">&para;</a></h3>
+<p>Todos los aspectos relacionados con la configuración de la extensión,
+incluido su tipo, se definen en propiedades en el fichero
+<code>Info.plist</code>.</p>
+<p>Por ejemplo, la extensión <em>Share</em> añadida en la demostración se crea
+con las siguientes propiedades:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&lt;key&gt;</span>NSExtension<span class="nt">&lt;/key&gt;</span>
+<span class="w">    </span><span class="nt">&lt;dict&gt;</span>
+<span class="w">        </span><span class="nt">&lt;key&gt;</span>NSExtensionAttributes<span class="nt">&lt;/key&gt;</span>
+<span class="w">        </span><span class="nt">&lt;dict&gt;</span>
+<span class="w">            </span><span class="nt">&lt;key&gt;</span>NSExtensionActivationRule<span class="nt">&lt;/key&gt;</span>
+<span class="w">            </span><span class="nt">&lt;string&gt;</span>TRUEPREDICATE<span class="nt">&lt;/string&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/dict&gt;</span>
+<span class="w">        </span><span class="nt">&lt;key&gt;</span>NSExtensionMainStoryboard<span class="nt">&lt;/key&gt;</span>
+<span class="w">        </span><span class="nt">&lt;string&gt;</span>MainInterface<span class="nt">&lt;/string&gt;</span>
+<span class="w">        </span><span class="nt">&lt;key&gt;</span>NSExtensionPointIdentifier<span class="nt">&lt;/key&gt;</span>
+<span class="w">        </span><span class="nt">&lt;string&gt;</span>com.apple.share-services<span class="nt">&lt;/string&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/dict&gt;</span>
+</code></pre></div>
+<p>La propiedad <code>NSExtensionPointIdentifier</code> es la que define el tipo de
+extensión y el punto de extensión. Como vemos, en el caso de una
+extensión de tipo <em>Share</em> es <code>com.apple.share-services</code>. </p>
+<h3 id="panel-today">Panel <code>Today</code><a class="headerlink" href="#panel-today" title="Permanent link">&para;</a></h3>
+<p>Veamos algunas características de otro tipo de extensión, la <em>Today Extension</em>.</p>
+<p><img src="imagenes/today-extension.png" width="200px"/></p>
+<p>En iOS los usuarios pueden visualizar un panel especial, denominado
+<code>Today</code>, en el que es posible instalar extensiones. Se accede a este
+panel con un gesto de deslizar hacia la derecha, incluso con el
+dispositivo bloqueado. </p>
+<p style="text-align:center;">
+<img src="imagenes/today.png" width="250px"/>
+</p>
+
+<p>Las extensiones tienen una pequeña vista que se muestran apiladas una
+sobre otra. También se puede acceder a una segunda vista ampliada al
+pulsar <em>Mostrar más</em>.</p>
+<p>El usuario puede configurar el orden en que aparecen las extensiones
+y activarlas o esconderlas.</p>
+<h3 id="notification-service-extension">Notification Service Extension<a class="headerlink" href="#notification-service-extension" title="Permanent link">&para;</a></h3>
+<p>Veamos un último ejemplo de extensión, la <em>Notification Service Extension</em>.</p>
+<p><img src="imagenes/notification-content-extension.png" width="200px"/></p>
+<p>La <em>Notification Service Extension</em> es una extensión que permite
+modificar el contenido de una notificación remota que llega al
+dispositivo, antes de ser mostrada.</p>
+<p>Hay que seleccionar el tipo en Xcode y se añade un nuevo <em>target</em> a
+la aplicación. En este caso Xcode no genera ninguna vista ni
+controller, sólo una clase <code>NotificationService</code> que extiende
+<code>UNNotificationServiceExtension</code> y que debemos modificar.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">import</span> <span class="nc">UserNotifications</span>
+
+<span class="kd">class</span> <span class="nc">NotificationService</span><span class="p">:</span> <span class="bp">UNNotificationServiceExtension</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nv">contentHandler</span><span class="p">:</span> <span class="p">((</span><span class="bp">UNNotificationContent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)?</span>
+    <span class="kd">var</span> <span class="nv">bestAttemptContent</span><span class="p">:</span> <span class="bp">UNMutableNotificationContent</span><span class="p">?</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">didReceive</span><span class="p">(</span><span class="kc">_</span> <span class="n">request</span><span class="p">:</span> <span class="bp">UNNotificationRequest</span><span class="p">,</span> 
+                             <span class="n">withContentHandler</span> <span class="n">contentHandler</span><span class="p">:</span> 
+                             <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="bp">UNNotificationContent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">contentHandler</span> <span class="p">=</span> <span class="n">contentHandler</span>
+        <span class="n">bestAttemptContent</span> <span class="p">=</span> <span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">mutableCopy</span><span class="p">()</span> <span class="k">as</span><span class="p">?</span> 
+                                       <span class="bp">UNMutableNotificationContent</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">bestAttemptContent</span> <span class="p">=</span> <span class="n">bestAttemptContent</span> <span class="p">{</span>
+            <span class="c1">// Modify the notification content here...</span>
+            <span class="n">bestAttemptContent</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> 
+                    <span class="s">&quot;</span><span class="si">\(</span><span class="n">bestAttemptContent</span><span class="p">.</span><span class="n">title</span><span class="si">)</span><span class="s"> [modified]&quot;</span>
+
+            <span class="n">contentHandler</span><span class="p">(</span><span class="n">bestAttemptContent</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">serviceExtensionTimeWillExpire</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Called just before the extension will be terminated by </span>
+        <span class="c1">// the system.</span>
+        <span class="c1">// Use this as an opportunity to deliver your &quot;best attempt&quot; </span>
+        <span class="c1">// at modified content, otherwise the original push payload </span>
+        <span class="c1">// will be used.</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">contentHandler</span> <span class="p">=</span> <span class="n">contentHandler</span><span class="p">,</span> 
+           <span class="kd">let</span> <span class="nv">bestAttemptContent</span> <span class="p">=</span>  <span class="n">bestAttemptContent</span> <span class="p">{</span>
+            <span class="n">contentHandler</span><span class="p">(</span><span class="n">bestAttemptContent</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Se debe usar el método
+<code>didReceiveNotificationRequest:withContentHandler:</code> para crear un
+nuevo objeto <code>UNMutableNotificationContent</code> en el que se pueden
+realizar los cambios que se deseen, reemplazando algunos o todos de
+los valores originales.</p>
+<p>Cuando se haya terminado, se debe llamar al manejador proporcionado
+pasándole el nuevo objeto. El sistema integra el nuevo contenido en la
+notificación y la entrega al usuario.</p>
+<h2 id="funcionamiento-de-una-extension">Funcionamiento de una extensión<a class="headerlink" href="#funcionamiento-de-una-extension" title="Permanent link">&para;</a></h2>
+<h3 id="ciclo-de-vida-de-una-extension">Ciclo de vida de una extension<a class="headerlink" href="#ciclo-de-vida-de-una-extension" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/ciclo-vida-app-extension.png" width="500px"/>
+</p>
+
+<p>Las app extensión tienen un ciclo de vida muy corto. </p>
+<p>Se inicia cuando el usuario la elige de la IU de la app anfitriona. La
+app anfitriona define el contexto proporcionado a la extensión y
+comienza el ciclo de vida de la extensión, lanzándole una petición en
+respuesta a una acción del usuario. </p>
+<p>Si la extensión tiene un <em>ViewController</em>, el sistema llama al método
+<code>viewDidLoad()</code> para inicializar la vista y permitir que el usuario
+interaccione con ella.</p>
+<p>La extensión termina tan pronto como completa la petición que ha
+recibido de la app anfitriona.</p>
+<p>Ejemplo: el usuario escribe un texto, lo selecciona y pulsa el botón
+compartir para enviarlo a una red social.</p>
+<h3 id="comunicacion-de-la-app-extension">Comunicación de la app extension<a class="headerlink" href="#comunicacion-de-la-app-extension" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/comunicacion-app-extension.png" width="500px"/>
+</p>
+
+<p>Una app extension se comunica principalmente con su app anfitriona (la
+app desde la que se lanza la extensión).</p>
+<p>No hay comunicación directa entre la extensión y la app
+contenedora. La app contenedora ni siquiera estará ejecutándose cuando
+la extensión esté corriendo.</p>
+<p>El sistema abre la app extension en respuesta a la app anfitriona y la
+extensión toma sus datos de un contexto proporcionado por esta
+app. Como ya hemos visto, un objeto del tipo <code>NSExtensionContext</code>.</p>
+<p>Una extensión de tipo <code>Today</code> (y ninguna otra) puede pedir al sistema
+que abra la app contenedora.</p>
+<h3 id="comunicacion-entre-la-app-y-la-extension">Comunicación entre la app y la extensión<a class="headerlink" href="#comunicacion-entre-la-app-y-la-extension" title="Permanent link">&para;</a></h3>
+<p>La extensión y su app contenedora pueden comunicarse a través de datos
+compartidos en un contenedor compartido. Veamos posibles formas de hacerlo.</p>
+<p style="text-align:center;">
+<img src="imagenes/app-extensions-container-restrictions.png" width="700px"/>
+</p>
+
+<p>La app y la extensión se ejecutan en diferentes procesos y también
+en diferentes contenedores.</p>
+<p>Es posible compartir código usando:</p>
+<ul>
+<li>frameworks embebidos compartidos</li>
+<li>grupos de apps</li>
+<li>a través de una persistencia común, usando CoreData o sqlite</li>
+</ul>
+<h3 id="framework-embebido-para-compartir-codigo">Framework embebido para compartir código<a class="headerlink" href="#framework-embebido-para-compartir-codigo" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/framework-embebido.png" width="200px"/>
+</p>
+
+<p>Un framework embebido permite compartir código entre la extensión y
+la app contenedora.</p>
+<p>Por ejemplo, si se desarrolla código para realizar un filtro de una
+foto es conveniente poner el código en un framework y embeber ese
+framework tanto en la extensión como en su app contenedora.</p>
+<p>Para crear un framework embebido se debe seleccionar "Frameworks" como
+  destino en la fase de construcción <strong>Copy Files</strong>.</p>
+<h3 id="grupos-de-apps">Grupos de apps<a class="headerlink" href="#grupos-de-apps" title="Permanent link">&para;</a></h3>
+<p>Los <strong>grupos de apps</strong> permiten que distintas apps y extensiones de
+un mismo desarrollador puedan acceder a recursos compartidas entre
+todas ellas, como:</p>
+<ul>
+<li>UserDefaults compartido</li>
+<li>Ficheros compartidos</li>
+</ul>
+<p>Un grupo de app se define con un identificador y se crea en el
+centro de desarrolladores. También lo puede crear automáticamente
+Xcode en la opción <em>App Groups</em> en las <em>capabilities</em>.</p>
+<p>Todas las apps y extensiones deben usar ese mismo identificador de
+grupo en su App Id (configurado en el centro de desarrolladoras) y en
+sus <em>capabilities</em> (en Xcode).</p>
+<h3 id="configuracion-del-grupo-de-apps">Configuración del grupo de apps<a class="headerlink" href="#configuracion-del-grupo-de-apps" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/grupo-id.png" width="700px"/>
+</p>
+
+<p>Hay que crear un grupo de app en el centro de desarrolladores (dando
+el identificador) e incluir ese grupo en el App Id que usaremos en la
+app y en la extensión.</p>
+<p>Creamos para la práctica el grupo <code>group.ua.mastermoviles.ToDoList</code></p>
+<h3 id="app-ids-y-perfiles-de-aprovisionamiento">App IDs y perfiles de aprovisionamiento<a class="headerlink" href="#app-ids-y-perfiles-de-aprovisionamiento" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/app-id-con-grupo-id.png" width="450px"/>
+<img src="imagenes/app-id-nombre-grupo-id.png" width="450px"/>
+</p>
+
+<p>Para la práctica actualizamos los App IDs y los perfiles de
+aprovisionamiento, creando el App ID y el perfil <code>Master Moviles
+ToDoList Extension</code> y añadiendo el identificador de grupo compartido
+entre este App Id y el <code>Master Moviles ToDoList</code>.</p>
+<p>App IDs:</p>
+<ul>
+<li><code>Master Moviles ToDoList</code> con el <em>bundle ID</em> <code>es.ua.mastermoviles.ToDoList</code></li>
+<li><code>ToDoList Today Extension</code> con el <em>bundle ID</em> <code>es.ua.mastermoviles.ToDoList.Hecho</code></li>
+</ul>
+<p>Perfiles de aprovisionamiento: </p>
+<ul>
+<li><code>Master Moviles ToDoList</code></li>
+<li><code>ToDoList Today Extension</code></li>
+</ul>
+<h3 id="capabilities">Capabilities<a class="headerlink" href="#capabilities" title="Permanent link">&para;</a></h3>
+<p style="text-align:center;">
+<img src="imagenes/capabilities.png" width="950px"/>
+</p>
+
+<p>Tanto en la extensión como en la app hay que activar la <em>capability</em>
+<strong>App Groups</strong> y escribir el identificador del grupo que hemos
+definido.</p>
+<h3 id="compartir-datos-con-userdefaults">Compartir datos con UserDefaults<a class="headerlink" href="#compartir-datos-con-userdefaults" title="Permanent link">&para;</a></h3>
+<p>La clase
+<a href="https://developer.apple.com/reference/foundation/userdefaults">UserDefaults</a>
+define un diccionario compartido en el que se puede guardar valores
+asociados a claves.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">compartido</span> <span class="p">=</span> <span class="n">UserDefaults</span><span class="p">(</span><span class="n">suiteName</span><span class="p">:</span> <span class="s">&quot;group.app.group.id&quot;</span><span class="p">)</span>
+
+<span class="c1">// set valores</span>
+
+<span class="n">compartido</span><span class="p">?.</span><span class="kr">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;contador&quot;</span><span class="p">)</span>
+<span class="n">compartido</span><span class="p">?.</span><span class="n">synchronize</span><span class="p">()</span>
+
+<span class="c1">// get valores</span>
+
+<span class="n">compartido</span><span class="p">?.</span><span class="n">synchronize</span> <span class="p">();</span>
+<span class="kd">let</span> <span class="nv">contador</span> <span class="p">=</span> <span class="n">compartido</span><span class="p">?.</span><span class="n">integer</span><span class="p">(</span><span class="n">forKey</span><span class="p">:</span> <span class="s">&quot;contador&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="compartir-datos-con-filemanager">Compartir datos con <code>FileManager</code><a class="headerlink" href="#compartir-datos-con-filemanager" title="Permanent link">&para;</a></h3>
+<p>La clase
+<a href="https://developer.apple.com/reference/foundation/filemanager"><code>FileManager</code></a>
+contiene el método
+<a href="https://developer.apple.com/reference/foundation/filemanager/1412643-containerurl"><code>containerURL</code></a>
+al que se le debe pasar el identificador del grupo de apps y que
+devuelve una URL con la localización del directorio compartido del
+grupo en el sistema de ficheros.</p>
+<p>Es posible crear ficheros compartidos con todas las apps del grupo
+en este directorio.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">fileManager</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">containerURL</span> <span class="p">=</span> <span class="n">fileManager</span><span class="p">.</span>
+    <span class="n">containerURL</span><span class="p">(</span><span class="n">forSecurityApplicationGroupIdentifier</span><span class="p">:</span> 
+                    <span class="s">&quot;group.com.company.project&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="demo-customnotes">Demo: CustomNotes<a class="headerlink" href="#demo-customnotes" title="Permanent link">&para;</a></h2>
+<p>Veamos un ejemplo completo de extensión de tipo <em>Share Extension</em>, la
+app <em>CustomNotes</em>, adaptada de una versión original hecha con Swift 3
+y disponible en <a href="https://github.com/almusto/CustomNotes">github</a>. La
+aplicación original se describe en este <a href="https://medium.com/@ales.musto/making-a-share-extension-that-accepts-text-and-urls-in-combination-with-coredata-swift-3-a0139c0f9800">artículo de
+Medium</a>. </p>
+<p>Se ha modificado la app original, simplificándola y adaptándola a
+Swift 5. La puedes descargar desde <a href="https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/CustomNotes.zip">este
+enlace</a>.</p>
+<p style="text-align:center;">
+<img src="imagenes/custom-notes1.png" width="300px"/>
+<img style="margin-left:30px" src="imagenes/custom-notes2.png" width="300px"/>
+</p>
+
+<p style="text-align:center;">
+<img src="imagenes/custom-notes3.png" width="300px"/>
+<img style="margin-left:30px" src="imagenes/custom-notes4.png" width="300px"/>
+</p>
+
+<p>Algunas características interesantes:</p>
+<ul>
+<li>Utiliza <em>Core Data</em> para guardar las notas.</li>
+<li>Define un grupo de app compartido entre la extensión y la app en el
+  que se guardan los datos.</li>
+<li>Permite seleccionar la nota en la que se guarda el texto a compartir.</li>
+</ul>
+<p>Examinamos cómo funcionan la app y la extensión.</p>
+<h2 id="referencias">Referencias<a class="headerlink" href="#referencias" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://developer.apple.com/app-extensions/">Página de principal de Apple: App Extensions</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/">App Extensions Programming Guide</a></li>
+</ul>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>
