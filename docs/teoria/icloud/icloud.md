@@ -628,7 +628,7 @@ Es posible definir los siguientes tipos de valores que pueden haber en los campo
   ficheros binarios grandes, usar `CKAsset` en su lugar.
 - `NSDate`: Fechas
 - `CLLocation`: Coordenadas geográficas
-- `CKReference`: Referencias a otros registros para crear relaciones entre ellos.
+- `CKRecord.Reference`: Referencias a otros registros para crear relaciones entre ellos.
 - `CKAsset`: Fichero binario.
 - Arrays de todo lo anterior
 
@@ -660,7 +660,7 @@ relaciones muchos-a-uno.
 <img src="imagenes/ckreference_owner_owned.png" width="600px"/>
 
 La clase
-[CKReference](https://developer.apple.com/documentation/cloudkit/ckrecord/reference)
+[CKRecord.Reference](https://developer.apple.com/documentation/cloudkit/ckrecord/reference)
 es la utilizada para definir estas relaciones:
 
 ```swift
