@@ -399,7 +399,20 @@ Se debe crear un objeto de tipo
   
 <img src="imagenes/attachment-notificacion.png" width="600px"/>
 
-El siguiente código presenta una extensión de `UNNotificationAttachment` que permite crear un _attachment_ de tipo imagen a partir de una `UIImage`:
+Para crear el _attachment_ deberemos proporcionar la URL que nos da acceso al fichero del recurso a adjuntar. Por ejemplo, en caso de querer incluir una imagen empaquetada en nuestra aplicación, obtenemos en primer lugar su URL dentro del _bundle_, creamos el objeto `UNNotificationAttachment` a partir de la URL, y por último lo añadimos al contenido de nuestra notificación, como se muestra a continuación:
+
+```swift
+do {
+    if let url = Bundle.main.url(forResource: "foto", withExtension: "png") {
+        let attachment = try UNNotificationAttachment(identifier: "imagen", url: url)
+        content.attachments = [attachment]
+    }
+} catch {
+    print("Error al crear attachment")
+}
+```
+
+Si queremos incluir una imagen que se encuentra en un objeto de tipo `UIImage`, pero que no está almacenada en forma de fichero, podemos crear una extensión de `UNNotificationAttachment` como la siguiente que se encargue de almacenar la imagen en un fichero temporal y nos de su URL:
 
 ```swift
 extension UNNotificationAttachment {
@@ -425,8 +438,7 @@ extension UNNotificationAttachment {
 }
 ```
 
-
-Una vez definida la extensión, podemos incluir el _attachment_ en la notificación:
+Una vez definida la extensión, podemos utilizar el nuevo método definido para crear el _attachment_ e incluirlo en la notificación:
 
 ```swift
 if let attachment = UNNotificationAttachment.
