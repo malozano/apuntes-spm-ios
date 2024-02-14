@@ -735,6 +735,28 @@ let predicate = NSPredicate(format: "nombre BEGINSWITH 'Limpiar'")
 let predicate = NSPredicate(format: "favoriteColors CONTAINS 'red'")
 ```
 
+La operación [`perform(_:inZoneWith:completionHandler:)`](https://developer.apple.com/documentation/cloudkit/ckdatabase/1449127-perform) aparece como _deprecated_ desde iOS 15. Si nos dirigimos a versiones posteriores, en su lugar podemos utilizar [`fetch(withQuery:completionHandler:)`](https://developer.apple.com/documentation/cloudkit/ckdatabase/3856519-fetch) de la siguiente forma:
+
+```swift
+privateDB.fetch(withQuery: query, completionHandler: { (result) in
+    switch result {
+        case .success(let records):
+            for (_, recordResult) in records.matchResults {
+                if case .success(let record) = recordResult {
+                    if let nombre = record["nombre"] {
+                        let toDoItem = ToDoItem(nombreItem: nombre as! String, publica: false)
+                        self.toDoItems.append(toDoItem)
+                    }
+                }
+            }
+            break
+        case .failure(let error):
+            print("Error al cargar: \(error)")
+            break
+    }
+})
+```
+
 ### Operaciones con registros obtenidos ###
 
 Un ejemplo de código en el que borramos los registros de tipo "Tarea" cuyo nombre coincide con un nombre:
