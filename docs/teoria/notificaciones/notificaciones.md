@@ -483,14 +483,14 @@ subclases de la clase abstracta
   hora concreta en la que lanzar una notificación. Por ejemplo,
   para crear un _trigger_ que lanza notificaciones todas las
   mañanas a las 8:30:
-      
+
       ```swift
-      let date = DateComponents()
+      var date = DateComponents()
       date.hour = 8
       date.minute = 30 
       let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
       ```
-    
+
 - [`UNLocationNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger): Para entregar una notificación
   cuando el dispositivo entra o abandona una zona geográfica
   específica.
@@ -514,14 +514,14 @@ notificaciones compartido:
 let content = UNMutableNotificationContent()
 content.title = "Introducción a Notificaciones"
 content.body = "Hablemos sobre notificaciones!"
-content.sound = UNNotificationSound.default()
+content.sound = UNNotificationSound.default
 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
 let requestIdentifier = "peticionEjemplo"
 let request = UNNotificationRequest(identifier: requestIdentifier,
                                     content: content,
                                     trigger: trigger)
 UNUserNotificationCenter.current().add(request) {
-            (error) in print ("Error \(error)")}
+            (error) in print ("Error \(String(describing: error))")}
 ```
 
 
