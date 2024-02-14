@@ -1559,7 +1559,17 @@ fichero debe ser uno de los tipos soportados:</p>
 <p>Se debe crear un objeto de tipo
   <a href="https://developer.apple.com/reference/usernotifications/unnotificationattachment"><code>UNNotificationAttachment</code></a>.</p>
 <p><img src="imagenes/attachment-notificacion.png" width="600px"/></p>
-<p>El siguiente código presenta una extensión de <code>UNNotificationAttachment</code> que permite crear un <em>attachment</em> de tipo imagen a partir de una <code>UIImage</code>:</p>
+<p>Para crear el <em>attachment</em> deberemos proporcionar la URL que nos da acceso al fichero del recurso a adjuntar. Por ejemplo, en caso de querer incluir una imagen empaquetada en nuestra aplicación, obtenemos en primer lugar su URL dentro del <em>bundle</em>, creamos el objeto <code>UNNotificationAttachment</code> a partir de la URL, y por último lo añadimos al contenido de nuestra notificación, como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="k">do</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="n">forResource</span><span class="p">:</span> <span class="s">&quot;foto&quot;</span><span class="p">,</span> <span class="n">withExtension</span><span class="p">:</span> <span class="s">&quot;png&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">attachment</span> <span class="p">=</span> <span class="k">try</span> <span class="bp">UNNotificationAttachment</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&quot;imagen&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="n">content</span><span class="p">.</span><span class="n">attachments</span> <span class="p">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error al crear attachment&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Si queremos incluir una imagen que se encuentra en un objeto de tipo <code>UIImage</code>, pero que no está almacenada en forma de fichero, podemos crear una extensión de <code>UNNotificationAttachment</code> como la siguiente que se encargue de almacenar la imagen en un fichero temporal y nos de su URL:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">extension</span> <span class="bp">UNNotificationAttachment</span> <span class="p">{</span>
     <span class="kd">static</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="p">[</span><span class="bp">NSObject</span> <span class="p">:</span> <span class="nb">AnyObject</span><span class="p">]?)</span> <span class="p">-&gt;</span> <span class="bp">UNNotificationAttachment</span><span class="p">?</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nv">fileManager</span> <span class="p">=</span> <span class="n">FileManager</span><span class="p">.</span><span class="k">default</span>
@@ -1569,7 +1579,7 @@ fichero debe ser uno de los tipos soportados:</p>
             <span class="k">try</span> <span class="n">fileManager</span><span class="p">.</span><span class="n">createDirectory</span><span class="p">(</span><span class="n">at</span><span class="p">:</span> <span class="n">tmpSubFolderURL</span><span class="p">,</span> <span class="n">withIntermediateDirectories</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="n">attributes</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
             <span class="kd">let</span> <span class="nv">imageFileIdentifier</span> <span class="p">=</span> <span class="n">identifier</span><span class="o">+</span><span class="s">&quot;.png&quot;</span>
             <span class="kd">let</span> <span class="nv">fileURL</span> <span class="p">=</span> <span class="n">tmpSubFolderURL</span><span class="p">.</span><span class="n">appendingPathComponent</span><span class="p">(</span><span class="n">imageFileIdentifier</span><span class="p">)</span>
-            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">imageData</span> <span class="p">=</span> <span class="n">UIImagePNGRepresentation</span><span class="p">(</span><span class="n">image</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">imageData</span> <span class="p">=</span> <span class="n">image</span><span class="p">.</span><span class="n">pngData</span><span class="p">()</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="k">return</span> <span class="kc">nil</span>
             <span class="p">}</span>
             <span class="k">try</span> <span class="n">imageData</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">fileURL</span><span class="p">)</span>
@@ -1582,7 +1592,7 @@ fichero debe ser uno de los tipos soportados:</p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Una vez definida la extensión, podemos incluir el <em>attachment</em> en la notificación:</p>
+<p>Una vez definida la extensión, podemos utilizar el nuevo método definido para crear el <em>attachment</em> e incluirlo en la notificación:</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="kd">let</span> <span class="nv">attachment</span> <span class="p">=</span> <span class="bp">UNNotificationAttachment</span><span class="p">.</span>
                            <span class="n">create</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&quot;prueba&quot;</span><span class="p">,</span>
                                   <span class="n">image</span><span class="p">:</span> <span class="bp">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&quot;gatito.png&quot;</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
@@ -1622,7 +1632,7 @@ subclases de la clase abstracta
   hora concreta en la que lanzar una notificación. Por ejemplo,
   para crear un <em>trigger</em> que lanza notificaciones todas las
   mañanas a las 8:30:</p>
-<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">date</span> <span class="p">=</span> <span class="n">DateComponents</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nv">date</span> <span class="p">=</span> <span class="n">DateComponents</span><span class="p">()</span>
 <span class="n">date</span><span class="p">.</span><span class="n">hour</span> <span class="p">=</span> <span class="mi">8</span>
 <span class="n">date</span><span class="p">.</span><span class="n">minute</span> <span class="p">=</span> <span class="mi">30</span> 
 <span class="kd">let</span> <span class="nv">trigger</span> <span class="p">=</span> <span class="bp">UNCalendarNotificationTrigger</span><span class="p">(</span><span class="n">dateMatching</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
@@ -1647,14 +1657,14 @@ notificaciones compartido:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">content</span> <span class="p">=</span> <span class="bp">UNMutableNotificationContent</span><span class="p">()</span>
 <span class="n">content</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&quot;Introducción a Notificaciones&quot;</span>
 <span class="n">content</span><span class="p">.</span><span class="n">body</span> <span class="p">=</span> <span class="s">&quot;Hablemos sobre notificaciones!&quot;</span>
-<span class="n">content</span><span class="p">.</span><span class="n">sound</span> <span class="p">=</span> <span class="bp">UNNotificationSound</span><span class="p">.</span><span class="k">default</span><span class="p">()</span>
+<span class="n">content</span><span class="p">.</span><span class="n">sound</span> <span class="p">=</span> <span class="bp">UNNotificationSound</span><span class="p">.</span><span class="k">default</span>
 <span class="kd">let</span> <span class="nv">trigger</span> <span class="p">=</span> <span class="bp">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nv">requestIdentifier</span> <span class="p">=</span> <span class="s">&quot;peticionEjemplo&quot;</span>
 <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="bp">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">requestIdentifier</span><span class="p">,</span>
                                     <span class="n">content</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
                                     <span class="n">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">)</span>
 <span class="bp">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span>
-            <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="k">in</span> <span class="bp">print</span> <span class="p">(</span><span class="s">&quot;Error </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)}</span>
+            <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="k">in</span> <span class="bp">print</span> <span class="p">(</span><span class="s">&quot;Error </span><span class="si">\(</span><span class="nb">String</span><span class="si">(</span><span class="n">describing</span><span class="p">:</span> <span class="n">error</span><span class="si">))</span><span class="s">&quot;</span><span class="p">)}</span>
 </code></pre></div>
 <hr />
 <h2 id="demo">Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h2>

@@ -1547,7 +1547,7 @@ tipo de registro dinámicamente en la base de datos.</p>
   ficheros binarios grandes, usar <code>CKAsset</code> en su lugar.</li>
 <li><code>NSDate</code>: Fechas</li>
 <li><code>CLLocation</code>: Coordenadas geográficas</li>
-<li><code>CKReference</code>: Referencias a otros registros para crear relaciones entre ellos.</li>
+<li><code>CKRecord.Reference</code>: Referencias a otros registros para crear relaciones entre ellos.</li>
 <li><code>CKAsset</code>: Fichero binario.</li>
 <li>Arrays de todo lo anterior</li>
 </ul>
@@ -1569,9 +1569,9 @@ relaciones muchos-a-uno.</p>
 <p><img src="imagenes/referencias.png" width="700px"/></p>
 <p><img src="imagenes/ckreference_owner_owned.png" width="600px"/></p>
 <p>La clase
-<a href="https://developer.apple.com/documentation/cloudkit/ckrecord/reference">CKReference</a>
+<a href="https://developer.apple.com/documentation/cloudkit/ckrecord/reference">CKRecord.Reference</a>
 es la utilizada para definir estas relaciones:</p>
-<div class="highlight"><pre><span></span><code><span class="n">itemRecord</span><span class="p">[</span><span class="s">&quot;owningList&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="bp">CKReference</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n">listRecord</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="p">.</span><span class="n">deleteSelf</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">itemRecord</span><span class="p">[</span><span class="s">&quot;owningList&quot;</span><span class="p">]</span> <span class="p">=</span> <span class="bp">CKRecord</span><span class="p">.</span><span class="n">Reference</span><span class="p">(</span><span class="n">record</span><span class="p">:</span> <span class="n">listRecord</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="p">.</span><span class="n">deleteSelf</span><span class="p">)</span>
 </code></pre></div>
 <p>La constante <code>.deleteSelf</code> indica que si el registro referenciado se
 borra, el propio registro también debe borrarse (borrado en
@@ -1626,6 +1626,25 @@ el campo nativo <code>recordName</code>.</p>
 <p>Otros ejemplos de predicados (consultar <a href="https://developer.apple.com/reference/cloudkit/ckquery">CKQuery</a> y <a href="https://developer.apple.com/reference/foundation/nspredicate">NSPredicate</a>)</p>
 <div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nv">predicate</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span> <span class="s">&quot;nombre BEGINSWITH &#39;Limpiar&#39;&quot;</span><span class="p">)</span>
 <span class="kd">let</span> <span class="nv">predicate</span> <span class="p">=</span> <span class="bp">NSPredicate</span><span class="p">(</span><span class="n">format</span><span class="p">:</span> <span class="s">&quot;favoriteColors CONTAINS &#39;red&#39;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>La operación <a href="https://developer.apple.com/documentation/cloudkit/ckdatabase/1449127-perform"><code>perform(_:inZoneWith:completionHandler:)</code></a> aparece como <em>deprecated</em> desde iOS 15. Si nos dirigimos a versiones posteriores, en su lugar podemos utilizar <a href="https://developer.apple.com/documentation/cloudkit/ckdatabase/3856519-fetch"><code>fetch(withQuery:completionHandler:)</code></a> de la siguiente forma:</p>
+<div class="highlight"><pre><span></span><code><span class="n">privateDB</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">withQuery</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="k">in</span>
+    <span class="k">switch</span> <span class="n">result</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">records</span><span class="p">):</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kc">_</span><span class="p">,</span> <span class="n">recordResult</span><span class="p">)</span> <span class="k">in</span> <span class="n">records</span><span class="p">.</span><span class="n">matchResults</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="k">case</span> <span class="p">.</span><span class="n">success</span><span class="p">(</span><span class="kd">let</span> <span class="nv">record</span><span class="p">)</span> <span class="p">=</span> <span class="n">recordResult</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="kd">let</span> <span class="nv">nombre</span> <span class="p">=</span> <span class="n">record</span><span class="p">[</span><span class="s">&quot;nombre&quot;</span><span class="p">]</span> <span class="p">{</span>
+                        <span class="kd">let</span> <span class="nv">toDoItem</span> <span class="p">=</span> <span class="n">ToDoItem</span><span class="p">(</span><span class="n">nombreItem</span><span class="p">:</span> <span class="n">nombre</span> <span class="k">as</span><span class="p">!</span> <span class="nb">String</span><span class="p">,</span> <span class="n">publica</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+                        <span class="kc">self</span><span class="p">.</span><span class="n">toDoItems</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">toDoItem</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">break</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">failure</span><span class="p">(</span><span class="kd">let</span> <span class="nv">error</span><span class="p">):</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Error al cargar: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="p">}</span>
+<span class="p">})</span>
 </code></pre></div>
 <h3 id="operaciones-con-registros-obtenidos">Operaciones con registros obtenidos<a class="headerlink" href="#operaciones-con-registros-obtenidos" title="Permanent link">&para;</a></h3>
 <p>Un ejemplo de código en el que borramos los registros de tipo "Tarea" cuyo nombre coincide con un nombre:</p>
@@ -1689,10 +1708,10 @@ se han obtenido correctamente.</p>
 <span class="bp">print</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
 <span class="c1">// Solicitamos permiso para que el usuario se haga descubrible</span>
 <span class="n">container</span><span class="p">.</span><span class="n">requestApplicationPermission</span><span class="p">(</span>
-    <span class="n">CKApplicationPermissions</span><span class="p">.</span><span class="n">userDiscoverability</span><span class="p">,</span>
+    <span class="bp">CKContainer</span><span class="p">.</span><span class="n">ApplicationPermissions</span><span class="p">.</span><span class="n">userDiscoverability</span><span class="p">,</span>
     <span class="n">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">permissionStatus</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
         <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Permiso concedido: &quot;</span> <span class="o">+</span>
-            <span class="s">&quot;</span><span class="si">\(</span><span class="n">permissionStatus</span> <span class="p">==</span> <span class="n">CKApplicationPermissionStatus</span><span class="p">.</span><span class="n">granted</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)})</span>
+            <span class="s">&quot;</span><span class="si">\(</span><span class="n">permissionStatus</span> <span class="p">==</span> <span class="bp">CKContainer</span><span class="p">.</span><span class="n">ApplicationPermissionStatus</span><span class="p">.</span><span class="n">granted</span><span class="si">)</span><span class="s">&quot;</span><span class="p">)})</span>
 
 <span class="c1">// Obtenemos los usuarios de la app que han dado permiso</span>
 <span class="n">container</span><span class="p">.</span><span class="n">discoverAllIdentities</span><span class="p">(</span><span class="n">completionHandler</span><span class="p">:</span> <span class="p">{</span> <span class="p">(</span><span class="n">optUsers</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span> <span class="k">in</span>
