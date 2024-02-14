@@ -495,13 +495,13 @@ subclases de la clase abstracta
   cuando el dispositivo entra o abandona una zona geográfica
   específica.
 
-      ```swift
-      let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)
-      let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
-      region.notifyOnEntry = true
-      region.notifyOnExit = false
-      let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
-      ```
+    ```swift
+    let center = CLLocationCoordinate2D(latitude: 37.335400, longitude: -122.009201)
+    let region = CLCircularRegion(center: center, radius: 2000.0, identifier: "Headquarters")
+    region.notifyOnEntry = true
+    region.notifyOnExit = false
+    let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
+    ```
 
 
 ### Creación de la notificación local ###
