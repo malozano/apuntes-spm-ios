@@ -664,7 +664,7 @@ La clase
 es la utilizada para definir estas relaciones:
 
 ```swift
-itemRecord["owningList"] = CKReference(record: listRecord, action: .deleteSelf)
+itemRecord["owningList"] = CKRecord.Reference(record: listRecord, action: .deleteSelf)
 ```
 
 La constante `.deleteSelf` indica que si el registro referenciado se
