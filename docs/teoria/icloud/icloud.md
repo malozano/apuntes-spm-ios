@@ -806,10 +806,10 @@ print("Container: ")
 print(container)
 // Solicitamos permiso para que el usuario se haga descubrible
 container.requestApplicationPermission(
-    CKApplicationPermissions.userDiscoverability,
+    CKContainer.ApplicationPermissions.userDiscoverability,
     completionHandler: { (permissionStatus, error) in
         print("Permiso concedido: " +
-            "\(permissionStatus == CKApplicationPermissionStatus.granted)")})
+            "\(permissionStatus == CKContainer.ApplicationPermissionStatus.granted)")})
         
 // Obtenemos los usuarios de la app que han dado permiso
 container.discoverAllIdentities(completionHandler: { (optUsers, error) in
