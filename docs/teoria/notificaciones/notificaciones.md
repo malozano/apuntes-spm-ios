@@ -484,12 +484,12 @@ subclases de la clase abstracta
   para crear un _trigger_ que lanza notificaciones todas las
   mañanas a las 8:30:
 
-```swift
-var date = DateComponents()
-date.hour = 8
-date.minute = 30 
-let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
-```
+    ```swift
+    var date = DateComponents()
+    date.hour = 8
+    date.minute = 30 
+    let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+    ```
 
 - [`UNLocationNotificationTrigger`](https://developer.apple.com/documentation/usernotifications/unlocationnotificationtrigger): Para entregar una notificación
   cuando el dispositivo entra o abandona una zona geográfica
