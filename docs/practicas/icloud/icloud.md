@@ -6,6 +6,8 @@ Seguimos trabajando con el proyecto `ToDo` y el _bundle ID_
 Moviles ToDo` (está actualizado e incluye el permiso de acceso
 a CloudKit y al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
 
+> Puedes optar por hacer el ejercicio sobre la versión de ToDo basada en _storyboards_ o la basada en _SwiftUI_. En caso de elegir esta segunda opción, se recomienda leer la sección de teoría sobre [SwiftUI](https://malozano.github.io/apuntes-spm-ios/teoria/swiftui/swiftui.html) como ayuda.
+
 ## 1. Antes de empezar la clase presencial ##
 
 1. Antes de la clase presencial deberás mirar los dos vídeos con

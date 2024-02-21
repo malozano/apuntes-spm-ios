@@ -13,13 +13,13 @@ Terminan la práctica en unas 1,5 horas + 1 hora de explicación = 2,5 horas
 apartados del tema de teoría:
 
     - [Aspectos básicos de
-      MapKit](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#aspectos-basicos-de-mapkit):
+      MapKit](https://malozano.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#aspectos-basicos-de-mapkit):
       desde _Aspectos básicos de MapKit_ hasta _Uso del delegado_
       (incluido). Explicación de la creación de mapas en una app y del
       uso del delegado para procesar las acciones del usuario sobre el
       mapa. 
 
-    - [Anotaciones](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#anotaciones):
+    - [Anotaciones](https://malozano.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#anotaciones):
       desde _Anotaciones_ hasta _Elementos en el callout_
       (incluido). Explicación de la creación y uso de
       anotaciones. Con estos apartados y los anteriores puedes hacer
@@ -66,14 +66,14 @@ dependiendo de si el número de pin es par o impar.
 
 Debes leer los siguientes apartados del tema de teoría:
 
-- [Geocoding](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#geocoding):
+- [Geocoding](https://malozano.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#geocoding):
       desde _Geocoding_ hasta _Conversión de placemarks en
       localizaciones_ (incluido). Explicación de la técnica de
       _geocoding_ (obtención del nombre a partir de las coordenadas
       geográficas). Este apartado se usan para la primera parte
       opcional de la práctica.
 
-- [Localización](https://domingogallardo.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#localizacion):
+- [Localización](https://malozano.github.io/apuntes-spm-ios/teoria/mapas-localizacion/mapas-localizacion.html#localizacion):
       explicación de cómo activar y acceder a los servicios de
       localización. Necesario para la tercera parte opcional de la práctica.
 

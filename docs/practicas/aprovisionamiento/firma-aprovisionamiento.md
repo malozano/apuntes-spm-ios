@@ -23,24 +23,24 @@ demostraciones que podrás encontrar en Moodle, en la sesión 1.
 2. Una vez vistas estas demostraciones, debes leer los
    siguientes apartados del tema de teoría:
 
-    - [Introducción](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#introduccion):
+    - [Introducción](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#introduccion):
      Resumen de lo que vamos a ver en este tema e introducción breve a
      la importancia de la seguridad en la plataforma de Apple.
-    - [Cuenta de desarrollador de Apple](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#cuenta-de-desarrollador-de-apple):
+    - [Cuenta de desarrollador de Apple](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#cuenta-de-desarrollador-de-apple):
      Explicación de los distintos tipo de programas de desarrollo en
      la plataforma Apple y características de cada uno.
     - [Certificado de firma de
-      apps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#certificados): Explicación del funcionamiento del certificado de desarrollador
+      apps](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#certificados): Explicación del funcionamiento del certificado de desarrollador
       para la firma de apps. Una app sólo puede instalarse en un
       dispositivo si ha sido previamente firmada con un certificado de
       un desarrollador registrado.
     - [Capacidades de las
-      aps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#capacidades-de-las-apps):
+      aps](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#capacidades-de-las-apps):
       Para usar las capacidades proporcionadas por la plataforma de
       desarrollo Apple es necesario configurar una autorización usando
       un App ID.
     - [Despliegue de
-      apps](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#despliegue-de-apps-en-dispositivos-de-prueba):
+      apps](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#despliegue-de-apps-en-dispositivos-de-prueba):
       para desplegar una app en un dispositivo de prueba es necesario instalar en ella un _perfil de
       aprovisionamiento_ que contenga los permisos para acceder a las
       capacidades y los dispositivos autorizados en los que la app
@@ -73,7 +73,7 @@ nada.
     - Help
 
 3. Descarga la app
-   [ToDo](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/ToDo.zip). Y
+   [ToDo (versión _storyboards_)](https://github.com/malozano/apuntes-spm-ios/raw/master/apps/ToDo.zip) o [ToDo (versión _SwiftUI_)](https://github.com/malozano/apuntes-spm-ios/raw/master/apps/ToDoSwiftUI.zip). Y
    sigue los pasos de la demostración para crear el certificado
    gratuito de desarrollador, cambiar el _bundle ID_ de la app a un
    identificador tuyo, firmar la app, comprobar el certificado y
@@ -114,7 +114,7 @@ nada.
 ## 4. Firma y despliegue de app con perfil de aprovisionamiento ##
 
 Sigue los pasos de la [demo y
-   ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
+   ejercicio](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
    de teoría, realizando lo siguiente:
 
 1. Cambia el bundle ID y firma la app con el perfil genérico. **Captura

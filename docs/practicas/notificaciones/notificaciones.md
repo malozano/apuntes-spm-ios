@@ -8,25 +8,25 @@
 2. Una vez vistas estas demostraciones, debes leer los siguientes
 apartados del tema de teoría:
 
-    - [Introducción](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#introduccion):
+    - [Introducción](https://malozano.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#introduccion):
       Conceptos básicos de notificaciones en iOS. Notificaciones
       locales y remotas. NotificationCenter.
 
-    - [Preparación de las notificaciones](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#preparacion-de-las-notificaciones):
+    - [Preparación de las notificaciones](https://malozano.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#preparacion-de-las-notificaciones):
   Petición de permiso a los usuarios.
   
     - [Notificaciones
-  locales y Demo](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#notificaciones-locales_1):
+  locales y Demo](https://malozano.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#notificaciones-locales_1):
   Creación de notificaciones. Demo con el app Notificaciones.
 
     - [Acciones, Manejo de notificaciones y
-      Demo](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#acciones):
+      Demo](https://malozano.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#acciones):
       Acciones en las notificaciones. Manejadores de las notificaciones.
 
 ## 2. Parte obligatoria (hasta 7 puntos) ##
 
-Descarga las apps [Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
-y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip),
+Descarga las apps [Notificaciones](https://github.com/malozano/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
+y [NotificacionesPush](https://github.com/malozano/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip),
    revisa su código y sus permisos y pruébalas. La primera puedes probarla en el
    simulador. La segunda deberás probarla ejecutándola en un
    dispositivo real y enviando notificaciones remotas tal y como hemos
@@ -41,13 +41,15 @@ y [NotificacionesPush](https://github.com/domingogallardo/apuntes-spm-ios/raw/ma
   [alerta](https://developer.apple.com/reference/uikit/uialertcontroller)
   la siguiente vez que se abra la app que informe de la acción
   escogida.
+
+> Puedes optar por hacer el ejercicio sobre la versión de ToDoList basada en _storyboards_ o la basada en _SwiftUI_. En caso de elegir esta segunda opción, se recomienda leer la sección de teoría sobre [SwiftUI](https://malozano.github.io/apuntes-spm-ios/teoria/swiftui/swiftui.html) como ayuda.
   
 ## 3. Parte opcional (3 puntos) ##
 
 Lee los siguientes apartados del tema de teoría:
 
 - [Notificaciones
-  remotas](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#notificaciones-remotas-push):
+  remotas](https://malozano.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#notificaciones-remotas-push):
   Arquitectura de las notificaciones remotas. Registro del
   dispositivo. Payload de la notificación.
 
@@ -60,7 +62,7 @@ Lee los siguientes apartados del tema de teoría:
   posiblidad de añadir una nueva tarea en la lista de tareas
   pendientes mediante una notificación silenciosa enviada con una
   notificación push. Sigue primero el
-  [ejercicio](https://domingogallardo.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#ejercicio)
+  [ejercicio](https://malozano.github.io/apuntes-spm-ios/teoria/notificaciones/notificaciones.html#ejercicio)
   del tema para probar la aplicación NotificacionesPush y el envío de
   notificaciones desde el terminal con un JWS. Deberás utilizar un
   dispositivo real para realizar las pruebas.

@@ -8,6 +8,7 @@ nav:
     - 2. Mapas y localización: 'teoria/mapas-localizacion/mapas-localizacion.md'
     - 3. Notificaciones: 'teoria/notificaciones/notificaciones.md'
     - 4. iCloud y CloudKit: 'teoria/icloud/icloud.md'
+    - Extra. SwiftUI: 'teoria/swiftui/swiftui.md'
 #    - 5. Anuncios: 'teoria/anuncios/anuncios.md'
 #    - 6. Compras InApp: 'teoria/compras-in-app/compras-in-app.md'
 #    - 5. Extensiones: 'teoria/extensiones/extensiones.md'
