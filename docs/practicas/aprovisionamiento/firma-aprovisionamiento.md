@@ -56,7 +56,7 @@ nada.
     Apple ID será el que se asociará a la cuenta de desarrollador.
 
     Después deberás darte de alta como desarrollador Apple con el Apple ID
-    recién creado en [https://developer.apple.com/register/](https://developer.apple.com/register/).
+    recién creado en [https://developer.apple.com](https://developer.apple.com).
 
 2. Accede a tu portal de desarrollador. Será el portal del programa
    gratuito. Este programa permite acceder a las herramientas de
