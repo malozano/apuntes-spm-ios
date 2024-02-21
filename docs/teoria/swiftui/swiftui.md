@@ -258,6 +258,8 @@ struct AddTask: View {
 
 En la clase anterior definimos la nueva tarea como variable `@State`, y una _toolbar_ con las opciones _Save_ y _Cancel_. Vemos además que inyectamos el modelo, de forma que en caso de seleccionar _Save_ añadimos el nuevo _item_ a la lista. Tanto si seleccionamos _Cancel_ como _Save_, llamaremos a `dismiss()` para cerrar la vista modal.
 
+Podemos ver todos los valores del entorno disponibles en la documentación de la clase [EnvironmentValues](https://developer.apple.com/documentation/swiftui/environmentvalues/).
+
 ## _Binding_ en nuestras propias vistas
 
 Hemos visto cómo utilizar _binding_ para que diferentes vistas de SwiftUI sean capaces de modificar nuestros datos. Puede que queramos crear una vista propia que sea capaz de hacer lo mismo, y recibir un dato mediante _binding_ que podamos editar. 
