@@ -758,6 +758,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>En la clase anterior definimos la nueva tarea como variable <code>@State</code>, y una <em>toolbar</em> con las opciones <em>Save</em> y <em>Cancel</em>. Vemos además que inyectamos el modelo, de forma que en caso de seleccionar <em>Save</em> añadimos el nuevo <em>item</em> a la lista. Tanto si seleccionamos <em>Cancel</em> como <em>Save</em>, llamaremos a <code>dismiss()</code> para cerrar la vista modal.</p>
+<p>Podemos ver todos los valores del entorno disponibles en la documentación de la clase <a href="https://developer.apple.com/documentation/swiftui/environmentvalues/">EnvironmentValues</a>.</p>
 <h2 id="binding-en-nuestras-propias-vistas"><em>Binding</em> en nuestras propias vistas<a class="headerlink" href="#binding-en-nuestras-propias-vistas" title="Permanent link">&para;</a></h2>
 <p>Hemos visto cómo utilizar <em>binding</em> para que diferentes vistas de SwiftUI sean capaces de modificar nuestros datos. Puede que queramos crear una vista propia que sea capaz de hacer lo mismo, y recibir un dato mediante <em>binding</em> que podamos editar. </p>
 <p>A continuación, vemos un ejemplo de vista que nos muestra los datos de una tarea y un botón que nos permite ir a una pantalla para editarla. Dado que se trata de una pantalla de edición que deberá poder modificar nuestra tarea, el <em>item</em> se debe pasar mediante <em>binding</em> (<code>$item</code>):</p>
