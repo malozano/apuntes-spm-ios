@@ -1,0 +1,881 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../icloud/icloud.html">
+      
+      
+        <link rel="next" href="../../practicas/aprovisionamiento/firma-aprovisionamiento.html">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
+    
+    
+      
+        <title>Extra. SwiftUI - SPM-iOS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.402914a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="Teal" data-md-color-accent="Teal">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#swiftui" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="SPM-iOS" class="md-header__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SPM-iOS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extra. SwiftUI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SPM-iOS" class="md-nav__button md-logo" aria-label="SPM-iOS" data-md-component="logo">
+      
+  <img src="../../imagenes/logo.png" alt="logo">
+
+    </a>
+    SPM-iOS
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          Teoría
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Teoría
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firma-aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        1. Firma, aprovisionamiento y distribución de apps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapas-localizacion/mapas-localizacion.html" class="md-nav__link">
+        2. Mapas y localización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notificaciones/notificaciones.html" class="md-nav__link">
+        3. Notificaciones
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../icloud/icloud.html" class="md-nav__link">
+        4. iCloud y CloudKit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Extra. SwiftUI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="swiftui.html" class="md-nav__link md-nav__link--active">
+        Extra. SwiftUI
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetos-observables" class="md-nav__link">
+    Objetos observables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetos-del-entorno" class="md-nav__link">
+    Objetos del entorno
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binding-con-propiedades-del-modelo" class="md-nav__link">
+    Binding con propiedades del modelo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valores-del-entorno-proporcionados-por-el-sistema" class="md-nav__link">
+    Valores del entorno proporcionados por el sistema
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binding-en-nuestras-propias-vistas" class="md-nav__link">
+    Binding en nuestras propias vistas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inclusion-del-appdelegate" class="md-nav__link">
+    Inclusión del AppDelegate
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Prácticas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Prácticas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/aprovisionamiento/firma-aprovisionamiento.html" class="md-nav__link">
+        Práctica 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/mapas/mapas-localizacion.html" class="md-nav__link">
+        Práctica 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/notificaciones/notificaciones.html" class="md-nav__link">
+        Práctica 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../practicas/icloud/icloud.html" class="md-nav__link">
+        Práctica 4
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objetos-observables" class="md-nav__link">
+    Objetos observables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetos-del-entorno" class="md-nav__link">
+    Objetos del entorno
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binding-con-propiedades-del-modelo" class="md-nav__link">
+    Binding con propiedades del modelo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valores-del-entorno-proporcionados-por-el-sistema" class="md-nav__link">
+    Valores del entorno proporcionados por el sistema
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binding-en-nuestras-propias-vistas" class="md-nav__link">
+    Binding en nuestras propias vistas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inclusion-del-appdelegate" class="md-nav__link">
+    Inclusión del AppDelegate
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="swiftui">SwiftUI<a class="headerlink" href="#swiftui" title="Permanent link">&para;</a></h1>
+<p>La arquitectura de una aplicación basada en SwiftUI presenta diferencias significativas respecto a una basada en Storyboards. Esto nos obliga a reorganizar los componentes utilizados para la gestión del modelo y de los servicios a los que accede nuestra aplicación. En esta sesión extra nos centraremos en estudiar los mecanismos que nos ofrece SwiftUI para gestionar estos objetos.</p>
+<h2 id="objetos-observables">Objetos observables<a class="headerlink" href="#objetos-observables" title="Permanent link">&para;</a></h2>
+<p>En la sesión introductoria sobre SwiftUI se trataron las variable <code>@State</code>. Vimos cómo los cambios en estas variables se reflejan automáticamente en la interfaz. Esto es así con tipos de datos básicos, pero si queremos tener este mismo comportamiento con nuestros propios objetos deberemos marcarlos con el <em>property wrapper</em> <code>@Observable</code>.</p>
+<p>Por ejemplo, en una aplicación de gestión de tareas definimos una estructura <code>ToDoItem</code> para representar los datos de cada tarea, y una clase <code>ToDoModel</code> para gestionar el modelo:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoItem</span> <span class="p">:</span> <span class="n">Identifiable</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">id</span> <span class="p">=</span> <span class="n">UUID</span><span class="p">()</span>
+    <span class="kd">var</span> <span class="nv">nombreItem</span><span class="p">:</span> <span class="nb">String</span>
+    <span class="kd">var</span> <span class="nv">completado</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span>
+    <span class="kd">var</span> <span class="nv">fechaFinalizacion</span><span class="p">:</span> <span class="n">Date</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span>   
+<span class="p">}</span>
+
+<span class="p">@</span><span class="n">Observable</span>
+<span class="kd">class</span> <span class="nc">ToDoModel</span><span class="p">:</span> <span class="bp">NSObject</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nv">toDoItems</span><span class="p">:</span> <span class="p">[</span><span class="n">ToDoItem</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
+
+    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>        
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">addItem</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">ToDoItem</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">toDoItems</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Destacamos que la clase <code>ToDoModel</code> está marcada como <code>@Obserbable</code>. De esta forma, en nuestra aplicación podríamos crear el modelo como una variable <code>@State</code>, y los cambios que se produzcan en la lista de tareas (creación, modificación o borrado de tareas) se reflejarán de forma automática en la interfaz.</p>
+<blockquote>
+<p>La clase del modelo es un lugar apropiado para introducir el código de acceso a iCloud y CloudKit. Por ejemplo, desde <code>init</code> podemos recuperar todos los registros de la base de datos de CloudKit, y en <code>addItem</code> además de añadir el <em>item</em> en la lista local, podemos añadir el nuevo registro en CloudKit. Podemos también utilizar esta clase para gestionar el contador de tareas finalizadas, y almacenar y recuperar su valor del almacen de parejas clave-valor de iCloud. </p>
+</blockquote>
+<p>También cabe destacar el haber declarado la estructura <code>ToDoItem</code> como <code>Identifiable</code>. Este protocolo nos obliga a declarar una propiedad <code>id</code> que debe ser única. El cumplir con dicho protocolo nos permitirá iterar por elementos de dicho tipo utilizando <code>ForEach</code> sin tener que indicar un identificador de forma explífica, como se muestra a continuación al crear la lista:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoList</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span> <span class="p">=</span> <span class="n">ToDoModel</span><span class="p">()</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>        
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">List</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ForEach</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">toDoItems</span><span class="p">)</span> <span class="p">{</span> <span class="n">item</span> <span class="k">in</span>
+                    <span class="n">ToDoRow</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="nc">ToDoRow</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">item</span><span class="p">:</span> <span class="n">ToDoItem</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">HStack</span> <span class="p">{</span>
+            <span class="n">Text</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">nombreItem</span><span class="p">)</span>
+            <span class="n">Spacer</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">.</span><span class="n">completado</span> <span class="p">{</span>
+                <span class="n">Image</span><span class="p">(</span><span class="n">systemName</span><span class="p">:</span> <span class="s">&quot;checkmark&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Para la creación de la imagen se utiliza un nombre del sistema, que nos da acceso a una amplia galería de iconos. Se puede explorar esta galería descargando la aplicación <a href="https://developer.apple.com/design/human-interface-guidelines/sf-symbols">SF Symbols</a>.</p>
+</blockquote>
+<h2 id="objetos-del-entorno">Objetos del entorno<a class="headerlink" href="#objetos-del-entorno" title="Permanent link">&para;</a></h2>
+<p>En el punto anterior hemos visto cómo crear la clase para gestionar el modelo de nuestra aplicación y cómo hacerla <code>@Observable</code> e incluirla como variable <code>@State</code> de nuestra clase. Este tipo de variables se deben declarar como privadas de la vista en la que se crean, sin embargo, el modelo es un objeto al que necesitaremos tener acceso desde un gran número de vistas. </p>
+<p>En estos casos es conveniente introducir este objeto en el <strong>entorno</strong> de la aplicación, de forma que podamos acceder a él desde cualquier subvista. Para ello, instanciaremos el modelo en la vista raíz como variable <code>@State</code>, y al crear la vista <code>ToDoList</code> lo introduciremos en el entorno con <code>environment</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoSwiftUIApp</span><span class="p">:</span> <span class="n">App</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span> <span class="p">=</span> <span class="n">ToDoModel</span><span class="p">()</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">Scene</span> <span class="p">{</span>
+        <span class="n">WindowGroup</span> <span class="p">{</span>
+            <span class="n">ToDoList</span><span class="p">()</span>
+                <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>De esta forma, tanto <code>ToDoList</code> como todas sus vistas descendientes tendrán acceso al modelo inyectándolo con <code>@Environment</code>, como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoList</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ToDoModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>        
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">List</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ForEach</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">toDoItems</span><span class="p">)</span> <span class="p">{</span> <span class="n">item</span> <span class="k">in</span>
+                    <span class="n">ToDoRow</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>Es importante resaltar que una variable se declara como <code>@State</code> solo cuando estamos en la vista que la crea (en este caso es en la clase principal de la aplicación <code>ToDoSwiftUIApp</code>), y siempre se debe definir como privada. </p>
+</blockquote>
+<h2 id="binding-con-propiedades-del-modelo"><em>Binding</em> con propiedades del modelo<a class="headerlink" href="#binding-con-propiedades-del-modelo" title="Permanent link">&para;</a></h2>
+<p>Será habitual necesitar modificar propiedades del modelo en alguna vista. Por ejemplo, en nuestro caso nos puede interesar modificar la propiedad <code>completado</code> de las tareas de la lista. Para ello, deberemos hacer las propiedades de dicho objeto <code>@Bindables</code>.</p>
+<p>Si nuestro objeto ha sido recuperado como objeto del entorno, podemos hacerlo <code>@Bindable</code> de la siguiente forma:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoList</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>    
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ToDoModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">model</span> <span class="p">=</span> <span class="n">model</span>
+
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">List</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ForEach</span><span class="p">(</span><span class="err">$</span><span class="n">model</span><span class="p">.</span><span class="n">toDoItems</span><span class="p">)</span> <span class="p">{</span> <span class="err">$</span><span class="n">item</span> <span class="k">in</span>
+                    <span class="n">ToDoRow</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+                        <span class="p">.</span><span class="n">contentShape</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">())</span>
+                        <span class="p">.</span><span class="n">onTapGesture</span> <span class="p">{</span>
+                            <span class="n">item</span><span class="p">.</span><span class="n">completado</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span>
+                            <span class="n">item</span><span class="p">.</span><span class="n">fechaFinalizacion</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+                        <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Podemos observar que re-declaramos el modelo dentro de nuestra vista para hacerlo <code>@Bindable</code>. De esta forma, podemos utilizar <em>binding</em> para que al obtener cada <em>item</em> de la lista (observar el uso de <code>$</code> dentro del <code>ForEach</code>), este quede vinculado con su estructura dentro del modelo y de esta forma los cambios en la interfaz se reflejen en los datos del modelo.</p>
+<blockquote>
+<p>Destacamos también en este código el uso de <code>contentShape</code>. Al utilizar <code>onTapGesture</code>, por defecto solo registrará el evento cuando pulsemos sobre un lugar de la fila que tenga contenido (texto o símbolo de <em>check</em>). Haciendo que <code>contentShape</code> sea rectangular, conseguimos que todo el rectángulo que ocupa la fila sea sensible a los eventos <em>tap</em>.</p>
+</blockquote>
+<h2 id="valores-del-entorno-proporcionados-por-el-sistema">Valores del entorno proporcionados por el sistema<a class="headerlink" href="#valores-del-entorno-proporcionados-por-el-sistema" title="Permanent link">&para;</a></h2>
+<p>Hemos visto cómo incluir nuestros objetos en el entorno de la aplicación. Además, podemos encontrar en el entorno diferentes valores que nos proporciona el sistema, y que nos pueden ser de gran utilidad para nuestra aplicación. </p>
+<p>Por ejemplo, si inyectamos el valor <code>\.scenePhase</code> tendremos información sobre el estado en el que se encuentra la aplicación (activa, inactiva o en <em>background</em>). Podemos utilizar <code>onChange</code> para observar cuándo cambia esta propiedad, como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoList</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ToDoModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">scenePhase</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">scenePhase</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">model</span> <span class="p">=</span> <span class="n">model</span>
+
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">List</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ForEach</span><span class="p">(</span><span class="err">$</span><span class="n">model</span><span class="p">.</span><span class="n">toDoItems</span><span class="p">)</span> <span class="p">{</span> <span class="err">$</span><span class="n">item</span> <span class="k">in</span>
+                    <span class="n">ToDoRow</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+                        <span class="p">.</span><span class="n">contentShape</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">())</span>
+                        <span class="p">.</span><span class="n">onTapGesture</span> <span class="p">{</span>
+                            <span class="n">item</span><span class="p">.</span><span class="n">completado</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span>
+                            <span class="n">item</span><span class="p">.</span><span class="n">fechaFinalizacion</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+                        <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="n">onChange</span><span class="p">(</span><span class="n">of</span><span class="p">:</span> <span class="n">scenePhase</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">scenePhase</span> <span class="p">==</span> <span class="p">.</span><span class="n">active</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;Aplicacion activa&quot;</span><span class="p">)</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">scenePhase</span> <span class="p">==</span> <span class="p">.</span><span class="n">background</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&quot;La aplicacion ha ido a background&quot;</span><span class="p">)</span>
+                <span class="p">}</span> 
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Resulta de gran utilidad también la propiedad <code>dismiss</code>, que nos permitirá cerrar cualquier vista modal. Por ejemplo, podemos utilizar <code>sheet</code> para abrir una vista modal para añadir una nueva tarea:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoList</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>    
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ToDoModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">isAddItemPresented</span> <span class="p">:</span> <span class="nb">Bool</span> <span class="p">=</span> <span class="kc">false</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="p">@</span><span class="n">Bindable</span> <span class="kd">var</span> <span class="nv">model</span> <span class="p">=</span> <span class="n">model</span>
+
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">List</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ForEach</span><span class="p">(</span><span class="err">$</span><span class="n">model</span><span class="p">.</span><span class="n">toDoItems</span><span class="p">)</span> <span class="p">{</span> <span class="err">$</span><span class="n">item</span> <span class="k">in</span>
+                    <span class="n">ToDoRow</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+                        <span class="p">.</span><span class="n">contentShape</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">())</span>
+                        <span class="p">.</span><span class="n">onTapGesture</span> <span class="p">{</span>
+                            <span class="n">item</span><span class="p">.</span><span class="n">completado</span><span class="p">.</span><span class="n">toggle</span><span class="p">()</span>
+                            <span class="n">item</span><span class="p">.</span><span class="n">fechaFinalizacion</span> <span class="p">=</span> <span class="n">Date</span><span class="p">()</span>
+                        <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="n">toolbar</span> <span class="p">{</span>
+                <span class="n">ToolbarItem</span><span class="p">(</span><span class="n">placement</span><span class="p">:</span> <span class="p">.</span><span class="n">navigationBarTrailing</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Add Item&quot;</span><span class="p">,</span> <span class="n">systemImage</span><span class="p">:</span> <span class="s">&quot;plus&quot;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="kc">self</span><span class="p">.</span><span class="n">isAddItemPresented</span> <span class="p">=</span> <span class="kc">true</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="p">.</span><span class="n">sheet</span><span class="p">(</span><span class="n">isPresented</span><span class="p">:</span> <span class="err">$</span><span class="n">isAddItemPresented</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">AddTask</span><span class="p">()</span>
+            <span class="p">}</span>
+
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Podemos ver que para controlar si la vista modal se muestra o no utilizamos una variable <code>@State</code> <code>isAddItemPresented</code>. Añadimos un botón a la barra de herramientas (<code>ToolbarItem</code>) que al pulsarse pone dicha propiedad a <code>true</code> y de esa forma muestra la vista modal. </p>
+<p>Podemos cerrar la vista modal simplemente poniendo la propiedad de nuevo a <code>false</code>, dentro desde dentro del código de la vista nos puede ser más sencillo simplemente utilizar <code>dismiss</code>, como se muestra a continuación:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">AddTask</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">dismiss</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">dismiss</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ToDoModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">item</span><span class="p">:</span> <span class="n">ToDoItem</span> <span class="p">=</span> <span class="n">ToDoItem</span><span class="p">(</span><span class="n">nombreItem</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">VStack</span> <span class="p">{</span>
+                <span class="n">List</span> <span class="p">{</span>
+                    <span class="n">TextField</span><span class="p">(</span><span class="s">&quot;Descripción de la tarea&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="err">$</span><span class="n">item</span><span class="p">.</span><span class="n">nombreItem</span><span class="p">)</span>
+                    <span class="n">Toggle</span><span class="p">(</span><span class="s">&quot;Completado&quot;</span><span class="p">,</span> <span class="n">isOn</span><span class="p">:</span> <span class="err">$</span><span class="n">item</span><span class="p">.</span><span class="n">completado</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}.</span><span class="n">toolbar</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ToolbarItem</span><span class="p">(</span><span class="n">placement</span><span class="p">:</span> <span class="p">.</span><span class="n">confirmationAction</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Save&quot;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">item</span><span class="p">.</span><span class="n">nombreItem</span><span class="p">.</span><span class="bp">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="n">model</span><span class="p">.</span><span class="n">addItem</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+                        <span class="p">}</span>
+                        <span class="n">dismiss</span><span class="p">()</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="n">ToolbarItem</span><span class="p">(</span><span class="n">placement</span><span class="p">:</span> <span class="p">.</span><span class="n">cancellationAction</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Cancel&quot;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">dismiss</span><span class="p">()</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En la clase anterior definimos la nueva tarea como variable <code>@State</code>, y una <em>toolbar</em> con las opciones <em>Save</em> y <em>Cancel</em>. Vemos además que inyectamos el modelo, de forma que en caso de seleccionar <em>Save</em> añadimos el nuevo <em>item</em> a la lista. Tanto si seleccionamos <em>Cancel</em> como <em>Save</em>, llamaremos a <code>dismiss()</code> para cerrar la vista modal.</p>
+<h2 id="binding-en-nuestras-propias-vistas"><em>Binding</em> en nuestras propias vistas<a class="headerlink" href="#binding-en-nuestras-propias-vistas" title="Permanent link">&para;</a></h2>
+<p>Hemos visto cómo utilizar <em>binding</em> para que diferentes vistas de SwiftUI sean capaces de modificar nuestros datos. Puede que queramos crear una vista propia que sea capaz de hacer lo mismo, y recibir un dato mediante <em>binding</em> que podamos editar. </p>
+<p>A continuación, vemos un ejemplo de vista que nos muestra los datos de una tarea y un botón que nos permite ir a una pantalla para editarla. Dado que se trata de una pantalla de edición que deberá poder modificar nuestra tarea, el <em>item</em> se debe pasar mediante <em>binding</em> (<code>$item</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ViewTask</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">item</span><span class="p">:</span> <span class="n">ToDoItem</span> <span class="p">=</span> <span class="n">ToDoItem</span><span class="p">(</span><span class="n">nombreItem</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">isEditItemPresented</span> <span class="p">=</span> <span class="kc">false</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">VStack</span> <span class="p">{</span>
+                <span class="n">List</span> <span class="p">{</span>
+                    <span class="n">Text</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">nombreItem</span><span class="p">)</span>
+                    <span class="n">Text</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">completado</span> <span class="p">?</span> <span class="s">&quot;Completado&quot;</span> <span class="p">:</span> <span class="s">&quot;Pendiente&quot;</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Editar&quot;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">isEditItemPresented</span> <span class="p">=</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">}.</span><span class="n">sheet</span><span class="p">(</span><span class="n">isPresented</span><span class="p">:</span> <span class="err">$</span><span class="n">isEditItemPresented</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// Creamos vista modal para añadir una nueva tarea</span>
+                <span class="n">EditTask</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="err">$</span><span class="n">item</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Para que esto sea posible en la pantalla de edición definimos la variable <code>item</code> como <code>@Binding</code>. De esta forma podrá recibir el dato vinculado y podrá modificar su contenido:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">EditTask</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="err">\</span><span class="p">.</span><span class="n">dismiss</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">dismiss</span>
+    <span class="p">@</span><span class="n">Binding</span> <span class="kd">var</span> <span class="nv">item</span><span class="p">:</span> <span class="n">ToDoItem</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">View</span> <span class="p">{</span>
+        <span class="n">NavigationView</span> <span class="p">{</span>
+            <span class="n">List</span> <span class="p">{</span>
+                <span class="n">TextField</span><span class="p">(</span><span class="s">&quot;Descripción de la tarea&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="err">$</span><span class="n">item</span><span class="p">.</span><span class="n">nombreItem</span><span class="p">)</span>
+                <span class="n">Toggle</span><span class="p">(</span><span class="s">&quot;Completado&quot;</span><span class="p">,</span> <span class="n">isOn</span><span class="p">:</span> <span class="err">$</span><span class="n">item</span><span class="p">.</span><span class="n">completado</span><span class="p">)</span>
+            <span class="p">}.</span><span class="n">toolbar</span><span class="p">()</span> <span class="p">{</span>
+                <span class="n">ToolbarItem</span><span class="p">(</span><span class="n">placement</span><span class="p">:</span> <span class="p">.</span><span class="n">cancellationAction</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">Button</span><span class="p">(</span><span class="s">&quot;Cerrar&quot;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">dismiss</span><span class="p">()</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>En la sesión introductoria sobre SwiftUI se trataron las variable <code>@State</code> y el <em>binding</em>. Declaramos una variable como <code>@State</code> en el lugar donde se crea el objeto, y debemos marcarla como privada ya que nunca debería utilizarse fuera de ese ámbito.</p>
+<p>Sin embargo, existen mecanismos para pasar ese objeto a otras vistas, que se encuentren por debajo en la jerarquía de vistas. Una de las formas es simplemente pasar dicho objeto como parámetro a otra vista. </p>
+<p>Esto es lo que hemos visto anteriormente 
+Por ejemplo, a continuación se muestra el código de una vista para ver los datos de una tarea (su nombre y si es pública o no). Dicha clase crea la tarea (<code>ToDoItem</code>) y la declara como <code>@State private</code></p>
+<h2 id="inclusion-del-appdelegate">Inclusión del AppDelegate<a class="headerlink" href="#inclusion-del-appdelegate" title="Permanent link">&para;</a></h2>
+<p>Hemos visto que la clase <code>AppDelegate</code> nos proporciona determinados <em>callbacks</em>, como por ejemplo <code>application(_:didReceiveRemoteNotification:fetchCompletionHandler:)</code> para recibir notificaciones remotas. </p>
+<p>En una aplicación SwiftUI el punto de entrada no es una clase <code>AppDelegate</code>, sino una vista que hereda de <code>App</code>. Podemos, no obstante, añadir una clase <code>AppDelegate</code> a nuestra aplicación SwiftUI. Para ello, crearemos en primer lugar dicha clase, que adopte el protocolo <code>UIApplicationDelegate</code> y definiremos los métodos que necesitemos de dicha clase: </p>
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="bp">NSObject</span><span class="p">,</span> <span class="bp">UIApplicationDelegate</span> <span class="p">{</span>
+    <span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - Delegates</span>
+    <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="bp">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span>
+                     <span class="n">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="bp">UIApplication</span><span class="p">.</span><span class="n">LaunchOptionsKey</span><span class="p">:</span> <span class="nb">Any</span><span class="p">]?</span> <span class="p">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<p>A continuación, desde nuestra vista <code>App</code> de SwiftUI inyectamos dicha clase <code>AppDelegate</code> mediante <code>@UIApplicationDelegateAdaptor</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoSwiftUIApp</span><span class="p">:</span> <span class="n">App</span> <span class="p">{</span>
+    <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span> <span class="p">=</span> <span class="n">ToDoModel</span><span class="p">()</span>
+    <span class="p">@</span><span class="n">UIApplicationDelegateAdaptor</span><span class="p">(</span><span class="n">AppDelegate</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">var</span> <span class="nv">delegate</span>
+
+    <span class="kd">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="n">Scene</span> <span class="p">{</span>
+        <span class="n">WindowGroup</span> <span class="p">{</span>
+            <span class="n">ToDoList</span><span class="p">()</span>
+                <span class="p">.</span><span class="n">environment</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Con esto podremos contar con los métodos de dicha clase de la misma forma que en una aplicación basada en <em>storyboards</em>. </p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.b78d2936.min.js"></script>
+      
+    
+  </body>
+</html>
