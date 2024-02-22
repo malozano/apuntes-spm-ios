@@ -90,6 +90,8 @@ struct ToDoSwiftUIApp: App {
 }
 ```
 
+> Sólo los objetos marcados como `@Observable` pueden ser introducidos en el entorno.
+
 De esta forma, tanto `ToDoList` como todas sus vistas descendientes tendrán acceso al modelo inyectándolo con `@Environment`, como se muestra a continuación:
 
 ```swift
@@ -109,6 +111,8 @@ struct ToDoList: View {
 ```
 
 > Es importante resaltar que una variable se declara como `@State` solo cuando estamos en la vista que la crea (en este caso es en la clase principal de la aplicación `ToDoSwiftUIApp`), y siempre se debe definir como privada. 
+
+Los _property wrappers_ `@Observable` y `@Environment` se introducen en iOS 17. Si querermos soportar versiones anteriores de la plataforma deberemos utilizar `@ObservedObject` (el objeto declarado de esta forma deberá adoptar el protocolo `ObservableObject`), `@StateObject` y `@EnvironmentObject` en su lugar. Su uso es similar, pero deberemos marcar las propiedades que queramos observar una a una como `@Published`. En la bibliografía se incluye una comparativa de las diferencias entre las dos versiones ([Migrating from the Observable Object protocol to the Observable macro](https://developer.apple.com/documentation/swiftui/)).
 
 ## _Binding_ con propiedades del modelo
 
@@ -358,3 +362,11 @@ struct ToDoSwiftUIApp: App {
 ```
 
 Con esto podremos contar con los métodos de dicha clase de la misma forma que en una aplicación basada en _storyboards_. 
+
+## Bibliografía
+
+- [Managing model data in your app](https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app)
+- [Monitoring data changes in your app](https://developer.apple.com/documentation/swiftui/monitoring-model-data-changes-in-your-app)
+- [Migrating from the Observable Object protocol to the Observable macro](https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro)
+- [Managing user interface state](https://developer.apple.com/documentation/swiftui/managing-user-interface-state)
+- [UIApplicationDelegateAdaptor](https://developer.apple.com/documentation/swiftui/uiapplicationdelegateadaptor)

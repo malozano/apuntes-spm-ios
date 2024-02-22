@@ -3,7 +3,7 @@
 ## 1. Antes de empezar la clase presencial
 
 1. Antes de la clase presencial deberás mirar los tres vídeos con
-   demostraciones que podrás encontrar en Moodle, en la sesión de Notificaciones.
+   demostraciones que podrás encontrar en Moodle, en la sesión de Notificaciones. En caso de optar por realizar los ejercicios en su versión de SwiftUI, se recomienda también ver el vídeo sobre la aplicación ToDo con SwiftUI.
 
 2. Una vez vistas estas demostraciones, debes leer los siguientes
 apartados del tema de teoría:
@@ -32,8 +32,8 @@ y [NotificacionesPush](https://github.com/malozano/apuntes-spm-ios/raw/master/ap
    dispositivo real y enviando notificaciones remotas tal y como hemos
    hecho en la demo.
 
-- Modifica la app ToDoList para que genere notificaciones locales. En
-  la app ToDoList puedes hacerlo con un botón en la pantalla con el
+- Modifica la app ToDo para que genere notificaciones locales. En
+  la app ToDo puedes hacerlo con un botón en la pantalla con el
   número de tareas terminadas. Deberás generar una notificación en el
   intervalo de 10 segundos que contenga alguna imagen y acciones. Y
   visualizar la acción que el usuario ha realizado sobre la
@@ -42,7 +42,7 @@ y [NotificacionesPush](https://github.com/malozano/apuntes-spm-ios/raw/master/ap
   la siguiente vez que se abra la app que informe de la acción
   escogida.
 
-> Puedes optar por hacer el ejercicio sobre la versión de ToDoList basada en _storyboards_ o la basada en _SwiftUI_. En caso de elegir esta segunda opción, se recomienda leer la sección de teoría sobre [SwiftUI](https://malozano.github.io/apuntes-spm-ios/teoria/swiftui/swiftui.html) como ayuda.
+> Puedes optar por hacer el ejercicio sobre la versión de ToDo basada en _storyboards_ o la basada en _SwiftUI_. En caso de elegir esta segunda opción, se recomienda leer la sección de teoría sobre [SwiftUI](https://malozano.github.io/apuntes-spm-ios/teoria/swiftui/swiftui.html) como ayuda.
   
 ## 3. Parte opcional (3 puntos) ##
 
