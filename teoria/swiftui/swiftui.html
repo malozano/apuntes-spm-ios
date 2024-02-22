@@ -346,6 +346,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#bibliografia" class="md-nav__link">
+    Bibliografía
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -520,6 +527,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#bibliografia" class="md-nav__link">
+    Bibliografía
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -611,6 +625,9 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<blockquote>
+<p>Sólo los objetos marcados como <code>@Observable</code> pueden ser introducidos en el entorno.</p>
+</blockquote>
 <p>De esta forma, tanto <code>ToDoList</code> como todas sus vistas descendientes tendrán acceso al modelo inyectándolo con <code>@Environment</code>, como se muestra a continuación:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">struct</span> <span class="nc">ToDoList</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
     <span class="p">@</span><span class="n">Environment</span><span class="p">(</span><span class="n">ToDoModel</span><span class="p">.</span><span class="kc">self</span><span class="p">)</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">model</span>
@@ -629,6 +646,7 @@
 <blockquote>
 <p>Es importante resaltar que una variable se declara como <code>@State</code> solo cuando estamos en la vista que la crea (en este caso es en la clase principal de la aplicación <code>ToDoSwiftUIApp</code>), y siempre se debe definir como privada. </p>
 </blockquote>
+<p>Los <em>property wrappers</em> <code>@Observable</code> y <code>@Environment</code> se introducen en iOS 17. Si querermos soportar versiones anteriores de la plataforma deberemos utilizar <code>@ObservedObject</code> (el objeto declarado de esta forma deberá adoptar el protocolo <code>ObservableObject</code>), <code>@StateObject</code> y <code>@EnvironmentObject</code> en su lugar. Su uso es similar, pero deberemos marcar las propiedades que queramos observar una a una como <code>@Published</code>. En la bibliografía se incluye una comparativa de las diferencias entre las dos versiones (<a href="https://developer.apple.com/documentation/swiftui/">Migrating from the Observable Object protocol to the Observable macro</a>).</p>
 <h2 id="binding-con-propiedades-del-modelo"><em>Binding</em> con propiedades del modelo<a class="headerlink" href="#binding-con-propiedades-del-modelo" title="Permanent link">&para;</a></h2>
 <p>Será habitual necesitar modificar propiedades del modelo en alguna vista. Por ejemplo, en nuestro caso nos puede interesar modificar la propiedad <code>completado</code> de las tareas de la lista. Para ello, deberemos hacer las propiedades de dicho objeto <code>@Bindables</code>.</p>
 <p>Si nuestro objeto ha sido recuperado como objeto del entorno, podemos hacerlo <code>@Bindable</code> de la siguiente forma:</p>
@@ -835,6 +853,14 @@ Por ejemplo, a continuación se muestra el código de una vista para ver los dat
 <span class="p">}</span>
 </code></pre></div>
 <p>Con esto podremos contar con los métodos de dicha clase de la misma forma que en una aplicación basada en <em>storyboards</em>. </p>
+<h2 id="bibliografia">Bibliografía<a class="headerlink" href="#bibliografia" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app">Managing model data in your app</a></li>
+<li><a href="https://developer.apple.com/documentation/swiftui/monitoring-model-data-changes-in-your-app">Monitoring data changes in your app</a></li>
+<li><a href="https://developer.apple.com/documentation/swiftui/migrating-from-the-observable-object-protocol-to-the-observable-macro">Migrating from the Observable Object protocol to the Observable macro</a></li>
+<li><a href="https://developer.apple.com/documentation/swiftui/managing-user-interface-state">Managing user interface state</a></li>
+<li><a href="https://developer.apple.com/documentation/swiftui/uiapplicationdelegateadaptor">UIApplicationDelegateAdaptor</a></li>
+</ul>
 
 
 
