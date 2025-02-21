@@ -535,7 +535,7 @@ Vamos a probar el código visto hasta ahora en una app ejemplo.
 ### Ejemplo de app: `Notificaciones` ###
 
 Descargamos la app
-[Notificaciones](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
+[Notificaciones](https://github.com/malozano/apuntes-spm-ios/raw/master/apps/Notificaciones.zip)
 en la que podemos lanzar notificaciones locales.
 
 Las notificaciones locales se pueden probar en el simulador.
@@ -1317,7 +1317,7 @@ dispositivo físico (no funciona en el simulador).
 
 Descargamos el proyecto NotificacionesPush desde
 [este
-enlace](https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip). Contiene
+enlace](https://github.com/malozano/apuntes-spm-ios/raw/master/apps/NotificacionesPush.zip). Contiene
 la app y los scripts para enviar las notificaciones al APNs. 
 
 La app debe estar firmada con el perfil de aprovisionamiento creado
