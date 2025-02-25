@@ -1183,12 +1183,12 @@ desde Xcode.</p>
 <p>Para trabajar con iCloud clave-valor puedes utilizar el perfil de
 aprovisionamiento <code>Master Moviles iCloud</code> creado en el <em>member
 center</em> del equipo de la universidad. El <em>bundle ID</em> de la app debe
-ser <code>es.ua.mastermoviles.iCloud</code>.</p>
+ser <code>es.ua.mudsdm.iCloud</code>.</p>
 <p>También hemos actualizado el perfil <code>Master Moviles ToDoList</code> para
 incluir los permisos de uso de iCloud y CloudKit.</p>
 <p>Se debe crear el App ID que otorgue la capacidad de acceso a iCloud.</p>
 <p>Hemos creado el permiso (App ID) <code>Master Moviles iCloud</code> con el
-<em>bundle name</em> <code>es.ua.mastermoviles.iCloud</code> que incluye la capacidad de
+<em>bundle name</em> <code>es.ua.mudsdm.iCloud</code> que incluye la capacidad de
 iCloud.  </p>
 <p><img src="imagenes/appid-icloud.png" width="470px"/> </p>
 <p>Aparece un botón junto al permiso de iCloud porque requiere una
@@ -1764,7 +1764,7 @@ demuestra el uso de esta librería  <a href="https://cdn.apple-cloudkit.com/clou
 desde <a href="https://github.com/domingogallardo/apuntes-spm-ios/raw/master/apps/DemoCloudKit.zip">este
 enlace</a>.</p>
 <p><img src="imagenes/democloudkit-app.jpeg" width="300px"/></p>
-<p>La app tiene como <em>bundle id</em> <code>es.ua.mastermoviles.DemoCloudKit</code>.</p>
+<p>La app tiene como <em>bundle id</em> <code>es.ua.mudsdm.DemoCloudKit</code>.</p>
 <h3 id="creacion-del-contenedor">Creación del contenedor<a class="headerlink" href="#creacion-del-contenedor" title="Permanent link">&para;</a></h3>
 <p>Debemos crear un perfil de aprovisionamiento con capacidad de acceso a
 CloudKit. </p>
@@ -1775,9 +1775,9 @@ puede hacer automáticamente desde Xcode si somos administradores de la
 cuenta con la que estamos logeados.</p>
 <p><img src="imagenes/member-center-icloud-identifiers.png" width="750px" /></p>
 <p>Después debemos rellenar el identificador del contenedor. Como el
-<em>bundle id</em> de la app es <code>es.ua.mastermoviles.DemoCloudKit</code> el
+<em>bundle id</em> de la app es <code>es.ua.mudsdm.DemoCloudKit</code> el
 identificador del contenedor será:</p>
-<div class="highlight"><pre><span></span><code>iCloud.es.ua.mastermoviles.DemoCloudKit
+<div class="highlight"><pre><span></span><code>iCloud.es.ua.mudsdm.DemoCloudKit
 </code></pre></div>
 <p>Hay que tener mucho cuidado porque una vez creados los
 identificadores de contenedores no se pueden borrar.</p>
@@ -1791,14 +1791,14 @@ usar en ese <em>App ID</em>.</p>
 <p>Marcamos el servicio <em>iCloud</em> y configuramos el contenedor.</p>
 <p><img src="imagenes/member-center-icloud-container.png" width="750px" /></p>
 <p>Añadimos el contenedor recién creado, el que tiene el identificador
-<code>iCloud.es.ua.mastermoviles.DemoCloudKit</code>.</p>
+<code>iCloud.es.ua.mudsdm.DemoCloudKit</code>.</p>
 <p><img src="imagenes/add-container-app-id.png" width="750px"/></p>
 <h3 id="creacion-del-perfil-de-aprovisionamiento">Creación del perfil de aprovisionamiento<a class="headerlink" href="#creacion-del-perfil-de-aprovisionamiento" title="Permanent link">&para;</a></h3>
 <p>Creamos para la demo el perfil de aprovisionamiento con el App ID anterior. </p>
 <p><img src="imagenes/aprovisionamiento-demo-icloud.png" width="700px"/></p>
 <h3 id="actualizacion-de-capacidades-de-la-app">Actualización de capacidades de la app<a class="headerlink" href="#actualizacion-de-capacidades-de-la-app" title="Permanent link">&para;</a></h3>
 <p>Escribimos como <em>Bundle Identifier</em> el definido por el App ID. En el
-caso de la demo usaremos <code>es.ua.mastermoviles.DemoCloudKit</code>. </p>
+caso de la demo usaremos <code>es.ua.mudsdm.DemoCloudKit</code>. </p>
 <p>Actualizamos las capacidades en Xcode añadiendo la capacidad <em>iCloud</em> y
 activando <em>CloudKit</em>.</p>
 <p>Seleccionamos el equipo de la UA y automáticamente se cargará el
