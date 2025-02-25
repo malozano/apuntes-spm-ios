@@ -1363,7 +1363,7 @@ Eo7pNb1k4_awSDicbjsz7dC1LkiGRgMgYXbh8Os13z
    
 4. Copiamos el JWT y lo incluimos en el fichero
    `send_push_notification.sh`. También debemos incluir el bundle ID
-   del AppID (`es.ua.mastermoviles.NotificacionesPush`) y el token del dispositivo.
+   del AppID (`es.ua.mudsdm.NotificacionesPush`) y el token del dispositivo.
 
 5. La notificación que se envía es una notificación con una
    alerta. Podemos cambiar el _payload_ de la notificación para probar
@@ -1408,7 +1408,7 @@ Eo7pNb1k4_awSDicbjsz7dC1LkiGRgMgYXbh8Os13z
 > user-agent: curl/7.79.1
 > accept: */*
 > authorization: bearer eyAiYWxnIjogIkVTMjU2IiwgImtpZCI6ICJXM0g2WjlBNFI0IiB9.eyAiaXNzIjogIjNTOTUyQUdINDYiLCAiaWF0IjogMTY0ODA1ODc2NSB9.MEQCIAvaPw6dP6d7ljQatmO5HsxK0J9NDVpd_xFBc-N4acLAAiALEo7pNb1k4_awSDicbjsz7dC1LkiGRgMgYXbh8Of13w
-> apns-topic: es.ua.mastermoviles.NotificacionesPush
+> apns-topic: es.ua.mudsdm.NotificacionesPush
 > content-length: 198
 > content-type: application/x-www-form-urlencoded
 > 

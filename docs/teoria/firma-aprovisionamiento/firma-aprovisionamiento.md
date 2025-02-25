@@ -629,7 +629,7 @@ crea Xcode de forma automática tienen en su nombre el prefijo XC.
 <img src="imagenes/lista-app-id-member-center.png" width="600px"/>
 
 Por ejemplo, podríamos crear el _App ID_
-`es.ua.mastermoviles.icloud.*` con la _capability_ de acceso a
+`es.ua.mudsdm.icloud.*` con la _capability_ de acceso a
 iCloud. De esta forma, todos los _bundles ID_ que tengan este prefijo
 podrán acceder al servicio.
 
@@ -691,9 +691,9 @@ UA, y buscar un perfil que autorice esa capacidad.
 
 Vemos que el perfil `Master Moviles ToDo` contiene las capacidades
 `Game Center`, `iCloud`, `In-App Purchase` y `Push Notifications`. Y
-que el App ID autoriza su uso al bundle ID `es.ua.mastermoviles.ToDo`.
+que el App ID autoriza su uso al bundle ID `es.ua.mudsdm.ToDo`.
 
-Cambiamos el bundle ID de la app a `es.ua.mastermoviles.ToDo`. Ese
+Cambiamos el bundle ID de la app a `es.ua.mudsdm.ToDo`. Ese
 mismo identificador puede ser usado por distintos programadores, siempre
 que estén en el mismo equipo. En este caso, en el equipo de la UA. 
 
@@ -1015,7 +1015,7 @@ podremos gestionar manualmente qué perfil de aprovisionamiento es el
 que utilizamos.
 
 Seleccionamos el _team_ Universidad de Alicante. Y escribimos como
-_bundle id_ `es.ua.mastermoviles.ToDo`.
+_bundle id_ `es.ua.mudsdm.ToDo`.
 
 En el desplegable _Provisioning Profile_ seleccionamos la opción
 _Download Profile..._.
@@ -1109,7 +1109,7 @@ Se define la descripción del App ID y el prefijo de App ID (que debe
 emparejar con el _bundle id_ de la aplicación). Se escoge la opción
 _Explicit_ para indicar que no se va a usar un prefijo con comodín. La
 app deberá tener exactamente el _bundle id_
-`es.ua.mastermoviles.ToDo` para poder aplicarse el App ID.
+`es.ua.mudsdm.ToDo` para poder aplicarse el App ID.
 
 <img src="imagenes/member-center-new-app-id-1.png" width="700px"/>
 
