@@ -368,8 +368,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-configuracion-de-la-cuenta-de-desarrollador" class="md-nav__link">
-    3. Configuración de la cuenta de desarrollador
+  <a href="#3-importar-un-certificado-de-desarrollador" class="md-nav__link">
+    3. Importar un certificado de desarrollador
   </a>
   
 </li>
@@ -486,8 +486,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-configuracion-de-la-cuenta-de-desarrollador" class="md-nav__link">
-    3. Configuración de la cuenta de desarrollador
+  <a href="#3-importar-un-certificado-de-desarrollador" class="md-nav__link">
+    3. Importar un certificado de desarrollador
   </a>
   
 </li>
@@ -529,12 +529,12 @@ apps en dispositivos reales.</p>
 <ol>
 <li>Firmar una app con tu cuenta gratuita e instalarla en un
    dispositivo configurado como dispositivo de desarrollo.</li>
-<li>Darte de alta en el equipo de desarrollo de la UA.</li>
+<li>Importar un certificado de desarrollo de Apple.</li>
 <li>Firmar y exportar la app usando un perfil de aprovisionamiento que
    te permite instalarla en cualquier dispositivo autorizado en el
    perfil.</li>
 <li>Configurar en la aplicación una capacidad y seleccionar un perfil
-   del equipo de desarrollo de la UA que permita esta capacidad.</li>
+   del equipo de desarrollo que permita esta capacidad.</li>
 </ol>
 <h2 id="1-antes-de-empezar-la-clase-presencial">1. Antes de empezar la clase presencial<a class="headerlink" href="#1-antes-de-empezar-la-clase-presencial" title="Permanent link">&para;</a></h2>
 <ol>
@@ -574,8 +574,7 @@ demostraciones que podrás encontrar en Moodle, en la sesión 1.</p>
 <h2 id="2-firma-e-instalacion-de-una-app-en-un-dispositivo-de-desarrollo">2. Firma e instalación de una app en un dispositivo de desarrollo<a class="headerlink" href="#2-firma-e-instalacion-de-una-app-en-un-dispositivo-de-desarrollo" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Deberás crear un Apple ID y darte de alta como desarrollador. Si ya lo tienes, no hace falta que hagas
-nada.</p>
+<p>Deberás crear un Apple ID y darte de alta como desarrollador. Si ya lo tienes, no hace falta que hagas nada.</p>
 <p>Para crear un Apple ID, puedes introducir tus datos en <a href="https://appleid.apple.com/account?localang=es_es">este
 enlace</a>. Este
 Apple ID será el que se asociará a la cuenta de desarrollador.</p>
@@ -621,61 +620,68 @@ recién creado en <a href="https://developer.apple.com">https://developer.apple.
    app. <strong>Captura la pantalla</strong> de Xcode.</p>
 </li>
 </ol>
-<h2 id="3-configuracion-de-la-cuenta-de-desarrollador">3. Configuración de la cuenta de desarrollador<a class="headerlink" href="#3-configuracion-de-la-cuenta-de-desarrollador" title="Permanent link">&para;</a></h2>
+<h2 id="3-importar-un-certificado-de-desarrollador">3. Importar un certificado de desarrollador<a class="headerlink" href="#3-importar-un-certificado-de-desarrollador" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Para la inscripción en el equipo de desarrollo de la universidad
-   escribe tu nombre, apellidos, dirección de e-mail en <a href="https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing">este fichero
-   Google
-   Docs</a>. Escribe
-   también el ID del dispositivo (o dispositivos) que desees
-   incorporar al portal del equipo de la UA.</p>
+<p>Para poder firmar las aplicaciones necesitamos un certificado de desarrollador. Puedes <strong>descargar el certificado</strong> desde la página Moodle de la asignatura (se trata de un fichero con extensión <code>.p12</code>).</p>
 </li>
 <li>
-<p>Una vez que te añadamos al equipo de la UA recibirás en el correo
-   electrónico un mensaje con un código de invitación. Pincha en él e
-   introduce allí tu Apple ID.</p>
+<p><strong>Importar el certificado</strong>, haciendo doble <em>click</em> sobre el fichero. Nos pedirá una contraseña que
+se proporcionará en clase.</p>
+</li>
+<li>
+<p>Tras introducir la contraseña, el <strong>certificado habrá quedado instalado en el sistema</strong>. Podemos comprobarlo, por ejemplo, mediante la aplicación <em>Acceso a llaveros</em>, donde deberemos encontrar un <em>item</em> llamado <em>"Apple Development: Miguel Angel Lozano Ortega"</em>. Tendremos tanto el certificado como la clave privada asociada, necesaria para la firma. </p>
+</li>
+<li>
+<p>Para poder probar las aplicaciones en dispositivos físicos, es necesario darlos de alta en la cuenta de Apple y actualizar los perfiles de aprovisionamiento para incluirlos. Para realizar esto, incluye en <a href="https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing">este fichero Google Docs</a> el ID del dispositivo (o dispositivos que desees incorporar.</p>
 </li>
 </ol>
-<p><img src="imagenes/member-invitation.png" width="450px"/></p>
-<ol start="3">
-<li>Una vez aceptada la invitación entra en el <a href="https://developer.apple.com/account/">portal del
-   desarrollador</a>, comprueba que
+<!--
+## 3. Configuración de la cuenta de desarrollador ##
+
+1. Para la inscripción en el equipo de desarrollo de la universidad
+   escribe tu nombre, apellidos, dirección de e-mail en [este fichero
+   Google
+   Docs](https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing). Escribe
+   también el ID del dispositivo (o dispositivos) que desees
+   incorporar al portal del equipo de la UA.
+
+2. Una vez que te añadamos al equipo de la UA recibirás en el correo
+   electrónico un mensaje con un código de invitación. Pincha en él e
+   introduce allí tu Apple ID.
+
+   <img src="imagenes/member-invitation.png" width="450px"/>
+
+3.   Una vez aceptada la invitación entra en el [portal del
+   desarrollador](https://developer.apple.com/account/), comprueba que
    ya estás en el programa de la UA y prueba las distintas opciones 
-   disponibles. </li>
-</ol>
+   disponibles. 
+
+-->
+
 <h2 id="4-firma-y-despliegue-de-app-con-perfil-de-aprovisionamiento">4. Firma y despliegue de app con perfil de aprovisionamiento<a class="headerlink" href="#4-firma-y-despliegue-de-app-con-perfil-de-aprovisionamiento" title="Permanent link">&para;</a></h2>
 <p>Sigue los pasos de la <a href="https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio">demo y
    ejercicio</a>
    de teoría, realizando lo siguiente:</p>
+<blockquote>
+<p><strong>Importante</strong>: No será necesario realizar ninguna acción en <em>developer portal</em>, ya que ya hemos 
+importado un certificado de desarrollo y los perfiles de aprovisionamiento necesarios están creados. </p>
+</blockquote>
 <ol>
 <li>
-<p>Cambia el bundle ID y firma la app con el perfil genérico. <strong>Captura
-   la pantalla</strong> de Xcode en la que se muestre esto.</p>
+<p>Cambia el bundle ID y firma la app con el perfil Genérico. <strong>Captura la pantalla</strong> de Xcode en la que se muestre esto. </p>
 </li>
 <li>
 <p>Comprueba que es posible exportar la app utilizando el perfil
-    genérico. <strong>Captura la pantalla</strong>.</p>
+    Genérico. <strong>Captura la pantalla</strong>.</p>
 </li>
 <li>
 <p>Comprueba que aparece un error cuando intentas añadir la capacidad
-   <code>Game Center</code> usando el perfil genérico. <strong>Captura la pantalla</strong>.</p>
+   <code>Game Center</code> usando el perfil Genérico. <strong>Captura la pantalla</strong>.</p>
 </li>
 <li>
-<p>Comprueba en el portal del desarrollador de la UA que el
-   profesor ha creado el <em>App ID</em> y el perfil de aprovisionamiento <code>Master
-   Moviles ToDo</code> con la autorización para configurar en la app la
-   capacidad <code>Game Center</code>.</p>
-</li>
-</ol>
-<p><strong>Captura las pantallas</strong> con las páginas del portal del
-   desarrollador de la UA mostrándolos (incluye en las pantallas
-   toda la ventana del navegador, para que aparezca tu usuario en
-   la parte superior derecha).</p>
-<ol start="5">
-<li>
-<p>Instala en la app el perfil <code>Master Moviles ToDo</code> y añade la
-   capacidad <code>Game Center</code>. Comprueba que Xcode no da ningún error y
+<p>Cambia al perfil <code>Master Moviles ToDo</code> y añade la
+   capacidad <code>Game Center</code> (que si que se encuentra activada en este perfil). Comprueba que Xcode no da ningún error y
    <strong>captura la pantalla</strong>.</p>
 </li>
 <li>
@@ -690,7 +696,7 @@ recién creado en <a href="https://developer.apple.com">https://developer.apple.
 <h2 id="5-entrega">5. Entrega<a class="headerlink" href="#5-entrega" title="Permanent link">&para;</a></h2>
 <p>Crea una carpeta y guarda en ella lo siguiente:</p>
 <ul>
-<li>Todas las capturas de pantalla (un total de 9 imágenes).</li>
+<li>Todas las capturas de pantalla (un total de 8 imágenes).</li>
 <li>Binario .ipa exportado en el último paso.</li>
 <li>Carpeta con el proyecto completo.</li>
 </ul>
