@@ -2,9 +2,9 @@
 # Práctica 4: iCloud y CloudKit
 
 Seguimos trabajando con el proyecto `ToDo` y el _bundle ID_
-`es.ua.mastermoviles.ToDo` y el perfil de aprovisionamiento `Master
+`es.ua.mudsdm.ToDo` y el perfil de aprovisionamiento `Master
 Moviles ToDo` (está actualizado e incluye el permiso de acceso
-a CloudKit y al contenedor `iCloud.es.ua.mastermoviles.ToDo`).
+a CloudKit y al contenedor `iCloud.es.ua.mudsdm.ToDo`).
 
 > Puedes optar por hacer el ejercicio sobre la versión de ToDo basada en _storyboards_ o la basada en _SwiftUI_. En caso de elegir esta segunda opción, se recomienda leer la sección de teoría sobre [SwiftUI](https://malozano.github.io/apuntes-spm-ios/teoria/swiftui/swiftui.html) como ayuda.
 
