@@ -8,12 +8,12 @@ Resumimos a continuación los objetivos generales de esta práctica:
 
 1. Firmar una app con tu cuenta gratuita e instalarla en un
    dispositivo configurado como dispositivo de desarrollo.
-2. Darte de alta en el equipo de desarrollo de la UA.
+2. Importar un certificado de desarrollo de Apple.
 3. Firmar y exportar la app usando un perfil de aprovisionamiento que
    te permite instalarla en cualquier dispositivo autorizado en el
    perfil.
 4. Configurar en la aplicación una capacidad y seleccionar un perfil
-   del equipo de desarrollo de la UA que permita esta capacidad.
+   del equipo de desarrollo que permita esta capacidad.
 
 ## 1. Antes de empezar la clase presencial ##
 
@@ -48,8 +48,7 @@ demostraciones que podrás encontrar en Moodle, en la sesión 1.
 
 ## 2. Firma e instalación de una app en un dispositivo de desarrollo ##
 
-1. Deberás crear un Apple ID y darte de alta como desarrollador. Si ya lo tienes, no hace falta que hagas
-nada.
+1. Deberás crear un Apple ID y darte de alta como desarrollador. Si ya lo tienes, no hace falta que hagas nada.
 
     Para crear un Apple ID, puedes introducir tus datos en [este
     enlace](https://appleid.apple.com/account?localang=es_es). Este
@@ -90,7 +89,20 @@ nada.
    
 6. Comprueba que aparece un error cuando intentas exportar la
    app. **Captura la pantalla** de Xcode.
-   
+
+## 3. Importar un certificado de desarrollador ##
+
+1. Para poder firmar las aplicaciones necesitamos un certificado de desarrollador. Puedes **descargar el certificado** desde la página Moodle de la asignatura (se trata de un fichero con extensión `.p12`).
+
+2. **Importar el certificado**, haciendo doble _click_ sobre el fichero. Nos pedirá una contraseña que
+se proporcionará en clase.
+
+3. Tras introducir la contraseña, el **certificado habrá quedado instalado en el sistema**. Podemos comprobarlo, por ejemplo, mediante la aplicación _Acceso a llaveros_, donde deberemos encontrar un _item_ llamado _"Apple Development: Miguel Angel Lozano Ortega"_. Tendremos tanto el certificado como la clave privada asociada, necesaria para la firma. 
+
+4. Para poder probar las aplicaciones en dispositivos físicos, es necesario darlos de alta en la cuenta de Apple y actualizar los perfiles de aprovisionamiento para incluirlos. Para realizar esto, incluye en [este fichero Google Docs](https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing) el ID del dispositivo (o dispositivos que desees incorporar.
+
+
+<!--
 ## 3. Configuración de la cuenta de desarrollador ##
 
 1. Para la inscripción en el equipo de desarrollo de la universidad
@@ -111,33 +123,27 @@ nada.
    ya estás en el programa de la UA y prueba las distintas opciones 
    disponibles. 
 
+-->
+
 ## 4. Firma y despliegue de app con perfil de aprovisionamiento ##
 
 Sigue los pasos de la [demo y
    ejercicio](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
    de teoría, realizando lo siguiente:
 
-1. Cambia el bundle ID y firma la app con el perfil genérico. **Captura
-   la pantalla** de Xcode en la que se muestre esto.
+> **Importante**: No será necesario realizar ninguna acción en _developer portal_, ya que ya hemos 
+importado un certificado de desarrollo y los perfiles de aprovisionamiento necesarios están creados. 
+
+1. Cambia el bundle ID y firma la app con el perfil Genérico. **Captura la pantalla** de Xcode en la que se muestre esto. 
    
 2.  Comprueba que es posible exportar la app utilizando el perfil
-    genérico. **Captura la pantalla**.
+    Genérico. **Captura la pantalla**.
    
 3. Comprueba que aparece un error cuando intentas añadir la capacidad
-   `Game Center` usando el perfil genérico. **Captura la pantalla**.
-
-4. Comprueba en el portal del desarrollador de la UA que el
-   profesor ha creado el _App ID_ y el perfil de aprovisionamiento `Master
-   Moviles ToDo` con la autorización para configurar en la app la
-   capacidad `Game Center`.
-
-   **Captura las pantallas** con las páginas del portal del
-   desarrollador de la UA mostrándolos (incluye en las pantallas
-   toda la ventana del navegador, para que aparezca tu usuario en
-   la parte superior derecha).
+   `Game Center` usando el perfil Genérico. **Captura la pantalla**.
    
-5. Instala en la app el perfil `Master Moviles ToDo` y añade la
-   capacidad `Game Center`. Comprueba que Xcode no da ningún error y
+4. Cambia al perfil `Master Moviles ToDo` y añade la
+   capacidad `Game Center` (que si que se encuentra activada en este perfil). Comprueba que Xcode no da ningún error y
    **captura la pantalla**.
 
 6. Exporta la app, creando un binario .ipa. Si tienes algún
@@ -151,7 +157,7 @@ Sigue los pasos de la [demo y
 
 Crea una carpeta y guarda en ella lo siguiente:
 
-- Todas las capturas de pantalla (un total de 9 imágenes).
+- Todas las capturas de pantalla (un total de 8 imágenes).
 - Binario .ipa exportado en el último paso.
 - Carpeta con el proyecto completo.
 

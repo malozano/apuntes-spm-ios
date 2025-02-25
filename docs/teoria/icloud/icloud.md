@@ -115,11 +115,10 @@ desde Xcode.
 ### Creación del App ID ###
 
 Para trabajar con iCloud clave-valor puedes utilizar el perfil de
-aprovisionamiento `Master Moviles iCloud` creado en el _member
-center_ del equipo de la universidad. El _bundle ID_ de la app debe
+aprovisionamiento `SPM iCloud` creado en el _developer portal_. El _bundle ID_ de la app debe
 ser `es.ua.mudsdm.iCloud`.
 
-También hemos actualizado el perfil `Master Moviles ToDoList` para
+También hemos actualizado el perfil `SPM ToDo` para
 incluir los permisos de uso de iCloud y CloudKit.
 
 Se debe crear el App ID que otorgue la capacidad de acceso a iCloud.

@@ -62,30 +62,31 @@ dispositivo iOS basta con darse de alta de forma gratuita en el
 [portal del desarrollador](https://developer.apple.com) (_member
 center_) de Apple con un Apple ID.
 
-El programa de pago de desarrollador de Apple permite utilizar
+El **programa de pago de desarrollador** de Apple permite utilizar
 funcionalidades avanzadas, distribuir apps a dispositivos de prueba o
 subir nuestra app al App Store.
 
-El programa de desarrollador de empresa permite distribuir apps
+El **programa de desarrollador de empresa** permite distribuir apps
 _in-house_, en los dispositivos del personal de la empresa, sin
 necesidad de usar el App Store.
 
-Además de los anteriores programas, Apple ofrece el denominado [_iOS Developer
+Además de los anteriores programas, Apple ofrecía el denominado [_iOS Developer
 University Program_](https://developer.apple.com/support/university/) orientado a la formación en iOS en la universidad,
-que permite acceder a funcionalidades intermedias entre el programa
-gratuito y el programa de pago. 
-
-Este programa permite utilizar servicios de Apple no disponibles en el
+que permitía acceder a funcionalidades intermedias entre el programa
+gratuito y el programa de pago, pero **este programa fue descontinuado a partir del 25 de mayo de 2024**. Este programa permitía utilizar servicios de Apple no disponibles en el
 programa gratuito y ejecutar apps en dispositivos registrados, no solo
-en el dispositivo de desarrollo.
+en el dispositivo de desarrollo. Como alternativa, tras la finalización de este programa, se proporcionarán certificados de desarrollo
+que se podrán importar para así firmar manualmente las aplicaciones y poder tanto probarlas en dispositivos físicos como acceder a características
+de la plataforma que solo están disponibles para programas de pago (notificaciones _push_, iCloud, CloudKit, Game Center, etc).
 
+<!--
 Dependiendo del rol es posible acceder a distintas opciones. Hay dos
 tipos de roles principales: `Admin` (administrador de la organización)
 y `Member` (miembro de la organización).
 
 La Universidad de Alicante participa en este programa y probaremos sus
 características.
-
+-->
 En concreto, las características de cada uno de los programas se
 muestra en la siguiente tabla
 [https://developer.apple.com/support/compare-memberships/](https://developer.apple.com/support/compare-memberships/):
@@ -158,7 +159,7 @@ Con esta cuenta gratuita podremos comenzar a desarrollar apps y
 probarlas en nuestro dispositivo de desarrollo. Pero este desarrollo
 estará limitado. No podremos distribuirlas a más dispositivos ni
 utilizar servicios avanzados de Apple.
-
+<!--
 ### Miembro del equipo de la UA ###
 
 Si añadimos nuestra cuenta al equipo de la Universidad de Alicante,
@@ -169,10 +170,10 @@ cuenta que usaremos durante la asignatura.
 
 En el menú de la izquierda podemos comprobar que hay opciones
 adicionales a la cuenta gratuita.
-
+-->
 ### Miembro de pago ###
 
-Por último, si usamos una cuenta de pago, tenemos opciones adicionales:
+Si usamos una cuenta de pago, tenemos opciones adicionales:
 
 <img src="imagenes/cuenta-desarrollador.png" width="600px"/>
 
@@ -473,10 +474,11 @@ seleccionar ninguna forma de distribución de la app.
     <img src="imagenes/generic-ios-device.png" width="400px"/>
 
 
-### Firma con el equipo de la UA ###
+### Firma con un programa de desarrollador  ###
 
-Podemos firmar con el equipo de la UA cambiando el bundle ID,
-seleccionando el `Team` `Universidad de Alicante`.
+Si contamos con un programa de desarrollador de Apple, bien individual o de empresa, 
+podemos firmar indicando el bundle ID que queramos registrar en nuestra cuenta y
+seleccionando el `Team` correspondiente (por ejemplo,  `Universidad de Alicante`).
 
 <img src="imagenes/seleccion-equipo-ua.png" width="550px"/>
 
@@ -486,8 +488,16 @@ Al seleccionar el equipo `Universidad de Alicante` Xcode selecciona nuestro
 certificado específico asociado al equipo de la UA y firma con él la
 aplicación.
 
+> **Firma manual**: Al haber finalizado el programa _iOS University Developer Program_ ya no es posible 
+registrar en Xcode una cuenta asociada al equipo de la UA, pero como alternativa podemos importar un certificado de desarrollo.
+Para ello, se proporcionará el certificado en un fichero de tipo `.p12`. Para importarlo, haremos doble _click_
+sobre el fichero, nos pedirá la contraseña suministrada, y tras introducirla el certificado quedará instalado
+en el sistema (podremos verlo en la aplicación _Acceso a llaveros_). Una vez hecho esto, podremos eguir los pasos
+indicados a continuación para importar perfiles de aprovisionamento que nos permitan desplegar la aplicación
+en dispositivos físicos y acceder a servicios de la plataforma de Apple.
+
 Podemos instalar cualquier perfil de aprovisionamiento creado en el
-equipo de la UA que sea compatible con el bundle ID. Para ello
+equipo de desarrollo que sea compatible con el bundle ID. Para ello
 desmarcamos la opción `Automatically manage signing` y descargamos el
 perfil que nos interese. Un perfil de aprovisionamiento contiene un
 listado de capacidades que podemos activar en la app y un listado de
@@ -496,7 +506,7 @@ esto con más detalle.
 
 <img src="imagenes/download-profile.png" width="550px"/>
 
-Podemos seleccionar el perfil denominado `Genérico`:
+En el siguiente ejemplo, se selecciona un perfil denominado `Genérico`:
 
 <img src="imagenes/perfil-generico-ua.png" width="550px"/>
 
@@ -504,6 +514,7 @@ Una vez instalado el perfil de aprovisionamiento, la configuración de
 firma de la app queda como se muestra en la siguiente imagen:
 
 <img src="imagenes/firma-aprovisionamiento-ua.png" width="550px"/>
+
 
 ### Archivo y distribución de la app ###
 
@@ -938,9 +949,15 @@ fueran apps _in-house_.
 
 ----
 
-## Demo y ejercicio ##
+## Demo ##
 
 ### Resumen del flujo de trabajo ###
+
+En esta demo se ilustra todo el proceso desde el alta en un equipo de desarrollo hasta la firma,
+despliege y ejecución de una aplicación. Es importante destacar que para poder realizar todo este 
+proceso es **necesario contar con un programa de desarrollo de pago de Apple**. Como alternartiva, en 
+los ejercicios, se proporcionará un certificado de desarrollo que podremos importar en nuestro equipo,
+por lo que no será necesario acceder al _developer portal_ de Apple. 
 
 Vamos a comprobar que es necesario firmar digitalmente la app para
 poder ejecutarla en un dispositivo y usar ciertos servicios como
@@ -955,7 +972,7 @@ comprobaremos cómo el administrador puede configurar App IDs y
 perfiles de aprovisionamiento en la web del equipo de desarrollo de
 Apple.
 
-Un resumen de los pasos que vamos a seguir en el ejercicio:
+Un resumen de los pasos que vamos a seguir en la demo:
 
 1. Nos damos de alta al equipo de la universidad.
 2. El administrador del equipo de la universidad crea un App ID con
@@ -1260,7 +1277,7 @@ incluido en el perfil de aprovisionamiento) usando Apple Configurator.
 Para poder ejecutar la app en el dispositivo debemos [activar el modo
 de desarrollador](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device).
 
-### Fin demo y ejercicio ###
+### Fin demo ###
 
 ----
 
