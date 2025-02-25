@@ -142,7 +142,7 @@ importado un certificado de desarrollo y los perfiles de aprovisionamiento neces
 3. Comprueba que aparece un error cuando intentas añadir la capacidad
    `Game Center` usando el perfil Genérico. **Captura la pantalla**.
    
-4. Cambia al perfil `Master Moviles ToDo` y añade la
+4. Cambia al perfil `SPM ToDo` y añade la
    capacidad `Game Center` (que si que se encuentra activada en este perfil). Comprueba que Xcode no da ningún error y
    **captura la pantalla**.
 
