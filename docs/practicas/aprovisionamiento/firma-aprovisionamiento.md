@@ -35,7 +35,7 @@ demostraciones que podrás encontrar en Moodle, en la sesión 1.
       dispositivo si ha sido previamente firmada con un certificado de
       un desarrollador registrado.
     - [Capacidades de las
-      aps](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#capacidades-de-las-apps):
+      apps](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#capacidades-de-las-apps):
       Para usar las capacidades proporcionadas por la plataforma de
       desarrollo Apple es necesario configurar una autorización usando
       un App ID.
@@ -85,8 +85,8 @@ demostraciones que podrás encontrar en Moodle, en la sesión 1.
    equipo que realiza la firma. **Captura también** una instantánea con la
    app ejecutándose en el dispositivo mostrando la pantalla con tu
    nombre. Si no tienes dispositivo, hazlo con la ejecución del
-   simulador. 
-   
+   simulador.
+
 6. Comprueba que aparece un error cuando intentas exportar la
    app. **Captura la pantalla** de Xcode.
 
@@ -97,9 +97,9 @@ demostraciones que podrás encontrar en Moodle, en la sesión 1.
 2. **Importar el certificado**, haciendo doble _click_ sobre el fichero. Nos pedirá una contraseña que
 se proporcionará en clase.
 
-3. Tras introducir la contraseña, el **certificado habrá quedado instalado en el sistema**. Podemos comprobarlo, por ejemplo, mediante la aplicación _Acceso a llaveros_, donde deberemos encontrar un _item_ llamado _"Apple Development: Miguel Angel Lozano Ortega"_. Tendremos tanto el certificado como la clave privada asociada, necesaria para la firma. 
+3. Tras introducir la contraseña, el **certificado habrá quedado instalado en el sistema**. Podemos comprobarlo, por ejemplo, mediante la aplicación _Acceso a llaveros_, donde deberemos encontrar un _item_ llamado _"Apple Development: Miguel Angel Lozano Ortega"_. Tendremos tanto el certificado como la clave privada asociada, necesaria para la firma.
 
-4. Para poder probar las aplicaciones en dispositivos físicos, es necesario darlos de alta en la cuenta de Apple y actualizar los perfiles de aprovisionamiento para incluirlos. Para realizar esto, incluye en [este fichero Google Docs](https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing) el ID del dispositivo (o dispositivos que desees incorporar.
+4. Para poder probar las aplicaciones en dispositivos físicos, es necesario darlos de alta en la cuenta de Apple y actualizar los perfiles de aprovisionamiento para incluirlos. Para realizar esto, incluye en [este fichero Google Docs](https://docs.google.com/spreadsheets/d/13VqNS9KUATl-0t_IsvPjpPzcNrfyul-1rBcOh551ySo/edit?usp=sharing) el ID del dispositivo (o dispositivos que desees incorporar.
 
 
 <!--
@@ -120,8 +120,8 @@ se proporcionará en clase.
 
 3.   Una vez aceptada la invitación entra en el [portal del
    desarrollador](https://developer.apple.com/account/), comprueba que
-   ya estás en el programa de la UA y prueba las distintas opciones 
-   disponibles. 
+   ya estás en el programa de la UA y prueba las distintas opciones
+   disponibles.
 
 -->
 
@@ -131,17 +131,17 @@ Sigue los pasos de la [demo y
    ejercicio](https://malozano.github.io/apuntes-spm-ios/teoria/firma-aprovisionamiento/firma-aprovisionamiento.html#demo-y-ejercicio)
    de teoría, realizando lo siguiente:
 
-> **Importante**: No será necesario realizar ninguna acción en _developer portal_, ya que ya hemos 
-importado un certificado de desarrollo y los perfiles de aprovisionamiento necesarios están creados. 
+> **Importante**: No será necesario realizar ninguna acción en _developer portal_, ya que ya hemos
+importado un certificado de desarrollo y los perfiles de aprovisionamiento necesarios están creados.
 
-1. Cambia el bundle ID y firma la app con el perfil Genérico. **Captura la pantalla** de Xcode en la que se muestre esto. 
-   
+1. Cambia el bundle ID y firma la app con el perfil Genérico. **Captura la pantalla** de Xcode en la que se muestre esto.
+
 2.  Comprueba que es posible exportar la app utilizando el perfil
     Genérico. **Captura la pantalla**.
-   
+
 3. Comprueba que aparece un error cuando intentas añadir la capacidad
    `Game Center` usando el perfil Genérico. **Captura la pantalla**.
-   
+
 4. Cambia al perfil `SPM ToDo` y añade la
    capacidad `Game Center` (que si que se encuentra activada en este perfil). Comprueba que Xcode no da ningún error y
    **captura la pantalla**.
@@ -162,5 +162,3 @@ Crea una carpeta y guarda en ella lo siguiente:
 - Carpeta con el proyecto completo.
 
 Comprime la carpeta y entrégala en la actividad de Moodle _Entrega 1_.
-
-
